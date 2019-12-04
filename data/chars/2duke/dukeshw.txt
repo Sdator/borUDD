@@ -1,0 +1,100 @@
+name	dukeshw
+health	1
+nolife  1
+type	 none
+gfxshadow   1
+lifespan 5
+
+palette         data/chars/2duke/alt01.gif  
+
+anim spawn
+	 loop       0
+	 delay      7
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/0misc/empty
+drawmethod alpha 6
+drawmethod channel 0.10
+         frame      data/chars/2duke/rise01.gif
+         frame      data/chars/0misc/empty
+drawmethod alpha 6
+drawmethod channel 0.10
+         frame      data/chars/2duke/rise01.gif
+         frame      data/chars/0misc/empty
+drawmethod alpha 6
+drawmethod channel 0.10
+         frame      data/chars/2duke/rise01.gif
+         frame      data/chars/0misc/empty
+drawmethod alpha 6
+drawmethod channel 0.10
+         frame      data/chars/2duke/rise01.gif
+	 delay      20
+	 sound      data/sounds/shaft.wav
+drawmethod alpha 6
+drawmethod channel 0.20
+         frame      data/chars/2duke/pain09.gif
+drawmethod alpha 6
+drawmethod channel 0.30
+         frame      data/chars/2duke/pain09.gif
+drawmethod alpha 6
+drawmethod channel 0.40
+         frame      data/chars/2duke/pain09.gif
+drawmethod alpha 6
+drawmethod channel 0.50
+         frame      data/chars/2duke/pain09.gif
+drawmethod alpha 6
+drawmethod channel 0.60
+         frame      data/chars/2duke/pain09.gif
+
+anim idle
+	 loop       0
+	 delay      100
+	 offset     80 129
+	 bbox       0
+	 jumpframe  3 6 0 0
+drawmethod alpha 6
+drawmethod channel 0.60
+         frame      data/chars/2duke/crouch.gif
+drawmethod alpha 6
+	 delay      50
+drawmethod channel 0.60
+         frame      data/chars/2duke/a101.gif
+	 delay      14
+drawmethod alpha 6
+drawmethod channel 0.60
+         frame      data/chars/2duke/crouch.gif
+	 delay      4
+drawmethod alpha 6
+drawmethod channel 0.60
+         frame      data/chars/2duke/ju01.gif
+         frame      data/chars/0misc/empty
+drawmethod alpha 6
+drawmethod channel 0.60
+         frame      data/chars/2duke/ju01.gif
+         frame      data/chars/0misc/empty
+drawmethod alpha 6
+drawmethod channel 0.60
+         frame      data/chars/2duke/ju01.gif
+         frame      data/chars/0misc/empty
+drawmethod alpha 6
+drawmethod channel 0.60
+         frame      data/chars/2duke/ju01.gif
+         frame      data/chars/0misc/empty
+drawmethod alpha 6
+drawmethod channel 0.60
+         frame      data/chars/2duke/ju01.gif
+         frame      data/chars/0misc/empty
+drawmethod alpha 6
+drawmethod channel 0.60
+         frame      data/chars/2duke/ju01.gif
+         frame      data/chars/0misc/empty
+drawmethod alpha 6
+drawmethod channel 0.60
+         frame      data/chars/2duke/ju01.gif
+         frame      data/chars/0misc/empty
+drawmethod alpha 6
+drawmethod channel 0.60
+         frame      data/chars/2duke/ju01.gif
+         frame      data/chars/0misc/empty
+
+

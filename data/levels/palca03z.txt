@@ -1,0 +1,224 @@
+loadingbg       data/bgs/loading2.gif 1 -999 -999 100 -999 -999
+music           data/music/03palacb.ogg 1
+bossmusic       data/music/03palacbx.ogg 1
+at              0
+background	data/bgs/03palc/n01.gif
+panel		data/bgs/03palc/n01.gif
+direction       both
+scrollspeed     0.5
+light  		10  20
+at       	0
+settime         0
+notime          1
+noslow          1
+order	        a
+#type            1
+spawn1          40 10
+spawn2          50 15
+updatescript    data/scripts/traileru.c
+
+wall   0 228 -300 -300 290 290 17 500
+
+spawn   pilar01
+flip    1
+coords  267 228
+at      0
+
+spawn   torch01
+coords  343 228
+at      0
+
+spawn   flare01
+coords  343 229
+at      0
+
+spawn   torch01
+coords  423 228
+at      0
+
+spawn   flare01
+coords  423 229
+at      0
+
+spawn   torch01
+coords  599 228
+at      0
+
+spawn   flare01
+coords  599 229
+at      0
+
+spawn   torch01
+coords  679 228
+at      0
+
+spawn   flare01
+coords  679 229
+at      0
+
+####### GROUP 1
+
+scrollx 0 0
+at      0
+
+group   3 3 
+at      0
+
+spawn   baker
+map     3
+coords  -50 190
+at      0
+
+spawn   chen1b
+map     4
+health  400
+2phealth  500
+coords  280 190
+at      0
+
+spawn   roper
+map     4
+coords  280 200
+at      0
+
+spawn   williams
+weapon  knife01
+map     4
+coords  -50 190
+at      0
+
+spawn   jeff
+map     3
+health  350
+coords  -50 190
+at      0
+
+spawn   linda1
+item    knife01
+map     4
+health  80
+coords  280 190
+at      0
+
+group   1 1
+at      0
+
+scrollx 0 340
+at      0
+
+####### GROUP 2
+
+scrollx 313 480
+at      313
+
+group   3 3
+at      313
+
+spawn   steve
+health  350
+coords  300 170
+at      313
+
+spawn   steve
+map     4
+health  350
+coords  300 210
+at      313
+
+spawn   roper
+map     2
+coords  -50 190
+at      313
+
+spawn   jackson
+map     4
+health  350
+2phealth  400
+coords  -50 190
+at      313
+
+spawn   williams
+map     4
+weapon  knife01
+coords  300 210
+at      313
+
+spawn   mcguire
+map     1
+health  450
+2phealth  550
+coords  -50 190
+at      313
+
+spawn   baker
+map     4
+coords  -50 210
+at      313
+
+spawn   carlem
+map     1
+health  550
+2phealth  650
+coords  300 210
+at      313
+
+spawn   linda1
+map     3
+item    knife01
+coords  300 190
+at      313
+
+spawn   roper
+map     4
+coords  -50 190
+at      313
+
+spawn   baker
+map     3
+coords  300 190
+at      313
+
+group   1 1
+at      0
+
+group   4 4
+at      313
+
+spawn   doorp01
+spawnscript data/scripts/noscpos.c
+flip    1
+coords  512 162
+at      313
+
+spawn   duke1b
+spawnscript data/scripts/noscpos.c
+item    dukede2
+health  700
+2phealth 800
+coords  510 165 0
+at      0
+
+spawn   roper
+map     2
+coords  -50 190
+at      313
+
+spawn   linda1
+map     4
+item    knife01
+coords  300 190
+at      313
+
+spawn   williams
+map     4
+weapon  knife01
+coords  -30 210
+at      313
+
+group   1 1
+at      0
+
+spawn   stagetr
+flip    1
+coords  0 232
+at      313

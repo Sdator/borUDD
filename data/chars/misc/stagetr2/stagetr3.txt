@@ -1,0 +1,17 @@
+name	stagetr3
+type	none
+setlayer 9999999999
+nodieblink 3
+
+
+anim idle
+	 loop      0
+	 delay     1
+	 health    7
+	 offset    0 228
+	 load      levelend2
+	 subentity levelend2
+	 spawnframe 1 0 0 0 0
+	 frame     data/chars/misc/stagetr2/tr217.gif
+	 frame     data/chars/misc/stagetr2/tr217.gif
+

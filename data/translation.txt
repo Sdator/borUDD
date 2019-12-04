@@ -1,0 +1,14 @@
+msgid 
+"This file should be place in data folder"
+"msgid : this is original text in code."
+"msgstr : this is your translation."
+msgstr 
+"Leave this blank if you don't want to translate it."
+"Lines below this are what you need to modify."
+
+
+msgid "PRESS START"
+msgstr "*+/[[ [^|+^"
+
+msgid "Control Options..."
+msgstr "控制选项"

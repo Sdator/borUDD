@@ -1,0 +1,165 @@
+loadingbg       data/bgs/loading2.gif 1 -999 -999 100 -999 -999
+music           data/music/02palacc.ogg 1
+at              0
+background	data/bgs/02palc/b01.gif
+panel		data/bgs/02palc/n01.gif
+vbgspeed        2 0
+light  		10  20
+at       	0
+settime         0
+notime          1
+noslow          1
+order	        a
+#type            1
+spawn1          90 24
+spawn2          165 24
+updatescript    data/scripts/traileru.c
+
+wall   0 197 -500 -500 55 10 55 500
+wall   255 197 -55 -10 500 500 55 500
+
+####### GROUP 1
+
+group   2 2 
+at      0
+
+spawn   williams
+coords  66 160 180
+at      0
+
+spawn   roper
+coords  189 160 180
+at      0
+
+group   1 1
+at      0
+
+####### GROUP 2
+
+group   2 2 
+at      0
+
+spawn   baker
+coords  66 160 180
+at      0
+
+spawn   linda1
+item    knife01
+coords  189 160 180
+at      0
+
+group   1 1
+at      0
+
+####### GROUP 3
+
+group   3 3
+at      0
+
+spawn   williams
+coords  66 160 180
+at      0
+
+spawn   roper
+coords  189 160 180
+at      0
+
+spawn   baker
+coords  127 185 180
+at      0
+
+group   1 1
+at      0
+
+####### GROUP 4
+
+group   3 3
+at      0
+
+spawn   baker
+map     1
+coords  66 160 180
+at      0
+
+spawn   baker
+map     2
+coords  189 160 180
+at      0
+
+spawn   linda1
+map     1
+item    knife01
+coords  127 185 180
+at      0
+
+group   1 1
+at      0
+
+####### GROUP 5
+
+group   4 4
+at      0
+
+spawn   baker
+map     2
+coords  66 160 180
+at      0
+
+spawn   williams
+map     3
+coords  189 160 180
+at      0
+
+spawn   roper
+map     3
+coords  72 187 180
+at      0
+
+spawn   linda1
+map     2
+item    knife01
+coords  183 187 180
+at      0
+
+group   1 1
+at      0
+
+####### GROUP 5
+
+group   4 4
+at      0
+
+spawn   williams
+map     4
+coords  66 160 180
+at      0
+
+spawn   roper
+map     4
+coords  189 160 180
+at      0
+
+spawn   steve
+map     4
+health  300
+2phealth  400
+coords  72 187 180
+at      0
+
+spawn   steve
+map     4
+health  300
+2phealth  400
+coords  183 187 180
+at      0
+
+group   1 1
+at      0
+
+spawn   stagetr
+flip    1
+coords  0 232
+at      0
+
+
+

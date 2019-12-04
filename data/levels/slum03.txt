@@ -1,0 +1,210 @@
+loadingbg       data/bgs/loading2.gif 1 -999 -999 100 -999 -999
+music           data/music/03slum.ogg 1
+background	data/bgs/02chin/b01.gif
+panel		data/bgs/03slum/n01.gif
+direction       both
+scrollspeed     0.5
+light  		10  20
+at       	0
+settime         0
+notime          1
+noslow          1
+order	        a
+cameratype      1
+cameraoffset 0 -50
+spawn1           80 25
+spawn2           90 35
+updatescript    data/scripts/traileru.c
+
+
+wall 165 476 -71 0 2000 2000 71 24 3
+wall 129 448 -35 0 2000 2000 43 24 3
+wall 105 432 -9 0 2000 2000 19 24 3
+wall 233 432 -27 0 2000 2000 27 5000
+wall 96 415 0 0 2000 2000 10 5000 3
+wall 69 407 0 0 2000 2000 4 5000 3
+basemap  69 407 98 9 0 109
+wall 270 402 -110 -110 0 0 4 5000 3 # new nr.6
+wall 166 407 0 0 2000 2000 35 107
+wall 228 407 -33 0 2000 2000 25 5000
+wall 164 400 -2000 -2000 0 0 2 5000 3
+wall 179 400 -2000 -2000 0 0 35 107
+wall 71 385 0 0 2000 2000 4 5000 3
+basemap  71 385 127 9 107 247
+wall 197 385 0 0 2000 2000 35 245
+wall 228 385 -33 0 2000 2000 25 5000
+wall 270 380 -80 -80 0 0 4 5000 3 # new nr.14
+wall 195 378 -2000 -2000 0 0 2 5000 3
+wall 220 378 -2000 -2000 0 0 35 245
+wall -2000 363 0 0 4000 4000 20 5000
+
+
+
+
+spawn   fgslu2
+@script
+void main()
+{
+    int P1 = getplayerproperty(0, "entity");
+    int P2 = getplayerproperty(1, "entity");
+
+    if(P1){
+      changeentityproperty(P1, "position", 80, 365, 245);
+    }
+    if(P2){
+      changeentityproperty(P2, "position", 110, 365, 245);
+    }
+}
+@end_script
+coords  1 475
+at      0
+
+spawn   staisl
+coords  71 405
+at      0
+
+spawn   staisl2
+coords  71 383 107
+at      0
+
+#--------------------------------------------------
+
+scrollz 0 0
+at  0
+
+####### GROUP 1
+
+group   1 2
+at      0
+
+spawn   mbox3
+coords  70 375 245
+at      0
+
+spawn   williams
+health  100
+coords  198 375 245
+at      0
+
+spawn   roper
+health  100
+map 3
+coords  -50 372 245
+at      0
+
+####### GROUP 2
+
+#----------------------------------------
+
+group   1 1
+at      0
+
+scrollz 0 120
+at  0
+
+spawn   slwall
+@script void main() {
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW4"));
+} @end_script
+coords  100 430
+at      0
+
+spawn   delay6
+coords  1 430 102
+at      0
+
+spawn   slwall
+@script void main() {
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW5"));
+} @end_script
+coords  100 430
+at      0
+
+scrollz 120 120
+at  0
+
+#----------------------------------------
+
+group   1 2
+at      0
+
+spawn   baker
+health  100
+coords  -50 387 107
+at      0
+
+spawn   roper
+health  100
+map 1
+coords  -70 397 107
+at      0
+
+####### GROUP 3
+
+#----------------------------------------
+
+group   1 1
+at      0
+
+scrollz 120 481
+at  0
+
+spawn   slwall
+@script void main() {
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW6"));
+} @end_script
+coords  100 430
+at      0
+
+spawn   delay6
+coords  1 430 1
+at      0
+
+spawn   slwall
+@script void main() {
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW7"));
+} @end_script
+coords  100 430
+at      0
+
+scrollz 481 481
+at  0
+
+#----------------------------------------
+
+Group	3 3
+at	0
+
+spawn   bmcguire
+health  550
+2phealth 600
+item    slowitm
+coords  306 434 24
+at      0
+
+spawn   williams
+map     2
+health  100
+coords  326 445 24
+at      0
+
+spawn   delay
+health  20
+coords  50 450
+at      0
+
+spawn   roper
+health  100
+map 1
+coords  -70 460
+at      0
+
+Group	1 1
+at	0
+
+spawn   stagetr
+flip    1
+coords  0 477
+at      0
+
+

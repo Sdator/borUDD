@@ -1,0 +1,18 @@
+name	brdelay
+type	none
+lifespan 2
+nomove  1
+subject_to_gravity 0
+subject_to_wall 0
+subject_to_minz 0
+subject_to_maxz 0
+setlayer 20
+
+
+anim idle
+	 loop      1
+	 delay     18
+	 offset    0 228
+	 frame     data/chars/0misc/brdelay1.gif
+	 frame     data/chars/0misc/brdelay2.gif
+

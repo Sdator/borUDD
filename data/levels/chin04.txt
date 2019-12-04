@@ -1,0 +1,161 @@
+loadingbg       data/bgs/loading2.gif 1 -999 -999 100 -999 -999
+music           data/music/00.ogg 1
+background	data/bgs/02chin/b01.gif
+panel		data/bgs/04chin/n01.gif
+direction       both
+scrollspeed     0.5
+light  		10  20
+at       	0
+settime         0
+notime          1
+noslow          1
+order	        a
+#type            1
+spawn1           80 25
+spawn2           90 35
+updatescript    data/scripts/traileru.c
+
+wall 97 247 -2000 -2000 0 0 80 20
+wall 147 247 0 0 2000 2000 80 20
+basemap  95 247 40 17 22 0
+wall 0 234 0 0 2000 2000 400 20
+wall 93 234 0 0 73 73 4 49 3
+wall 25 247 -300 -300 0 0 400 1000
+wall 22 216 -300 -300 38 0 38 1000
+wall 486 247 0 0 300 300 400 1000
+wall 489 216 -38 0 300 300 38 1000
+wall 0 181 0 0 1000 1000 5 5000 3
+
+
+spawn   fgsti2
+@script
+void main()
+{
+    int P1 = getplayerproperty(0, "entity");
+    int P2 = getplayerproperty(1, "entity");
+
+    if(P1){
+      changeentityproperty(P1, "Subject_to_Gravity", 0);
+      changeentityproperty(P1, "position", 139, 238, 1);
+      changeentityproperty(P1, "direction", 0);
+      changeentityproperty(P1, "animation", openborconstant("ANI_FOLLOW106"));
+    }
+    if(P2){
+      changeentityproperty(P1, "Subject_to_Gravity", 0);
+      changeentityproperty(P2, "position", 134, 243, 1);
+      changeentityproperty(P2, "direction", 0);
+      changeentityproperty(P2, "animation", openborconstant("ANI_FOLLOW106"));
+    }
+}
+@end_script
+coords  97 232 14
+at      0
+
+spawn   fgchi4
+coords  1 178 20
+at      0
+
+spawn   cwindow
+coords  0 228 0
+at      0
+
+spawn   rains2
+coords  0 228
+at      0
+
+spawn   stageinT
+coords  0 232
+at      0
+
+music           data/music/WKCHI04.ogg 1
+at              0
+
+####### GROUP 1
+
+scrollx 0 77
+at      0
+
+group   1 1
+at      0
+
+spawn   delay
+health  20
+coords  300 240
+at      0
+
+group   4 4
+at      0
+
+spawn   roper
+health  100
+coords  350 190 20
+at      0
+
+spawn   williams
+health  100
+coords  380 200 20
+at      0
+
+spawn   baker
+health  100
+coords  400 210 20
+at      0
+
+spawn   steve
+map     1
+health  300
+2phealth 400
+coords  440 220 20
+at      0
+
+group   1 1
+at      0
+
+scrollx 0 254
+at      0
+
+####### GROUP 2
+
+scrollx 40 252
+at      0
+
+spawn   blackout
+spawnscript data/scripts/noscpos.c
+coords  0 248 0
+at      0
+
+group   2 2 
+at      127
+
+#spawn   chenmg01
+#coords  128 224 71
+#at      127
+
+spawn   chen1
+spawnscript data/scripts/noscpos.c
+health  400
+2phealth 500
+flip 1
+coords  126 171 71
+at      127
+
+spawn   chen1
+spawnscript data/scripts/noscpos.c
+map     1
+health  400
+2phealth 500
+coords  386 171 71
+at      127
+
+group   1 1
+at      127
+
+music   data/music/00.ogg
+at      0
+musicfade 1
+at      0
+
+spawn   stageou
+flip    1
+coords  0 232
+at      127

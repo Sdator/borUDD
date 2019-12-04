@@ -1,0 +1,36 @@
+name	hduke
+type	none
+nomove  1
+speed   5
+shadow  0
+gfxshadow 1
+#setlayer  -5
+#subject_to_gravity 0
+animationscript   data/scripts/lib001.c
+
+
+anim idle
+@script
+    void vSelf = getlocalvar("self");
+if(frame==0)
+{
+      fademusic(1, "data/Bgs/03airp/det/BIGBOSS1.ogg", 0, 0);
+}@end_script
+	 loop      0
+	 delay     100
+	 offset    80 129
+	 jumpframe 2 3.6 0 0
+         frame     data/chars/2duke/wk02.gif
+	 delay     40
+         frame     data/chars/2duke/spec06.gif
+	 delay     54
+         frame     data/chars/2duke/ju01.gif
+@cmd killentity getlocalvar("self")
+	 frame     data/chars/0misc/empty.gif
+
+
+
+
+
+
+

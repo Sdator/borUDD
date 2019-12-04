@@ -1,0 +1,32 @@
+name	doorp01
+type	none
+lifespan 2
+
+
+
+anim idle
+	 loop      0
+	 delay     5
+	 offset    32 96
+	 bbox      0
+	 sound     data/sounds/door.wav
+	 frame     Data/Bgs/03palc/det/doorp02.gif
+	 frame     Data/Bgs/03palc/det/doorp03.gif
+	 frame     Data/Bgs/03palc/det/doorp04.gif
+	 frame     Data/Bgs/03palc/det/doorp05.gif
+	 frame     Data/Bgs/03palc/det/doorp06.gif
+	 delay     10
+	 frame     Data/Bgs/03palc/det/doorp05.gif
+	 delay     5
+	 sound     data/sounds/door.wav
+	 frame     Data/Bgs/03palc/det/doorp04.gif
+	 frame     Data/Bgs/03palc/det/doorp03.gif
+	 frame     Data/Bgs/03palc/det/doorp02.gif
+	 frame     Data/Bgs/03palc/det/doorp01.gif
+
+
+
+
+
+
+

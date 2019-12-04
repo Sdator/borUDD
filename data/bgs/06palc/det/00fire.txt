@@ -1,0 +1,29 @@
+name	00fire
+type	panel
+speed   10
+setlayer 800
+alpha   1
+shadow	0
+
+
+anim idle
+	 loop      1
+	 delay     5
+	 offset    0 240
+	 bbox      0
+	 frame     Data/Bgs/06palc/det/bur01.gif
+	 frame     Data/Bgs/06palc/det/bur02.gif
+	 frame     Data/Bgs/06palc/det/bur03.gif
+	 frame     Data/Bgs/06palc/det/bur05.gif
+	 frame     Data/Bgs/06palc/det/bur06.gif
+	 frame     Data/Bgs/06palc/det/bur07.gif
+
+
+
+
+
+
+
+
+
+

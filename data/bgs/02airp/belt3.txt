@@ -1,0 +1,24 @@
+name	belt3
+type    none
+shadow  0
+antigravity 100
+facing 1
+setlayer 1
+subject_to_gravity 0
+subject_to_wall 0
+subject_to_hole 0
+Subject_to_MinZ 0
+Subject_to_MaxZ 0
+offscreenkill  5000
+
+
+anim idle
+	loop	1
+	delay	10
+	offset	1 11
+	frame	data/Bgs/02airp/bel4.gif
+	frame	data/Bgs/02airp/bel3.gif
+	frame	data/Bgs/02airp/bel2.gif
+	frame	data/Bgs/02airp/bel1.gif
+
+

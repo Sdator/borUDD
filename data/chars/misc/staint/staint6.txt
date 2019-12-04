@@ -1,0 +1,23 @@
+name	staint6
+type	text
+subtype  noskip
+setlayer 9999999999
+nodieblink 3
+
+anim idle
+	 loop      0
+	 delay     3
+	 offset    0 228
+	 frame     data/chars/misc/staint/m6001.gif
+	 frame     data/chars/misc/staint/m6002.gif
+	 frame     data/chars/misc/staint/m6003.gif
+	 frame     data/chars/misc/staint/m6004.gif
+	 frame     data/chars/misc/staint/m6005.gif
+	 frame     data/chars/misc/staint/m6006.gif
+	 frame     data/chars/misc/staint/m6007.gif
+	 frame     data/chars/misc/staint/m6008.gif
+	 frame     data/chars/misc/staint/m6009.gif
+         delay     200
+	 frame     data/chars/misc/staint/m6010.gif
+
+

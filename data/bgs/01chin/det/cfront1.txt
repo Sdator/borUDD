@@ -1,0 +1,14 @@
+name	cfront1
+type	panel
+speed   15
+#subject_to_screen 1
+setlayer  999990
+#alpha   1
+
+anim idle
+	 loop      1 12 16
+	 delay     7
+	 offset    2 228
+	 drawmethod alpha 6
+	 drawmethod channel 0.10
+	 frame     data/bgs/01chin/det/f01.gif

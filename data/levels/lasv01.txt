@@ -1,0 +1,281 @@
+loadingbg       data/bgs/loading2.gif 1 -999 -999 100 -999 -999
+music           data/music/SDDCAS01.ogg 1
+at              0
+background	data/bgs/01lasv/b01.gif
+panel		data/bgs/01lasv/n01.gif
+frontpanel		data/bgs/01lasv/f01.gif
+direction       both
+scrollspeed     0.5
+light  		10  -75
+at       	0
+shadowcolor     0_0_0
+at              0
+shadowalpha     4
+at              0
+shadowopacity   255
+at       	0
+settime         0
+notime          1
+noslow          1
+order	        a
+#type            1
+spawn1          73 30
+spawn2          48 56
+updatescript    data/scripts/traileru.c
+
+wall   50 178   -90   -90    3   3   8   50
+wall  575 178   -88   -88    6   6   8   50
+wall  717 178     0     0   21  21   3 1000
+wall  861 177 -1000 -1000    0  0   20 1000
+wall 1453 164     0     0  500  500  5   50
+wall 1624 194   -60   -10  500  500 51 1000
+wall 1621 228   -11   -11  500  500 80 1000
+
+spawn   cas01
+@script
+void main()
+{
+    int P1 = getplayerproperty(0, "entity");
+    int P2 = getplayerproperty(1, "entity");
+
+    if(P1){
+      changeplayerproperty(0, "score", 0);
+      changeplayerproperty(0, "lives", 5);
+      changeplayerproperty(0, "credits", 7);
+    }
+    if(P2){
+      changeplayerproperty(1, "score", 0);
+      changeplayerproperty(1, "lives", 5);
+      changeplayerproperty(1, "credits", 7);
+    }
+}
+@end_script
+flip    1
+coords  750 229
+at      0
+spawn   cas02
+flip    1
+coords  0 151
+at      0
+
+spawn   stagein
+flip    1
+coords  0 232
+at      0
+spawn   staint1
+flip    1
+coords  0 232
+at      0
+
+spawn   guard01
+coords  758 215
+at      0
+
+spawn   guard01
+coords  977 170
+at      0
+
+spawn   kun01
+coords  1397 178
+at      0
+
+spawn   kun02
+coords  1520 216
+at      0
+
+spawn   kun03
+coords  1254 161
+at      0
+
+spawn   kun04
+coords  1491 167
+at      0
+
+spawn   kun05
+coords  1570 167
+at      0
+
+spawn   slot01
+coords  1600 220
+at      0
+
+####### 
+
+spawn   drum01
+coords  380 200
+at      0
+
+####### GROUP 1
+
+scrollx 0 128
+at      0
+
+group   3 3 
+at      0
+
+spawn   williams
+health  80
+coords  -50 190
+at      0
+
+spawn   baker
+health  80
+coords  280 190
+at      0
+
+spawn   roper
+health  80
+coords  280 220
+at      0
+
+spawn   williams
+map     1
+weapon  knife01
+health  80
+coords  -50 190
+at      0
+
+spawn   roper
+map     1
+health  80
+coords  280 190
+at      0
+
+group   1 1
+at      0
+
+scrollx 0 256
+at      0
+
+####### GROUP 2
+
+scrollx 255 511
+at      255
+
+group   3 3 
+at      255
+
+spawn   roper
+map     2
+health  80
+coords  280 190
+at      255
+
+spawn   williams
+#weapon  grenade0
+map     3
+health  80
+coords  280 210
+at      255
+
+spawn   baker
+map     2
+health  80
+coords  -30 220
+at      255
+
+spawn   roper
+#weapon  nunchuck
+health  80
+coords  280 190
+at      255
+
+spawn   williams
+map     2
+health  80
+coords  -50 220
+at      255
+
+
+group   1 1
+at      255
+
+scrollx 255 953
+at      256
+
+group   1 1
+at      953
+
+scrollx 953 1141
+at      953
+
+spawn  caskiller
+coords  270 185
+at      953
+
+####### GROUP 3
+
+group   3 3 
+at      953
+
+spawn   williams
+health  80
+coords  270 185
+at      953
+
+spawn   roper
+#item    knife01
+health  80
+coords  280 220
+at      953
+
+spawn   baker
+map     3
+health  80
+coords  310 220
+at      953
+
+spawn   roper
+#weapon  bo
+map     4
+health  80
+coords  -50 190
+at      953
+
+group   1 1
+at      953
+
+scrollx 953 1376
+at      0
+
+spawn   kun06
+coords  329 220 0
+at      1236
+
+####### GROUP 2
+
+scrollx 1330 1376
+at      1330
+
+group   3 3 
+at      1330
+
+spawn   baker
+map     4
+health  80
+coords  -50 190
+at      1330
+
+spawn   williams
+health  80
+coords  -50 190
+at      1330
+
+spawn   jeff
+health  150
+coords  -50 200
+at      1330
+
+spawn   roper
+health  80
+coords  -50 220
+at      1330
+
+group   1 1
+at      1330
+
+spawn   stageou
+flip    1
+coords  0 232
+at      0
+

@@ -1,0 +1,845 @@
+name          BillyX
+type          none
+candamage     enemy obstacle pshot npc
+subject_to_obstacle 0
+health        100
+mp            100
+jugglepoints  20
+chargerate    5
+speed         7
+throw         2 3
+throwdamage   20
+holdblock     1
+jumpheight    2.43
+jumpspeed     8
+grabdistance  35
+shadow        0
+gfxshadow     1
+noquake       1
+makeinv       1
+nodieblink    1
+antigravity   40
+atchain       1 2 3 4 0
+icon          data/chars/1billy/icon.gif 1
+#parrow         
+#parrow2 
+weapnum       9
+
+script data/scripts/spawn.c
+animationscript   data/scripts/lib001.c
+
+palette        data/chars/1billy/icon.gif   
+alternatepal   data/chars/1billy/alter01.gif   
+alternatepal   data/chars/1billy/alter02.gif   
+alternatepal   data/chars/1billy/alter03.gif   
+alternatepal   data/chars/1billy/alter04.gif 
+alternatepal   data/chars/1billy/alter05.gif  
+alternatepal   data/chars/1billy/alter06.gif  
+alternatepal   data/chars/1billy/alter07.gif  
+alternatepal   data/chars/1billy/alter08.gif 
+alternatepal   data/chars/1billy/alter09.gif  
+alternatepal   data/chars/1billy/alter10.gif  
+alternatepal   data/chars/1billy/alter11.gif   
+
+
+com      a2     freespecial1
+com      a3     freespecial2
+com      a4     freespecial3
+com      s + a  freespecial4
+com      j + a2  freespecial5
+com      d u a2  freespecial6
+com      d a2  freespecial7
+
+#-------Select screen
+
+#-------The rest of the moves
+
+anim waiting
+	 loop       1
+	 delay      10
+	 offset     40 200
+	 bbox       68 83 24 44
+	 fshadow    0
+         frame      data/chars/1billy/sel01.gif
+         frame      data/chars/1billy/sel02.gif
+
+anim select
+	 loop       0
+	 delay      5
+	 offset     40 200
+	 bbox       68 83 24 44
+	 fshadow    0
+         frame      data/chars/1billy/sel03.gif
+         frame      data/chars/1billy/sel01.gif
+         frame      data/chars/1billy/sel03.gif
+         frame      data/chars/1billy/sel01.gif
+         frame      data/chars/1billy/sel03.gif
+         frame      data/chars/1billy/sel01.gif
+         frame      data/chars/1billy/sel03.gif
+         frame      data/chars/1billy/sel01.gif
+	 delay      15
+         frame      data/chars/1billy/sel03.gif
+	 delay      5
+         frame      data/chars/1billy/sel04.gif
+         frame      data/chars/1billy/sel05.gif
+         frame      data/chars/1billy/sel06.gif
+         frame      data/chars/misc/empty.gif
+
+anim spawn
+	 loop       0
+	 delay      2
+	 offset     80 129
+	 bbox       68 83 24 44
+         frame      data/chars/1billy/idle01.gif
+
+anim idle
+@cmd clearL
+	 loop       1
+	 delay      200
+	 offset     80 129
+	 bbox       68 83 24 44
+         frame      data/chars/1billy/idle01.gif
+	 delay      9
+         frame      data/chars/1billy/idle08.gif
+	 delay      200
+         frame      data/chars/1billy/idle09.gif
+	 delay      9
+         frame      data/chars/1billy/idle08.gif
+
+anim walk
+	 loop       1
+	 delay      14
+	 offset     80 129
+	 bbox       68 83 24 44
+         frame      data/chars/1billy/wk01.gif
+         frame      data/chars/1billy/wk02.gif
+         frame      data/chars/1billy/wk03.gif
+         frame      data/chars/1billy/wk04.gif
+         frame      data/chars/1billy/wk05.gif
+         frame      data/chars/1billy/wk06.gif
+
+anim run
+	 loop       1
+	 delay      10
+	 offset     80 129
+	 bbox       68 83 24 44
+         frame      data/chars/1billy/run01.gif
+         frame      data/chars/1billy/run02.gif
+	 sound      data/sounds/run.wav
+         frame      data/chars/1billy/run03.gif
+         frame      data/chars/1billy/run04.gif
+         frame      data/chars/1billy/run05.gif
+	 sound      data/sounds/run.wav
+         frame      data/chars/1billy/run06.gif
+
+anim attack1
+	 range      -10 50
+	 loop       0
+	 delay      6
+	 offset     80 129
+	 bbox       68 83 24 44
+@cmd ani0020 openborconstant("ANI_ATTACK3") openborconstant("ANI_PAIN3")
+@cmd ani0020 openborconstant("ANI_ATTACK3") openborconstant("ANI_PAIN4")
+@cmd ani0020 openborconstant("ANI_ATTACK4") openborconstant("ANI_PAIN7")
+         frame      data/chars/1billy/a301.gif
+	 delay      11
+	 hitfx      data/sounds/beat7.wav
+	 attack     90 83 18 8 7 0 0 0 8 5
+	 jugglecost 5
+	 forcedirection -1
+	 dropv      1.3 0.8 0
+         frame      data/chars/1billy/a302.gif
+	 delay      6
+	 attack     0 0 0 0 
+         frame      data/chars/1billy/a301.gif
+
+anim attack2
+	 range      -10 50
+	 range      0 60
+	 loop       0
+	 delay      6
+	 offset     80 129
+	 bbox       68 83 24 44
+@cmd ani0020 openborconstant("ANI_ATTACK4") openborconstant("ANI_PAIN7")
+         frame      data/chars/1billy/a301.gif
+	 delay      11
+	 hitfx      data/sounds/beat8.wav
+	 attack8    90 83 18 8 7 0 0 0 8 5
+	 jugglecost 5
+	 forcedirection -1
+	 dropv      1.3 0.8 0
+         frame      data/chars/1billy/a302.gif
+	 delay      6
+	 attack8    0 0 0 0 
+         frame      data/chars/1billy/a301.gif
+	 
+anim attack3
+	 range      -10 50
+	 range      0 60
+	 loop       0
+	 delay      6
+	 offset     80 129
+	 bbox       68 83 24 44
+@cmd ani0020 openborconstant("ANI_ATTACK4") openborconstant("ANI_PAIN7")
+         frame      data/chars/1billy/a401.gif
+         frame      data/chars/1billy/a402.gif
+	 hitfx      data/sounds/beatc.wav
+	 attack7    88 81 23 12 13 0 0 0 8 5
+	 forcedirection -1
+	 jugglecost 5
+	 dropv      1.3 0.8 0
+         frame      data/chars/1billy/a403.gif
+	 attack7    0 0 0 0 
+         frame      data/chars/1billy/a404.gif
+	 delay      9
+         frame      data/chars/1billy/a405.gif
+	 delay      12
+         frame      data/chars/1billy/a601.gif
+
+anim attack4
+	 range      -10 60
+	 loop       0
+	 delay      13
+	 offset     80 129
+	 bbox       68 83 24 44
+	 sound      data/sounds/dragon8.wav
+         frame      data/chars/1billy/a101.gif
+	 delay      8
+         frame      data/chars/1billy/a501.gif
+	 hitfx      data/sounds/beatb.wav
+	 attack6    92 85 20 15 16 1 1 0 8 5
+	 jugglecost 5
+	 forcedirection -1
+	 dropv      3 0.5 0
+         frame      data/chars/1billy/a502.gif
+	 delay      19
+	 attack6    83 69 12 24 16 1 0 0 8 5
+	 jugglecost 5
+	 dropv      3 0.5 0
+         frame      data/chars/1billy/a503.gif
+	 delay      23
+	 attack6    0 0 0 0 
+         frame      data/chars/1billy/a601.gif
+
+#kick button
+anim freespecial1
+	 range      -10 60
+	 loop       0
+	 delay      9
+	 offset     80 129
+	 bbox       68 83 24 44
+	 hitfx      data/sounds/beat5.wav
+@cmd ani0020 openborconstant("ANI_FOLLOW1") openborconstant("ANI_PAIN3")
+@cmd ani0020 openborconstant("ANI_FOLLOW2") openborconstant("ANI_PAIN7")
+@cmd ani0020 openborconstant("ANI_FOLLOW3") openborconstant("ANI_PAIN8")
+         frame      data/chars/1billy/b101.gif
+         frame      data/chars/1billy/b102.gif
+	 delay      14
+	 attack3    85 78 24 26 9 0 0 0 8 5
+	 jugglecost 5
+	 forcedirection -1
+	 dropv      1.3 0.8 0
+         frame      data/chars/1billy/b103.gif
+	 delay      9
+	 attack3    0 0 0 0
+         frame      data/chars/1billy/b104.gif
+
+#kick stunner
+anim follow1
+	 range      -10 60
+	 loop       0
+	 delay      6
+	 offset     80 129
+	 bbox       68 83 24 44
+	 hitfx      data/sounds/beat6.wav
+@cmd ani0020 openborconstant("ANI_FOLLOW2") openborconstant("ANI_PAIN7")
+         frame      data/chars/1billy/b101.gif
+         frame      data/chars/1billy/b201.gif
+	 delay      10
+	 attack7    85 78 24 26 13 0 0 0 8 5
+	 jugglecost 5
+	 forcedirection -1
+	 dropv      1.3 0.8 0
+         frame      data/chars/1billy/b202.gif
+	 delay      9
+	 attack7    0 0 0 0
+         frame      data/chars/1billy/b203.gif
+         frame      data/chars/1billy/b104.gif
+
+#kick finisher
+anim follow2
+	 range      -10 60
+	 loop       0
+	 delay      10
+	 offset     80 129
+	 bbox       68 83 24 44
+	 sound      data/sounds/dragon2.wav
+	 hitfx      data/sounds/beata.wav
+         frame      data/chars/1billy/b301.gif
+         frame      data/chars/1billy/b302.gif
+	 delay      7
+         frame      data/chars/1billy/b303.gif
+         frame      data/chars/1billy/b404.gif
+         frame      data/chars/1billy/b405.gif
+	 attack6    89 78 29 23 19 1 1 0 8 5
+	 jugglecost 5
+	 forcedirection -1
+	 dropv      2 1.5 0
+         frame      data/chars/1billy/b406.gif
+	 attack6    0 0 0 0
+         frame      data/chars/1billy/b407.gif
+         frame      data/chars/1billy/b408.gif
+	 delay      12
+         frame      data/chars/1billy/a402.gif
+
+#extra knockdown kick for punch chain
+anim follow3
+	 range      -10 60
+	 loop       0
+	 delay      6
+	 offset     80 129
+	 bbox       68 83 24 44
+	 hitfx      data/sounds/beath.wav
+         frame      data/chars/1billy/b101.gif
+         frame      data/chars/1billy/b201.gif
+	 delay      10
+	 attack6    85 78 24 26 17 1 0 0 8 5
+	 jugglecost 5
+	 forcedirection -1
+	 dropv      2 0.7 0
+         frame      data/chars/1billy/b202.gif
+	 delay      9
+	 attack6    0 0 0 0
+         frame      data/chars/1billy/b203.gif
+         frame      data/chars/1billy/b104.gif
+
+anim attackbackward
+
+anim jump
+	 loop       0
+	 delay      17
+	 offset     80 129
+	 bbox       68 83 24 44
+	 sound      data/sounds/dragon8.wav
+	 cancel     1 3 0 a2 freespecial50
+         frame      data/chars/1billy/ju01.gif
+	 delay      10
+	 bbox       70 85 21 28
+         frame      data/chars/1billy/ju02.gif
+         frame      data/chars/1billy/ju03.gif
+         frame      data/chars/1billy/ju02.gif
+	 bbox       68 83 24 44
+         frame      data/chars/1billy/ju01.gif
+
+#WALL JUMP
+anim follow50
+	 loop       0
+	 delay      25
+	 offset     80 129
+	 bbox       68 83 24 44
+@cmd toss0001 140
+	 jumpframe  1 1 1.5 0
+	 landframe  3
+	 sound      data/sounds/punch5.wav
+         frame      data/chars/1billy/wallj.gif
+	 delay      7
+	 bbox       70 85 21 28
+         frame      data/chars/1billy/ju03.gif
+	 delay      999
+	 hitfx      data/sounds/beat6.wav
+	 attack6    79 98 33 19 10 1 0 0 12 5
+	 forcedirection -1
+	 dropv      1.5 1.2 0
+         frame      data/chars/1billy/ak01.gif
+	 delay      15
+	 attack6    0 0 0 0
+	 bbox       0 0 0 0
+         frame      data/chars/1billy/rise02.gif
+
+anim jumpattack
+	 loop       0
+	 delay      25
+	 offset     80 129
+	 bbox       69 88 24 25
+	 hitfx      data/sounds/beat5.wav
+	 attack6    79 98 33 19 12 1 0 0 12 5
+	 forcedirection -1
+	 dropv      1.5 1.2 0
+         frame      data/chars/1billy/ak01.gif
+	 delay      15
+	 attack6    0 0 0 0
+         frame      data/chars/1billy/ju02.gif
+	 bbox       68 83 24 44
+         frame      data/chars/1billy/ju01.gif
+
+#DIVEKICK
+anim freespecial50
+	 loop       0
+	 delay      6
+	 offset     80 129
+	 bbox       69 88 24 25
+	 jumpframe  2 -3 3 0
+	 landframe  3
+	 sound      data/sounds/punch4.wav
+	 hitfx      data/sounds/beatm.wav
+         frame      data/chars/1billy/ak02.gif
+         frame      data/chars/1billy/ak03.gif
+         delay      99
+	 attack9   76 102 27 23 6 1 0 0 12 5
+	 forcedirection -1
+	 dropv      1.5 1.2 0
+         frame      data/chars/1billy/ak04.gif
+         delay      12
+	 attack9    0 0 0 0
+         frame      data/chars/1billy/item.gif
+
+anim jumpland
+	 loop       0
+	 delay      10
+	 offset     80 129
+	 bbox       0 0 0 0
+         frame      data/chars/1billy/rise02.gif
+
+anim block
+	 loop       0
+	 delay      6
+	 offset     80 129
+	 bbox       68 83 24 44
+         frame      data/chars/1billy/a301.gif
+         frame      data/chars/1billy/block.gif
+         frame      data/chars/1billy/block.gif
+
+anim charge
+	 loop       0
+	 delay      10
+	 offset     80 129
+	 bbox       68 83 24 44
+	 sound      data/sounds/dragonh.wav
+         frame      data/chars/1billy/a401.gif
+         frame      data/chars/1billy/a405.gif
+	 delay      5
+         frame      data/chars/1billy/ch01.gif
+         frame      data/chars/1billy/ch02.gif
+         frame      data/chars/1billy/ch03.gif
+         frame      data/chars/1billy/ch02.gif
+@cmd	updateframe getlocalvar("self") 2
+         frame      data/chars/1billy/ch02.gif
+
+anim grab
+
+anim pain1
+	 loop       0
+	 delay      7
+	 offset     80 129
+	 bbox       68 83 24 44
+	 cancel     1 4 0 d f a2 freespecial90
+         frame      data/chars/1billy/pain01.gif
+         frame      data/chars/1billy/pain01.gif
+         frame      data/chars/1billy/pain01.gif
+	 delay      13
+         frame      data/chars/1billy/pain01.gif
+
+#breathless1
+anim pain2
+	 loop       0
+	 delay      27
+	 offset     80 129
+	 bbox       68 83 24 44
+	 cancel     0 1 0 d f a2 freespecial90
+         frame      data/chars/1billy/pain01.gif
+	 delay      45
+         frame      data/chars/1billy/pain03.gif
+
+anim pain3
+	 loop       0
+	 delay      7
+	 offset     80 129
+	 bbox       68 83 24 44
+	 cancel     1 4 0 d f a2 freespecial90
+         frame      data/chars/1billy/pain02.gif
+         frame      data/chars/1billy/pain02.gif
+         frame      data/chars/1billy/pain02.gif
+	 delay      13
+         frame      data/chars/1billy/pain02.gif
+
+#breathless2
+anim pain4
+	 loop       0
+	 delay      27
+	 offset     80 129
+	 bbox       68 83 24 44
+	 cancel     0 1 0 d f a2 freespecial90
+         frame      data/chars/1billy/pain02.gif
+	 delay      45
+         frame      data/chars/1billy/pain03.gif
+
+#stun
+anim pain5
+	 loop       0
+	 delay      19
+	 offset     80 129
+	 bbox       68 83 24 44
+         frame      data/chars/1billy/pain04.gif
+         frame      data/chars/1billy/pain05.gif
+         frame      data/chars/1billy/pain06.gif
+         frame      data/chars/1billy/pain05.gif
+         frame      data/chars/1billy/pain04.gif
+         frame      data/chars/1billy/pain05.gif
+         frame      data/chars/1billy/pain06.gif
+         frame      data/chars/1billy/pain05.gif
+         frame      data/chars/1billy/pain04.gif
+         frame      data/chars/1billy/pain05.gif
+         frame      data/chars/1billy/pain06.gif
+
+#COMBO BREAKER	
+anim freespecial90
+	 loop       0
+	 delay      4
+	 offset     80 129
+	 bbox       0 0 0 0
+	 fastattack 1
+	 energycost 40
+	 mponly     1
+	 jumpframe  2 2.5 0.5 0
+	 dropframe  12
+	 landframe  13
+	 hitflash   brfla
+         frame      data/chars/1billy/fin01.gif
+         frame      data/chars/1billy/fin02.gif
+	 delay      2
+	 sound      data/sounds/breaker.wav
+	 hitfx      data/sounds/beath.wav
+	 attack93   74 83 40 38 0 1 1 0 12 5
+	 forcedirection -1
+	 dropv      1.5 0.3 0
+         frame      data/chars/1billy/ak05.gif
+	 attack93   0 0 0 0
+         frame      data/chars/1billy/ak05.gif
+	 attack92   74 83 40 38 0 1 1 0 12 5
+	 forcedirection -1
+	 dropv      1.5 0.3 0
+         frame      data/chars/1billy/ak05.gif
+	 attack92   0 0 0 0
+         frame      data/chars/1billy/ak05.gif
+	 attack93   74 83 40 38 0 1 1 0 12 5
+	 forcedirection -1
+	 dropv      1.5 0.3 0
+         frame      data/chars/1billy/ak05.gif
+	 attack93   0 0 0 0
+         frame      data/chars/1billy/ak05.gif
+	 attack92   74 83 40 38 0 1 1 0 12 5
+	 forcedirection -1
+	 dropv      1.5 0.3 0
+         frame      data/chars/1billy/ak05.gif
+	 attack92   0 0 0 0
+         frame      data/chars/1billy/ak05.gif
+	 attack93   74 83 40 38 0 1 1 0 30 5
+	 forcedirection -1
+	 dropv      3 1 0
+         frame      data/chars/1billy/ak05.gif
+	 attack93   0 0 0 0
+         frame      data/chars/1billy/ak05.gif
+	 delay      999
+         frame      data/chars/1billy/ju01.gif
+	 delay      15
+         frame      data/chars/1billy/fin01.gif
+	 delay      8
+         frame      data/chars/1billy/b104.gif
+
+anim fall1
+	 loop       0
+	 delay      60
+	 offset     80 129
+	 bbox       68 83 24 44
+	 landframe  2
+         frame      data/chars/1billy/fall01.gif
+	 delay      999
+	 bbox       0 0 0 0
+         frame      data/chars/1billy/fall02.gif
+	 delay      12
+         frame      data/chars/1billy/fall02.gif
+	 sound      data/sounds/fall1.wav
+         frame      data/chars/1billy/fall03.gif
+
+anim fall6
+	 loop       0
+	 delay      60
+	 offset     80 129
+	 bbox       68 83 24 44
+	 landframe  2
+         frame      data/chars/1billy/fall01.gif
+	 delay      999
+         frame      data/chars/1billy/fall02.gif
+	 delay      12
+	 bbox       0 0 0 0
+         frame      data/chars/1billy/fall02.gif
+	 sound      data/sounds/fall1.wav
+         frame      data/chars/1billy/fall03.gif
+
+#########extra moves
+
+#backfist attack
+anim freespecial4
+	 loop       0
+	 delay      9
+	 offset     80 129
+	 bbox       68 83 24 44
+	 energycost 25
+	 mponly     1
+	 hitfx      data/sounds/beat5.wav
+@cmd ani0020 openborconstant("ANI_FOLLOW4") openborconstant("ANI_PAIN7")
+         frame      data/chars/1billy/a601.gif
+	 sound      data/sounds/punch1.wav
+         frame      data/chars/1billy/a602.gif
+         frame      data/chars/1billy/a603.gif
+	 attack7    89 85 26 12 10 0 0 0 8 5
+	 forcedirection -1
+	 jugglecost 5
+	 dropv      2 0.5 0
+         frame      data/chars/1billy/a604.gif
+	 attack7    0 0 0 0 
+         frame      data/chars/1billy/a605.gif
+         frame      data/chars/1billy/a606.gif
+	 delay      14
+         frame      data/chars/1billy/a402.gif
+
+#one extra backfist attack
+anim follow4
+	 range      5 60
+	 loop       0
+	 delay      9
+	 offset     80 129
+	 bbox       68 83 24 44
+	 energycost 25
+	 mponly     1
+	 hitfx      data/sounds/beata.wav
+         frame      data/chars/1billy/a601.gif
+	 sound      data/sounds/punch1.wav
+         frame      data/chars/1billy/a602.gif
+         frame      data/chars/1billy/a603.gif
+	 attack6    89 85 26 12 9 1 0 0 8 5
+	 forcedirection -1
+	 jugglecost 5
+	 dropv      2 0.5 0
+         frame      data/chars/1billy/a604.gif
+	 attack6    0 0 0 0 
+         frame      data/chars/1billy/a605.gif
+         frame      data/chars/1billy/a606.gif
+	 delay      14
+         frame      data/chars/1billy/a402.gif
+
+#fierce kick attack
+anim freespecial5
+	 loop       0
+	 delay      7
+	 offset     80 129
+	 bbox       68 83 24 44
+	 jumpframe  3 1.3 0.9 0
+	 landframe  10
+	 energycost 25
+	 mponly     1
+	 hitfx      data/sounds/beat6.wav
+         frame      data/chars/1billy/hk01.gif
+	 delay      10
+         frame      data/chars/1billy/hk02.gif
+	 delay      5
+	 sound      data/sounds/punch5.wav
+         frame      data/chars/1billy/hk03.gif
+         frame      data/chars/1billy/hk04.gif
+         frame      data/chars/1billy/hk05.gif
+         frame      data/chars/1billy/hk06.gif
+	 delay      10
+	 attack9    80 88 31 16 11 1 0 0 8 5
+	 forcedirection -1
+	 jugglecost 5
+	 dropv      2 1 0
+         frame      data/chars/1billy/hk07.gif
+	 delay      6
+	 attack9    0 0 0 0 
+         frame      data/chars/1billy/hk08.gif
+         frame      data/chars/1billy/hk09.gif
+	 delay      999
+         frame      data/chars/1billy/ju01.gif
+	 delay      3
+         frame      data/chars/1billy/idle01.gif
+
+#SDD tatsumaki
+anim freespecial6
+	 loop       0
+	 delay      6
+	 offset     80 129
+	 bbox       77 79 6 33
+	 energycost 50
+	 mponly     1
+	 jumpframe  3 1.5 1 0
+	 landframe  35
+	 sound      data/sounds/dragonh.wav
+	 hitfx      data/sounds/beatb.wav
+         frame      data/chars/1billy/hk01.gif
+	 delay      10
+         frame      data/chars/1billy/hk02.gif
+	 delay      5
+         frame      data/chars/1billy/hk03.gif
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk04.gif
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk05.gif
+	 sound      data/sounds/hkick2.wav
+	 attack9    74 82 37 26 10 1 0 0 8 5
+	 dropv      2 1.5 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk07.gif
+	 attack9    0 0 0 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk09.gif
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk10.gif
+@cmd toss0001 270
+	 attack9   55 79 25 30 10 1 0 0 8 5
+	 dropv      2 1.5 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk11.gif
+	 attack9    0 0 0 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk12.gif
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk05.gif
+	 sound      data/sounds/hkick2.wav
+	 attack9    74 82 37 26 10 1 0 0 8 5
+	 dropv      2 1.5 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk07.gif
+	 attack9     0 0 0 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk09.gif
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk10.gif
+	 attack9     55 79 25 30 10 1 0 0 8 5
+	 dropv      2 1.5 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk11.gif
+	 attack9    0 0 0 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk12.gif
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk05.gif
+	 sound      data/sounds/hkick2.wav
+	 attack9     74 82 37 26 10 1 0 0 8 5
+	 dropv      2 1.5 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk07.gif
+	 attack9     0 0 0 0 0 0 0 0 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk09.gif
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk10.gif
+	 attack9     55 79 25 30 10 1 0 0 8 5
+	 dropv      2 1.5 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk11.gif
+	 attack9     0 0 0 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk12.gif
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk05.gif
+	 sound      data/sounds/hkick2.wav
+	 attack9    74 82 37 26 10 1 0 0 8 5
+	 dropv      2 1.5 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk07.gif
+	 attack9     0 0 0 0 0 0 0 0 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk09.gif
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk10.gif
+	 attack9    55 79 25 30 10 1 0 0 8 5
+	 dropv      2 1.5 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk11.gif
+	 attack9     0 0 0 0
+         frame      data/chars/1billy/hk12.gif
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk05.gif
+	 sound      data/sounds/hkick2.wav
+	 attack9     74 82 37 26 10 1 0 0 8 5
+	 dropv      2 1.5 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk07.gif
+	 attack9     0 0 0 0 0 0 0 0 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk09.gif
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk10.gif
+	 attack9    55 79 25 30 10 1 0 0 8 5
+	 dropv      2 1.5 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk11.gif
+	 attack9    0 0 0 0 0 0 0 0 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/hk12.gif
+	 delay      300
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/1billy/ju01.gif
+	 delay      14
+         frame      data/chars/1billy/rise02.gif
+
+#double kick
+anim freespecial7
+	 loop       0
+	 delay      12
+	 offset     80 129
+	 bbox       68 83 24 44
+	 sound      data/sounds/punch3.wav
+	 hitfx      data/sounds/beatj.wav
+@cmd ani0020 openborconstant("ANI_FOLLOW5") openborconstant("ANI_PAIN3")
+@cmd ani0020 openborconstant("ANI_FOLLOW5") openborconstant("ANI_PAIN4")
+@cmd ani0020 openborconstant("ANI_FOLLOW5") openborconstant("ANI_PAIN7")
+@cmd ani0020 openborconstant("ANI_FOLLOW5") openborconstant("ANI_PAIN8")
+         frame      data/chars/1billy/b101.gif
+         frame      data/chars/1billy/b801.gif
+	 attack3    92 97 25 22 6 0 0 0 8 5
+	 forcedirection -1
+	 jugglecost 5
+	 dropv      2 0.5 0
+         frame      data/chars/1billy/b802.gif
+	 attack3    0 0 0 0
+         frame      data/chars/1billy/b801.gif
+	 hitfx      data/sounds/beatg.wav
+	 attack7    92 77 25 22 6 0 1 0 8 5
+	 forcedirection -1
+	 jugglecost 5
+	 dropv      2 0.5 0
+         frame      data/chars/1billy/b202.gif
+	 attack7    0 0 0 0 
+         frame      data/chars/1billy/b101.gif
+         frame      data/chars/1billy/b104.gif
+
+anim follow5
+	 range      5 50
+	 loop       0
+	 delay      9
+	 offset     80 129
+	 bbox       68 83 24 44
+         frame      data/chars/1billy/b101.gif
+	 sound      data/sounds/punch2.wav
+         frame      data/chars/1billy/b901.gif
+	 delay      12
+	 hitfx      data/sounds/beatb.wav
+	 attack6    94 97 25 22 6 1 0 0 8 5
+	 forcedirection -1
+	 jugglecost 5
+	 dropv      1.5 2 0
+         frame      data/chars/1billy/b902.gif
+	 delay      9
+	 attack6    0 0 0 0 
+         frame      data/chars/1billy/b901.gif
+         frame      data/chars/1billy/b104.gif
+
+#########styles switch
+
+anim freespecial2
+anim freespecial3
+
+
+
+

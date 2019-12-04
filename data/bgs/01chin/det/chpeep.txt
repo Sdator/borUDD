@@ -1,0 +1,19 @@
+name	chpeep
+type	none
+shadow	0
+setlayer -2
+
+
+anim idle
+	 loop      8
+	 delay     16
+	 offset    38 90
+	 frame     data/bgs/01chin/det/chpeep01.gif
+	 frame     data/bgs/01chin/det/chpeep02.gif
+
+
+
+
+
+
+

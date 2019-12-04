@@ -1,0 +1,75 @@
+name	cchair
+type    npc
+hostile 
+nomove  1
+health  1
+shadow	0
+alpha   0
+falldie 1
+takedamagescript data/scripts/finisher.c
+
+anim spawn
+	 loop      0
+	 delay     1
+	 offset    22 56
+	 bbox      12 19 21 38
+	 platform  11 11 27 27 4 34
+	 frame     data/bgs/03lasv/det/chair01.gif
+
+anim idle
+	 loop      1
+	 delay     6
+	 offset    22 56
+	 bbox      12 19 21 38
+	 platform  11 11 27 27 4 34
+	 frame     data/bgs/03lasv/det/chair01.gif
+
+anim pain
+	 loop      0
+	 delay     2
+	 bbox      0 0 0 0
+	 offset    22 56
+	 hitfx     data/sounds/beat2.wav
+	 attack    12 28 18 29 5 1 0 0 8 5
+	 forcedirection -1
+	 dropv     1.8 0.8 0
+	 move      -4
+	 frame     data/bgs/03lasv/det/chair01.gif
+	 frame     data/bgs/03lasv/det/chair01.gif
+	 frame     data/bgs/03lasv/det/chair01.gif
+	 frame     data/bgs/03lasv/det/chair01.gif
+	 frame     data/bgs/03lasv/det/chair01.gif
+	 frame     data/bgs/03lasv/det/chair01.gif
+	 frame     data/bgs/03lasv/det/chair01.gif
+	 frame     data/bgs/03lasv/det/chair01.gif
+	 frame     data/bgs/03lasv/det/chair01.gif
+	 move      -3
+	 frame     data/bgs/03lasv/det/chair01.gif
+	 frame     data/bgs/03lasv/det/chair01.gif
+	 frame     data/bgs/03lasv/det/chair01.gif
+	 frame     data/bgs/03lasv/det/chair01.gif
+	 frame     data/bgs/03lasv/det/chair01.gif
+	 frame     data/bgs/03lasv/det/chair01.gif
+	 frame     data/bgs/03lasv/det/chair01.gif
+	 move      -2
+	 frame     data/bgs/03lasv/det/chair01.gif
+	 frame     data/bgs/03lasv/det/chair01.gif
+	 frame     data/bgs/03lasv/det/chair01.gif
+	 move      -1
+	 frame     data/bgs/03lasv/det/chair01.gif
+	 frame     data/bgs/03lasv/det/chair01.gif
+	 delay     15
+	 attack    0 0 0 0
+	 frame     data/bgs/03lasv/det/chair01.gif
+
+anim death
+	 loop      0
+	 delay     15
+	 offset    22 56
+	 dropframe 1
+	 jumpframe 0 1.5 -0.8 0
+	 frame     data/bgs/03lasv/det/chair02.gif
+
+
+
+

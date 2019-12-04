@@ -1,0 +1,28 @@
+name	panic05
+type	enemy
+subtype arrow
+speed   7
+shadow        0
+gfxshadow     1
+alpha   0
+
+alternatepal       data/Bgs/01airp/det/map5.gif
+
+anim idle
+	 loop      1 2 4
+	 delay     12
+	 offset    28 78
+	 drawmethod scale 0.9
+	 drawmethod remap 1
+	 movez     2
+	 frame     data/Bgs/01airp/det/panic15.gif
+	 frame     data/Bgs/01airp/det/panic16.gif
+	 drawmethod remap 0
+	 movez     2
+	 frame     data/Bgs/01airp/det/panic15.gif
+	 frame     data/Bgs/01airp/det/panic16.gif
+
+
+
+
+

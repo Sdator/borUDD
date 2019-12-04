@@ -1,0 +1,34 @@
+name	stagetr2
+type	text
+subtype  noskip
+setlayer 9999999999
+nodieblink 3
+
+	 load   stagetr1
+anim idle
+	 loop      0
+	 delay     5
+	 health    7
+	 offset    0 228
+	 custentity stagetr1
+	 spawnframe 16 0 0 0 0
+	 frame     data/chars/misc/stagetr2/tr201.gif
+	 frame     data/chars/misc/stagetr2/tr202.gif
+	 frame     data/chars/misc/stagetr2/tr203.gif
+	 frame     data/chars/misc/stagetr2/tr204.gif
+	 frame     data/chars/misc/stagetr2/tr205.gif
+	 frame     data/chars/misc/stagetr2/tr206.gif
+	 frame     data/chars/misc/stagetr2/tr207.gif
+	 frame     data/chars/misc/stagetr2/tr208.gif
+	 frame     data/chars/misc/stagetr2/tr209.gif
+	 frame     data/chars/misc/stagetr2/tr210.gif
+	 frame     data/chars/misc/stagetr2/tr211.gif
+	 frame     data/chars/misc/stagetr2/tr212.gif
+	 frame     data/chars/misc/stagetr2/tr213.gif
+	 frame     data/chars/misc/stagetr2/tr214.gif
+	 frame     data/chars/misc/stagetr2/tr215.gif
+	 frame     data/chars/misc/stagetr2/tr216.gif
+	 delay     9
+	 frame     data/chars/misc/stagetr2/tr217.gif
+
+

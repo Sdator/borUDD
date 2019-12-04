@@ -1,0 +1,6 @@
+#	music		[path] [loop]		# BOR file to play
+#	animation	[path] [x] [y]		# GIF animation to play
+#	silence					# Stop music
+
+video   data/scenes/06woods/woodsx.webm 0 0
+video	data/scenes/cutscene/06forest.webm 0 0

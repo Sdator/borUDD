@@ -1,0 +1,9 @@
+#	music		[path] [loop]		# BOR file to play
+#	animation	[path] [x] [y]		# GIF animation to play
+#	silence					# Stop music
+
+music   data/scenes/tmnt/000.ogg 0 0
+video	data/scenes/tmnt/000.webm 0 0
+music   data/scenes/tmnt/001.ogg 0 0
+video	data/scenes/tmnt/001.webm 0 0
+

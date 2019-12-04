@@ -1,0 +1,51 @@
+name      slwall2
+type      enemy
+antigravity 100
+facing 1
+subject_to_gravity 0
+subject_to_wall 0
+subject_to_hole 0
+Subject_to_MinZ 0
+Subject_to_MaxZ 0
+offscreenkill   5000
+
+
+anim idle
+@script
+    void self = getlocalvar("self");
+
+    if(frame==0){
+      changelevelproperty("wall", 14, "upperright", 1000);
+      changelevelproperty("wall", 14, "lowerright", 1000);
+      changelevelproperty("wall", 14, "depth", 10);
+    }
+@end_script
+   loop   0
+   delay   1
+   offset   1 1
+   frame	data/chars/misc/empty.gif
+   frame	data/chars/misc/empty.gif
+   @cmd killentity getlocalvar("self")
+   frame	data/chars/misc/empty.gif
+
+anim follow1
+@script
+    void self = getlocalvar("self");
+
+    if(frame==0){
+      changelevelproperty("wall", 14, "upperright", 386);
+      changelevelproperty("wall", 14, "lowerright", 386);
+      changelevelproperty("wall", 14, "depth", 2);
+    }
+@end_script
+   loop   0
+   delay   1
+   offset   1 1
+   frame	data/chars/misc/empty.gif
+   frame	data/chars/misc/empty.gif
+   @cmd killentity getlocalvar("self")
+   frame	data/chars/misc/empty.gif
+
+
+
+

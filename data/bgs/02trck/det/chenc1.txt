@@ -1,0 +1,83 @@
+name          chenc1
+type          none
+gfxshadow     1
+antigravity   40
+nodieblink    3
+falldie       1
+lifespan      20
+
+palette         data/chars/2chen/idle01.gif   
+alternatepal   data/chars/2chen/alt01.gif 
+alternatepal   data/chars/2chen/alt02.gif 
+alternatepal   data/chars/2chen/alt03.gif 
+alternatepal   data/chars/2chen/alt04.gif 
+
+anim spawn
+	 loop       0
+	 delay      250
+	 offset     80 129
+	 bbox       0 0 0 0
+	 jumpframe  1 3.4 1.4 0.1
+	 landframe  4
+	 flipframe  5
+         frame      data/chars/0misc/empty.gif
+	 delay      35
+         frame      data/chars/2chen/ju01.gif
+	 delay      20
+	 sound      data/sounds/boss1.wav
+         frame      data/chars/2chen/ju02.gif
+	 delay      999
+         frame      data/chars/2chen/ju01.gif
+	 delay      25
+         frame      data/chars/2chen/rise02.gif
+	 delay      8
+         frame      data/chars/2chen/a101.gif
+         frame      data/chars/2chen/a102.gif
+	 delay      17
+	 sound      data/sounds/punch1.wav
+         frame      data/chars/2chen/a105.gif
+	 delay      6
+         frame      data/chars/2chen/a102.gif
+	 delay      17
+	 sound      data/sounds/punch1.wav
+         frame      data/chars/2chen/a103.gif
+	 delay      8
+         frame      data/chars/2chen/a102.gif
+         frame      data/chars/2chen/a101.gif
+	 delay      15
+         frame      data/chars/2chen/taunt.gif
+	 delay      8
+         frame      data/chars/2chen/fb01.gif
+	 delay      45
+         frame      data/chars/2chen/spawn01.gif
+	 delay      7
+         frame      data/chars/2chen/a104.gif
+
+anim idle
+	 loop       0
+	 delay      1300
+	 offset     80 129
+	 bbox       71 79 20 49
+	 flipframe  1
+         frame      data/chars/2chen/idle01.gif 
+	 delay      2
+	 move       2
+         frame      data/chars/2chen/wk01.gif
+         frame      data/chars/2chen/wk01.gif
+         frame      data/chars/2chen/wk01.gif
+         frame      data/chars/2chen/wk01.gif
+         frame      data/chars/2chen/wk01.gif
+
+         frame      data/chars/2chen/wk02.gif
+         frame      data/chars/2chen/wk02.gif
+         frame      data/chars/2chen/wk02.gif
+         frame      data/chars/2chen/wk02.gif
+         frame      data/chars/2chen/wk02.gif
+         frame      data/chars/2chen/wk02.gif
+
+         frame      data/chars/2chen/wk03.gif
+         frame      data/chars/2chen/wk03.gif
+         frame      data/chars/2chen/wk03.gif
+         frame      data/chars/2chen/wk03.gif
+         frame      data/chars/2chen/wk03.gif
+         frame      data/chars/2chen/wk03.gif

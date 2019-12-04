@@ -1,0 +1,250 @@
+loadingbg       data/bgs/loading2.gif 1 -999 -999 100 -999 -999
+music           data/music/WKCHI01.ogg 1
+at              0
+background	data/bgs/01chin/b01.gif
+panel		data/bgs/01chin/n01.gif
+frontpanel	data/bgs/01chin/f01.gif
+direction       both
+scrollspeed     0.5
+light  		10  -75
+at       	0
+shadowcolor     0_0_0
+at              0
+shadowalpha     4
+at              0
+shadowopacity   255
+at       	0
+settime         0
+notime          1
+noslow          1
+order	        a
+#type            1
+spawn1          73 30
+spawn2          48 56
+updatescript    data/scripts/traileru.c
+
+spawn   stagein
+flip    1
+coords  0 232
+at      0
+
+spawn   staint3
+flip    1
+coords  0 232
+at      0
+
+spawn   light01
+coords  85 194
+at      0
+
+spawn   light01
+coords  413 194
+at      0
+
+spawn   light01
+coords  752 205
+at      0
+
+spawn   chpeep
+coords  280 170
+at      0
+
+spawn   truck01
+flip    1
+coords  -30 228
+at      0
+
+####### GROUP 1
+
+scrollx 0 143
+at      0
+
+group   3 3 
+at      90
+
+spawn   cmouse
+coords  270 170 0
+at      80
+
+spawn   williams
+map     1
+health  90
+coords  -30 219
+at      90
+
+spawn   roper
+map     1
+health  90
+coords  400 170
+at      90
+
+spawn   baker
+map     3
+health  90
+coords  380 200
+at      90
+
+spawn   roper
+health  80
+coords  -40 220
+at      90
+
+spawn   williams
+weapon  knife01
+map     4
+health  80
+coords  -50 190
+at      90
+
+group   1 1
+at      0
+
+scrollx 0 225
+at      0
+
+####### GROUP 2
+
+scrollx 220 300
+at      220
+
+group   3 3 
+at      220
+
+spawn   williams
+map     4
+health  80
+coords  270 185
+at      220
+
+spawn   baker
+map     3
+health  80
+coords  310 220
+at      220
+
+spawn   cmouse
+coords  270 170 0
+at      80
+
+spawn   baker
+map     1
+health  80
+coords  -50 190
+at      220
+
+spawn   biker1
+coords  620 200
+at      80
+
+spawn   williams
+health  80
+coords  -50 190
+at      220
+
+group   1 1
+at      0
+
+scrollx 220 432
+at      0
+
+####### GROUP 3
+
+scrollx 300 432
+at      299
+
+spawn   rainb
+flip    1
+coords  0 228
+at      350
+spawn   rains1
+coords  0 228
+at      350
+
+group   3 3
+at      432
+
+spawn   doorch2
+flip    1
+coords  127 159
+at      432
+
+spawn   thunder
+flip    1
+coords  0 228
+at      432
+
+spawn   williams
+map     2
+health  80
+coords  300 190
+at      432
+
+spawn   cmouse
+coords  270 170 0
+at      80
+
+spawn   cmouse
+coords  320 220 0
+at      80
+
+spawn   baker
+map     1
+health  80
+coords  -50 190
+at      432
+
+spawn   roper
+map     2
+health  80
+coords  300 220
+at      432
+
+group   1 1
+at      0
+
+scrollx 432 624
+at      0
+
+####### GROUP 3
+
+scrollx 624 704
+at      624
+
+group   3 3
+at      624
+
+spawn   doorch
+flip    1
+coords  127 159
+at      624
+
+spawn   williams
+map     1
+health  80
+coords  -50 220
+at      624
+
+spawn   baker
+map     2
+health  80
+coords  -30 190
+at      624
+
+spawn   biker1
+coords  620 210
+at      624
+
+group   1 1
+
+at      0
+music   data/music/00.ogg
+at      0
+musicfade 1
+at      624
+
+spawn   stageou
+flip    1
+coords  0 232
+at      624
+
+

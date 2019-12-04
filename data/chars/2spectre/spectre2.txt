@@ -1,0 +1,120 @@
+name          spectre2
+type          enemy
+subject_to_obstacle 0
+health        5
+jugglepoints  20
+speed         1
+jumpheight    2.43
+grabdistance  35
+throw         2 3
+throwdamage   20
+shadow        0
+gfxshadow     1
+noquake       1
+nolife        1
+risetime      30
+cantgrab      1
+antigravity   40
+falldie       1
+diesound      data/sounds/powup.wav
+candamage     player
+offscreen_noatk_factor 1
+aimove        chasez
+agression     40
+subject_to_hole 0
+subject_to_obstacle 0
+animationscript     data/scripts/lib001.c
+alpha               1
+
+palette             data/chars/2spectre/009.gif   
+
+anim spawn
+	 loop       0
+	 delay      3
+	 offset     72 104
+	 bbox       0 0 0 0
+sound      data/sounds/ntel4.wav
+         frame      data/chars/2spectre/010.gif   
+         frame      data/chars/0misc/empty.gif   
+         frame      data/chars/2spectre/010.gif   
+         frame      data/chars/0misc/empty.gif   
+         frame      data/chars/2spectre/010.gif   
+         frame      data/chars/0misc/empty.gif   
+         frame      data/chars/2spectre/010.gif   
+         frame      data/chars/0misc/empty.gif   
+         frame      data/chars/2spectre/010.gif   
+         frame      data/chars/0misc/empty.gif   
+         frame      data/chars/2spectre/010.gif   
+         frame      data/chars/0misc/empty.gif   
+         frame      data/chars/2spectre/010.gif   
+         frame      data/chars/0misc/empty.gif   
+         frame      data/chars/2spectre/010.gif   
+         frame      data/chars/0misc/empty.gif   
+         frame      data/chars/2spectre/010.gif   
+         frame      data/chars/0misc/empty.gif   
+
+anim idle
+@cmd clearL
+	 loop       1
+	 delay      6
+	 offset     72 104
+	 bbox       61 37 32 66
+         frame      data/chars/2spectre/009.gif  
+
+anim walk
+	 loop       1
+	 delay      40
+	 offset     72 104
+	 bbox       61 37 32 66
+         frame      data/chars/2spectre/010.gif  
+         frame      data/chars/2spectre/011.gif  
+
+anim pain
+	 loop       0
+	 delay      3
+	 offset     72 104
+	 bbox       61 37 32 66
+         frame      data/chars/2spectre/009.gif   
+
+anim attack1
+@cmd attackoff
+	 loop       0
+	 delay      30
+	 range      5 67
+	 rangez     -3 3
+	 offset     72 104
+	 bbox       61 37 32 66
+	 hitflash   Bflash
+         frame      data/chars/2spectre/009.gif    
+	 delay      7
+         frame      data/chars/2spectre/013.gif   
+	 sound      data/sounds/punch5.wav
+	 hitfx      data/sounds/sword2.wav
+	 attack     70 25 76 77 14 1 1 0 8 3
+	 dropv      2 2 0
+         frame      data/chars/2spectre/014.gif  
+	 delay      35
+	 attack     0 0 0 0
+         frame      data/chars/2spectre/015.gif  
+
+anim death
+	 loop       0
+	 delay      6
+	 offset     72 104
+	 bbox       0 0 0 0
+drawmethod scalex 0.90 scaley 1.10
+         frame      data/chars/2spectre/012.gif     
+drawmethod scalex 0.80 scaley 1.15
+         frame      data/chars/2spectre/012.gif   
+drawmethod scalex 0.70  scaley 1.20
+         frame      data/chars/2spectre/012.gif   
+drawmethod scalex 0.60  scaley 1.25
+         frame      data/chars/2spectre/012.gif    
+drawmethod scalex 0.50  scaley 1.30
+         frame      data/chars/2spectre/012.gif     
+drawmethod scalex 0.40  scaley 1.35
+         frame      data/chars/2spectre/012.gif  
+drawmethod scalex 0.30  scaley 1.34
+         frame      data/chars/2spectre/012.gif  
+         frame      data/chars/0misc/empty.gif   
+

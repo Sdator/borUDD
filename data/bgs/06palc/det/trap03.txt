@@ -1,0 +1,20 @@
+name	trap03
+type	none
+setlayer -1
+
+anim idle
+	 loop      1
+	 delay     600
+	 offset    190 126
+	 bbox      0
+	 attack    0
+	 frame     Data/Bgs/06palc/det/spear01.gif
+	 delay     12
+	 hitflash  Bflash
+	 hitfx     data/sounds/beatu.wav
+	 attack    57 90 30 25 25 1 1 0 0 20 3
+	 dropv     2 1 0
+	 frame     Data/Bgs/06palc/det/spear02.gif
+
+
+

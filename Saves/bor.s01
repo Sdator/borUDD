@@ -1,0 +1,16 @@
+void main() {
+	setglobalvar("fXA#389817744",30);
+	setglobalvar("fYA#389817744",-1);
+	setglobalvar("fZA#389817744",0);
+	setglobalvar("P1respawn_x",292.601685);
+	setglobalvar("P1respawn_z",144.104919);
+	setglobalvar("P1respawn_a",0.000000);
+	setglobalvar("P2respawn_x",292.601685);
+	setglobalvar("P2respawn_z",144.104919);
+	setglobalvar("P2respawn_a",0.000000);
+	setglobalvar("zoomx",0);
+	setglobalvar("zoomy",0);
+	setglobalvar("zoomvalue",260);
+	changemodelproperty("Billy",4,1);
+	changemodelproperty("Jimmy",4,1);
+}

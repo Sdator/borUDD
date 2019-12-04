@@ -1,0 +1,10 @@
+name	ringpp
+type	none
+setlayer -30
+
+anim idle
+	 loop      1
+	 delay     15
+	 offset    160 228
+	 frame     data/bgs/05palc/det/ringpp01.gif
+	 frame     data/bgs/05palc/det/ringpp02.gif

@@ -1,0 +1,104 @@
+name	twkick
+type	text
+subtype noskip
+setlayer 9999999999
+animationscript   data/scripts/lib001.c
+
+palette        data/chars/0misc/twk01.gif
+
+anim idle
+	 loop      0
+	 delay     7
+	 offset    128 228
+	 sound     data/sounds/twkick.wav
+@cmd setmusicvolume 0 0 #music going silent
+	 frame     data/chars/0misc/bnw01.gif
+	 frame     data/chars/0misc/twk01.gif
+	 frame     data/chars/0misc/twk02.gif
+	 frame     data/chars/0misc/twk03.gif
+	 frame     data/chars/0misc/twk04.gif
+	 frame     data/chars/0misc/twk05.gif
+	 frame     data/chars/0misc/twk06.gif
+	 frame     data/chars/0misc/twk07.gif
+	 frame     data/chars/0misc/twk08.gif
+	 delay     5
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/twk11.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/twk11.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/twk11.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/twk11.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/twk11.gif
+	 delay     165
+	 frame     data/chars/0misc/twk11.gif
+	 delay     10
+drawmethod alpha 6
+drawmethod channel 0.95
+	 frame     data/chars/0misc/twk11.gif
+drawmethod alpha 6
+drawmethod channel 0.90
+	 frame     data/chars/0misc/twk11.gif
+drawmethod alpha 6
+drawmethod channel 0.80
+	 frame     data/chars/0misc/twk11.gif
+drawmethod alpha 6
+drawmethod channel 0.75
+	 frame     data/chars/0misc/twk11.gif
+drawmethod alpha 6
+drawmethod channel 0.70
+	 frame     data/chars/0misc/twk11.gif
+drawmethod alpha 6
+drawmethod channel 0.65
+	 frame     data/chars/0misc/twk11.gif
+drawmethod alpha 6
+drawmethod channel 0.60
+	 frame     data/chars/0misc/twk11.gif
+drawmethod alpha 6
+drawmethod channel 0.55
+	 frame     data/chars/0misc/twk11.gif
+drawmethod alpha 6
+drawmethod channel 0.50
+	 frame     data/chars/0misc/twk11.gif
+drawmethod alpha 6
+drawmethod channel 0.45
+	 frame     data/chars/0misc/twk11.gif
+drawmethod alpha 6
+drawmethod channel 0.40
+	 frame     data/chars/0misc/twk11.gif
+drawmethod alpha 6
+drawmethod channel 0.35
+	 frame     data/chars/0misc/twk11.gif
+drawmethod alpha 6
+drawmethod channel 0.30
+	 frame     data/chars/0misc/twk11.gif
+drawmethod alpha 6
+drawmethod channel 0.25
+	 frame     data/chars/0misc/twk11.gif
+drawmethod alpha 6
+drawmethod channel 0.20
+	 frame     data/chars/0misc/twk11.gif
+drawmethod alpha 6
+drawmethod channel 0.15
+	 frame     data/chars/0misc/twk11.gif
+drawmethod alpha 6
+drawmethod channel 0.10
+	 frame     data/chars/0misc/twk11.gif
+drawmethod alpha 0
+	 delay     120
+	 frame     data/chars/0misc/empty.gif
+	 delay     200
+	 offset    128 211
+	 frame     data/chars/0misc/twk09.gif
+	 frame     data/chars/0misc/twk10.gif
+	 delay     2
+@cmd setmusicvolume 100 100 #music going silent
+	 frame     data/chars/0misc/empty.gif
+
+
+
+
+
+

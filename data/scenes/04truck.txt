@@ -1,0 +1,7 @@
+#	music		[path] [loop]		# BOR file to play
+#	animation	[path] [x] [y]		# GIF animation to play
+#	silence					# Stop music
+
+music   data/scenes/04truck/truck1.ogg 0 0
+video	data/scenes/04truck/truck1.webm 0 0
+video	data/scenes/cutscene/04truck.webm 0 0

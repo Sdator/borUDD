@@ -1,0 +1,15 @@
+name	lipost1
+type	none
+shadow	0
+shadow        0
+gfxshadow     1
+
+anim idle
+	 loop      1
+	 delay     6
+	 offset    30 197
+	 frame     data/bgs/01lasv/det/stlight1.gif
+
+
+
+

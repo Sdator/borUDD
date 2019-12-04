@@ -1,0 +1,38 @@
+music           data/music/FD01.ogg 1
+background	data/bgs/dojo/b01.gif
+panel		data/bgs/dojo/b01.gif
+cameratype	1
+direction       both
+light  		10  20
+at       	0
+settime         0
+notime          1
+noslow          1
+order	        a
+type            1
+spawn1          73 30
+spawn2          48 56
+updatescript     data/scripts/traileru.c
+
+
+wall    0 181 -500 -500 58 0 22 500
+wall    399 181 -58 0 500 500 22 500
+
+
+#######
+
+spawn   tbox1
+spawnscript data/scripts/noscpos.c
+coords  200 224
+at      0
+
+group   1 1
+at      0
+
+spawn   ropert
+health  90000
+coords  200 190 0
+at      0
+
+
+

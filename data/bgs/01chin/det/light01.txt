@@ -1,0 +1,23 @@
+name	light01
+type	none
+shadow	0
+alpha   1
+#setlayer 800
+
+anim idle
+	 loop      1
+	 delay     800
+	 offset    80 197
+	 frame     data/bgs/01chin/det/light01.gif
+	 delay     2
+	 frame     data/chars/misc/empty.gif
+	 frame     data/bgs/01chin/det/light01.gif
+	 delay     2
+	 frame     data/chars/misc/empty.gif
+
+
+
+
+
+
+

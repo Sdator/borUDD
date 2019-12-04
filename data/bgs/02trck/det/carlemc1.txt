@@ -1,0 +1,175 @@
+name          carlemc1
+type          none
+gfxshadow     1
+antigravity   40
+lifespan      22
+
+animationscript   data/scripts/lib001.c
+
+palette         data/chars/2carlem/idle01.gif   
+
+anim spawn
+	 loop       0
+	 delay      950
+	 offset     80 129
+	 bbox       0 0 0 0
+	 move       1.5
+         frame      data/chars/0misc/empty.gif
+	 delay      3
+	 sound      data/sounds/boss3.wav
+         frame      data/chars/2carlem/wk01.gif
+         frame      data/chars/2carlem/wk01.gif
+         frame      data/chars/2carlem/wk01.gif
+         frame      data/chars/2carlem/wk01.gif
+         frame      data/chars/2carlem/wk01.gif
+         frame      data/chars/2carlem/wk01.gif
+
+         frame      data/chars/2carlem/wk02.gif
+         frame      data/chars/2carlem/wk02.gif
+         frame      data/chars/2carlem/wk02.gif
+         frame      data/chars/2carlem/wk02.gif
+         frame      data/chars/2carlem/wk02.gif
+         frame      data/chars/2carlem/wk02.gif
+
+         frame      data/chars/2carlem/wk03.gif
+         frame      data/chars/2carlem/wk03.gif
+         frame      data/chars/2carlem/wk03.gif
+         frame      data/chars/2carlem/wk03.gif
+         frame      data/chars/2carlem/wk03.gif
+         frame      data/chars/2carlem/wk03.gif
+
+         frame      data/chars/2carlem/wk04.gif
+         frame      data/chars/2carlem/wk04.gif
+         frame      data/chars/2carlem/wk04.gif
+         frame      data/chars/2carlem/wk04.gif
+         frame      data/chars/2carlem/wk04.gif
+         frame      data/chars/2carlem/wk04.gif
+
+         frame      data/chars/2carlem/wk01.gif
+         frame      data/chars/2carlem/wk01.gif
+         frame      data/chars/2carlem/wk01.gif
+         frame      data/chars/2carlem/wk01.gif
+         frame      data/chars/2carlem/wk01.gif
+         frame      data/chars/2carlem/wk01.gif
+
+         frame      data/chars/2carlem/wk02.gif
+         frame      data/chars/2carlem/wk02.gif
+         frame      data/chars/2carlem/wk02.gif
+         frame      data/chars/2carlem/wk02.gif
+         frame      data/chars/2carlem/wk02.gif
+         frame      data/chars/2carlem/wk02.gif
+
+         frame      data/chars/2carlem/wk03.gif
+         frame      data/chars/2carlem/wk03.gif
+         frame      data/chars/2carlem/wk03.gif
+         frame      data/chars/2carlem/wk03.gif
+         frame      data/chars/2carlem/wk03.gif
+         frame      data/chars/2carlem/wk03.gif
+
+         frame      data/chars/2carlem/wk04.gif
+         frame      data/chars/2carlem/wk04.gif
+         frame      data/chars/2carlem/wk04.gif
+         frame      data/chars/2carlem/wk04.gif
+         frame      data/chars/2carlem/wk04.gif
+         frame      data/chars/2carlem/wk04.gif
+	 delay      10
+	 move       0
+         frame      data/chars/2carlem/idle01.gif
+	 delay      8
+	 sound      data/sounds/punch3.wav
+         frame      data/chars/2carlem/b101.gif
+         frame      data/chars/2carlem/b102.gif
+	 delay      35
+         frame      data/chars/2carlem/b103.gif
+	 delay      8
+         frame      data/chars/2carlem/b102.gif
+         frame      data/chars/2carlem/b101.gif
+	 delay      1
+         frame      data/chars/2carlem/idle01.gif
+
+anim idle
+	 loop       0
+	 delay      700
+	 offset     80 129
+	 bbox       0
+	 flipframe  1
+         frame      data/chars/2carlem/idle01.gif
+	 delay      3
+	 move       1.5
+         frame      data/chars/2carlem/wk01.gif
+         frame      data/chars/2carlem/wk01.gif
+         frame      data/chars/2carlem/wk01.gif
+         frame      data/chars/2carlem/wk01.gif
+         frame      data/chars/2carlem/wk01.gif
+         frame      data/chars/2carlem/wk01.gif
+
+         frame      data/chars/2carlem/wk02.gif
+         frame      data/chars/2carlem/wk02.gif
+         frame      data/chars/2carlem/wk02.gif
+         frame      data/chars/2carlem/wk02.gif
+         frame      data/chars/2carlem/wk02.gif
+         frame      data/chars/2carlem/wk02.gif
+
+         frame      data/chars/2carlem/wk03.gif
+         frame      data/chars/2carlem/wk03.gif
+         frame      data/chars/2carlem/wk03.gif
+         frame      data/chars/2carlem/wk03.gif
+         frame      data/chars/2carlem/wk03.gif
+         frame      data/chars/2carlem/wk03.gif
+
+         frame      data/chars/2carlem/wk04.gif
+         frame      data/chars/2carlem/wk04.gif
+         frame      data/chars/2carlem/wk04.gif
+         frame      data/chars/2carlem/wk04.gif
+         frame      data/chars/2carlem/wk04.gif
+         frame      data/chars/2carlem/wk04.gif
+
+         frame      data/chars/2carlem/wk01.gif
+         frame      data/chars/2carlem/wk01.gif
+         frame      data/chars/2carlem/wk01.gif
+         frame      data/chars/2carlem/wk01.gif
+         frame      data/chars/2carlem/wk01.gif
+         frame      data/chars/2carlem/wk01.gif
+
+         frame      data/chars/2carlem/wk02.gif
+         frame      data/chars/2carlem/wk02.gif
+         frame      data/chars/2carlem/wk02.gif
+         frame      data/chars/2carlem/wk02.gif
+         frame      data/chars/2carlem/wk02.gif
+         frame      data/chars/2carlem/wk02.gif
+
+         frame      data/chars/2carlem/wk03.gif
+         frame      data/chars/2carlem/wk03.gif
+         frame      data/chars/2carlem/wk03.gif
+         frame      data/chars/2carlem/wk03.gif
+         frame      data/chars/2carlem/wk03.gif
+         frame      data/chars/2carlem/wk03.gif
+
+         frame      data/chars/2carlem/wk04.gif
+         frame      data/chars/2carlem/wk04.gif
+         frame      data/chars/2carlem/wk04.gif
+         frame      data/chars/2carlem/wk04.gif
+         frame      data/chars/2carlem/wk04.gif
+         frame      data/chars/2carlem/wk04.gif
+
+         frame      data/chars/2carlem/wk01.gif
+         frame      data/chars/2carlem/wk01.gif
+         frame      data/chars/2carlem/wk01.gif
+         frame      data/chars/2carlem/wk01.gif
+         frame      data/chars/2carlem/wk01.gif
+         frame      data/chars/2carlem/wk01.gif
+
+         frame      data/chars/2carlem/wk02.gif
+         frame      data/chars/2carlem/wk02.gif
+         frame      data/chars/2carlem/wk02.gif
+         frame      data/chars/2carlem/wk02.gif
+         frame      data/chars/2carlem/wk02.gif
+         frame      data/chars/2carlem/wk02.gif
+
+         frame      data/chars/2carlem/wk03.gif
+         frame      data/chars/2carlem/wk03.gif
+         frame      data/chars/2carlem/wk03.gif
+         frame      data/chars/2carlem/wk03.gif
+         frame      data/chars/2carlem/wk03.gif
+         frame      data/chars/2carlem/wk03.gif
+

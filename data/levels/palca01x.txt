@@ -1,0 +1,148 @@
+loadingbg       data/bgs/loading2.gif 1 -999 -999 100 -999 -999
+music           data/music/01palacc.ogg 1
+at              0
+background	data/bgs/01palc/n01.gif
+panel		data/bgs/01palc/n01.gif
+direction       both
+scrollspeed     0.5
+light  		10  20
+at       	0
+settime         0
+notime          1
+noslow          1
+order	        a
+#type            1
+spawn1          60 20
+spawn2          70 30
+updatescript    data/scripts/traileru.c
+
+wall   25 228 -500 -500 0 0 70 500
+wall   0 196 -500 -500 55 16 37 500
+
+####### 
+
+spawn   staint7b
+flip    1
+coords  0 232
+at      0
+
+scrollx 0 185
+at      0
+
+group   3 3 
+at      20
+
+spawn   williams
+map     4
+weapon  knife01
+coords  300 185
+at      60
+
+spawn   linda1
+map     3
+coords  -30 205
+at      60
+
+spawn   baker
+map     3
+coords  -30 205
+at      60
+
+spawn   roper
+map     4
+coords  300 170
+at      60
+
+spawn   williams
+coords  300 180
+at      60
+
+group   1 1
+at      0
+
+scrollx 20 433
+at      0
+
+####### GROUP 2
+
+scrollx 315 433
+at  433
+
+group   3 3
+at      315
+
+spawn   williams
+map     3
+coords  270 185
+at      315
+
+spawn   linda1
+map     2
+item    knife01
+coords  -30 210
+at      315
+
+spawn   baker
+map     4
+coords  -30 200
+at      315
+
+spawn   roper
+map     1
+coords  290 190
+at      315
+
+spawn   williams
+coords  290 190
+at      315
+
+group   1 1
+at      0
+
+scrollx 315 768
+at      0
+
+####### GROUP 2
+
+scrollx 542 768
+at  542
+
+group   3 3
+at      542
+
+spawn   chen1b
+health  350
+map     3
+coords  270 185
+at      542
+
+spawn   linda1
+map     2
+item    knife01
+coords  -30 210
+at      542
+
+spawn   baker
+map     4
+coords  -30 200
+at      542
+
+spawn   roper
+map     1
+coords  -30 190
+at      542
+
+spawn   williams
+coords  -30 190
+at      542
+
+group   1 1
+at      0
+
+spawn   stagetr
+flip    1
+coords  0 232
+at      542
+
+
+

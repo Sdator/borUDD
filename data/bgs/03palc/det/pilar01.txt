@@ -1,0 +1,14 @@
+name	pilar01
+type	none
+shadow	0
+
+
+anim idle
+	 loop      0
+	 delay     1
+	 offset    12 228
+	 frame     data/Bgs/03palc/det/pilar01.gif
+
+
+
+

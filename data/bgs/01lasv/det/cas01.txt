@@ -1,0 +1,41 @@
+name	cas01
+type	none
+shadow	0
+alpha   0
+
+anim idle
+	 loop      1
+	 delay     6
+	 offset    0 224
+	 frame     data/bgs/01lasv/det/cas05.gif
+	 frame     data/bgs/01lasv/det/cas06.gif
+	 frame     data/bgs/01lasv/det/cas07.gif
+
+anim follow1
+	 loop      0
+	 delay     6
+	 offset    0 224
+	 drawmethod alpha 6
+	 drawmethod channel 0.90
+	 frame     data/bgs/01lasv/det/cas05.gif
+	 drawmethod channel 0.80
+	 frame     data/bgs/01lasv/det/cas06.gif
+	 drawmethod channel 0.70
+	 frame     data/bgs/01lasv/det/cas07.gif
+	 drawmethod channel 0.60
+	 frame     data/bgs/01lasv/det/cas05.gif
+	 drawmethod channel 0.50
+	 frame     data/bgs/01lasv/det/cas06.gif
+	 drawmethod channel 0.40
+	 frame     data/bgs/01lasv/det/cas07.gif
+	 drawmethod channel 0.30
+	 frame     data/bgs/01lasv/det/cas05.gif
+	 drawmethod channel 0.20
+	 frame     data/bgs/01lasv/det/cas06.gif
+	 drawmethod channel 0.10
+	 frame     data/bgs/01lasv/det/cas07.gif
+      @cmd killentity getlocalvar("self")
+      frame  data/chars/misc/empty.gif
+
+
+

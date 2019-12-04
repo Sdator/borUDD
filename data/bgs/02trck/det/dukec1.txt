@@ -1,0 +1,142 @@
+name          dukec1
+type          none
+gfxshadow     1
+antigravity   40
+lifespan      23
+
+animationscript   data/scripts/lib001.c
+ondrawscript	  data/scripts/shadowon.c
+
+palette         data/chars/2duke/idle01.gif   
+
+anim spawn
+	 loop       0
+	 delay      1250
+	 offset     80 129
+	 bbox       0 0 0 0
+	 jumpframe  2 3 0.5 0
+	 landframe  9
+	 dropframe  6
+         frame      data/chars/0misc/empty.gif
+	 delay      8
+@cmd shadow 10 10 60 4 2 250 250 250
+         frame      data/chars/2duke/crouch.gif
+	 delay      12
+	 sound      data/sounds/boss4.wav
+         frame      data/chars/2duke/ju01.gif
+         frame      data/chars/2duke/ju02.gif
+         frame      data/chars/2duke/ju03.gif
+	 delay      999
+         frame      data/chars/2duke/ju04.gif
+	 delay      12
+         frame      data/chars/2duke/ju05.gif
+         frame      data/chars/2duke/ju06.gif
+	 delay      999
+         frame      data/chars/2duke/ju07.gif
+	 delay      20
+         frame      data/chars/2duke/ju08.gif
+	 delay      9
+	 sound      data/sounds/enta04.wav
+         frame      data/chars/2duke/crouch.gif
+	 delay      1
+         frame      data/chars/2duke/idle01.gif
+
+anim idle
+	 loop       0
+	 delay      300
+	 offset     80 129
+	 bbox       0
+	 flipframe  2
+         frame      data/chars/2duke/idle01.gif
+	 delay      200
+	 sound      data/sounds/enta05.wav
+@cmd playwebm "Data/Bgs/02trck/det/dukec1.webm" 1
+         frame      data/chars/2duke/idle01.gif
+	 delay      3
+	 move       2
+         frame      data/chars/2duke/wk01.gif
+         frame      data/chars/2duke/wk01.gif
+         frame      data/chars/2duke/wk01.gif
+         frame      data/chars/2duke/wk01.gif
+         frame      data/chars/2duke/wk01.gif
+
+         frame      data/chars/2duke/wk02.gif
+         frame      data/chars/2duke/wk02.gif
+         frame      data/chars/2duke/wk02.gif
+         frame      data/chars/2duke/wk02.gif
+         frame      data/chars/2duke/wk02.gif
+
+         frame      data/chars/2duke/wk03.gif
+         frame      data/chars/2duke/wk03.gif
+         frame      data/chars/2duke/wk03.gif
+         frame      data/chars/2duke/wk03.gif
+         frame      data/chars/2duke/wk03.gif
+
+         frame      data/chars/2duke/wk04.gif
+         frame      data/chars/2duke/wk04.gif
+         frame      data/chars/2duke/wk04.gif
+         frame      data/chars/2duke/wk04.gif
+         frame      data/chars/2duke/wk04.gif
+
+         frame      data/chars/2duke/wk01.gif
+         frame      data/chars/2duke/wk01.gif
+         frame      data/chars/2duke/wk01.gif
+         frame      data/chars/2duke/wk01.gif
+         frame      data/chars/2duke/wk01.gif
+
+         frame      data/chars/2duke/wk02.gif
+         frame      data/chars/2duke/wk02.gif
+         frame      data/chars/2duke/wk02.gif
+         frame      data/chars/2duke/wk02.gif
+         frame      data/chars/2duke/wk02.gif
+
+         frame      data/chars/2duke/wk03.gif
+         frame      data/chars/2duke/wk03.gif
+         frame      data/chars/2duke/wk03.gif
+         frame      data/chars/2duke/wk03.gif
+         frame      data/chars/2duke/wk03.gif
+
+         frame      data/chars/2duke/wk04.gif
+         frame      data/chars/2duke/wk04.gif
+         frame      data/chars/2duke/wk04.gif
+         frame      data/chars/2duke/wk04.gif
+         frame      data/chars/2duke/wk04.gif
+
+         frame      data/chars/2duke/wk01.gif
+         frame      data/chars/2duke/wk01.gif
+         frame      data/chars/2duke/wk01.gif
+         frame      data/chars/2duke/wk01.gif
+         frame      data/chars/2duke/wk01.gif
+
+         frame      data/chars/2duke/wk02.gif
+         frame      data/chars/2duke/wk02.gif
+         frame      data/chars/2duke/wk02.gif
+         frame      data/chars/2duke/wk02.gif
+         frame      data/chars/2duke/wk02.gif
+
+         frame      data/chars/2duke/wk03.gif
+         frame      data/chars/2duke/wk03.gif
+         frame      data/chars/2duke/wk03.gif
+         frame      data/chars/2duke/wk03.gif
+         frame      data/chars/2duke/wk03.gif
+
+         frame      data/chars/2duke/wk04.gif
+         frame      data/chars/2duke/wk04.gif
+         frame      data/chars/2duke/wk04.gif
+         frame      data/chars/2duke/wk04.gif
+         frame      data/chars/2duke/wk04.gif
+
+         frame      data/chars/2duke/wk01.gif
+         frame      data/chars/2duke/wk01.gif
+         frame      data/chars/2duke/wk01.gif
+         frame      data/chars/2duke/wk01.gif
+         frame      data/chars/2duke/wk01.gif
+
+         frame      data/chars/2duke/wk02.gif
+         frame      data/chars/2duke/wk02.gif
+         frame      data/chars/2duke/wk02.gif
+         frame      data/chars/2duke/wk02.gif
+         frame      data/chars/2duke/wk02.gif
+
+
+

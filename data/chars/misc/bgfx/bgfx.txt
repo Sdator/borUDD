@@ -1,0 +1,53 @@
+name	bgfx
+health	1
+type	panel
+speed 10
+shadow 0
+setlayer -2000
+facing 1
+alpha  1
+
+palette none
+
+
+anim	idle
+	loop	1
+	offset	1 1
+	delay	6
+	@cmd	changeentityproperty getlocalvar("self") "direction" 1
+	frame	data/chars/misc/bgfx/bg01.gif
+	@cmd	changeentityproperty getlocalvar("self") "setlayer" -2000
+	frame	data/chars/misc/empty.gif
+	delay	6
+	frame	data/chars/misc/bgfx/bg02.gif
+	delay	100
+	frame	data/chars/misc/empty.gif
+	delay	6
+	frame	data/chars/misc/bgfx/bg03.gif
+	delay	200
+	frame	data/chars/misc/empty.gif
+	delay	6
+	frame	data/chars/misc/bgfx/bg04.gif
+	delay	100
+	frame	data/chars/misc/empty.gif
+	delay	6
+	frame	data/chars/misc/bgfx/bg05.gif
+	delay	250
+	frame	data/chars/misc/empty.gif
+	delay	6
+	frame	data/chars/misc/bgfx/bg06.gif
+	delay	100
+	frame	data/chars/misc/empty.gif
+	delay	6
+	frame	data/chars/misc/bgfx/bg07.gif
+	delay	300
+	frame	data/chars/misc/empty.gif
+	delay	6
+	frame	data/chars/misc/bgfx/bg08.gif
+	delay	80
+	frame	data/chars/misc/empty.gif
+	delay	6
+	frame	data/chars/misc/bgfx/bg09.gif
+	delay	150
+	frame	data/chars/misc/empty.gif
+

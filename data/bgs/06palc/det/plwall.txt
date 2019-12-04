@@ -1,0 +1,42 @@
+name	plwall
+type	none
+subject_to_wall 0
+subject_to_gravity 0
+gfxshadow 0
+animationscript   data/scripts/lib001.c
+load    deb01
+load    deb02
+load    deb03
+load    deb04
+anim idle
+	 loop      0
+	 delay     100
+	 offset    48 68
+	 bbox      0
+	 quakeframe 1 3 5
+	 sound     data/sounds/beatj.wav
+	 frame     Data/Bgs/06palc/det/wall01.gif
+	 delay     80
+	 sound     data/sounds/beatj.wav
+	 frame     Data/Bgs/06palc/det/wall01.gif
+	 delay     5
+@cmd spawn001 "deb01" "deb01" 0 0 1 0 0
+	 sound     data/sounds/rock.wav
+	 frame     Data/Bgs/06palc/det/wall02.gif
+@cmd spawn001 "deb02" "deb02" 0 0 2 0 0
+	 sound     data/sounds/rock.wav
+	 frame     Data/Bgs/06palc/det/wall02.gif
+@cmd spawn001 "deb03" "deb03" 0 0 1 0 0
+	 sound     data/sounds/rock.wav
+	 frame     Data/Bgs/06palc/det/wall03.gif
+@cmd spawn001 "deb04" "deb04" 0 0 2 0 0
+	 sound     data/sounds/rock.wav
+	 frame     Data/Bgs/06palc/det/wall03.gif
+	 frame     Data/Bgs/06palc/det/wall04.gif
+
+
+
+
+
+
+

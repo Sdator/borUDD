@@ -1,0 +1,282 @@
+music           data/music/TA1S11.bor 1
+background	data/bgs/fire/b02.gif
+panel		data/bgs/fire/n01.gif
+water           data/bgs/fire/b01.gif 10  
+cameratype	1
+direction       both
+light  		10  20
+at       	0
+settime         0
+notime          1
+noslow          1
+order	        a
+type            1
+spawn1          73 30
+spawn2          48 56
+updatescript     data/scripts/traileru.c
+
+
+spawn   01fire
+flip    1
+coords  0 228
+at      0
+
+wall    1356 227 -99 0 500 500 93 500
+
+####### GROUP 1
+
+scrollx 0 135
+at      0
+
+group   3 3 
+at      90
+
+spawn   baker
+map     2
+health  80
+coords  300 190
+at      90
+
+spawn   roper
+map     1
+health  80
+coords  -50 190
+at      90
+
+spawn   williams
+map     2
+health  80
+coords  300 220
+at      90
+
+spawn   roper
+map     3
+health  80
+coords  300 200
+at      90
+
+group   1 1
+at      0
+
+scrollx 0 286
+at      0
+
+####### GROUP 2
+
+blockade 285
+at      285
+
+scrollx 285 435
+at      285
+
+group   3 3 
+at      285
+
+spawn   01ballsp
+flip    1
+coords  232 130
+at      285
+
+spawn   roper
+map     3
+health  80
+coords  300 190
+at      285
+
+spawn   williams
+health  80
+coords  300 175
+at      285
+
+spawn   baker
+map     3
+health  80
+coords  -50 190
+at      285
+
+spawn   linda1
+map     3
+health  80
+item    knife01
+coords  300 190
+at      285
+
+spawn   baker
+map     4
+health  80
+coords  -50 190
+at      285
+
+group   1 1
+at      285
+
+scrollx 285 435
+at      285
+
+####### GROUP 3
+
+blockade 434
+at      434
+
+scrollx 434 790
+at      434
+
+group   3 3 
+at      619
+
+spawn   roper
+map     2
+health  80
+coords  300 190
+at      619
+
+spawn   jackson
+map     3
+health  250
+2phealth 300
+coords  300 220
+at      619
+
+spawn   linda1
+item    knife01
+map     4
+health  80
+coords  -50 220
+at      619
+
+spawn   williams
+map     4
+health  80
+coords  -50 190
+at      619
+
+spawn   roper
+map     4
+health  80
+coords  -30 220
+at      619
+
+group   1 1
+at      619
+
+scrollx 619 790
+at      619
+
+####### GROUP 4
+
+blockade 789 1000
+at      789
+
+scrollx 789 1000
+at      789
+
+group   3 3 
+at      789
+
+spawn   roper
+health  80
+coords  -50 190
+at      789
+
+spawn   baker
+health  80
+coords  300 190
+at      789
+
+spawn   steve
+health  200
+2phealth  250
+coords  300 220
+at      789
+
+spawn   linda1
+item    knife01
+coords  300 190
+at      789
+
+spawn   williams
+map     1
+health  80
+coords  300 190
+at      789
+
+spawn   steve
+map     1
+health  200
+2phealth  250
+coords  -30 190
+at      789
+
+group   1 1
+at      789
+
+scrollx 789 1076
+at      789
+
+####### GROUP 4
+
+blockade 1076 1123
+at      1076
+
+scrollx 1076 1123
+at      1076
+
+group   3 3
+at      1123
+
+scrollx 1123 1123
+at      1123
+
+spawn   roper
+health  80
+coords  -30 180
+at      1123
+
+spawn   jeff
+health  250
+2phealth  300
+coords  -40 220
+at      1123
+
+spawn   williams
+health  80
+coords  -30 200
+at      1123
+
+spawn   roper
+map     1
+health  80
+coords  -30 190
+at      1123
+
+group   1 1
+at      1123
+
+scrollx 0 1123
+at      1123
+
+####### GROUP 5
+
+blockade 0 1123
+at      1123
+
+scrollx 0 1123
+at      1123
+
+group   2 2
+at      1123
+
+spawn   levelxnd
+coords  155 165
+at      1123
+
+spawn   levelxxd
+coords  -1050 165
+at      1123
+
+
+
+
+
+
+

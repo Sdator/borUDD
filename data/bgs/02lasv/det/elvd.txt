@@ -1,0 +1,26 @@
+name	elvd
+type	none
+subject_to_wall 0
+subject_to_gravity_0
+setlayer -1
+
+palette 	 data/bgs/02lasv/det/elvd01.gif
+
+anim idle
+	 loop      0
+	 delay     50
+	 offset    29 79
+	 frame     data/chars/0misc/empty.gif
+	 delay     9
+	 sound     data/sounds/door.wav
+	 frame     data/bgs/02lasv/det/elvd01.gif
+	 frame     data/bgs/02lasv/det/elvd02.gif
+	 frame     data/bgs/02lasv/det/elvd03.gif
+	 frame     data/bgs/02lasv/det/elvd04.gif
+	 frame     data/bgs/02lasv/det/elvd05.gif
+
+
+
+
+
+

@@ -1,0 +1,35 @@
+name	cwindow
+type    none
+shadow  0
+#setlayer 1
+subject_to_gravity 0
+subject_to_wall 0
+subject_to_hole 0
+Subject_to_MinZ 0
+Subject_to_MaxZ 0
+
+
+anim idle
+	loop	1
+	offset	511 228
+	delay	700
+	drawmethod alpha 6
+	drawmethod channel 0.20
+	frame	data/Bgs/04chin/det/window1.gif
+	sound   data/sounds/lightn4.wav
+	delay	5
+	drawmethod alpha 6
+	drawmethod channel 0.70
+	frame	data/Bgs/04chin/det/window1.gif
+	drawmethod alpha 6
+	drawmethod channel 0.20
+	frame	data/Bgs/04chin/det/window1.gif
+	drawmethod alpha 6
+	drawmethod channel 0.70
+	frame	data/Bgs/04chin/det/window1.gif
+	drawmethod alpha 6
+	drawmethod channel 0.20
+	frame	data/Bgs/04chin/det/window1.gif
+	drawmethod alpha 6
+	drawmethod channel 0.70
+	frame	data/Bgs/04chin/det/window1.gif

@@ -1,0 +1,77 @@
+loadingbg       data/bgs/loading2.gif 1 -999 -999 100 -999 -999
+music           data/music/02wood.ogg 1
+at              0
+background	data/bgs/02wood/b01.gif
+panel		data/bgs/02wood/n01.gif
+direction       both
+scrollspeed     0.5
+light  		10  20
+at       	0
+settime         0
+notime          1
+noslow          1
+order	        a
+#type            1
+spawn1          40 10
+spawn2          50 15
+updatescript    data/scripts/traileru.c
+
+spawn   brfall
+flip    1
+coords  0 232
+at      0
+
+spawn   watrfll
+flip    1
+coords  0 228
+at      0
+
+spawn   rock01
+coords  400 175
+at      0
+
+spawn   bcwoods
+coords  200 175 150
+at      0
+
+####### 
+group   4 4
+at      418
+
+spawn   bcarlem
+health  600
+2phealth 650
+item    slowitm
+coords  214 165
+at      418
+
+spawn   jackson
+map     2
+health  300
+2phealth  350
+coords  325 170
+at      418
+
+spawn   linda1
+item    knife01
+map     3
+health  100
+coords  400 170
+at      418
+
+spawn   baker
+map     3
+health  100
+coords  300 170
+at      418
+
+group   1 1
+at      0
+
+spawn   stagetr
+flip    1
+coords  0 232
+at      0
+
+
+

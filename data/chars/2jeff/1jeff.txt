@@ -1,0 +1,2483 @@
+name          1jeff
+candamage     enemy obstacle pshot npc
+type          player
+subject_to_obstacle 0
+health        100
+mp            100
+falldie       2
+jugglepoints  20
+chargerate    5
+speed         7
+throw         2 3
+throwdamage   20
+holdblock     1
+jumpheight    2.43
+jumpspeed     8
+grabdistance  35
+shadow        0
+gfxshadow     1
+noquake       1
+makeinv       1
+nodieblink    1
+antigravity   40
+atchain       1 2 3 0 0
+weapons       none none none none 1jeffkni none none none 1Jeff
+#weaploss      2
+#parrow	      data/chars/1dra/parrow.gif -39 -90
+#parrow2      data/chars/1dra/parrow.gif -39 -90
+icon          data/chars/2Jeff/icon.gif 1
+#parrow         
+#parrow2 
+
+script data/scripts/spawn.c
+animationscript   data/scripts/lib001.c
+ondrawscript	  data/scripts/shadowon.c
+#didhitscript      data/scripts/didhit.c
+onblockWscript         data/scripts/spikesw2.c
+
+com           a2    freespecial1
+com           a3    freespecial2
+com           a4    freespecial3
+com           j + a2   freespecial53
+com      f d b u b a3  freespecial82
+com      f d b u b a4  freespecial84
+com      d u a2  freespecial83
+
+palette        data/chars/2Jeff/icon.gif   
+alternatepal   data/chars/2jeff/alter05.gif   
+alternatepal   data/chars/2jeff/alter06.gif   
+alternatepal   data/chars/2jeff/alter07.gif   
+alternatepal   data/chars/2jeff/alter08.gif   
+
+ 
+#-------Select screen
+
+anim waiting
+	 loop       1
+	 delay      10
+	 offset     40 200
+	 bbox       68 83 24 44
+	 fshadow    0
+         frame      data/chars/2jeff/sel01.gif
+         frame      data/chars/2jeff/sel02.gif
+
+anim select
+	 loop       0
+	 delay      5
+	 offset     40 200
+	 bbox       68 83 24 44
+	 fshadow    0
+         frame      data/chars/2jeff/sel03.gif
+         frame      data/chars/2jeff/sel01.gif
+         frame      data/chars/2jeff/sel03.gif
+         frame      data/chars/2jeff/sel01.gif
+         frame      data/chars/2jeff/sel03.gif
+         frame      data/chars/2jeff/sel01.gif
+         frame      data/chars/2jeff/sel03.gif
+         frame      data/chars/2jeff/sel01.gif
+	 sound      data/sounds/grunt08.wav
+	 delay      25
+         frame      data/chars/2jeff/sel03.gif
+	 delay      5
+         frame      data/chars/2jeff/sel04.gif
+         frame      data/chars/2jeff/sel05.gif
+         frame      data/chars/2jeff/sel06.gif
+         frame      data/chars/misc/empty.gif
+
+#-------The rest of the moves
+
+anim spawn
+	 loop       0
+	 delay      2
+	 offset     80 129
+	 bbox       0 0 0 0
+         frame      data/chars/2jeff/idle01.gif
+
+anim respawn
+     loop 0
+     delay 1
+     offset 80 129
+     @cmd    stwall 0 0 0
+     @cmd    antiwall5 0 -25 0
+     frame data/chars/misc/empty.gif
+     frame data/chars/misc/empty.gif
+     @cmd    stwall 1 1 1
+         frame      data/chars/2jeff/idle01.gif
+
+anim follow100 # player1 move chin05
+	 loop       1 1
+	 delay      50
+	 offset     80 129
+         @cmd velo001 0 0 0
+         frame      data/chars/2jeff/idle01.gif
+	 delay      22
+         @cmd xyleap 100 503 12 22
+         @cmd dash
+         frame      data/chars/2jeff/wk01.gif
+         frame      data/chars/2jeff/wk02.gif
+         frame      data/chars/2jeff/wk03.gif
+         frame      data/chars/2jeff/wk04.gif
+         frame      data/chars/2jeff/wk05.gif
+         frame      data/chars/2jeff/wk06.gif
+
+anim follow101 # player2 move chin05
+	 loop       1 1
+	 delay      50
+	 offset     80 129
+         @cmd velo001 0 0 0
+         frame      data/chars/2jeff/idle01.gif
+	 delay      22
+         @cmd xyleap 148 503 12 22
+         @cmd dash
+         frame      data/chars/2jeff/wk01.gif
+         frame      data/chars/2jeff/wk02.gif
+         frame      data/chars/2jeff/wk03.gif
+         frame      data/chars/2jeff/wk04.gif
+         frame      data/chars/2jeff/wk05.gif
+         frame      data/chars/2jeff/wk06.gif
+
+anim follow102 # player1 move chin05
+	 loop       1 1
+	 delay      50
+	 offset     80 129
+         @cmd velo001 0 0 0
+         frame      data/chars/2jeff/idle01.gif
+	 delay      22
+         @cmd xyleap2 100 571 12 22
+         @cmd dash
+         frame      data/chars/2jeff/wk01.gif
+         frame      data/chars/2jeff/wk02.gif
+         frame      data/chars/2jeff/wk03.gif
+         frame      data/chars/2jeff/wk04.gif
+         frame      data/chars/2jeff/wk05.gif
+         frame      data/chars/2jeff/wk06.gif
+
+anim follow103 # player2 move chin05
+	 loop       1 1
+	 delay      50
+	 offset     80 129
+         @cmd velo001 0 0 0
+         frame      data/chars/2jeff/idle01.gif
+	 delay      22
+         @cmd xyleap2 148 571 12 22
+         @cmd dash
+         frame      data/chars/2jeff/wk01.gif
+         frame      data/chars/2jeff/wk02.gif
+         frame      data/chars/2jeff/wk03.gif
+         frame      data/chars/2jeff/wk04.gif
+         frame      data/chars/2jeff/wk05.gif
+         frame      data/chars/2jeff/wk06.gif
+
+anim follow104 # players jump chin05
+@script
+    void self = getlocalvar("self");
+
+    if(frame==0){
+      changelevelproperty("scrollspeed", 2);
+    }
+    if(frame==7){
+      changelevelproperty("scrollspeed", 0.3);
+    }
+@end_script
+	 loop       0
+	 delay      17
+	 offset     80 129
+	 jumpframe     0 2.5 0 0.6
+	 landframe     7
+	 sound      data/sounds/dragon8.wav
+	 @cmd stwall 0 1 1
+	 @cmd direc 1
+	 @cmd Join 1
+	 frame      data/chars/2jeff/ju01.gif
+	 delay      10
+	 frame      data/chars/2jeff/ju02.gif
+	 frame      data/chars/2jeff/ju02.gif
+	 frame      data/chars/2jeff/ju02.gif
+	 frame      data/chars/2jeff/ju02.gif
+	 frame      data/chars/2jeff/ju02.gif
+	 delay      500
+	 @cmd stwall 1 1 1
+	 @cmd stopz
+	 frame      data/chars/2jeff/ju01.gif
+	 delay      10
+	 @cmd Join 0
+	 frame      data/chars/2jeff/rise02.gif
+	 delay      2
+	 @cmd DeControl 0
+	 frame      data/chars/2jeff/pose01.gif
+
+anim follow105 # players jump chin05
+@script
+    void self = getlocalvar("self");
+
+    if(frame==0){
+      changelevelproperty("scrollspeed", 2);
+      changeentityproperty(self, "Subject_to_Platform", 1);
+    }
+    if(frame==7){
+      changelevelproperty("scrollspeed", 0.3);
+    }
+    if(frame==8){
+      changeentityproperty(self, "Subject_to_Screen", 0);
+    }
+@end_script
+	 loop       1 8
+	 delay      17
+	 offset     80 129
+	 jumpframe     0 2.5 0 0.6
+	 landframe     7
+	 sound      data/sounds/dragon8.wav
+	 @cmd stwall 0 1 1
+	 @cmd direc 1
+	 @cmd Join 1
+	 frame      data/chars/2jeff/ju01.gif
+	 delay      10
+	 frame      data/chars/2jeff/ju02.gif
+	 frame      data/chars/2jeff/ju02.gif
+	 frame      data/chars/2jeff/ju02.gif
+	 frame      data/chars/2jeff/ju02.gif
+	 frame      data/chars/2jeff/ju02.gif
+	 delay      500
+	 @cmd stwall 1 1 1
+	 @cmd stopz
+	 frame      data/chars/2jeff/ju01.gif
+	 delay      10
+	 frame      data/chars/2jeff/rise02.gif
+	 frame      data/chars/2jeff/pose01.gif
+	 frame      data/chars/2jeff/pose01.gif
+
+anim follow106 # player china03/04 spawn
+@script
+    void self = getlocalvar("self");
+
+    if(frame==0){
+      changeentityproperty(self, "Subject_to_Gravity", 0);
+    }
+    if(frame==9){
+      changeentityproperty(self, "Subject_to_Gravity", 1);
+    }
+@end_script
+	 loop       0
+	 delay      2
+	 offset     80 129
+         @cmd Join 1
+         @cmd changeentityproperty getlocalvar("self") "velocity" 0 0 0
+         frame      data/chars/2jeff/wk01.gif
+	 delay      14
+         @cmd leaper 0.4 0.2 0
+         frame      data/chars/2jeff/wk02.gif
+         frame      data/chars/2jeff/wk03.gif
+         frame      data/chars/2jeff/wk04.gif
+         frame      data/chars/2jeff/wk05.gif
+         frame      data/chars/2jeff/wk06.gif
+         @cmd leaper 0.4 0 0
+         frame      data/chars/2jeff/wk01.gif
+         frame      data/chars/2jeff/wk02.gif
+         frame      data/chars/2jeff/wk03.gif
+         @cmd velo001 0.4 0 0
+         frame      data/chars/2jeff/wk04.gif
+         @cmd velo001 0.4 0 0
+         frame      data/chars/2jeff/wk05.gif
+         frame      data/chars/2jeff/wk06.gif
+         frame      data/chars/2jeff/wk01.gif
+         @cmd velo001 0 -0.4 0
+         frame      data/chars/2jeff/wk02.gif
+         @cmd direc 1
+         frame      data/chars/2jeff/wk03.gif
+         frame      data/chars/2jeff/wk04.gif
+         @cmd velo001 0.4 -0.4 0
+         frame      data/chars/2jeff/wk05.gif
+         frame      data/chars/2jeff/wk06.gif
+         @cmd velo001 0.4 0 0
+         frame      data/chars/2jeff/wk01.gif
+         frame      data/chars/2jeff/wk02.gif
+	 delay      2
+         @cmd velo001 0 0 0
+         @cmd Join 0
+         frame      data/chars/2jeff/wk03.gif
+
+anim death
+	 delay      40
+	 offset     80 129
+	 bbox       0 0 0 0
+         frame      data/chars/2jeff/fall04.gif
+	 delay      12
+         frame      data/chars/2jeff/rise01.gif
+         frame      data/chars/2jeff/rise02.gif
+	 delay      16
+         frame      data/chars/2jeff/pain01.gif
+         frame      data/chars/2jeff/pain03.gif
+	 delay      30
+	 sound      data/sounds/pain2.wav
+         frame      data/chars/2jeff/pain04.gif
+	 delay      10
+         frame      data/chars/2jeff/fall05.gif
+         frame      data/chars/2jeff/fall01.gif
+	 delay      7
+         frame      data/chars/2jeff/fall03.gif
+	 sound      data/sounds/fall1.wav
+         frame      data/chars/2jeff/fall04.gif
+
+anim follow150 #credix scene
+	 loop       1
+	 delay      10
+	 offset     1 1
+	 bbox       0
+	 fshadow    0
+         frame      data/chars/0misc/empty.gif
+
+anim idle
+@cmd clearL
+	 loop       0
+	 delay      200
+	 offset     80 129
+	 bbox       68 83 24 44
+         frame      data/chars/2jeff/idle01.gif
+	 delay      9
+         frame      data/chars/2jeff/b110.gif
+	 delay      200
+         frame      data/chars/2jeff/pose01.gif
+
+anim get
+	 loop       0
+	 delay      15
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2jeff/rise03.gif
+
+anim walk
+	 loop       1
+	 delay      14
+	 offset     80 129
+	 bbox       68 83 24 44
+         frame      data/chars/2jeff/wk01.gif
+         frame      data/chars/2jeff/wk02.gif
+         frame      data/chars/2jeff/wk03.gif
+         frame      data/chars/2jeff/wk04.gif
+         frame      data/chars/2jeff/wk05.gif
+         frame      data/chars/2jeff/wk06.gif
+
+anim attack1
+	 loop       0
+	 delay      5
+	 offset     80 129
+	 bbox       68 83 24 44
+	 hitfx      data/sounds/beatc.wav
+@cmd ani0020 openborconstant("ANI_FREESPECIAL103") openborconstant("ANI_FALL102")
+@cmd ani0020 openborconstant("ANI_ATTACK3") openborconstant("ANI_PAIN3")
+@cmd ani0020 openborconstant("ANI_ATTACK3") openborconstant("ANI_PAIN7")
+         frame      data/chars/2jeff/a101.gif
+	 delay      12
+	 attack2    87 81 24 13 8 0 0 0 8 5
+#	 attack2    87 81 24 13 500 1 1 0 8 5
+	 forcedirection -1
+	 jugglecost 5
+	 dropv      1 0.5 0
+      @cmd  knife 60 7 0 45 "ANI_FOLLOW1"
+         frame      data/chars/2jeff/a102.gif
+	 delay      7
+	 attack2    0 0 0 0 
+         frame      data/chars/2jeff/a104.gif
+	 
+anim attack2
+	 range      -10 60
+	 loop       0
+	 delay      5
+	 offset     80 129
+	 bbox       68 83 24 44
+	 hitfx      data/sounds/beatj.wav
+@cmd ani0020 openborconstant("ANI_FREESPECIAL103") openborconstant("ANI_FALL102")
+@cmd ani0020 openborconstant("ANI_ATTACK3") openborconstant("ANI_PAIN3")
+@cmd ani0020 openborconstant("ANI_ATTACK3") openborconstant("ANI_PAIN7")
+         frame      data/chars/2jeff/a301.gif
+	 delay      12
+	 attack7    87 81 24 13 8 0 0 0 8 5
+	 forcedirection -1
+	 jugglecost 5
+	 dropv      1 0.5 0
+         frame      data/chars/2jeff/a302.gif
+	 delay      7
+	 attack7    0 0 0 0 
+         frame      data/chars/2jeff/a101.gif
+
+anim attack3
+	 range      -10 60
+	 loop       0
+	 delay      13
+	 offset     80 129
+	 bbox       68 83 24 44
+	 cancel     4 5 0 a2 freespecial60
+	 hitfx      data/sounds/beath.wav
+@cmd ani0020 openborconstant("ANI_FREESPECIAL103") openborconstant("ANI_FALL102")
+         frame      data/chars/2jeff/a104.gif
+	 delay      9
+         frame      data/chars/2jeff/a201.gif
+	 attack6    92 85 20 15 14 1 0 0 8 5
+	 forcedirection -1
+	 jugglecost 5
+	 dropv      3 0.1 0
+         frame      data/chars/2jeff/a202.gif
+	 delay      9
+	 attack6    83 69 12 24 18 1 0 0 8 5
+	 forcedirection -1
+	 dropv      3 0.5 0
+         frame      data/chars/2jeff/a203.gif
+	 delay      10
+	 attack6    0 0 0 0
+         frame      data/chars/2jeff/a101.gif
+	 delay      16
+	 attack6    0 0 0 0 
+         frame      data/chars/2jeff/b110.gif
+
+#kick button
+anim freespecial1
+	 range      -10 60
+	 loop       0
+	 delay      8
+	 offset     80 129
+	 bbox       68 83 24 44
+	 range      0 50
+	 hitfx      data/sounds/beatq.wav
+@cmd ani0020 openborconstant("ANI_FREESPECIAL102") openborconstant("ANI_FALL102")
+@cmd ani0020 openborconstant("ANI_FOLLOW1") openborconstant("ANI_PAIN3")
+@cmd ani0020 openborconstant("ANI_FOLLOW1") openborconstant("ANI_PAIN4")
+@cmd ani0020 openborconstant("ANI_FOLLOW1") openborconstant("ANI_PAIN7")
+         frame      data/chars/2jeff/b101.gif
+         frame      data/chars/2jeff/b301.gif
+	 delay      11
+	 attack7    84 77 30 26 9 0 0 0 8 5
+	 forcedirection -1
+	 jugglecost 5
+	 dropv      2 0.1 0
+         @cmd  knife 60 7 0 45 "ANI_FOLLOW1"
+         frame      data/chars/2jeff/b302.gif
+	 delay      9
+	 attack7    0 0 0 0 
+         frame      data/chars/2jeff/b303.gif
+         frame      data/chars/2jeff/b110.gif
+
+#kick finisher
+anim follow1
+	 range      -10 60
+	 loop       0
+	 delay      6
+	 offset     80 129
+	 bbox       68 83 24 44
+	 move       1
+	 cancel     3 5 0 a4 freespecial3
+	 cancel     3 5 0 a3 freespecial2
+	 hitfx      data/sounds/beato.wav
+@cmd ani0020 openborconstant("ANI_FREESPECIAL102") openborconstant("ANI_FALL102")
+         frame      data/chars/2jeff/b101.gif
+         frame      data/chars/2jeff/b102.gif
+	 delay      9
+	 attack3    84 78 32 6 6 0 0 0 10 5
+	 forcedirection -1
+	 dropv      2 1 0
+         frame      data/chars/2jeff/b103.gif
+	 delay      7
+	 attack3    0 0 0 0
+         frame      data/chars/2jeff/b105.gif
+         frame      data/chars/2jeff/b107.gif
+	 delay      10
+	 hitfx      data/sounds/beatd.wav
+	 attack     84 78 32 6 11 1 0 0 10 5
+	 forcedirection -1
+	 dropv      2 1 0
+         frame      data/chars/2jeff/b108.gif
+	 delay      7
+	 attack     0 0 0 0
+         frame      data/chars/2jeff/b109.gif
+         frame      data/chars/2jeff/b110.gif
+	 delay      12
+         frame      data/chars/2jeff/a101.gif
+
+#extra kick 
+anim freespecial60
+	 range      -10 60
+	 loop       0
+	 delay      8
+	 offset     80 129
+	 bbox       68 83 24 44
+	 jumpframe  3 2.5 0.4 0
+	 landframe  8
+	 hitfx      data/sounds/beatj.wav
+         frame      data/chars/2jeff/a101.gif
+	 delay      15
+	 sound      data/sounds/wcryd.wav
+         frame      data/chars/2jeff/taunt.gif
+	 delay      7
+         frame      data/chars/2jeff/rise02.gif
+	 delay      15
+         frame      data/chars/2jeff/ju01.gif
+	 delay      7
+         frame      data/chars/2jeff/ak01.gif
+         frame      data/chars/2jeff/ak02.gif
+	 delay      35
+	 attack     78 86 36 31 7 1 0 0 8 2
+	 jugglecost 15
+	 forcedirection -1
+	 dropv      2 1 0
+         frame      data/chars/2jeff/ak03.gif
+	 attack     0 0 0 0
+	 delay      999
+         frame      data/chars/2jeff/ju01.gif	
+	 delay      10
+         frame      data/chars/2jeff/rise03.gif
+
+anim jump
+	 loop       0
+	 delay      17
+	 offset     80 129
+	 bbox       68 83 24 44
+	 cancel     1 3 0 a2 freespecial50
+	 sound      data/sounds/punch4.wav
+         frame      data/chars/2jeff/ju01.gif
+	 delay      10
+	 bbox       70 85 21 28
+         frame      data/chars/2jeff/ju02.gif
+         frame      data/chars/2jeff/ju02.gif
+         frame      data/chars/2jeff/ju02.gif
+	 bbox       68 83 24 44
+         frame      data/chars/2jeff/ju01.gif
+
+#WALL JUMP
+anim follow50
+	 loop       0
+	 delay      25
+	 offset     80 129
+	 bbox       68 83 24 44
+@cmd toss0001 140
+	 jumpframe  1 1 1.5 0
+	 landframe  3
+	 sound      data/sounds/punch5.wav
+         frame      data/chars/2jeff/wallj.gif
+	 delay      7
+	 bbox       70 85 21 28
+         frame      data/chars/2jeff/ak01.gif
+	 delay      999
+	 hitfx      data/sounds/beat6.wav
+	 attack11   72 96 38 20 10 1 0 0 12 5
+	 forcedirection -1
+	 dropv      1.5 1.2 0
+         frame      data/chars/2jeff/ak17.gif
+	 delay      15
+	 attack11   0 0 0 0
+	 bbox       0 0 0 0
+         frame      data/chars/2jeff/rise03.gif
+
+anim jumpattack
+	 loop       0
+	 delay      25
+	 offset     80 129
+	 bbox       69 88 24 25
+	 hitfx      data/sounds/beatj.wav
+	 attack11   72 96 38 20 10 1 0 0 12 5
+	 forcedirection -1
+	 dropv      1.5 1.2 0
+         frame      data/chars/2jeff/ak17.gif
+	 delay      15
+	 attack11   0 0 0 0 0 0 0 0 0
+         frame      data/chars/2jeff/ju02.gif
+	 bbox       68 83 24 44
+         frame      data/chars/2jeff/ju01.gif
+
+#DIVE KICK
+anim freespecial50
+	 loop       0
+	 delay      6
+	 offset     80 129
+	 bbox       69 88 24 25
+	 jumpframe  2 -3 3 0
+	 landframe  3 
+	 sound      data/sounds/punch4.wav
+	 hitfx      data/sounds/beatc.wav
+         frame      data/chars/2jeff/ak01.gif
+         frame      data/chars/2jeff/ak02.gif
+	 delay      999
+	 attack7    76 102 27 23 6 1 0 0 12 5
+	 forcedirection -1
+	 dropv      1.5 1.2 0
+         frame      data/chars/2jeff/ak04.gif
+         delay      12
+	 attack7    0 0 0 0
+         frame      data/chars/2jeff/rise03.gif
+
+#BYCICLE KICK
+anim freespecial53
+	 loop       0
+	 delay      15
+	 offset     80 129
+	 bbox       69 88 24 25
+	 jumpframe  2 2 1.5 0
+	 landframe  7
+	 energycost 30
+	 mponly     1	 
+	 followanim 6
+	 followcond 3
+	 hitfx      data/sounds/beatm.wav
+         frame      data/chars/2jeff/a101.gif
+	 delay      18
+	 sound      data/sounds/wcryc.wav
+         frame      data/chars/2jeff/taunt.gif
+	 delay      8
+	 frame      data/chars/2jeff/ju01.gif
+	 frame      data/chars/2jeff/ju02.gif
+         frame      data/chars/2jeff/ak01.gif
+         frame      data/chars/2jeff/ak02.gif
+	 delay      999
+	 attack7    76 102 27 23 3 0 0 0 12 5
+	 forcedirection -1
+	 dropv      1.5 1.2 0
+         frame      data/chars/2jeff/ak04.gif
+         delay      12
+	 attack7    0 0 0 0
+         frame      data/chars/2jeff/rise03.gif
+
+anim follow6
+	 loop       0
+	 delay      14
+	 offset     80 129
+	 bbox       76 79 31 52
+	 landframe  14
+@cmd jump001 0.1 0.5 0
+         frame      data/chars/2jeff/ak04.gif
+	 delay      7
+         frame      data/chars/2jeff/ak05.gif
+@cmd jump001 0.5 0 0
+	 hitfx      data/sounds/beath.wav
+	 attack1    78 101 27 25 3 0 0 0 12 5
+	 jugglecost 15
+	 forcedirection -1
+	 dropv      2 1 0
+         frame      data/chars/2jeff/ak06.gif
+	 attack1    0 0 0 0
+         frame      data/chars/2jeff/ak05.gif
+@cmd jump001 0.5 0 0
+	 attack3    78 101 27 25 3 0 0 0 12 5
+	 hitfx      data/sounds/beatm.wav
+	 jugglecost 15
+	 forcedirection -1
+	 dropv      2 1 0
+         frame      data/chars/2jeff/ak07.gif
+	 attack3    0 0 0 0
+         frame      data/chars/2jeff/ak05.gif
+@cmd jump001 0.5 0 0
+	 attack1    78 101 27 25 3 0 0 0 12 5
+	 hitfx      data/sounds/beatl.wav
+	 jugglecost 15
+	 forcedirection -1
+	 dropv      2 1 0
+         frame      data/chars/2jeff/ak06.gif
+	 attack1    0 0 0 0
+         frame      data/chars/2jeff/ak05.gif
+@cmd jump001 0.8 0 0
+	 attack7    78 101 27 25 3 0 0 0 12 5
+	 hitfx      data/sounds/beath.wav
+	 jugglecost 15
+	 forcedirection -1
+	 dropv      2 1 0
+         frame      data/chars/2jeff/ak07.gif
+	 attack7    0 0 0 0
+         frame      data/chars/2jeff/ak05.gif
+	 delay      15
+         frame      data/chars/2jeff/ak08.gif
+	 delay      7
+         frame      data/chars/2jeff/ak09.gif
+	 hitfx      data/sounds/beatq.wav
+	 attack     82 83 31 31 7 1 0 0 12 5
+	 jugglecost 15
+	 forcedirection -1
+	 dropv      1.5 1.5 0
+         frame      data/chars/2jeff/ak10.gif
+	 delay      999
+	 attack     0 0 0 0
+         frame      data/chars/2jeff/ak11.gif
+	 delay      8
+         frame      data/chars/2jeff/ak12.gif
+	 delay      13
+         frame      data/chars/2jeff/ak13.gif
+	 delay      8
+         frame      data/chars/2jeff/ak14.gif
+         frame      data/chars/2jeff/ak15.gif
+	 delay      18
+         frame      data/chars/2jeff/ak16.gif
+	 delay      9
+         frame      data/chars/2jeff/ak16.gif
+         frame      data/chars/2jeff/b110.gif
+
+#DODGE TRIGGER & BLOCK
+anim block
+	 loop       0
+	 delay      6
+	 offset     80 129
+	 bbox       68 83 24 44
+	 cancel     1 3 0 a   freespecial100
+	 cancel     1 3 0 a2  freespecial99
+	 cancel     1 3 0 f f  freespecial100
+	 cancel     1 3 0 b b  freespecial99
+         frame      data/chars/2jeff/b110.gif
+	 delay      120
+         frame      data/chars/2jeff/block.gif
+         delay      1 
+         frame      data/chars/2jeff/block.gif
+
+#FWD DODGE
+anim freespecial100
+	 loop       0
+	 delay      6
+	 offset     80 129
+	 bbox       63 122 34 7
+	 move       2
+	 flipframe  21
+         frame      data/chars/2jeff/fin01.gif
+	 move       4
+	 delay      2
+	 sound      data/sounds/punch1.wav
+         frame      data/chars/2jeff/cw01.gif
+         frame      data/chars/2jeff/cw01.gif
+         frame      data/chars/2jeff/cw01.gif
+         frame      data/chars/2jeff/cw01.gif
+         frame      data/chars/2jeff/cw02.gif
+         frame      data/chars/2jeff/cw02.gif
+         frame      data/chars/2jeff/cw02.gif
+         frame      data/chars/2jeff/cw02.gif
+         frame      data/chars/2jeff/cw03.gif
+         frame      data/chars/2jeff/cw03.gif
+         frame      data/chars/2jeff/cw03.gif
+         frame      data/chars/2jeff/cw03.gif
+         frame      data/chars/2jeff/cw04.gif
+         frame      data/chars/2jeff/cw04.gif
+         frame      data/chars/2jeff/cw04.gif
+         frame      data/chars/2jeff/cw04.gif
+         frame      data/chars/2jeff/cw05.gif
+         frame      data/chars/2jeff/cw05.gif
+         frame      data/chars/2jeff/cw05.gif
+         frame      data/chars/2jeff/cw05.gif
+	 move       0
+	 delay      15
+         frame      data/chars/2jeff/fin01.gif
+
+#BACK DODGE
+anim freespecial99
+	 loop       0
+	 delay      6
+	 offset     80 129
+	 bbox       63 122 34 7
+	 move       2
+	 flipframe  21
+         frame      data/chars/2jeff/fin01.gif
+	 move       -4
+	 delay      2
+	 sound      data/sounds/punch1.wav
+         frame      data/chars/2jeff/cw05.gif
+         frame      data/chars/2jeff/cw05.gif
+         frame      data/chars/2jeff/cw05.gif
+         frame      data/chars/2jeff/cw04.gif
+         frame      data/chars/2jeff/cw04.gif
+         frame      data/chars/2jeff/cw04.gif
+         frame      data/chars/2jeff/cw04.gif
+         frame      data/chars/2jeff/cw04.gif
+         frame      data/chars/2jeff/cw03.gif
+         frame      data/chars/2jeff/cw03.gif
+         frame      data/chars/2jeff/cw03.gif
+         frame      data/chars/2jeff/cw03.gif
+         frame      data/chars/2jeff/cw02.gif
+         frame      data/chars/2jeff/cw02.gif
+         frame      data/chars/2jeff/cw02.gif
+         frame      data/chars/2jeff/cw02.gif
+         frame      data/chars/2jeff/cw01.gif
+         frame      data/chars/2jeff/cw01.gif
+         frame      data/chars/2jeff/cw01.gif
+         frame      data/chars/2jeff/cw01.gif
+	 move       0
+	 delay      15
+         frame      data/chars/2jeff/fin01.gif
+
+anim charge
+	 loop       0
+	 delay      10
+	 offset     80 129
+	 bbox       68 83 24 44
+	 sound      data/sounds/wcry8.wav
+         frame      data/chars/2jeff/a101.gif
+         frame      data/chars/2jeff/a104.gif
+	 delay      5
+         frame      data/chars/2jeff/ch01.gif
+         frame      data/chars/2jeff/ch02.gif
+         frame      data/chars/2jeff/ch01.gif
+         frame      data/chars/2jeff/ch02.gif
+@cmd	updateframe getlocalvar("self") 2
+         frame      data/chars/2jeff/ch01.gif
+
+
+
+anim walkoff
+	 loop       0
+	 delay      999
+	 offset     80 129
+	 bbox       0 0 0 0
+	 landframe  1
+         frame      data/chars/2jeff/ju01.gif
+	 delay      10
+         frame      data/chars/2jeff/rise03.gif
+
+anim grab
+@script
+  if(frame==0){
+    void self = getlocalvar("self");
+    void target = getentityproperty(self, "opponent");
+
+    setlocalvar("Target" + self, target);
+  }
+@end_script
+	 delay      1
+	 offset     80 129
+	 bbox       0
+	 cancel     2 3 0 a2 freespecial51
+	 cancel     2 3 0 j  freespecial52
+	 cancel     2 3 0 s  freespecial101
+         frame      data/chars/2jeff/grab01.gif
+	 delay      10
+         frame      data/chars/2jeff/grab01.gif
+         frame      data/chars/2jeff/grab02.gif
+
+anim freespecial51
+	 delay      8
+	 offset     80 129
+	 bbox       0 0 0 0
+	 jumpframe  6 1.7 1 0
+	 landframe  9
+	 sound      data/sounds/dragonl.wav
+@cmd slamstart2
+@cmd antiwall2 38 -15 0
+@cmd position 0 25 1 -0.1 0
+         frame      data/chars/2jeff/air01.gif
+	 delay      4
+@cmd antiwall2 38 -12 0
+@cmd position 3 25 1 -0.1 0
+         frame      data/chars/2jeff/th01.gif
+@cmd position 3 25 1 -0.1 0
+         frame      data/chars/2jeff/th01.gif
+@cmd position 3 25 1 -0.1 0
+         frame      data/chars/2jeff/th01.gif
+	 delay      22
+	 sound      data/sounds/beatj.wav
+@cmd position 2 25 1 -0.1 0
+         frame      data/chars/2jeff/th02.gif
+	 delay      17
+@cmd position 4 25 1 -0.1 0
+         frame      data/chars/2jeff/th03.gif
+	 delay      20
+@cmd depost 0
+@cmd throw 15 1 -2 2 0 0
+	 sound      data/sounds/beath.wav
+         frame      data/chars/2jeff/th04.gif
+	 delay      12
+         frame      data/chars/2jeff/ju02.gif
+	 delay      999
+         frame      data/chars/2jeff/ju01.gif
+	 delay      13
+         frame      data/chars/2jeff/rise03.gif
+
+anim freespecial52
+	 delay      12
+	 offset     80 129
+	 bbox       0 0 0 0
+	 jumpframe  1 2 0.2 0
+	 landframe  2
+         sound      data/sounds/wcrye.wav
+@cmd slamstart2
+@cmd position 0 20 1 -0.1 0
+         frame      data/chars/2jeff/air01.gif
+	 delay      500
+@cmd position 10 0 35 -0.1 0
+         frame      data/chars/2jeff/air03.gif
+	 delay      1
+@cmd position 17 20 1 -0.1 0
+         frame      data/chars/2jeff/air04.gif
+	 sound      data/sounds/beatj.wav
+	 delay      8
+@cmd antiwall2 22 -11 0
+@cmd position 17 20 1 -0.1 0
+         frame      data/chars/2jeff/air04.gif
+@cmd antiwall2 22 -11 0
+@cmd position 17 20 1 -0.1 0
+         frame      data/chars/2jeff/air04.gif
+	 delay      1
+@cmd depost 0
+@cmd finish 20 1 -0.5 1 0 0
+         frame      data/chars/2jeff/air04.gif
+	 delay      15
+         frame      data/chars/2jeff/taunt.gif
+
+anim freespecial101
+	 loop       0
+	 delay      8
+	 offset     80 129
+@cmd slamstart
+@cmd antiwall2  -20 5 0
+@cmd position 3 17 5 -0.1 0
+         frame      data/chars/2jeff/th01.gif
+@cmd antiwall2  -20 5 0
+@cmd position 3 10 5 -0.1 0
+         frame      data/chars/2jeff/back02.gif
+	 move       -2
+@cmd antiwall2  -20 5 0
+@cmd position 14 14 7 -0.1 1
+         frame      data/chars/2jeff/back03.gif
+@cmd antiwall2  -20 5 0
+@cmd position 28 -13 13 -0.1 0
+         frame      data/chars/2jeff/back04.gif
+	 delay      1
+@cmd antiwall2  -21 21 0
+@cmd position 28 -13 26 -0.1 0
+	 move       0
+         frame      data/chars/2jeff/back04.gif
+	 sound      data/sounds/dragon7.wav
+	 delay      27
+@cmd depost 0
+@cmd throw 10 7 -0.5 2.5 0.01 0
+         frame      data/chars/2jeff/back05.gif
+	 attack10   0 0 0 0 
+	 delay      8
+         frame      data/chars/2jeff/fall04.gif
+         frame      data/chars/2jeff/rise01.gif
+         frame      data/chars/2jeff/rise02.gif
+
+#VERTICAL HURRICANE KICK
+anim freespecial102
+	 rangex     29 115
+	 rangea     75 108
+	 rangez     -3 3 
+	 loop       0
+	 delay      20
+	 offset     80 129
+	 bbox       0 0 0 0
+	 jumpframe  1 2.5 0.5 0
+	 landframe  16
+	 fastattack 1
+	 hitfx      data/sounds/beatl.wav
+	 sound      data/sounds/wcrya.wav
+         frame      data/chars/2jeff/taunt.gif
+	 delay      4
+         frame      data/chars/2jeff/hk01.gif
+         frame      data/chars/2jeff/hk02.gif
+	 attack6    75 87 35 39 3 1 1 0 10 2
+	 jugglecost 3
+	 forcedirection 1
+	 dropv      1 2 0
+	 sound      data/sounds/hkick2.wav
+         frame      data/chars/2jeff/hk03.gif
+	 attack6    0 0 0 0
+         frame      data/chars/2jeff/hk04.gif
+	 jugglecost 3
+	 attack6    47 84 35 39 0 1 1 0 10 2
+	 forcedirection -1
+	 dropv      1 2 0
+         frame      data/chars/2jeff/hk05.gif
+	 attack6    0 0 0 0
+         frame      data/chars/2jeff/hk02.gif
+	 jugglecost 3
+	 attack6    75 87 35 39 0 1 1 0 10 2
+	 forcedirection 1
+	 dropv      1 2 0
+	 sound      data/sounds/hkick2.wav
+         frame      data/chars/2jeff/hk03.gif
+	 attack6    0 0 0 0
+         frame      data/chars/2jeff/hk04.gif
+	 jugglecost 3
+	 attack6    47 84 35 39 0 1 1 0 10 2
+	 forcedirection -1
+	 dropv      1 2 0
+         frame      data/chars/2jeff/hk05.gif
+	 attack6    0 0 0 0
+         frame      data/chars/2jeff/hk02.gif
+	 jugglecost 3
+	 attack6    75 87 35 39 13 1 1 0 10 2
+	 forcedirection 1
+	 dropv      1 2 0
+	 sound      data/sounds/hkick2.wav
+         frame      data/chars/2jeff/hk03.gif
+	 attack6    0 0 0 0
+         frame      data/chars/2jeff/hk04.gif
+	 jugglecost 3
+	 attack6    47 84 35 39 13 1 1 0 10 2
+	 forcedirection -1
+	 dropv      1 2 0
+         frame      data/chars/2jeff/hk05.gif
+	 delay      7
+	 attack6    0 0 0 0
+         frame      data/chars/2jeff/hk06.gif
+	 delay      99
+         frame      data/chars/2jeff/ju01.gif
+	 delay      15
+         frame      data/chars/2jeff/rise03.gif
+
+#POWER BOMB
+anim freespecial103
+	 rangex     113 133
+	 rangea     75 95
+	 rangez     -1 1 
+	 loop       0
+	 delay      10
+	 offset     80 129
+	 bbox       0 0 0 0
+	 jumpframe  1 2.5 0.5 0
+	 landframe  5
+	 hitfx      data/sounds/beatf.wav
+	 followanim 44
+	 followcond 3
+         frame      data/chars/2jeff/rise02.gif
+	 delay      8
+	 sound      data/sounds/wcryd.wav
+         frame      data/chars/2jeff/ju01.gif
+	 bbox       0 0 0 0
+	 delay      70
+	 attack     83 79 17 16 0 0 0 1 5 2
+	 forcedirection -1
+         frame      data/chars/2jeff/air02.gif
+	 delay      8
+	 attack     0 0 0 0
+         frame      data/chars/2jeff/ju02.gif
+	 delay      999
+         frame      data/chars/2jeff/ju01.gif
+	 bbox       0 0 0 0
+	 delay      13
+         frame      data/chars/2jeff/rise03.gif
+
+anim follow44
+	 loop       0
+	 delay      999
+	 offset     80 129
+	 bbox       0 0 0 0
+	 landframe  1
+@cmd slamstart2
+@cmd position 10 0 35 -0.1 0
+         frame      data/chars/2jeff/air03.gif
+	 delay      1
+@cmd position 17 20 1 -0.1 0
+         frame      data/chars/2jeff/air04.gif
+	 sound      data/sounds/beatj.wav
+	 delay      8
+@cmd antiwall2 22 -11 0
+@cmd position 17 20 1 -0.1 0
+         frame      data/chars/2jeff/air04.gif
+@cmd antiwall2 22 -11 0
+@cmd position 17 20 1 -0.1 0
+         frame      data/chars/2jeff/air04.gif
+	 delay      1
+@cmd depost 0
+@cmd finish 20 1 -0.5 1 0 0
+         frame      data/chars/2jeff/air04.gif
+	 delay      15
+         frame      data/chars/2jeff/taunt.gif
+
+anim grabattack
+	 loop       0
+	 delay      10
+	 offset     80 129
+	 bbox       0
+	 load       flash
+@cmd slamstart
+@cmd antiwall2 27 -9 0
+@cmd position 1 23 1 -0.1 0
+         frame      data/chars/2jeff/grab01.gif
+	 delay      5
+@cmd position 2 25 1 1 0
+         frame      data/chars/2jeff/hold01.gif
+@cmd position 2 23 1 1 0
+         frame      data/chars/2jeff/hold02.gif
+	 delay      8
+	 sound      data/sounds/beatj.wav
+@cmd position 38 26 5 -0.1 0
+@cmd spawn001 "flash" "flash" 0 25 40 0 0
+         frame      data/chars/2jeff/hold03.gif
+	 delay      5
+@cmd position 2 25 1 1 0
+         frame      data/chars/2jeff/hold01.gif
+@cmd position 2 23 1 1 0
+         frame      data/chars/2jeff/hold02.gif
+	 delay      8
+	 sound      data/sounds/beatj.wav
+@cmd position 38 26 5 -0.1 0
+@cmd spawn001 "flash" "flash" 0 25 40 0 0
+         frame      data/chars/2jeff/hold03.gif
+	 delay      5
+@cmd position 2 25 1 1 0
+         frame      data/chars/2jeff/hold01.gif
+@cmd position 2 23 1 1 0
+         frame      data/chars/2jeff/hold02.gif
+	 delay      8
+	 sound      data/sounds/beatj.wav
+@cmd position 38 26 5 -0.1 0
+@cmd spawn001 "flash" "flash" 0 25 40 0 0
+         frame      data/chars/2jeff/hold03.gif
+	 delay      5
+@cmd position 2 25 1 1 0
+         frame      data/chars/2jeff/hold01.gif
+@cmd position 2 23 1 0 0
+         frame      data/chars/2jeff/hold02.gif
+	 delay      8
+	 sound      data/sounds/beatg.wav
+@cmd depost 0
+@cmd finish 17 1 -1 2 0 0
+@cmd spawn001 "flash" "flash" 0 25 40 0 0
+         frame      data/chars/2jeff/a102.gif
+         frame      data/chars/2jeff/a103.gif
+         frame      data/chars/2jeff/a104.gif
+	 delay      12
+         frame      data/chars/2jeff/a101.gif
+
+anim grabattack2
+anim grabup
+anim grabdown
+anim grabdown2
+
+#throw
+anim grabbackward
+	 loop       0
+	 delay      8
+	 offset     80 129
+@cmd slamstart
+@cmd antiwall2  -20 5 0
+@cmd position 3 17 5 -0.1 0
+         frame      data/chars/2jeff/th01.gif
+@cmd antiwall2  -20 5 0
+@cmd position 3 10 5 -0.1 0
+         frame      data/chars/2jeff/back02.gif
+	 move       -2
+@cmd antiwall2  -20 5 0
+@cmd position 14 14 7 -0.1 1
+         frame      data/chars/2jeff/back03.gif
+@cmd antiwall2  -20 5 0
+@cmd position 28 -13 13 -0.1 0
+         frame      data/chars/2jeff/back04.gif
+	 delay      1
+@cmd antiwall2  -21 21 0
+@cmd position 28 -13 26 -0.1 0
+	 move       0
+         frame      data/chars/2jeff/back04.gif
+	 sound      data/sounds/dragon7.wav
+	 delay      27
+@cmd depost 0
+@cmd throw 10 7 -1.5 1.5 0.01 0
+         frame      data/chars/2jeff/back05.gif
+	 attack10   0 0 0 0 
+	 delay      8
+         frame      data/chars/2jeff/fall04.gif
+         frame      data/chars/2jeff/rise01.gif
+         frame      data/chars/2jeff/rise02.gif
+
+anim pain1
+	 loop       0
+	 delay      7
+	 offset     80 129
+	 bbox       68 83 24 44
+	 cancel     1 4 0 d f a2 freespecial90
+         frame      data/chars/2jeff/pain01.gif
+         frame      data/chars/2jeff/pain01.gif
+         frame      data/chars/2jeff/pain01.gif
+	 delay      13
+         frame      data/chars/2jeff/pain01.gif
+
+#breathless1
+anim pain2
+	 loop       0
+	 delay      27
+	 offset     80 129
+	 bbox       68 83 24 44
+	 cancel     0 1 0 d f a2 freespecial90
+         frame      data/chars/2jeff/pain01.gif
+	 delay      45
+         frame      data/chars/2jeff/pain03.gif
+
+anim pain3
+	 loop       0
+	 delay      7
+	 offset     80 129
+	 bbox       68 83 24 44
+	 cancel     1 4 0 d f a2 freespecial90
+         frame      data/chars/2jeff/pain02.gif
+         frame      data/chars/2jeff/pain02.gif
+         frame      data/chars/2jeff/pain02.gif
+	 delay      13
+         frame      data/chars/2jeff/pain02.gif
+
+#breathless2
+anim pain4
+	 loop       0
+	 delay      27
+	 offset     80 129
+	 bbox       68 83 24 44
+	 cancel     0 1 0 d f a2 freespecial90
+         frame      data/chars/2jeff/pain02.gif
+	 delay      45
+         frame      data/chars/2jeff/pain03.gif
+
+#stun
+anim pain5
+	 loop       0
+	 delay      19
+	 offset     80 129
+	 bbox       68 83 24 44
+         frame      data/chars/2jeff/pain04.gif
+         frame      data/chars/2jeff/pain05.gif
+         frame      data/chars/2jeff/pain06.gif
+         frame      data/chars/2jeff/pain05.gif
+         frame      data/chars/2jeff/pain04.gif
+         frame      data/chars/2jeff/pain05.gif
+         frame      data/chars/2jeff/pain06.gif
+         frame      data/chars/2jeff/pain05.gif
+         frame      data/chars/2jeff/pain04.gif
+         frame      data/chars/2jeff/pain05.gif
+         frame      data/chars/2jeff/pain06.gif
+
+#COMBO BREAKER	
+anim freespecial90
+	 loop       0
+	 delay      4
+	 offset     80 129
+	 bbox       0 0 0 0
+	 fastattack 1
+	 energycost 40
+	 mponly     1
+	 jumpframe  2 2.5 0.5 0
+	 dropframe  4
+	 landframe  5
+	 hitflash   brfla
+         frame      data/chars/2jeff/fin01.gif
+         frame      data/chars/2jeff/rise03.gif
+	 delay      2
+	 sound      data/sounds/breaker.wav
+	 hitfx      data/sounds/beatkill.wav
+	 attack93   74 83 40 38 0 1 1 0 15 5
+	 forcedirection -1
+	 dropv      3 1 0
+         frame      data/chars/2jeff/ak07.gif
+	 delay      35
+	 attack93   0 0 0 0
+         frame      data/chars/2jeff/ak05.gif
+	 delay      999
+         frame      data/chars/2jeff/ju01.gif
+	 delay      15
+         frame      data/chars/2jeff/fin01.gif
+	 delay      8
+         frame      data/chars/2jeff/b110.gif
+
+anim fall1
+	 loop       0
+	 delay      60
+	 offset     80 129
+	 bbox       68 83 24 44
+	 landframe  2
+         frame      data/chars/2jeff/fall01.gif
+	 delay      999
+	 bbox       0 0 0 0
+         frame      data/chars/2jeff/fall03.gif
+	 delay      12
+	 sound      data/sounds/fall1.wav
+         frame      data/chars/2jeff/fall03.gif
+         frame      data/chars/2jeff/fall04.gif
+
+anim fall6
+	 loop       0
+	 delay      60
+	 offset     80 129
+	 bbox       68 83 24 44
+	 landframe  2
+         frame      data/chars/2jeff/fall01.gif
+	 delay      999
+         frame      data/chars/2jeff/fall03.gif
+	 delay      12
+	 bbox       0 0 0 0
+         frame      data/chars/2jeff/fall03.gif
+	 sound      data/sounds/fall1.wav
+         frame      data/chars/2jeff/fall04.gif
+
+#######bossescn
+anim pain8
+	 loop       0
+	 delay      19
+	 offset     80 129
+	 bbox       68 83 24 44
+         frame      data/chars/2jeff/pain04.gif
+anim pain9
+	 loop       0
+	 delay      19
+	 offset     80 129
+	 bbox       68 83 24 44
+         frame      data/chars/2jeff/pain05.gif
+anim pain10
+	 loop       0
+	 delay      19
+	 offset     80 129
+	 bbox       68 83 24 44
+         frame      data/chars/2jeff/pain06.gif
+
+anim fall8
+	 loop       0
+	 delay      60
+	 offset     80 129
+	 bbox       0
+	 landframe  2
+         frame      data/chars/2jeff/fall01.gif
+	 delay      999
+         frame      data/chars/2jeff/fall03.gif
+	 delay      12
+         frame      data/chars/2jeff/fall03.gif
+	 sound      data/sounds/fall1.wav
+         frame      data/chars/2jeff/fall04.gif
+anim fall9
+	 loop       0
+	 delay      60
+	 offset     80 129
+	 bbox       0
+	 landframe  2
+         frame      data/chars/2jeff/fall01.gif
+	 delay      999
+         frame      data/chars/2jeff/fall03.gif
+	 delay      12
+         frame      data/chars/2jeff/fall03.gif
+	 sound      data/sounds/fall1.wav
+         frame      data/chars/2jeff/fall04.gif
+anim fall10
+	 loop       0
+	 delay      60
+	 offset     80 129
+	 bbox       0
+	 landframe  2
+         frame      data/chars/2jeff/fall01.gif
+	 delay      999
+         frame      data/chars/2jeff/fall03.gif
+	 delay      12
+         frame      data/chars/2jeff/fall03.gif
+	 sound      data/sounds/fall1.wav
+         frame      data/chars/2jeff/fall04.gif
+
+#######force push
+anim fall7
+	 loop       0
+	 delay      999
+	 offset     80 129
+	 bbox       63 83 34 42
+	 landframe  2
+@cmd toss0001 200
+@cmd jump001 0 0 0
+         frame      data/chars/2jeff/fall01.gif
+	 delay      999
+@cmd jump001 0 0 0
+         frame      data/chars/2jeff/fall03.gif
+	 delay      12
+	 bbox       0 0 0 0
+         frame      data/chars/2jeff/fall03.gif
+	 sound      data/sounds/fall1.wav
+         frame      data/chars/2jeff/fall04.gif
+
+anim rise
+	 loop       0
+	 delay      40
+	 offset     80 129
+	 bbox       0 0 0 0
+         frame      data/chars/2jeff/fall04.gif
+	 delay      12
+         frame      data/chars/2jeff/rise01.gif
+         frame      data/chars/2jeff/rise02.gif
+
+anim fall20
+	 loop       0
+	 delay      20
+	 offset     80 129
+	 bbox       0 0 0 0
+	 landframe  2
+@cmd jump001 1 -0.5 0
+	 sound      data/sounds/pain1.wav
+         frame      data/chars/2jeff/fall32.gif
+	 delay      999
+         frame      data/chars/2jeff/fall33.gif
+	 delay      2
+	 sound      data/sounds/fall2.wav
+         frame      data/chars/2jeff/fall34.gif
+         frame      data/chars/2jeff/fall34.gif
+
+anim rise20
+	 loop       0
+	 delay      2
+	 offset     80 129
+	 bbox       0 0 0 0
+	 load       knife01
+	 subentity  knife01
+	 spawnframe 11 0 0 0 0
+         frame      data/chars/2jeff/fall34.gif
+	 delay      7
+         frame      data/chars/2jeff/fall35.gif
+	 delay      3
+	 sound      data/sounds/beatu.wav
+         frame      data/chars/2jeff/fall36.gif
+         frame      data/chars/2jeff/fall37.gif
+         frame      data/chars/2jeff/fall38.gif
+         frame      data/chars/2jeff/fall39.gif
+         frame      data/chars/2jeff/fall40.gif
+         frame      data/chars/2jeff/fall41.gif
+	 delay      12
+         frame      data/chars/2jeff/fall42.gif
+         frame      data/chars/2jeff/knidle01.gif
+         frame      data/chars/2jeff/kndrop.gif
+         frame      data/chars/2jeff/idle01.gif
+
+###################################### TAE KWON DO KICKS
+
+anim freespecial2
+	 loop       0
+	 delay      10
+	 offset     80 129
+	 bbox       63 122 34 7
+	 move       4
+	 followanim 45
+	 followcond 3
+	 energycost 25
+	 mponly     1
+	 sound      data/sounds/wcrye.wav
+	 hitfx      data/sounds/beath.wav
+         frame      data/chars/2jeff/b101.gif
+         frame      data/chars/2jeff/b500.gif
+	 delay      6
+	 move       6
+         frame      data/chars/2jeff/b503.gif
+	 move       0
+         frame      data/chars/2jeff/b504.gif
+	 delay      12
+	 attack7    72 96 38 20 5 0 0 0 10 5
+	 forcedirection -1
+	 dropv      1.5 1.2 0
+         frame      data/chars/2jeff/b506.gif
+	 attack7    0
+	 delay      8
+         frame      data/chars/2jeff/b503.gif
+         frame      data/chars/2jeff/b110.gif
+
+anim follow45
+	 loop       0
+	 delay      5
+	 offset     80 129
+	 bbox       63 122 34 7
+	 hitfx      data/sounds/beatl.wav
+	 attack     0
+         frame      data/chars/2jeff/b506.gif
+         frame      data/chars/2jeff/b506.gif
+	 delay      8
+         frame      data/chars/2jeff/b509.gif
+	 delay      15
+	 move       -5
+         frame      data/chars/2jeff/b501.gif
+	 delay      9
+	 move       3
+         frame      data/chars/2jeff/b502.gif
+         frame      data/chars/2jeff/b503.gif
+         frame      data/chars/2jeff/b504.gif
+	 attack     75 77 34 28 0 1 0 0 10 5
+	 forcedirection -1
+	 dropv      2.5 0.2 0
+         frame      data/chars/2jeff/b505.gif
+	 move       0
+	 attack     0
+         frame      data/chars/2jeff/b509.gif
+	 delay      15
+         frame      data/chars/2jeff/b508.gif
+	 delay      6
+         frame      data/chars/2jeff/a101.gif
+         frame      data/chars/2jeff/b201.gif
+	 delay      18
+         frame      data/chars/2jeff/b202.gif
+	 delay      7
+	 hitfx      data/sounds/beatj.wav
+	 attack     84 78 32 6 6 1 1 0 10 5
+	 forcedirection -1
+	 dropv      -2 2.5 0
+         frame      data/chars/2jeff/b203.gif
+	 attack     0 0 0 0
+         frame      data/chars/2jeff/b204.gif
+	 delay      10
+         frame      data/chars/2jeff/b205.gif
+	 delay      8
+         frame      data/chars/2jeff/b110.gif
+
+###################################### TY'S KICK PIT FIGHTER 
+
+anim freespecial3
+	 loop       0
+	 delay      12
+	 offset     80 129
+	 bbox       68 83 24 44
+	 jumpframe  1 1.5 0 0
+	 landframe  7
+	 energycost 25
+	 mponly     1
+	 cancel     7 8 0 a  freespecial61
+         frame      data/chars/2jeff/tyk01.gif
+	 delay      9
+         frame      data/chars/2jeff/tyk02.gif
+	 sound      data/sounds/punch1.wav
+	 hitfx      data/sounds/jeffk01.wav
+	 attack     79 86 35 17 11 0 0 0 10 5
+	 forcedirection -1
+	 jugglecost 5
+	 dropv      0.5 1 0
+         frame      data/chars/2jeff/tyk03.gif
+	 attack     0
+	 delay      13
+         frame      data/chars/2jeff/tyk04.gif
+	 delay      9
+	 sound      data/sounds/punch4.wav
+	 hitfx      data/sounds/beatj.wav
+	 attack     79 86 35 17 11 1 0 0 10 5
+	 forcedirection -1
+	 jugglecost 5
+	 dropv      1.5 1.8 0
+         frame      data/chars/2jeff/tyk05.gif
+	 attack     0
+         frame      data/chars/2jeff/tyk06.gif
+         frame      data/chars/2jeff/tyk09.gif
+	 delay      6
+         frame      data/chars/2jeff/rise03.gif
+         frame      data/chars/2jeff/rise03.gif
+
+anim freespecial61
+	 loop       0
+	 delay      7
+	 offset     80 129
+	 bbox       0
+@script
+void self = getlocalvar("self"); //get the self var
+void power = getentityproperty(self,"mp"); // get target's current mp
+changeentityproperty(self, "mp", power+5); 
+@end_script
+         frame      data/chars/2jeff/tyk01.gif
+         frame      data/chars/2jeff/tyk07.gif
+	 delay      30
+	 sound      data/sounds/dragonl.wav
+         frame      data/chars/2jeff/tyk08.gif
+	 delay      10
+         frame      data/chars/2jeff/tyk07.gif
+
+
+################## JEFF'S RAGE
+
+anim freespecial82
+#WIND KICK OPENER
+@cmd shadow 10 5 60 6 2 250 250 250
+	 loop       0
+	 delay      1
+	 offset     80 129
+	 bbox       0 0 0 0
+	 energycost 80
+	 mponly     1
+	 followanim 7
+	 followcond 3
+	 jumpframe  4 1.5 2
+	 landframe  8
+	 delay      7
+	 load       scnkq
+	 custentity scnkq
+	 spawnframe 0 0 0 0 0
+@cmd spawnbind "zoomin" 0 0 0	
+	 hitflash   UCflash
+         frame      data/chars/2jeff/ch01.gif
+@cmd spawnbind "zoomout" 0 0 0	
+         frame      data/chars/2jeff/b105.gif
+         frame      data/chars/2jeff/b106.gif
+         frame      data/chars/2jeff/b107.gif
+	 delay      5
+         frame      data/chars/2jeff/jk01.gif
+         frame      data/chars/2jeff/jk02.gif
+	 hitfx      data/sounds/beath.wav
+	 delay      35
+	 attack7    73 98 34 14 0 0 1 0 13 5
+	 forcedirection -1
+	 dropv      -1 1 0
+         frame      data/chars/2jeff/jk03.gif
+	 delay      999
+	 attack7    0 0 0 0
+         frame      data/chars/2jeff/jk04.gif
+	 delay      9
+         frame      data/chars/2jeff/ju01.gif
+         frame      data/chars/2jeff/rise03.gif
+
+anim follow7
+@cmd shadow 10 5 60 6 2 250 250 250
+	 loop       0
+	 delay      999
+	 offset     80 129
+	 bbox       0 0 0 0
+	 jumpframe  0 -0.8 0.5
+	 landframe  1
+	 fastattack 1
+	 followanim 8
+	 followcond 3
+	 hitflash   UCflash
+         frame      data/chars/2jeff/jk04.gif
+	 delay      9
+	 attack7    0 0 0 0
+         frame      data/chars/2jeff/ju01.gif
+         frame      data/chars/2jeff/b110.gif
+	 delay      8
+         frame      data/chars/2jeff/b101.gif
+         frame      data/chars/2jeff/b301.gif
+	 delay      1
+
+	 hitfx      data/sounds/beat7.wav
+	 attack     86 77 36 19 0 0 1 0 13 5
+	 forcedirection -1
+	 dropv      1 1 0
+         frame      data/chars/2jeff/b401.gif
+	 attack     0
+         frame      data/chars/2jeff/b402.gif
+	 delay      12
+         frame      data/chars/2jeff/b110.gif
+
+anim follow8
+@cmd shadow 10 5 60 6 2 250 250 250
+	 loop       0
+	 delay      1
+	 offset     80 129
+	 bbox       0 0 0 0
+	 fastattack 1
+	 load       excel
+	 subentity  excel
+	 spawnframe 57 300 250 0 1 
+	 hitflash   UCflash
+@cmd setmusicvolume 10 10 #music going silent
+	 sound      data/sounds/fatal2.wav	
+	 hitfx      data/sounds/beath.wav
+	 attack     0
+         frame      data/chars/2jeff/b402.gif
+	 attack2    86 89 36 13 0 0 1 0 13 5
+	 forcedirection -1
+	 dropv      1 1 0
+         frame      data/chars/2jeff/b403.gif
+	 attack2    0
+         frame      data/chars/2jeff/b404.gif
+	 hitfx      data/sounds/beat8.wav
+	 attack7    86 98 36 13 0 0 1 0 13 5
+	 forcedirection -1
+	 dropv      1 1 0
+         frame      data/chars/2jeff/b405.gif
+	 attack7    0
+         frame      data/chars/2jeff/b406.gif
+
+	 hitfx      data/sounds/beat7.wav
+	 attack     86 77 36 19 0 0 1 0 13 5
+	 forcedirection -1
+	 dropv      1 1 0
+         frame      data/chars/2jeff/b401.gif
+	 attack     0
+         frame      data/chars/2jeff/b402.gif
+	 hitfx      data/sounds/beath.wav
+	 attack2    86 89 36 13 0 0 1 0 13 5
+	 forcedirection -1
+	 dropv      1 1 0
+         frame      data/chars/2jeff/b403.gif
+	 attack2    0
+         frame      data/chars/2jeff/b404.gif
+	 hitfx      data/sounds/beat8.wav
+	 attack7    86 98 36 13 0 0 1 0 13 5
+	 forcedirection -1
+	 dropv      1 1 0
+         frame      data/chars/2jeff/b405.gif
+	 attack7    0
+         frame      data/chars/2jeff/b406.gif
+
+
+	 hitfx      data/sounds/beat7.wav
+	 attack     86 77 36 19 0 0 1 0 13 5
+	 forcedirection -1
+	 dropv      1 1 0
+         frame      data/chars/2jeff/b401.gif
+	 attack     0
+         frame      data/chars/2jeff/b402.gif
+	 hitfx      data/sounds/beath.wav
+	 attack2    86 89 36 13 0 0 1 0 13 5
+	 forcedirection -1
+	 dropv      1 1 0
+         frame      data/chars/2jeff/b403.gif
+	 attack2    0
+         frame      data/chars/2jeff/b404.gif
+	 hitfx      data/sounds/beat8.wav
+	 attack7    86 98 36 13 0 0 1 0 13 5
+	 forcedirection -1
+	 dropv      1 1 0
+         frame      data/chars/2jeff/b405.gif
+	 attack7    0
+         frame      data/chars/2jeff/b406.gif
+
+
+	 hitfx      data/sounds/beat7.wav
+	 attack     86 77 36 19 0 0 1 0 13 5
+	 forcedirection -1
+	 dropv      1 1 0
+         frame      data/chars/2jeff/b401.gif
+	 attack     0
+         frame      data/chars/2jeff/b402.gif
+	 hitfx      data/sounds/beath.wav
+	 attack2    86 89 36 13 0 0 1 0 13 5
+	 forcedirection -1
+	 dropv      1 1 0
+         frame      data/chars/2jeff/b403.gif
+	 attack2    0
+         frame      data/chars/2jeff/b404.gif
+	 hitfx      data/sounds/beat8.wav
+	 attack7    86 98 36 13 0 0 1 0 13 5
+	 forcedirection -1
+	 dropv      1 1 0
+         frame      data/chars/2jeff/b405.gif
+	 attack7    0
+         frame      data/chars/2jeff/b406.gif
+         frame      data/chars/2jeff/b205.gif
+	 delay      3
+
+         frame      data/chars/2jeff/b101.gif
+         frame      data/chars/2jeff/b102.gif
+	 hitfx      data/sounds/beatl.wav
+	 attack90   87 78 30 25 0 1 1 0 13 5
+	 forcedirection -1
+	 dropv      0.8 0.2
+         frame      data/chars/2jeff/b103.gif
+	 move       1
+	 attack90   0 0 0 0
+         frame      data/chars/2jeff/b106.gif
+         frame      data/chars/2jeff/b107.gif
+	 hitfx      data/sounds/beato.wav
+	 attack91   87 78 30 25 0 1 1 0 13 5
+	 forcedirection -1
+	 dropv      0.5 0.2
+         frame      data/chars/2jeff/b108.gif
+	 attack91   0 0 0 0
+         frame      data/chars/2jeff/b101.gif
+         frame      data/chars/2jeff/b102.gif
+	 hitfx      data/sounds/beatl.wav
+	 attack90   87 78 30 25 0 1 1 0 13 5
+	 forcedirection -1
+	 dropv      0.8 0.2
+         frame      data/chars/2jeff/b103.gif
+	 attack90   0 0 0 0
+         frame      data/chars/2jeff/b106.gif
+         frame      data/chars/2jeff/b107.gif
+	 hitfx      data/sounds/beato.wav
+	 attack91   87 78 30 25 0 1 1 0 13 5
+	 forcedirection -1
+	 dropv      0.5 0.2
+         frame      data/chars/2jeff/b108.gif
+	 attack91   0 0 0 0
+         frame      data/chars/2jeff/b101.gif
+         frame      data/chars/2jeff/b102.gif
+	 hitfx      data/sounds/beatl.wav
+	 attack90   87 78 30 25 0 1 1 0 13 5
+	 forcedirection -1
+	 dropv      0.8 0.2
+         frame      data/chars/2jeff/b103.gif
+	 attack90   0 0 0 0
+         frame      data/chars/2jeff/b106.gif
+         frame      data/chars/2jeff/b107.gif
+	 hitfx      data/sounds/beato.wav
+	 attack91   87 78 30 25 0 1 1 0 13 5
+	 forcedirection -1
+	 dropv      2.2 0.1
+         frame      data/chars/2jeff/b108.gif
+	 attack91   0 0 0 0
+	 delay      9
+         frame      data/chars/2jeff/a101.gif
+	 delay      25
+	 sound      data/sounds/wcryd.wav
+         frame      data/chars/2jeff/taunt.gif
+	 delay      7
+	 frame      data/chars/2jeff/rise03.gif
+@cmd jump001 2.5 0.1 0
+	 delay      7
+         frame      data/chars/2jeff/hk01.gif
+         frame      data/chars/2jeff/hk02.gif
+	 delay      4
+	 attack6    75 87 35 39 0 1 1 0 10 5
+	 jugglecost 1
+	 forcedirection 1
+	 dropv      1 2 0
+	 sound      data/sounds/hkick2.wav
+         frame      data/chars/2jeff/hk03.gif
+	 attack6    0 0 0 0
+         frame      data/chars/2jeff/hk04.gif
+	 jugglecost 1
+	 attack6    47 84 35 39 0 1 1 0 10 5
+	 forcedirection -1
+	 dropv      1 2 0
+         frame      data/chars/2jeff/hk05.gif
+	 attack6    0 0 0 0
+         frame      data/chars/2jeff/hk02.gif
+	 jugglecost 1
+	 attack6    75 87 35 39 0 1 1 0 10 5
+	 forcedirection 1
+	 dropv      1 2 0
+	 sound      data/sounds/hkick2.wav
+         frame      data/chars/2jeff/hk03.gif
+	 attack6    0 0 0 0
+         frame      data/chars/2jeff/hk04.gif
+	 jugglecost 1
+	 attack6    47 84 35 39 0 1 1 0 10 5
+	 forcedirection -1
+	 dropv      1 2 0
+         frame      data/chars/2jeff/hk05.gif
+	 attack6    0 0 0 0
+         frame      data/chars/2jeff/hk02.gif
+	 jugglecost 1
+	 attack6    75 87 35 39 0 1 1 0 10 5
+	 forcedirection 1
+	 dropv      1.5 0 0
+	 sound      data/sounds/hkick2.wav
+         frame      data/chars/2jeff/hk03.gif
+	 delay      30
+@cmd jump001 2 -0.2 0
+	 attack6    0 0 0 0
+	
+         frame      data/chars/2jeff/ak08.gif
+@cmd spawnbind "zoomin" 0 0 0
+	 delay      8
+         frame      data/chars/2jeff/ak09.gif
+@cmd spawnbind "zoomout" 0 0 0
+	 jugglecost 1
+	 attack     82 83 30 28 70 1 1 0 10 5
+	 forcedirection -1
+	 dropv      -2 2 0
+         frame      data/chars/2jeff/ak10.gif
+	 delay      7
+	 attack     0 0 0 0
+         frame      data/chars/2jeff/ak11.gif
+	 delay      30
+         frame      data/chars/2jeff/ju01.gif
+	 delay      15
+@cmd setmusicvolume 100 100 #music going silent
+         frame      data/chars/2jeff/rise03.gif
+
+anim riseattack
+	 range      -35 40
+	 rangez     -2 2
+	 loop       0
+	 delay      7
+	 offset     80 129
+	 bbox       0 0 0 0
+	 jumpframe  1 2 0 0
+	 landframe  16
+	 fastattack 1
+	 hitfx      data/sounds/beatl.wav
+         frame      data/chars/2jeff/rise01.gif
+	 delay      4
+	 sound      data/sounds/wcrya.wav
+         frame      data/chars/2jeff/hk01.gif
+         frame      data/chars/2jeff/hk02.gif
+	 attack6    75 87 35 39 3 1 1 0 10 2
+	 jugglecost 3
+	 forcedirection 1
+	 dropv      1 2 0
+	 sound      data/sounds/hkick2.wav
+         frame      data/chars/2jeff/hk03.gif
+	 attack6    0 0 0 0
+         frame      data/chars/2jeff/hk04.gif
+	 jugglecost 3
+	 attack6    47 84 35 39 3 1 1 0 10 2
+	 forcedirection -1
+	 dropv      1 2 0
+         frame      data/chars/2jeff/hk05.gif
+	 attack6    0 0 0 0
+         frame      data/chars/2jeff/hk02.gif
+	 jugglecost 3
+	 attack6    75 87 35 39 3 1 1 0 10 2
+	 forcedirection 1
+	 dropv      1 2 0
+	 sound      data/sounds/hkick2.wav
+         frame      data/chars/2jeff/hk03.gif
+	 attack6    0 0 0 0
+         frame      data/chars/2jeff/hk04.gif
+	 jugglecost 3
+	 attack6    47 84 35 39 3 1 1 0 10 2
+	 forcedirection -1
+	 dropv      1 2 0
+         frame      data/chars/2jeff/hk05.gif
+	 attack6    0 0 0 0
+         frame      data/chars/2jeff/hk02.gif
+	 jugglecost 3
+	 attack6    75 87 35 39 3 1 1 0 10 2
+	 forcedirection 1
+	 dropv      1 2 0
+	 sound      data/sounds/hkick2.wav
+         frame      data/chars/2jeff/hk03.gif
+	 attack6    0 0 0 0
+         frame      data/chars/2jeff/hk04.gif
+	 jugglecost 3
+	 attack6    47 84 35 39 3 1 1 0 10 2
+	 forcedirection -1
+	 dropv      1 2 0
+         frame      data/chars/2jeff/hk05.gif
+	 delay      7
+	 attack6    0 0 0 0
+         frame      data/chars/2jeff/hk06.gif
+	 delay      99
+         frame      data/chars/2jeff/ju01.gif
+	 delay      15
+         frame      data/chars/2jeff/rise03.gif
+
+################## GEN SETSU KEN EXECUTIONER
+
+anim freespecial84
+#WIND KICK OPENER
+@cmd shadow 10 5 60 6 2 250 250 250
+	 loop       0
+	 delay      1
+	 offset     80 129
+	 bbox       0 0 0 0
+	 energycost 100
+	 mponly     1
+	 followanim 10
+	 followcond 3
+	 jumpframe  4 1.5 2
+	 landframe  6
+	 delay      7
+	 load       scnkq
+	 custentity scnkq
+	 hitflash   UCflash
+	 spawnframe 0 0 0 0 0
+@cmd spawnbind "zoomin" 0 0 0	
+         frame      data/chars/2jeff/ch01.gif
+@cmd spawnbind "zoomout" 0 0 0	
+         frame      data/chars/2jeff/rise03.gif
+         frame      data/chars/2jeff/tyk01.gif
+         frame      data/chars/2jeff/jk04.gif
+	 hitfx      data/sounds/beath.wav
+	 delay      35
+	 attack7    80 85 17 32 0 0 1 0 13 5
+	 forcedirection -1
+	 dropv      -1 1 0
+         frame      data/chars/2jeff/th04.gif
+	 delay      999
+	 attack7    0 0 0 0
+         frame      data/chars/2jeff/tyk06.gif
+	 delay      9
+         frame      data/chars/2jeff/ju01.gif
+         frame      data/chars/2jeff/rise03.gif
+
+	 load       body11
+	 load       body22
+	 load       body33
+	 load       body44
+	 load       body55
+	 load       body66
+
+anim follow10
+@cmd shadow 10 5 60 6 2 250 250 250
+	 loop       0
+	 delay      999
+	 offset     80 129
+	 bbox       0 0 0 0
+	 jumpframe  0 -0.8 -0.5
+	 landframe  1
+	 followanim 11
+	 followcond 3
+	 hitflash   UCflash
+         frame      data/chars/2jeff/ju01.gif
+	 delay      9
+	 attack7    0 0 0 0
+         frame      data/chars/2jeff/ju01.gif
+         frame      data/chars/2jeff/rise03.gif
+	 delay      8
+         frame      data/chars/2jeff/a104.gif
+         frame      data/chars/2jeff/a201.gif
+	 delay      1
+	 hitfx      data/sounds/beatj.wav
+	 attack3    92 85 23 10 0 0 1 0 13 5
+	 forcedirection -1
+	 dropv      1 1 0
+         frame      data/chars/2jeff/a302b.gif
+	 attack3    0
+	 delay      12
+         frame      data/chars/2jeff/a101.gif
+         frame      data/chars/2jeff/b110.gif
+
+anim follow11
+@cmd shadow 10 5 60 6 2 250 250 250
+	 loop       0
+	 delay      8
+	 offset     80 129
+	 bbox       0 0 0 0
+	 followanim 12
+	 followcond 3
+	 sound      data/sounds/fatal.wav
+	 hitflash   UCflash	
+@cmd setmusicvolume 10 10 #music going silent
+	 attack     0
+         frame      data/chars/2jeff/a302b.gif
+@cmd spawn044 "body22" 128 0 228
+	 delay      12
+         frame      data/chars/2jeff/a101.gif
+	 delay      8
+         frame      data/chars/2jeff/a201.gif
+	 hitfx      data/sounds/beatj.wav
+	 attack4    92 85 23 10 0 0 1 0 13 5
+	 forcedirection -1
+	 dropv      1 1 0
+         frame      data/chars/2jeff/a102b.gif
+	 attack4    0
+	 delay      12
+         frame      data/chars/2jeff/a103.gif
+@cmd setmusicvolume 100 100 #music going full
+         frame      data/chars/2jeff/a104.gif
+
+anim follow12
+@cmd shadow 10 5 60 6 2 250 250 250
+	 loop       0
+	 delay      8
+	 offset     80 129
+	 bbox       0 0 0 0
+	 followanim 13
+	 followcond 3	
+	 hitflash   UCflash
+@cmd setmusicvolume 10 10 #music going silent
+	 attack     0
+         frame      data/chars/2jeff/a102b.gif
+	 delay      12
+@cmd spawn044 "body11" 128 0 228
+         frame      data/chars/2jeff/a103.gif
+         frame      data/chars/2jeff/a104.gif
+	 delay      6
+         frame      data/chars/2jeff/b101.gif
+         frame      data/chars/2jeff/b604.gif
+	 hitfx      data/sounds/beatj.wav
+	 attack3    90 97 24 23 0 0 1 0 13 5
+	 forcedirection -1
+	 dropv      1 1 0
+         frame      data/chars/2jeff/b605.gif
+	 attack3    0
+	 delay      11
+         frame      data/chars/2jeff/b604.gif
+@cmd setmusicvolume 100 100 #music ok
+         frame      data/chars/2jeff/b601.gif
+
+anim follow13
+@cmd shadow 10 5 60 6 2 250 250 250
+	 loop       0
+	 delay      8
+	 offset     80 129
+	 bbox       0 0 0 0
+	 followanim 14
+	 followcond 3	
+	 hitflash   UCflash
+@cmd setmusicvolume 10 10 #music going silent
+	 attack     0
+         frame      data/chars/2jeff/b605.gif
+	 delay      11
+@cmd spawn044 "body44" 128 0 228
+         frame      data/chars/2jeff/b604.gif
+         frame      data/chars/2jeff/b101.gif
+	 delay      6
+         frame      data/chars/2jeff/b601.gif
+         frame      data/chars/2jeff/b602.gif
+	 hitfx      data/sounds/beatj.wav
+	 attack7    90 97 24 23 0 0 1 0 13 5
+	 forcedirection -1
+	 dropv      1 1 0
+         frame      data/chars/2jeff/b603.gif
+	 attack7    0
+	 delay      11
+         frame      data/chars/2jeff/b602.gif
+         frame      data/chars/2jeff/b601.gif
+@cmd setmusicvolume 100 100 #music ok
+
+anim follow14
+@cmd shadow 10 5 60 6 2 250 250 250
+	 loop       0
+	 delay      8
+	 offset     80 129
+	 bbox       0 0 0 0
+	 fastattack 1
+	 hitflash   UCflash
+	 cancel     36 38 0 a freespecial20
+@cmd setmusicvolume 10 10 #music going silent
+	 attack     0
+         frame      data/chars/2jeff/b603.gif
+	 delay      11
+@cmd spawn044 "body33" 128 0 228
+         frame      data/chars/2jeff/b602.gif
+         frame      data/chars/2jeff/b601.gif
+	 delay      17
+         frame      data/chars/2jeff/ch01.gif
+	 delay      2
+         frame      data/chars/2jeff/a101.gif
+#---1
+         frame      data/chars/2jeff/a201.gif
+	 hitfx      data/sounds/beat5.wav
+	 attack96   91 94 24 6 0 0 1 0 9 5
+	 forcedirection -1
+	 dropv      1.3 0.8 0
+         frame      data/chars/2jeff/a402.gif
+	 attack     0 0 0 0
+         frame      data/chars/2jeff/a201.gif
+	 hitfx      data/sounds/beatg.wav
+	 attack96   91 94 24 6 0 0 1 0 9 5
+	 forcedirection -1
+	 dropv      1.3 0.8 0
+         frame      data/chars/2jeff/a401.gif
+	 attack     0 0 0 0
+#---
+         frame      data/chars/2jeff/a201.gif
+	 hitfx      data/sounds/beatj.wav
+	 attack96   91 94 24 6 0 0 1 0 9 5
+	 forcedirection -1
+	 dropv      1.3 0.8 0
+         frame      data/chars/2jeff/a402.gif
+	 attack     0 0 0 0
+         frame      data/chars/2jeff/a201.gif
+	 hitfx      data/sounds/beatk.wav
+	 attack96   91 94 24 6 0 0 1 0 9 5
+	 forcedirection -1
+	 dropv      1.3 0.8 0
+         frame      data/chars/2jeff/a401.gif
+	 attack     0 0 0 0
+#---2
+         frame      data/chars/2jeff/a201.gif
+	 hitfx      data/sounds/beat5.wav
+	 attack96   91 94 24 6 0 0 1 0 9 5
+	 forcedirection -1
+	 dropv      1.3 0.8 0
+         frame      data/chars/2jeff/a402.gif
+	 attack     0 0 0 0
+         frame      data/chars/2jeff/a201.gif
+	 hitfx      data/sounds/beatg.wav
+	 attack96   91 94 24 6 0 0 1 0 9 5
+	 forcedirection -1
+	 dropv      1.3 0.8 0
+         frame      data/chars/2jeff/a401.gif
+	 attack     0 0 0 0
+#---
+         frame      data/chars/2jeff/a201.gif
+	 hitfx      data/sounds/beatj.wav
+	 attack96   91 94 24 6 0 0 1 0 9 5
+	 forcedirection -1
+	 dropv      1.3 0.8 0
+         frame      data/chars/2jeff/a402.gif
+	 attack     0 0 0 0
+         frame      data/chars/2jeff/a201.gif
+	 hitfx      data/sounds/beatk.wav
+	 attack96   91 94 24 6 0 0 1 0 9 5
+	 forcedirection -1
+	 dropv      1.3 0.8 0
+         frame      data/chars/2jeff/a401.gif
+	 attack     0 0 0 0
+#---3
+         frame      data/chars/2jeff/a201.gif
+	 hitfx      data/sounds/beat5.wav
+	 attack96   91 94 24 6 0 0 1 0 9 5
+	 forcedirection -1
+	 dropv      1.3 0.8 0
+         frame      data/chars/2jeff/a402.gif
+	 attack     0 0 0 0
+         frame      data/chars/2jeff/a201.gif
+	 hitfx      data/sounds/beatg.wav
+	 attack96   91 94 24 6 0 0 1 0 9 5
+	 forcedirection -1
+	 dropv      1.3 0.8 0
+         frame      data/chars/2jeff/a401.gif
+	 attack     0 0 0 0
+#---
+         frame      data/chars/2jeff/a201.gif
+	 hitfx      data/sounds/beatj.wav
+	 attack96   91 94 24 6 0 0 1 0 9 5
+	 forcedirection -1
+	 dropv      1.3 0.8 0
+         frame      data/chars/2jeff/a402.gif
+	 attack     0 0 0 0
+         frame      data/chars/2jeff/a201.gif
+	 hitfx      data/sounds/beatk.wav
+	 attack7    91 94 24 6 0 0 1 0 9 5
+	 forcedirection -1
+	 dropv      1.3 0.8 0
+         frame      data/chars/2jeff/a401.gif
+	 attack7    0 0 0 0
+#---
+	 delay      18
+@cmd spawn044 "body55" 128 0 228
+         frame      data/chars/2jeff/a101.gif
+	 delay      8
+         frame      data/chars/2jeff/a401.gif
+         frame      data/chars/2jeff/a201.gif
+	 hitfx      data/sounds/beata.wav
+	 attack6    92 85 20 15 0 1 1 0 8 5
+	 forcedirection -1
+	 jugglecost 5
+	 dropv      4 -0.1 0
+         frame      data/chars/2jeff/a202.gif
+	 delay      9
+	 attack6    83 69 12 24 0 1 1 0 8 5
+	 forcedirection -1
+	 dropv      4 -0.1 0
+         frame      data/chars/2jeff/a203.gif
+	 delay      14
+	 attack6    0 0 0 0
+         frame      data/chars/2jeff/a101.gif
+	 delay      8
+	 attack6    0 0 0 0 
+         frame      data/chars/2jeff/b110.gif
+@cmd setmusicvolume 100 100 #music going silent
+         frame      data/chars/2jeff/idle01.gif
+
+anim freespecial20
+@cmd shadow 10 5 60 6 2 250 250 250
+	 loop       0
+	 delay      8
+	 offset     80 129
+	 bbox       0 0 0 0
+	 jumpframe  3 3 0
+	 followanim 15
+	 followcond 3
+	 landframe  6	
+@cmd setmusicvolume 10 10 #music going silent
+	 attack     0
+         frame      data/chars/2jeff/b601.gif
+	 delay      20
+	 sound      data/sounds/wcryc.wav
+         frame      data/chars/2jeff/taunt.gif
+	 delay      8
+         frame      data/chars/2jeff/rise03.gif
+	 delay      20
+         frame      data/chars/2jeff/ju01.gif
+	 hitfx      data/sounds/beatf.wav
+	 attack     86 74 16 12 0 1 1 1 8 5
+	 forcedirection -1
+	 dropv      4 -0.1 0
+         frame      data/chars/2jeff/air02.gif
+	 delay      999
+	 attack     0 0 0 0
+         frame      data/chars/2jeff/ju01.gif
+	 delay      15
+         frame      data/chars/2jeff/rise03.gif
+@cmd setmusicvolume 100 100 #music ok
+
+anim follow15
+@cmd shadow 10 5 60 6 2 250 250 250
+	 loop       0
+	 delay      20
+	 offset     80 129
+	 bbox       0 0 0 0
+	 landframe  3	
+	 subentity  excel
+	 spawnframe 1 300 250 0 1
+@cmd setmusicvolume 10 10 #music going silent
+	 attack     0
+@cmd slamstart2
+#@cmd antiwall2 38 -15 0
+@cmd position 38 19 7 -0.1 0
+         frame      data/chars/2jeff/air02.gif
+@cmd position 18 19 10 -0.1 0
+@cmd spawnbind "zoomin" 0 0 0
+         frame      data/chars/2jeff/air05.gif
+@cmd spawnbind "zoomout" 0 0 0
+	 delay      999
+@cmd position 17 -10 1 -0.1 0
+         frame      data/chars/2jeff/air06.gif
+	 delay      1
+@cmd depost 0
+@cmd finish 100 2 -0.7 1 0 1
+	 sound      data/sounds/beatj.wav
+@cmd spawn044 "body66" 128 0 228
+         frame      data/chars/2jeff/air06.gif
+@cmd jump001 1.7 -1 0
+	 delay      15
+         frame      data/chars/2jeff/air05.gif
+         frame      data/chars/2jeff/ju02.gif
+	 delay      7
+         frame      data/chars/2jeff/ju02.gif
+	 delay      12
+         frame      data/chars/2jeff/ju01.gif
+	 delay      15
+@cmd setmusicvolume 100 100 #music going silent
+         frame      data/chars/2jeff/rise03.gif
+	 delay      25
+         frame      data/chars/2jeff/taunt.gif
+
+
+################## JEFF'S TATSUMAKI
+
+anim freespecial83
+	 loop       0
+	 delay      6
+	 offset     80 129
+	 bbox       77 79 6 33
+	 energycost 50
+	 mponly     1
+	 jumpframe  1 1.5 1 0
+	 landframe  35
+	 sound      data/sounds/wcryb.wav
+	 hitfx      data/sounds/beatb.wav
+         frame      data/chars/2jeff/rise03.gif
+	 delay      10
+         frame      data/chars/2jeff/ju01.gif
+	 delay      5
+         frame      data/chars/2jeff/ju02.gif
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk01.gif
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk02.gif
+@cmd toss0001 280
+	 sound      data/sounds/hkick2.wav
+	 attack13   74 82 37 26 15 1 0 0 8 5
+	 dropv      2 1.5 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk03.gif
+	 attack13   0 0 0 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk08.gif
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk04.gif
+	 attack13   55 79 25 30 15 1 0 0 8 5
+	 dropv      2 1.5 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk05.gif
+	 attack13   0 0 0 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk01.gif
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk02.gif
+	 sound      data/sounds/hkick2.wav
+	 attack13   74 82 37 26 15 1 0 0 8 5
+	 dropv      2 1.5 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk03.gif
+	 attack13   0 0 0 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk08.gif
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk04.gif
+	 attack13   55 79 25 30 15 1 0 0 8 5
+	 dropv      2 1.5 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk05.gif
+	 attack13   0 0 0 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk01.gif
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk02.gif
+	 sound      data/sounds/hkick2.wav
+	 attack13   74 82 37 26 15 1 0 0 8 5
+	 dropv      2 1.5 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk03.gif
+	 attack13   0 0 0 0 0 0 0 0 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk08.gif
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk04.gif
+	 attack13   55 79 25 30 15 1 0 0 8 5
+	 dropv      2 1.5 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk05.gif
+	 attack13   0 0 0 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk01.gif
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk02.gif
+	 sound      data/sounds/hkick2.wav
+	 attack13   74 82 37 26 15 1 0 0 8 5
+	 dropv      2 1.5 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk03.gif
+	 attack13   0 0 0 0 0 0 0 0 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk08.gif
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk04.gif
+	 attack13   55 79 25 30 15 1 0 0 8 5
+	 dropv      2 1.5 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk05.gif
+	 attack13   0 0 0 0
+         frame      data/chars/2jeff/hk01.gif
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk02.gif
+	 sound      data/sounds/hkick2.wav
+	 attack13   74 82 37 26 15 1 0 0 8 5
+	 dropv      2 1.5 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk03.gif
+	 attack13   0 0 0 0 0 0 0 0 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk08.gif
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk04.gif
+	 attack13   55 79 25 30 15 1 0 0 8 5
+	 dropv      2 1.5 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk05.gif
+	 attack13   0 0 0 0 0 0 0 0 0
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/hk06.gif
+	 delay      300
+	 @cmd antibasemap 20 0 0
+         frame      data/chars/2jeff/ju01.gif
+	 delay      42
+         frame      data/chars/2jeff/rise03.gif
+
+########################### #SCRIPTED SLAMS
+anim fall80
+	 loop       0
+	 delay      5000
+	 offset     80 129
+	 bbox       0
+         @cmd    conditionalflip3
+         frame      data/chars/2jeff/pain01.gif #follow30
+         frame      data/chars/2jeff/pain02.gif
+         frame      data/chars/2jeff/pain03.gif #follow31
+         frame      data/chars/2jeff/pain04.gif #follow 1 #follow27
+         frame      data/chars/2jeff/pain05.gif #follow32
+         frame      data/chars/2jeff/pain06.gif
+         frame      data/chars/0misc/empty.gif   #mcguire megaton press
+         frame      data/chars/2wllms/pain08.gif
+         frame      data/chars/2wllms/pain09.gif
+         @cmd    conditionalflip3
+         frame      data/chars/2jeff/fall01.gif #follow15
+#10
+         @cmd    conditionalflip3
+         frame      data/chars/2jeff/fall03.gif
+         frame      data/chars/2wllms/fall03.gif #follow12
+         frame      data/chars/2wllms/fall04.gif #follow17
+         frame      data/chars/2wllms/fall05.gif
+         frame      data/chars/2wllms/fall06.gif #follow 2
+         frame      data/chars/2wllms/fall07.gif
+         frame      data/chars/2wllms/fall08.gif #follow20 #follow25 #follow26
+         frame      data/chars/2wllms/fall09.gif #follow 7
+         frame      data/chars/2wllms/fall10.gif #follow 8
+         frame      data/chars/2wllms/fall11.gif #follow 3
+#20
+         @cmd    conditionalflip3
+         frame      data/chars/2jeff/fall12b.gif #chen special
+         frame      data/chars/2jeff/fall13b.gif #chen special
+         frame      data/chars/2jeff/fall15b.gif #chen special
+         frame      data/chars/2wllms/fall16.gif
+         frame      data/chars/2wllms/fall17.gif #follow21
+         frame      data/chars/2wllms/fall18.gif
+         frame      data/chars/2wllms/fall19.gif
+         frame      data/chars/2wllms/fall20.gif
+         frame      data/chars/2wllms/fall21.gif
+         frame      data/chars/2wllms/fall22.gif #follow 9
+#30
+         frame      data/chars/2wllms/fall23.gif #follow28
+         frame      data/chars/2wllms/fall24.gif #follow18 follow19
+         frame      data/chars/2wllms/fall25.gif #follow14
+         frame      data/chars/2wllms/fall26.gif #follow22 #follow23 #follow24
+         frame      data/chars/2wllms/fall27.gif #follow40
+         frame      data/chars/2wllms/fall28.gif #follow38
+         frame      data/chars/2wllms/fall29.gif
+         frame      data/chars/2wllms/fall30.gif
+         frame      data/chars/2wllms/fall31.gif
+         frame      data/chars/2jeff/backb01.gif
+#40
+         frame      data/chars/2wllms/painh2.gif #follow34
+         frame      data/chars/2wllms/painh3.gif #follow35
+         frame      data/chars/2wllms/painh4.gif #follow37
+         frame      data/chars/2jeff/fallc1.gif
+         frame      data/chars/2jeff/fallc2.gif
+         frame      data/chars/2jeff/fallc3.gif
+

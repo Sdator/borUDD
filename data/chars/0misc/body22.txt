@@ -1,0 +1,22 @@
+name	body22
+type	text
+subtype noskip
+setlayer 9999999999
+
+
+
+anim idle
+	 loop      0
+	 delay     2
+	 health    7
+	 offset    128 228
+	 sound     data/sounds/beat9.wav
+	 frame     data/chars/0misc/body02.gif
+	 sound     data/sounds/beatt.wav
+	 frame     data/chars/0misc/body02.gif
+	 sound     data/sounds/beati.wav
+	 frame     data/chars/0misc/body02.gif
+	 delay     14
+	 frame     data/chars/0misc/body02.gif
+	 frame     data/chars/0misc/empty.gif
+

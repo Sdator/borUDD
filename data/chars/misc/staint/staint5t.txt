@@ -1,0 +1,20 @@
+name	staint5t
+type	none
+setlayer 9999999999
+nodieblink 3
+lifespan 6
+
+load     staint5 
+
+anim idle
+	 loop      0
+	 delay     1
+	 offset    0 228
+	 flipframe 0
+	 custentity staint5
+	 spawnframe 1 0 0 0 0
+	 frame     data/chars/misc/staint/m5001.gif
+	 frame     data/chars/misc/staint/m5001.gif
+
+
+

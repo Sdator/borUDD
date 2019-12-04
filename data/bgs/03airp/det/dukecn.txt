@@ -1,0 +1,159 @@
+name	dukecn
+type	none
+lifespan  10
+
+anim idle
+	 loop      1
+	 delay     1
+	 offset    0 0
+	 fastattack 1
+	 hitfx     data/sounds/fall.wav
+	 attack18   -1000 -1000 2000 2000 0 0 1 1 1 2000
+	 forcedirection -1
+	 dropv     1 1 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   0 0 0 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   -1000 -1000 2000 2000 0 0 1 1 1 2000
+	 forcedirection -1
+	 dropv     1 1 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   0 0 0 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   -1000 -1000 2000 2000 0 0 1 1 1 2000
+	 forcedirection -1
+	 dropv     1 1 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   0 0 0 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   -1000 -1000 2000 2000 0 0 1 1 1 2000
+	 forcedirection -1
+	 dropv     1 1 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   0 0 0 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   -1000 -1000 2000 2000 0 0 1 1 1 2000
+	 forcedirection -1
+	 dropv     1 1 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   0 0 0 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   -1000 -1000 2000 2000 0 0 1 1 1 2000
+	 forcedirection -1
+	 dropv     1 1 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   0 0 0 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   -1000 -1000 2000 2000 0 0 1 1 1 2000
+	 forcedirection -1
+	 dropv     1 1 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   0 0 0 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   -1000 -1000 2000 2000 0 0 1 1 1 2000
+	 forcedirection -1
+	 dropv     1 1 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   0 0 0 0
+	 frame     data/chars/0misc/empty.gif
+
+
+	 attack18   -1000 -1000 2000 2000 0 0 1 1 1 2000
+	 forcedirection -1
+	 dropv     1 1 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   0 0 0 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18  -1000 -1000 2000 2000 0 0 1 1 1 2000
+	 forcedirection -1
+	 dropv     1 1 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   0 0 0 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   -1000 -1000 2000 2000 0 0 1 1 1 2000
+	 forcedirection -1
+	 dropv     1 1 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   0 0 0 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   -1000 -1000 2000 2000 0 0 1 1 1 2000
+	 forcedirection -1
+	 dropv     1 1 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   0 0 0 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18  -1000 -1000 2000 2000 0 0 1 1 1 2000
+	 forcedirection -1
+	 dropv     1 1 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18  0 0 0 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18  -1000 -1000 2000 2000 0 0 1 1 1 2000
+	 forcedirection -1
+	 dropv     1 1 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18  0 0 0 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18  -1000 -1000 2000 2000 0 0 1 1 1 2000
+	 forcedirection -1
+	 dropv     1 1 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18  0 0 0 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18  -1000 -1000 2000 2000 0 0 1 1 1 2000
+	 forcedirection -1
+	 dropv     1 1 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18  0 0 0 0
+	 frame     data/chars/0misc/empty.gif
+
+
+	 attack18   -1000 -1000 2000 2000 0 0 1 1 1 2000
+	 forcedirection -1
+	 dropv     1 1 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   0 0 0 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   -1000 -1000 2000 2000 0 0 1 1 1 2000
+	 forcedirection -1
+	 dropv     1 1 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18  0 0 0 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   -1000 -1000 2000 2000 0 0 1 1 1 2000
+	 forcedirection -1
+	 dropv     1 1 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   0 0 0 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18  -1000 -1000 2000 2000 0 0 1 1 1 2000
+	 forcedirection -1
+	 dropv     1 1 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   0 0 0 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18  -1000 -1000 2000 2000 0 0 1 1 1 2000
+	 forcedirection -1
+	 dropv     1 1 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   0 0 0 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   -1000 -1000 2000 2000 0 0 1 1 1 2000
+	 forcedirection -1
+	 dropv     1 1 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   0 0 0 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   -1000 -1000 2000 2000 0 0 1 1 1 2000
+	 forcedirection -1
+	 dropv     1 1 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   0 0 0 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18   -1000 -1000 2000 2000 0 0 1 1 1 2000
+	 forcedirection -1
+	 dropv     1 1 0
+	 frame     data/chars/0misc/empty.gif
+	 attack18  0 0 0 0
+	 frame     data/chars/0misc/empty.gif
+

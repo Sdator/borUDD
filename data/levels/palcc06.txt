@@ -1,0 +1,546 @@
+loadingbg       data/bgs/loading2.gif 1 -999 -999 100 -999 -999
+music           data/music/06palacc.ogg 1
+at              0
+background	data/bgs/06palc/b01.gif
+panel		data/bgs/06palc/n01.gif
+direction       both
+scrollspeed     0.5
+light  		10  20
+at       	0
+settime         0
+notime          1
+noslow          1
+order	        a
+#type            1
+spawn1          40 10
+spawn2          50 15
+updatescript    data/scripts/traileru.c
+
+wall   3200 209 0 0 3000 3000 100 1
+wall   2596 209 -32 0 3000 3000 32 1
+wall   3286 182 -5000 -5000 63 0 63 5000
+wall   2508 225 -764 -714 50 0 50 48
+wall   1840 209 -300 -300 0 0 32 22
+basemap 1617 209 76 32 79 22
+wall   1618 209 -151 -119 0 0 32 78 #stairs top2
+wall   1295 209 -119 -119 32 0 32 78 #stairs top1
+basemap 1125 209 52 32 46 79
+wall   1200 209 -163 -131 0 0 32 46
+wall   1100 198 -286 -254 0 0 32 28 #narow floor
+wall   789 198 -3000 -3000 32 0 32 28 #narow floor
+wall   598 215 -297 -258 39 0 39 28 #low wide at start
+hole  -200 230 0 0 7000 7000 60 1
+
+spawn   00fire
+void main()
+{
+    int P1 = getplayerproperty(0, "entity");
+    int P2 = getplayerproperty(1, "entity");
+
+    if(P1){
+      changeentityproperty(P1, "position", 60, 188, 28);
+    }
+    if(P2){
+      changeentityproperty(P2, "position", 82, 188, 28);
+    }
+}
+@end_script
+flip    1
+coords  0 233
+at      0
+
+spawn   fwall
+flip    1
+coords  0 232
+at      0
+
+spawn   trap01
+flip    1
+coords  1400 215
+at      0
+
+spawn   trap03
+flip    1
+spawnscript data/scripts/noscpos.c
+coords  3249 184 0
+at      0
+
+spawn   trap03
+spawnscript data/scripts/noscpos.c
+coords  2888 184 0
+at      0
+
+####### GROUP 1
+
+scrollx 0 0
+at      0
+
+group   3 3
+at      0
+
+spawn   williams
+map     4
+coords  300 188 28
+at      0
+
+spawn   roper
+map     4
+coords  290 188 28
+at      0
+
+spawn   baker
+map     4
+coords  320 188 28
+at      0
+
+group   1 1
+at      0
+
+scrollx 0 380
+at      0
+
+####### GROUP 2
+
+scrollx 290 380
+at      290
+
+group   3 3
+at      290
+
+spawn   dukemg01
+coords  128 228
+at      290
+
+spawn   roper
+map     4
+coords  300 188 28
+at      290
+
+spawn   linda1
+item    knife01
+map     4
+coords  290 188 28
+at      290
+
+spawn   baker
+map     4
+coords  320 188 28
+at      290
+
+spawn   williams
+map     4
+coords  -30 188 28
+at      290
+
+spawn   roper
+weapon  bo
+map     4
+coords  300 188 28
+at      290
+
+group   1 1
+at      0
+
+scrollx 290 520
+at      290
+
+spawn	jumper
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW1"));
+} @end_script
+flip	0
+coords	785 198 28
+at	290
+
+spawn	jumper
+spawnscript data/scripts/noscpos.c
+flip	1
+coords	821 198 28
+at	290
+
+####### GROUP 3
+
+
+scrollx 519 640
+at      519
+
+group   3 3
+at      519
+
+spawn   roper
+map     4
+coords  350 188 28
+at      519
+
+spawn   linda1
+item    knife01
+map     4
+coords  350 188 28
+at      519
+
+spawn   williams
+map     4
+coords  360 188 28
+at      519
+
+spawn   roper
+map     4
+coords  -30 188 28
+at      519
+
+spawn   linda1
+item    knife01
+map     4
+coords  -30 188 28
+at      519
+
+group   1 1
+at      0
+
+scrollx 519 755
+at      519
+
+####### GROUP 4
+
+scrollx 750 870
+at      750
+
+group   3 3
+at      750
+
+spawn   dukemg02
+coords  128 228
+at      750
+
+spawn   steve
+map     4
+health  350
+coords  330 188 35
+at      750
+
+spawn   williams
+map     4
+health  350
+coords  290 188 35
+at      750
+
+spawn   baker
+map     4
+coords  320 188 35
+at      750
+
+group   1 1
+at      0
+
+scrollx 750 1480
+at      750
+
+####### GROUP 5
+
+scrollx 1479 1729
+at      1479
+
+group   3 3
+at      1479
+
+spawn   dukemg03
+coords  128 228
+at      1479
+
+spawn   williams
+map     4
+coords  300 188 28
+at      1479
+
+spawn   roper
+map     4
+coords  310 170 28
+at      1479
+
+spawn   jackson
+map     4
+coords  320 188 28
+at      1479
+
+spawn   baker
+map     4
+coords  300 188 28
+at      1479
+
+spawn   roper
+map     4
+coords  290 188 28
+at      1479
+
+group   1 1
+at      0
+
+scrollx 1479 2012
+at      750
+
+####### GROUP 6
+
+scrollx 2012 2012
+at      2012
+
+group   3 3
+at      2012
+
+spawn   pldoor1
+flip    1
+spawnscript data/scripts/noscpos.c
+#coords  192 181 48
+coords  2204 181 48
+at      2012
+
+spawn   duke2
+coords  192 188 28
+at      2012
+
+spawn   williams
+map     4
+coords  -30 188 28
+at      2012
+
+spawn   roper
+map     4
+coords  290 188 28
+at      2012
+
+group   1 1
+at      2012
+
+#------- DOOR 2
+
+group   3 3
+at      2012
+
+spawn   pldoor1
+flip    1
+spawnscript data/scripts/noscpos.c
+#coords  64 181 48
+coords  2076 181 48
+at      2012
+
+spawn   duke3
+coords  64 188 28
+at      2012
+
+spawn   baker
+map     4
+coords  -30 188 28
+at      2012
+
+spawn   williams
+map     4
+coords  290 188 28
+at      2012
+
+group   1 1
+at      2012
+
+#------- DOOR 3
+
+group   3 3
+at      2012
+
+spawn   pldoor1
+flip    1
+spawnscript data/scripts/noscpos.c
+#coords  192 181 48
+coords  2204 181 48
+at      2012
+
+spawn   duke4
+coords  192 188 28
+at      2012
+
+spawn   roper
+map     4
+coords  -30 188 28
+at      2012
+
+spawn   linda1
+map     4
+coords  290 188 28
+at      2012
+
+group   1 1
+at      2012
+
+#------- DOOR 4
+
+group   3 3
+at      2012
+
+spawn   pldoor1
+flip    1
+spawnscript data/scripts/noscpos.c
+#coords  64 181 48
+coords  2076 181 48
+at      2012
+
+spawn   duke5
+coords  64 188 28
+at      2012
+
+spawn   roper
+map     4
+coords  -30 188 28
+at      2012
+
+spawn   williams
+map     3
+coords  290 188 28
+at      2012
+
+group   1 1
+at      2012
+
+#------- DOOR 5
+
+group   3 3
+at      2012
+
+spawn   plwall
+flip    1
+spawnscript data/scripts/noscpos.c
+#coords  192 181 48
+coords  2141 181 48
+at      2012
+
+spawn   abobo
+health  450
+2phealth 550
+map     1
+spawnscript data/scripts/noscpos.c
+coords  2141 183 48
+at      2012
+
+spawn   roper
+map     4
+coords  -30 188 28
+at      2012
+
+spawn   linda1
+map     4
+coords  290 188 28
+at      2012
+
+group   1 1
+at      2012
+
+scrollx 2012 2370
+at      2012
+
+group   2 2
+at      2100
+
+spawn   williams
+map     3
+coords  290 188 28
+at      2100
+
+spawn   roper
+map     3
+coords  290 200 28
+at      2100
+
+######### GROUP 7 - TRAPS
+
+scrollx 2370 2887
+at      2370
+
+group   3 3
+at      2370
+
+spawn   trap02
+coords  278 198 30
+at      2370
+
+spawn   trap02
+coords  361 198 30
+at      2370
+
+spawn   trap02
+coords  444 198 30
+at      2370
+
+group   1 1
+at      2370
+
+scrollx 2370 2900
+at      2370
+
+group   1 1
+at      2887
+
+scrollx 2900 2995
+at      2900
+
+group   2 2
+at      2900
+
+spawn   dukemg04
+coords  128 228
+at      2900
+
+spawn   jeff
+health  350
+map     3
+coords  320 188 28
+at      2900
+
+spawn   jeff
+health  350
+map     2
+coords  300 188 28
+at      2900
+
+group   1 1
+at      2900
+
+scrollx 2887 3195
+at      2900
+
+group   4 4
+at      3195
+
+scrollx 3195 3249
+at      3195
+
+spawn   williams
+map     2
+coords  310 188 0
+at      3195
+
+spawn   roper
+map     2
+coords  310 188 0
+at      3195
+
+spawn   linda1
+map     2
+coords  320 188 0
+at      3195
+
+spawn   baker
+map     2
+coords  330 188 0
+at      3195
+
+group   1 1
+at      3195
+
+spawn   stagetr
+flip    1
+coords  0 232
+at      0
+
+
+

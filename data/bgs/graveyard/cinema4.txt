@@ -1,0 +1,44 @@
+name	cinema4
+type	panel
+speed   10
+setlayer 99999999999
+shadow	0
+
+
+anim idle
+	 loop      0
+	 offset    0 228
+	 bbox      0
+	 delay     800
+	 frame     Data/Bgs/graveyard/f04.gif
+	 delay     400
+	 frame     Data/chars/0misc/empty.gif
+	 delay     800
+	 frame     Data/Bgs/graveyard/f05.gif
+	 delay     400
+	 frame     Data/chars/0misc/empty.gif
+	 delay     800
+	 frame     Data/Bgs/graveyard/f06.gif
+	 delay     400
+	 frame     Data/chars/0misc/empty.gif
+	 delay     800
+	 frame     Data/Bgs/graveyard/f07.gif
+	 delay     400
+	 frame     Data/chars/0misc/empty.gif
+	 delay     800
+	 frame     Data/Bgs/graveyard/f08.gif
+	 delay     400
+	 frame     Data/chars/0misc/empty.gif
+
+
+
+
+
+
+
+
+
+
+
+
+

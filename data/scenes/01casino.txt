@@ -1,0 +1,6 @@
+#	music		[path] [loop]		# BOR file to play
+#	animation	[path] [x] [y]		# GIF animation to play
+#	silence					# Stop music
+music   data/scenes/01casino/casino.ogg 0 0
+video	data/scenes/01casino/casino.webm 0 0
+video	data/scenes/cutscene/02airport.webm 0 0

@@ -1,0 +1,17 @@
+name	kun03
+type	npc
+hostile player enemy
+nomove  1
+shadow        0
+gfxshadow     1
+alpha   0
+
+anim idle
+	 loop      1
+	 delay     6
+	 offset    11 64
+	 frame     data/bgs/01lasv/det/kun03.gif
+
+
+
+

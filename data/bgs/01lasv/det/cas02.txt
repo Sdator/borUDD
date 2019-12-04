@@ -1,0 +1,16 @@
+name	cas02
+type	none
+shadow	0
+alpha   0
+
+anim idle
+	 loop      1
+	 delay     6
+	 offset    0 143
+	 frame     data/bgs/01lasv/det/cas01.gif
+	 frame     data/bgs/01lasv/det/cas02.gif
+	 frame     data/bgs/01lasv/det/cas03.gif
+	 frame     data/bgs/01lasv/det/cas04.gif
+
+
+

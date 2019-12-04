@@ -1,0 +1,17 @@
+name slowitmK
+type none
+shadow 0
+lifespan 5
+animationscript   data/scripts/lib001.c
+load staclrki
+
+anim idle
+    loop 0
+    delay  1
+    custentity staclrki
+    spawnframe 1 256 232 0 1
+    frame	data/chars/misc/empty.gif
+    delay  1
+    frame	data/chars/misc/empty.gif
+
+

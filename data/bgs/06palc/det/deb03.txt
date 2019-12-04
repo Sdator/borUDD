@@ -1,0 +1,29 @@
+name	deb03
+type	none
+shadow	0
+
+
+anim idle
+	 loop      0
+	 delay     9
+	 offset    45 44
+	 bbox      0
+	 jumpframe 0 4 0.2 -0.2
+	 landframe 4
+	 flipframe 0
+	 frame     Data/Bgs/06palc/det/deb06.gif
+	 frame     Data/Bgs/06palc/det/deb07.gif
+	 frame     Data/Bgs/06palc/det/deb08.gif
+	 delay     200
+	 frame     Data/Bgs/06palc/det/deb09.gif
+	 frame     Data/Bgs/06palc/det/deb10.gif
+
+
+
+
+
+
+
+
+
+

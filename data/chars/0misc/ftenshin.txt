@@ -1,0 +1,21 @@
+name	ftenshin
+type	none
+shadow	0
+toflip  1
+#alpha	1
+animationscript   data/scripts/lib001.c
+
+anim idle
+	 loop       0
+	 delay      2
+	 offset     36 39
+	 load       tenshin
+	 @cmd spawn044 "tenshin" 128 0 228
+	 frame     data/chars/0misc/flash01.gif
+	 frame     data/chars/0misc/flash02.gif
+	 frame     data/chars/0misc/flash03.gif
+	 frame     data/chars/0misc/flash04.gif
+	 frame     data/chars/0misc/flash05.gif
+	@cmd killentity getlocalvar("self")
+	 frame     data/chars/0misc/empty.gif
+

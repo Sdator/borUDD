@@ -1,0 +1,26 @@
+name	truck01
+speed   30
+type	enemy
+subtype arrow
+shadow	0
+alpha   0
+lifespan 4
+offscreenkill 940
+setlayer  99999999
+
+anim idle
+	 loop      0
+	 delay     5
+	 offset    919 224
+	 frame     data/bgs/01chin/det/truck01.gif
+	 delay     800
+	 sound     data/sounds/truck.wav
+	 frame     data/bgs/01chin/det/truck01.gif
+
+
+
+
+
+
+
+

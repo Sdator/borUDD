@@ -1,0 +1,23 @@
+name		fgchi
+type		none
+facing		1
+antigravity	100
+subject_to_gravity 0
+subject_to_wall 0
+subject_to_hole 0
+Subject_to_MinZ 0
+Subject_to_MaxZ 0
+offscreenkill	7000
+
+anim spawn
+      loop	0
+	delay	10
+	offset	1 53
+	frame	data/Bgs/02chin/fgchi.gif
+
+anim idle
+	loop	0
+	delay	10
+	offset	1 53
+	frame	data/Bgs/02chin/fgchi.gif
+

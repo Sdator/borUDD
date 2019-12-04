@@ -1,0 +1,15 @@
+/.vscode/*/
+/Paks
+/logs
+/ScreenShots
+*.gif
+*.webm
+*.wav
+*.ogg
+*.exe
+*.zip
+*.c
+*.h
+*.act
+
+!/tools/*

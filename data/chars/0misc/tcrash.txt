@@ -1,0 +1,55 @@
+name	tcrash
+type	none
+animationscript   data/scripts/lib001.c
+load slow
+load slow2
+
+palette        data/chars/0misc/thun01.gif
+
+anim idle
+	 loop      0
+	 delay     5
+	 load      crdelay
+	 custentity crdelay
+	 spawnframe 0
+	 offset    0 230
+@script
+    void vSelf = getlocalvar("self");
+if(frame==1)
+{
+      fademusic(0.2, "data/music/00.ogg", 0, 0);
+}@end_script
+	 sound     data/sounds/trcra.wav
+	 hitfx     data/sounds/fall.wav
+	 attack    0 0 256 228 0 1 1 1 12 300
+	 forcedirection 1
+	 dropv     3 0 0
+	 frame     data/chars/0misc/empty.gif
+	 attack    0 0 0 0 0
+	 delay     5
+@cmd spawn001 "slow" "slow" 0 0 0 0 0
+	 drawmethod alpha 6
+	 drawmethod channel 0.10
+	 frame     data/chars/0misc/thun01.gif
+	 drawmethod channel 0.20
+	 frame     data/chars/0misc/thun01.gif
+	 drawmethod channel 0.30
+	 frame     data/chars/0misc/thun01.gif
+	 drawmethod channel 0.40
+	 frame     data/chars/0misc/thun01.gif
+	 drawmethod channel 0.50
+	 frame     data/chars/0misc/thun01.gif
+	 drawmethod channel 0.60
+	 frame     data/chars/0misc/thun01.gif
+@cmd spawn001 "slow2" "slow2" 0 0 0 0 0
+	 drawmethod channel 0.70
+	 frame     data/chars/0misc/thun01.gif
+	 drawmethod channel 0.80
+	 frame     data/chars/0misc/thun01.gif
+	 drawmethod channel 0.90
+	 frame     data/chars/0misc/thun01.gif
+	 delay     99
+	 drawmethod alpha 0
+	 frame     data/chars/0misc/thun01.gif
+	 frame     data/chars/0misc/empty.gif
+

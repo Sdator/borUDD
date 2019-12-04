@@ -1,0 +1,32 @@
+name	blackout
+type    none
+shadow  0
+subject_to_gravity 0
+subject_to_wall 0
+subject_to_hole 0
+Subject_to_MinZ 0
+Subject_to_MaxZ 0
+
+
+anim idle
+	loop	0
+	offset	511 228
+	delay	15
+	drawmethod alpha 6
+	drawmethod channel 0.04
+	frame	data/Bgs/04chin/det/blackout.gif
+	drawmethod alpha 6
+	drawmethod channel 0.08
+	frame	data/Bgs/04chin/det/blackout.gif
+	drawmethod alpha 6
+	drawmethod channel 0.12
+	frame	data/Bgs/04chin/det/blackout.gif
+	drawmethod alpha 6
+	drawmethod channel 0.16
+	frame	data/Bgs/04chin/det/blackout.gif
+	drawmethod alpha 6
+	drawmethod channel 0.20
+	frame	data/Bgs/04chin/det/blackout.gif
+	drawmethod alpha 6
+	drawmethod channel 0.25
+	frame	data/Bgs/04chin/det/blackout.gif

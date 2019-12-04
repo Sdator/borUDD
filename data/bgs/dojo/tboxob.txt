@@ -1,0 +1,41 @@
+name	tboxob
+type    none
+health  1
+speed   0
+setlayer -2
+
+anim idle
+	 loop      0
+	 delay     5
+	 offset    200 224
+	 flipframe 0
+	 drawmethod alpha 6
+	 drawmethod channel 0.10
+	 frame     data/bgs/dojo/ddto.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.20
+	 frame     data/bgs/dojo/ddto.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.30
+	 frame     data/bgs/dojo/ddto.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.40
+	 frame     data/bgs/dojo/ddto.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.50
+	 frame     data/bgs/dojo/ddto.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.60
+	 frame     data/bgs/dojo/ddto.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.70
+	 frame     data/bgs/dojo/ddto.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.80
+	 frame     data/bgs/dojo/ddto.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.90
+	 frame     data/bgs/dojo/ddto.gif
+	 drawmethod off
+	 frame     data/bgs/dojo/ddto.gif
+

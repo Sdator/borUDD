@@ -1,0 +1,141 @@
+loadingbg       data/bgs/loading2.gif 1 -999 -999 100 -999 -999
+#music           data/music/02lasv.ogg 1
+at              0
+background	data/bgs/02lasv/b01.gif
+panel		data/bgs/02lasv/n01.gif
+vbgspeed        5 1
+settime         0
+notime          1
+noslow          1
+order	        a
+light  		10  20
+at       	0
+settime         0
+notime          1
+noslow          1
+spawn1          100 207
+spawn2          155 207
+updatescript    data/scripts/traileru.c
+
+#    spreadsheet			               		xratio	zratio	xoffset	zoffset	xspace	zspace	xrepeat	zrepeat	trans	alpha	w-mode	amp	wl	ws	move
+bglayer			data/bgs/02lasv/det/sky01.gif 		1	1  	0	0	0	0	1	-1	1	0	0	0	0	0	1
+bglayer			data/bgs/02lasv/det/reflect01.gif 	0.98	0.98	0	0	0	-5	1	-1	1	0	0	0	0	0	1
+bglayer			data/bgs/02lasv/b01.gif			0.5	0.5	0	0	0	0	1	-1	1	0	0	0	0	0	1
+
+wall   57 220 -500 -500    0    0  30 1000
+hole  222 226    0    0  380  380  25 1000
+
+spawn   stagein
+flip    1
+coords  0 232
+at      0
+
+spawn   elv01
+@script
+void main()
+{
+  setglobalvar("Atap", 120);
+}
+@end_script
+coords  128 210
+at      0
+
+
+#######
+
+group   2 2
+at      500
+
+spawn   elvwil
+map     1
+health  80
+coords  575 210
+at      500
+
+spawn   elvrop
+map     1
+health  80
+coords  580 215
+at      500
+
+spawn   elvwil
+health  80
+coords  575 210
+at      500
+
+spawn   elvrop
+health  80
+coords  580 215
+at      500
+
+spawn   elvwil
+map     2
+health  80
+coords  575 210
+at      500
+
+spawn   elvrop
+map     2
+health  80
+coords  580 215
+at      500
+
+group   1 1
+at      500
+
+group   2 2
+at      500
+
+spawn   elvd
+coords  128 202
+at      500
+
+spawn   delay
+@script
+  void main()
+  {
+    changelevelproperty("vbgspeed", 0);
+  }
+@end_script
+coords  123 210
+at      500
+spawn   delay
+coords  123 210
+at      500
+
+spawn   williams
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW105"));
+} @end_script
+coords  128 205
+at      500
+
+spawn   baker
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW105"));
+} @end_script
+coords  128 205
+at      500
+
+group   1 1
+at      500
+
+spawn   stageou
+flip    1
+coords  0 232
+at      800
+
+
+
+
+

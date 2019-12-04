@@ -1,0 +1,32 @@
+name	cinema5
+type	panel
+speed   10
+setlayer 99999999999
+shadow	0
+facing 1
+
+animationscript data/scripts/candam.c
+
+anim idle
+	 loop      0
+	 offset    0 228
+	 bbox      0
+	 delay     800
+	 sound     data/sounds/winner.wav
+	 frame     Data/Bgs/graveyard/f09.gif
+	 delay     400
+	 @cmd  enemkill2 2000 900
+	 frame     Data/chars/0misc/empty.gif
+
+
+
+
+
+
+
+
+
+
+
+
+

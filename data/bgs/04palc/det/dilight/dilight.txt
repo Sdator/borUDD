@@ -1,0 +1,20 @@
+name	dilight
+type	none
+alpha   1
+
+anim idle
+	 loop      1
+	 delay     4
+	 offset    0 228
+	 frame     data/Bgs/04palc/det/dilight/dli01.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/Bgs/04palc/det/dilight/dli02.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/Bgs/04palc/det/dilight/dli03.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/Bgs/04palc/det/dilight/dli04.gif
+	 frame     data/chars/0misc/empty.gif
+
+
+
+

@@ -1,0 +1,169 @@
+loadingbg       data/bgs/loading2.gif 1 -999 -999 100 -999 -999
+music           data/music/00.ogg 1
+background	data/bgs/02chin/b01.gif
+panel		data/bgs/02chin/n01.gif
+frontpanel	data/bgs/02chin/f01.gif
+direction       both
+scrollspeed     0.5
+light  		10  20
+at       	0
+settime         0
+notime          1
+noslow          1
+order	        a
+spawn1           80 25
+spawn2           70 35
+updatescript    data/scripts/traileru.c
+
+wall 0 227 0 0 93 0 72 1000
+wall 0 227 0 0 22 22 72 1000
+wall 510 227 -25 -25 100 100 72 1000
+wall 510 227 -93 0 100 100 72 1000
+basemap  290 188 188 30 0 188
+wall 290 190 0 0 300 300 5 5000 3
+wall 400 190 0 0 300 300 50 5000
+
+spawn   stai
+@script
+void main()
+{
+    int P1 = getplayerproperty(0, "entity");
+    int P2 = getplayerproperty(1, "entity");
+
+    if(P1){
+      changeentityproperty(P1, "position", 80, 198);
+    }
+    if(P2){
+      changeentityproperty(P2, "position", 70, 208);
+    }
+}
+@end_script
+coords  297 188
+at      0
+
+spawn   fgchi
+coords  1 190 137
+at      0
+
+spawn   pball
+coords  117 207
+at      0
+
+spawn   pball
+coords  398 207
+at      0
+
+spawn   stageinT
+coords  0 232
+at      0
+
+music           data/music/WKCHI02.ogg 1
+at              0
+
+####### GROUP 1
+
+group   3 3
+at      0
+
+spawn   williams
+map     1
+health  100
+coords  325 200
+at      0
+
+spawn   roper
+map     1
+health  100
+coords  400 210
+at      0
+
+spawn   williams
+health  100
+coords  315 220
+at      0
+
+spawn   baker
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+
+   changeentityproperty(self, "position", 397);
+} @end_script
+map     1
+health  100
+coords  397 180 120
+at      0
+
+spawn   steve
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+
+   changeentityproperty(self, "position", 399);
+} @end_script
+health  250
+2phealth 350
+coords  399 178 120
+at      0
+
+spawn   roper
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+
+   changeentityproperty(self, "position", 398);
+} @end_script
+map     3
+health  100
+coords  398 179 120
+at      0
+
+spawn   steve
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+
+   changeentityproperty(self, "position", 397);
+} @end_script
+map     1
+health  250
+2phealth  350
+coords  397 178 120
+at      0
+
+spawn   williams
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+
+   changeentityproperty(self, "position", 399);
+} @end_script
+map     2
+health  100
+coords  399 180 120
+at      0
+
+2pspawn   baker
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+
+   changeentityproperty(self, "position", 397);
+} @end_script
+map     2
+health  100
+coords  397 178 120
+at      0
+
+group   1 1
+at      0
+
+music   data/music/00.ogg
+at      0
+musicfade 1
+at      0
+
+spawn   stageou
+flip    1
+coords  0 232
+at      0

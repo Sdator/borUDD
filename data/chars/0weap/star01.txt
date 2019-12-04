@@ -1,0 +1,21 @@
+name	  star01
+health    0
+speed     20
+remove    1
+type      none
+candamage enemy obstacle
+nolife    1
+
+anim idle
+	 loop      1
+	 delay     6
+	 offset    -15 -20
+	 hitfx     data/sounds/beatu.wav
+	 attack11  4 4 10 9 13 1 0 0 8
+	 dropv     1.3 0.8 0
+	 frame     data/chars/0weap/star01.gif
+	 frame     data/chars/0weap/star02.gif
+	 frame     data/chars/0weap/star03.gif
+	 frame     data/chars/0weap/star02.gif
+
+

@@ -1,0 +1,64 @@
+name	ctable
+type    obstacle
+health  1
+shadow	0
+alpha   0
+falldie 1
+
+anim spawn
+	 loop      0
+	 delay     1
+	 offset    22 57
+	 bbox      12 19 21 38
+	 platform  4 4 38 38 7 21
+	 frame     data/bgs/03lasv/det/table01.gif
+
+anim idle
+	 loop      1
+	 delay     6
+	 offset    22 57
+	 bbox      12 19 21 38
+	 platform  4 4 38 38 7 21
+	 frame     data/bgs/03lasv/det/table01.gif
+
+anim death
+	 loop      0
+	 delay     15
+	 offset    22 57
+	 dropframe 1
+	 jumpframe 0 1.5 0 0
+	 frame     data/bgs/03lasv/det/table02.gif
+	 delay     3
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/bgs/03lasv/det/table02.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/bgs/03lasv/det/table02.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/bgs/03lasv/det/table02.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/bgs/03lasv/det/table02.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/bgs/03lasv/det/table02.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/bgs/03lasv/det/table02.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/bgs/03lasv/det/table02.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/bgs/03lasv/det/table02.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/bgs/03lasv/det/table02.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/bgs/03lasv/det/table02.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/bgs/03lasv/det/table02.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/bgs/03lasv/det/table02.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/bgs/03lasv/det/table02.gif
+	 frame     data/chars/0misc/empty.gif
+
+
+
+

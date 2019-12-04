@@ -1,0 +1,44 @@
+name	brfall
+type	text
+subtype noskip
+shadow	0
+lifespan  3
+
+anim idle
+	 loop      0
+	 delay     5
+	 offset    0 228
+@cmd playwebm "Data/Bgs/02wood/det/brfall.webm" 1
+drawmethod alpha 6
+drawmethod channel 0.90
+	 frame     Data/Bgs/02wood/det/black.gif
+drawmethod alpha 6
+drawmethod channel 0.80
+	 frame     Data/Bgs/02wood/det/black.gif
+drawmethod alpha 6
+drawmethod channel 0.70
+	 frame     Data/Bgs/02wood/det/black.gif
+drawmethod alpha 6
+drawmethod channel 0.60
+	 frame     Data/Bgs/02wood/det/black.gif
+drawmethod alpha 6
+drawmethod channel 0.50
+	 frame     Data/Bgs/02wood/det/black.gif
+drawmethod alpha 6
+drawmethod channel 0.40
+	 frame     Data/Bgs/02wood/det/black.gif
+drawmethod alpha 6
+drawmethod channel 0.30
+	 frame     Data/Bgs/02wood/det/black.gif
+drawmethod alpha 6
+drawmethod channel 0.20
+	 frame     Data/Bgs/02wood/det/black.gif
+drawmethod alpha 6
+drawmethod channel 0.10
+	 frame     Data/Bgs/02wood/det/black.gif
+drawmethod alpha 0
+drawmethod channel 0
+	 frame     Data/chars/0misc/empty.gif
+
+
+

@@ -1,0 +1,47 @@
+name	kun06
+type	npc
+hostile   enemy obstacle player 
+candamage enemy obstacle player
+nomove  1
+shadow        0
+gfxshadow     1
+alpha   0
+
+anim idle
+	 loop      1
+	 delay     6
+	 offset    28 64
+	 frame     data/bgs/01lasv/det/kun06.gif
+
+anim attack
+	 range     0 27
+	 loop      0
+	 delay     10
+	 offset    28 64
+	 hitfx     data/sounds/beatnw1.wav
+	 frame     data/bgs/01lasv/det/kun07.gif
+	 frame     data/bgs/01lasv/det/kun08.gif
+	 attack3   29 22 25 14 0 0 0 0 7 5
+	 forcedirection -1
+	 dropv     1.8 0.6 0
+	 frame     data/bgs/01lasv/det/kun09.gif
+	 attack3   0 0 0 0 
+	 frame     data/bgs/01lasv/det/kun10.gif
+	 frame     data/bgs/01lasv/det/kun11.gif
+	 attack2   29 22 25 14 0 0 0 0 7 5
+	 forcedirection -1
+	 dropv     1.8 0.6 0
+	 frame     data/bgs/01lasv/det/kun12.gif
+	 attack2   0 0 0 0
+	 frame     data/bgs/01lasv/det/kun07.gif
+	 frame     data/bgs/01lasv/det/kun08.gif
+	 attack    29 22 25 14 0 1 0 0 7 5
+	 forcedirection -1
+	 dropv     1.8 0.6 0
+	 frame     data/bgs/01lasv/det/kun09.gif
+	 delay     16
+	 attack    0 0 0 0 
+	 frame     data/bgs/01lasv/det/kun10.gif
+	 delay     200
+	 frame     data/bgs/01lasv/det/kun06.gif
+

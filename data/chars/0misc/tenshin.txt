@@ -1,0 +1,86 @@
+name	tenshin
+#type	text
+#subtype noskip
+type    panel
+speed   10
+setlayer 99999999
+alpha   6
+animationscript   data/scripts/lib001.c
+load    slowitm2
+
+
+anim idle
+	 loop      0
+	 delay     1
+	 offset    128 228
+	 subentity slowitm2
+	 spawnframe 0
+	 sound     data/sounds/super.wav
+@cmd setmusicvolume 0 0 #music going silent
+	 frame     data/chars/0misc/sp20.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp21.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp22.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp23.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp24.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp25.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp26.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp27.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp28.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp29.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp20.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp21.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp22.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp23.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp24.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp25.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp26.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp27.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp28.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp29.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp20.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp21.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp22.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp23.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp24.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp25.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp26.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp27.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp28.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp29.gif
+@cmd setmusicvolume 100 100 #music going silent
+	 frame     data/chars/0misc/empty.gif
+
+
+
+
+
+

@@ -1,0 +1,17 @@
+name	bossescm
+type	none
+lifespan  21
+
+anim idle
+	 loop      0
+	 delay     1800
+	 offset    0 0
+	 frame     data/chars/0misc/empty.gif
+@script
+    void vSelf = getlocalvar("self");
+if(frame==1)
+{
+      fademusic(0.5, "data/music/02trck.ogg", 1, 0);
+}@end_script
+	 delay     100
+	 frame     data/chars/0misc/empty.gif

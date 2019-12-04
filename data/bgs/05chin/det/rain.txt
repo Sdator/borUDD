@@ -1,0 +1,18 @@
+name	rain
+type	panel
+speed   10
+setlayer  999999
+alpha   1
+
+anim idle
+	 loop      1
+	 delay     5
+	 offset    0 232
+	 drawmethod alpha 6
+	 drawmethod channel 0.30
+	 frame     data/bgs/01chin/det/rainc1.gif
+	 frame     data/bgs/01chin/det/rainc2.gif
+	 frame     data/bgs/01chin/det/rainc3.gif
+	 frame     data/bgs/01chin/det/rainc4.gif
+
+

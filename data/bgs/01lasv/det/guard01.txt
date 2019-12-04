@@ -1,0 +1,17 @@
+name	guard01
+type	npc
+hostile player
+nomove  1
+shadow        0
+gfxshadow     1
+alpha   0
+
+anim idle
+	 loop      1
+	 delay     6
+	 offset    22 72
+	 frame     data/bgs/01lasv/det/waiter01.gif
+
+
+
+

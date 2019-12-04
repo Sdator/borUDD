@@ -1,0 +1,71 @@
+name	stclear
+type	text
+subtype  noskip
+setlayer 9999999999
+nodieblink 3
+alpha   0
+
+anim idle
+@script
+    void vSelf = getlocalvar("self");
+if(frame==0)
+{
+      fademusic(0.9, "data/music/clear.ogg", 0, 0);
+}@end_script
+	 loop      0
+	 delay     5
+	 offset    256 234
+	 flipframe 0
+	 quakeframe 11 5 -3
+	 drawmethod alpha 6
+	 drawmethod channel 0.10
+	 frame     data/chars/misc/staclear/01.gif
+	 drawmethod channel 0.20
+	 frame     data/chars/misc/staclear/01.gif
+	 drawmethod channel 0.30
+	 frame     data/chars/misc/staclear/01.gif
+	 drawmethod channel 0.40
+	 frame     data/chars/misc/staclear/01.gif
+	 drawmethod channel 0.50
+	 frame     data/chars/misc/staclear/01.gif
+	 drawmethod channel 0.60
+	 frame     data/chars/misc/staclear/01.gif
+	 drawmethod channel 0.70
+	 frame     data/chars/misc/staclear/01.gif
+	 drawmethod channel 0.80
+	 frame     data/chars/misc/staclear/01.gif
+	 drawmethod channel 0.90
+	 frame     data/chars/misc/staclear/01.gif
+	 drawmethod alpha 0
+	 frame     data/chars/misc/staclear/01.gif
+	 delay     250
+	 frame     data/chars/misc/staclear/01.gif
+	 delay     2
+	 sound     data/sounds/impact1.wav
+	 frame     data/chars/misc/staclear/04.gif
+	 frame     data/chars/misc/staclear/03.gif
+	 frame     data/chars/misc/staclear/04.gif
+	 frame     data/chars/misc/staclear/03.gif
+	 frame     data/chars/misc/staclear/04.gif
+	 frame     data/chars/misc/staclear/03.gif
+	 frame     data/chars/misc/staclear/04.gif
+	 frame     data/chars/misc/staclear/03.gif
+	 delay     400
+	 frame     data/chars/misc/staclear/04.gif
+	 delay     4
+	 drawmethod alpha 6
+	 drawmethod channel 0.80
+	 frame     data/chars/misc/staclear/04.gif
+	 drawmethod channel 0.60
+	 frame     data/chars/misc/staclear/04.gif
+	 drawmethod channel 0.40
+	 frame     data/chars/misc/staclear/04.gif
+	 drawmethod channel 0.20
+	 frame     data/chars/misc/staclear/04.gif
+	 drawmethod channel 0.10
+	 frame     data/chars/misc/staclear/04.gif
+	 frame     data/chars/0misc/empty.gif
+
+
+
+

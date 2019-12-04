@@ -1,0 +1,36 @@
+name	trap02
+type	none
+offscreenkill 500
+
+anim idle
+	 loop      1
+	 delay     300
+	 offset    50 227
+	 bbox      0
+	 jumpframe 1 6 0 0
+	 dropframe 3
+	 landframe 4
+	 fastattack 1
+	 hitflash  Bflash
+	 hitfx     data/sounds/beatu.wav
+	 attack    29 0 41 228 150 1 1 0 0 20
+	 dropv     2 1 0
+	 forcedirection 1
+	 sound     data/sounds/trap02.wav
+	 frame     Data/Bgs/06palc/det/trap04.gif
+	 delay     999
+	 frame     Data/Bgs/06palc/det/trap04.gif
+	 attack    0 0 0 0
+	 frame     Data/Bgs/06palc/det/trap04.gif
+	 delay     999
+	 frame     Data/Bgs/06palc/det/trap04.gif
+	 delay     2
+	 frame     Data/Bgs/06palc/det/trap04.gif
+
+
+
+
+
+
+
+

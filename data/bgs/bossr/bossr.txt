@@ -1,0 +1,26 @@
+name	bossr
+type	none
+setlayer -10
+
+
+anim idle
+	 loop      1
+	 delay     10
+	 offset    254 228
+	 bbox      0
+	 frame     data/bgs/bossr/n01.gif
+	 frame     data/bgs/bossr/n02.gif
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,40 @@
+name	stagetr2
+type	text
+subtype  noskip
+setlayer 9999999999
+nodieblink 3
+
+	 load   stagetr1
+anim idle
+	 loop      0
+	 delay     2
+	 health    7
+	 offset    0 228
+	 flipframe 0
+	 custentity stagetr1
+	 spawnframe 16 0 0 0 0
+	 frame     data/chars/misc/stagetr/tr101.gif
+	 frame     data/chars/misc/stagetr/tr102.gif
+	 frame     data/chars/misc/stagetr/tr103.gif
+	 frame     data/chars/misc/stagetr/tr104.gif
+	 frame     data/chars/misc/stagetr/tr105.gif
+	 frame     data/chars/misc/stagetr/tr106.gif
+	 frame     data/chars/misc/stagetr/tr107.gif
+	 frame     data/chars/misc/stagetr/tr108.gif
+	 frame     data/chars/misc/stagetr/tr109.gif
+	 frame     data/chars/misc/stagetr/tr110.gif
+	 frame     data/chars/misc/stagetr/tr111.gif
+	 frame     data/chars/misc/stagetr/tr112.gif
+	 frame     data/chars/misc/stagetr/tr113.gif
+	 frame     data/chars/misc/stagetr/tr114.gif
+	 frame     data/chars/misc/stagetr/tr115.gif
+	 frame     data/chars/misc/stagetr/tr116.gif
+	 delay     6
+	 sound     data/sounds/tremor.wav
+	 frame     data/chars/misc/stagetr/tr117.gif
+	 frame     data/chars/misc/stagetr/tr117.gif
+	 frame     data/chars/misc/stagetr/tr117.gif
+	 frame     data/chars/misc/stagetr/tr117.gif
+	 frame     data/chars/misc/stagetr/tr117.gif
+
+

@@ -1,0 +1,134 @@
+name	truckch5
+type       enemy
+nomove     1 1
+health		10
+shadow  0
+offscreenkill 6000
+subject_to_gravity 0
+subject_to_hole 0
+subject_to_wall 0
+Subject_to_MinZ 0
+Subject_to_MaxZ 0
+setlayer 10
+
+anim idle
+@script
+    void self = getlocalvar("self");
+    void P1 = getplayerproperty(0, "entity");
+    void P2 = getplayerproperty(1, "entity");
+    int Play = openborvariant("count_players");
+    int x = getentityproperty(self,"x");
+    int y = getentityproperty(self,"a");
+    int Dir = getentityproperty(self,"direction");
+
+    if(Play==1 && (P1 || P2)){
+      int Px;
+      int Py;
+
+      if(P1){
+        Px = getentityproperty(P1,"x");
+        Py = getentityproperty(P1,"a");
+      } else if(P2){
+        Px = getentityproperty(P2,"x");
+        Py = getentityproperty(P2,"a");
+      }
+
+      if(Py <= y+6 && Py >= y-6){
+        if(Dir==0 && Px <= x+1000){
+          changeentityproperty(self, "animation", openborconstant("ANI_FOLLOW1"));
+        } else if(Dir==1 && Px >= x-1000){
+          changeentityproperty(self, "animation", openborconstant("ANI_FOLLOW1"));
+        }
+      }
+    } else if(Play==2 && P1 && P2){
+      int P1x = getentityproperty(P1,"x");
+      int P1y = getentityproperty(P1,"a");
+      int P2x = getentityproperty(P2,"x");
+      int P2y = getentityproperty(P2,"a");
+
+      if(P1y <= y+6 && P1y >= y-6 && P2y <= y+6 && P2y >= y-6){
+        if(Dir==0 && P1x <= x+1000 && P2x <= x+1000){
+          changeentityproperty(self, "animation", openborconstant("ANI_FOLLOW1"));
+        } else if(Dir==1 && P1x >= x-1000 && P2x >= x-1000){
+          changeentityproperty(self, "animation", openborconstant("ANI_FOLLOW1"));
+        }
+      }
+    }
+@end_script
+	loop	1
+	delay	5
+	offset	1 105
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+
+anim follow1
+@script
+    void self = getlocalvar("self");
+
+    if(frame==0){
+      changeentityproperty(self, "offscreenkill", 120);
+      changeopenborvariant("scrollminz", 549);
+      changeopenborvariant("scrollmaxz", 549);
+    }
+@end_script
+	loop	0
+	delay	50
+	offset	1 105
+      platform  0 0 2000 2000 300 2
+	frame	data/Bgs/05chin/truckch5.gif
+	delay	3
+	@cmd changeentityproperty getlocalvar("self") "velocity" 0.2 0 0
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	@cmd changeentityproperty getlocalvar("self") "velocity" 0.4 0 0
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	@cmd changeentityproperty getlocalvar("self") "velocity" 1 0 0
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	@cmd changeentityproperty getlocalvar("self") "velocity" 1.5 0 0
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	@cmd changeentityproperty getlocalvar("self") "velocity" 2 0 0
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	@cmd changeentityproperty getlocalvar("self") "velocity" 2.5 0 0
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	@cmd changeentityproperty getlocalvar("self") "velocity" 3 0 0
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	@cmd changeentityproperty getlocalvar("self") "velocity" 3.5 0 0
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	@cmd changeentityproperty getlocalvar("self") "velocity" 4 0 0
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	@cmd changeentityproperty getlocalvar("self") "velocity" 4 0 0
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+	frame	data/Bgs/05chin/truckch5.gif
+
+
+
+
+
+
+
+

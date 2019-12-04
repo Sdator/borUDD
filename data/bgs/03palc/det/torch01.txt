@@ -1,0 +1,16 @@
+name	torch01
+type	none
+gfxshadow 1
+
+anim idle
+	 loop      1
+	 delay     8
+	 offset    14 65
+	 frame     Data/Bgs/03palc/det/torch01.gif
+	 frame     Data/Bgs/03palc/det/torch02.gif
+	 frame     Data/Bgs/03palc/det/torch03.gif
+
+
+
+
+

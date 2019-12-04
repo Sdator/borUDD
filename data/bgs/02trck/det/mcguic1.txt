@@ -1,0 +1,82 @@
+name          mcguic1
+type          none
+gfxshadow     1
+antigravity   40
+lifespan      20
+
+animationscript   data/scripts/lib001.c
+
+palette         data/chars/2mcguire/idle01.gif   
+
+anim spawn
+	 loop       0
+	 delay      600
+	 offset     80 129
+	 bbox       0 0 0 0
+	 jumpframe  1 2 1.3 0
+	 landframe  10
+         frame      data/chars/0misc/empty.gif
+	 delay      3
+	 sound      data/sounds/boss2.wav
+         frame      data/chars/2mcguire/bball02.gif
+         frame      data/chars/2mcguire/bball03.gif
+         frame      data/chars/2mcguire/bball04.gif
+         frame      data/chars/2mcguire/bball05.gif
+         frame      data/chars/2mcguire/bball02.gif
+         frame      data/chars/2mcguire/bball03.gif
+         frame      data/chars/2mcguire/bball04.gif
+         frame      data/chars/2mcguire/bball05.gif
+@cmd	updateframe getlocalvar("self") 4
+	 move       3
+         frame      data/chars/2mcguire/rise02.gif
+         frame      data/chars/2mcguire/rise02.gif
+         frame      data/chars/2mcguire/rise02.gif
+         frame      data/chars/2mcguire/rise02.gif
+	 delay      2
+	 move       2
+         frame      data/chars/2mcguire/rise02.gif
+         frame      data/chars/2mcguire/rise02.gif
+         frame      data/chars/2mcguire/rise02.gif
+	 move       2
+         frame      data/chars/2mcguire/rise02.gif
+	 move       0
+	 delay      50
+         frame      data/chars/2mcguire/rise02.gif
+
+anim idle
+	 loop       0
+	 delay      1050
+	 offset     80 129
+	 bbox       71 79 20 49
+	 flipframe  1
+	 jumpframe  2 2 1.3 0
+	 landframe  11
+         frame      data/chars/2mcguire/idle01.gif
+	 delay      50
+         frame      data/chars/2mcguire/rise02.gif 
+	 delay      3
+         frame      data/chars/2mcguire/bball02.gif
+         frame      data/chars/2mcguire/bball03.gif
+         frame      data/chars/2mcguire/bball04.gif
+         frame      data/chars/2mcguire/bball05.gif
+         frame      data/chars/2mcguire/bball02.gif
+         frame      data/chars/2mcguire/bball03.gif
+         frame      data/chars/2mcguire/bball04.gif
+         frame      data/chars/2mcguire/bball05.gif
+@cmd	updateframe getlocalvar("self") 4
+	 move       3
+         frame      data/chars/2mcguire/rise02.gif
+         frame      data/chars/2mcguire/rise02.gif
+         frame      data/chars/2mcguire/rise02.gif
+         frame      data/chars/2mcguire/rise02.gif
+	 delay      2
+	 move       2
+         frame      data/chars/2mcguire/rise02.gif
+         frame      data/chars/2mcguire/rise02.gif
+         frame      data/chars/2mcguire/rise02.gif
+	 move       2
+         frame      data/chars/2mcguire/rise02.gif
+	 move       0
+	 delay      50
+         frame      data/chars/2mcguire/rise02.gif
+

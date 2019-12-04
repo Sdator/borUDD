@@ -1,0 +1,33 @@
+name	doorch
+type	none
+shadow	0
+#setlayer 800
+lifespan 3
+load     jeffj1
+anim idle
+	 loop      0
+	 delay     5
+	 offset    77 97
+	 custentity jeffj1
+	 spawnframe 4 0 0 30 0
+	 sound     data/sounds/door.wav
+	 frame     data/bgs/01chin/det/door01.gif
+	 frame     data/bgs/01chin/det/door02.gif
+	 frame     data/bgs/01chin/det/door03.gif
+	 frame     data/bgs/01chin/det/door04.gif
+	 delay     20
+	 frame     data/bgs/01chin/det/door05.gif
+	 sound     data/sounds/door.wav
+	 delay     5
+	 frame     data/bgs/01chin/det/door04.gif
+	 frame     data/bgs/01chin/det/door03.gif
+	 frame     data/bgs/01chin/det/door02.gif
+	 frame     data/bgs/01chin/det/door01.gif
+	 frame     data/chars/misc/empty.gif
+
+
+
+
+
+
+

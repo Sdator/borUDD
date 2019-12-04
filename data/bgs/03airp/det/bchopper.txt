@@ -1,0 +1,219 @@
+name	bchopper
+type	none
+nomove  1
+speed   5
+shadow  0
+#gfxshadow 1
+alpha   0
+setlayer  -5
+subject_to_gravity 0
+
+animationscript   data/scripts/lib001.c
+load     hdust
+load     hduke
+anim idle
+	 loop      1 152 156
+	 delay     4
+	 offset    150 159
+	 @cmd velo001 0 0.05 0
+#	 subentity hduke
+#	 spawnframe 0 0 0 0 0 0
+@cmd spawn001 "hduke" "hduke" 0 -15 -110 0 0
+	 frame     data/Bgs/03airp/det/heli01.gif
+@cmd spawn001 "hdust" "hdust" 0 0 -105 0 0
+	 frame     data/Bgs/03airp/det/heli02.gif
+	 frame     data/Bgs/03airp/det/heli03.gif
+	 frame     data/Bgs/03airp/det/heli02.gif
+	 @cmd velo001 0 0.08 0
+	 frame     data/Bgs/03airp/det/heli01.gif
+	 frame     data/Bgs/03airp/det/heli02.gif
+	 frame     data/Bgs/03airp/det/heli03.gif
+	 frame     data/Bgs/03airp/det/heli02.gif
+	 @cmd velo001 0 0.1 0
+	 frame     data/Bgs/03airp/det/heli01.gif
+	 frame     data/Bgs/03airp/det/heli02.gif
+	 frame     data/Bgs/03airp/det/heli03.gif
+	 frame     data/Bgs/03airp/det/heli02.gif
+	 @cmd velo001 0 0.08 0
+	 frame     data/Bgs/03airp/det/heli01.gif
+	 frame     data/Bgs/03airp/det/heli02.gif
+	 frame     data/Bgs/03airp/det/heli03.gif
+	 frame     data/Bgs/03airp/det/heli02.gif
+	 @cmd velo001 0 0.05 0
+	 frame     data/Bgs/03airp/det/heli01.gif
+	 frame     data/Bgs/03airp/det/heli02.gif
+	 frame     data/Bgs/03airp/det/heli03.gif
+	 frame     data/Bgs/03airp/det/heli02.gif
+	 @cmd velo001 0 0 0
+	 frame     data/Bgs/03airp/det/heli01.gif
+	 frame     data/Bgs/03airp/det/heli02.gif
+	 frame     data/Bgs/03airp/det/heli03.gif
+	 frame     data/Bgs/03airp/det/heli02.gif
+	 @cmd velo001 0 -0.05 0
+	 frame     data/Bgs/03airp/det/heli01.gif
+	 frame     data/Bgs/03airp/det/heli02.gif
+	 frame     data/Bgs/03airp/det/heli03.gif
+	 frame     data/Bgs/03airp/det/heli02.gif
+	 @cmd velo001 0 -0.08 0
+	 frame     data/Bgs/03airp/det/heli01.gif
+	 frame     data/Bgs/03airp/det/heli02.gif
+	 frame     data/Bgs/03airp/det/heli03.gif
+	 frame     data/Bgs/03airp/det/heli02.gif
+	 @cmd velo001 0 -0.1 0
+	 frame     data/Bgs/03airp/det/heli01.gif
+	 frame     data/Bgs/03airp/det/heli02.gif
+	 frame     data/Bgs/03airp/det/heli03.gif
+	 frame     data/Bgs/03airp/det/heli02.gif
+	 @cmd velo001 0 -0.08 0
+	 frame     data/Bgs/03airp/det/heli01.gif
+	 frame     data/Bgs/03airp/det/heli02.gif
+	 frame     data/Bgs/03airp/det/heli03.gif
+	 frame     data/Bgs/03airp/det/heli02.gif
+	 @cmd velo001 0 -0.05 0
+	 frame     data/Bgs/03airp/det/heli01.gif
+	 frame     data/Bgs/03airp/det/heli02.gif
+	 frame     data/Bgs/03airp/det/heli03.gif
+	 frame     data/Bgs/03airp/det/heli02.gif
+	 @cmd velo001 0 0 0
+	 frame     data/Bgs/03airp/det/heli01.gif
+	 frame     data/Bgs/03airp/det/heli02.gif
+	 frame     data/Bgs/03airp/det/heli03.gif
+	 frame     data/Bgs/03airp/det/heli02.gif
+################################################DUKE ON BOARD
+	 @cmd velo001 0 0.05 0
+	 frame     data/Bgs/03airp/det/heli04.gif
+	 frame     data/Bgs/03airp/det/heli05.gif
+	 frame     data/Bgs/03airp/det/heli06.gif
+	 frame     data/Bgs/03airp/det/heli05.gif
+	 @cmd velo001 0 0.08 0
+	 frame     data/Bgs/03airp/det/heli04.gif
+	 frame     data/Bgs/03airp/det/heli05.gif
+	 frame     data/Bgs/03airp/det/heli06.gif
+	 frame     data/Bgs/03airp/det/heli05.gif
+	 @cmd velo001 0 0.1 0
+	 frame     data/Bgs/03airp/det/heli04.gif
+	 frame     data/Bgs/03airp/det/heli05.gif
+	 frame     data/Bgs/03airp/det/heli06.gif
+	 frame     data/Bgs/03airp/det/heli05.gif
+	 @cmd velo001 0 0.08 0
+	 frame     data/Bgs/03airp/det/heli04.gif
+	 frame     data/Bgs/03airp/det/heli05.gif
+	 frame     data/Bgs/03airp/det/heli06.gif
+	 frame     data/Bgs/03airp/det/heli05.gif
+	 @cmd velo001 0 0.05 0
+	 frame     data/Bgs/03airp/det/heli04.gif
+	 frame     data/Bgs/03airp/det/heli05.gif
+	 frame     data/Bgs/03airp/det/heli06.gif
+	 frame     data/Bgs/03airp/det/heli05.gif
+	 @cmd velo001 0 0 0
+	 frame     data/Bgs/03airp/det/heli04.gif
+	 frame     data/Bgs/03airp/det/heli05.gif
+	 frame     data/Bgs/03airp/det/heli06.gif
+	 frame     data/Bgs/03airp/det/heli05.gif
+	 @cmd velo001 0 -0.05 0
+	 frame     data/Bgs/03airp/det/heli04.gif
+	 frame     data/Bgs/03airp/det/heli05.gif
+	 frame     data/Bgs/03airp/det/heli06.gif
+	 frame     data/Bgs/03airp/det/heli05.gif
+	 @cmd velo001 0 -0.08 0
+	 frame     data/Bgs/03airp/det/heli04.gif
+	 frame     data/Bgs/03airp/det/heli05.gif
+	 frame     data/Bgs/03airp/det/heli06.gif
+	 frame     data/Bgs/03airp/det/heli05.gif
+	 @cmd velo001 0 -0.1 0
+	 frame     data/Bgs/03airp/det/heli04.gif
+	 frame     data/Bgs/03airp/det/heli05.gif
+	 frame     data/Bgs/03airp/det/heli06.gif
+	 frame     data/Bgs/03airp/det/heli05.gif
+	 @cmd velo001 0 -0.08 0
+	 frame     data/Bgs/03airp/det/heli04.gif
+	 frame     data/Bgs/03airp/det/heli05.gif
+	 frame     data/Bgs/03airp/det/heli06.gif
+	 frame     data/Bgs/03airp/det/heli05.gif
+	 @cmd velo001 0 -0.05 0
+	 frame     data/Bgs/03airp/det/heli04.gif
+	 frame     data/Bgs/03airp/det/heli05.gif
+	 frame     data/Bgs/03airp/det/heli06.gif
+	 frame     data/Bgs/03airp/det/heli05.gif
+	 @cmd velo001 0 0 0
+	 frame     data/Bgs/03airp/det/heli04.gif
+	 frame     data/Bgs/03airp/det/heli05.gif
+	 frame     data/Bgs/03airp/det/heli06.gif
+	 frame     data/Bgs/03airp/det/heli05.gif
+################################################DUKE LEAVING
+	 @cmd velo001 0 0.05 0
+	 frame     data/Bgs/03airp/det/heli07.gif
+	 frame     data/Bgs/03airp/det/heli08.gif
+	 frame     data/Bgs/03airp/det/heli09.gif
+	 frame     data/Bgs/03airp/det/heli08.gif
+	 @cmd velo001 0 0.08 0
+	 frame     data/Bgs/03airp/det/heli10.gif
+	 frame     data/Bgs/03airp/det/heli11.gif
+	 frame     data/Bgs/03airp/det/heli12.gif
+	 frame     data/Bgs/03airp/det/heli11.gif
+	 @cmd velo001 0 0.1 0
+	 frame     data/Bgs/03airp/det/heli22.gif
+	 frame     data/Bgs/03airp/det/heli23.gif
+	 frame     data/Bgs/03airp/det/heli24.gif
+	 frame     data/Bgs/03airp/det/heli23.gif
+	 @cmd velo001 0 0.08 0
+	 frame     data/Bgs/03airp/det/heli16.gif
+	 frame     data/Bgs/03airp/det/heli17.gif
+	 frame     data/Bgs/03airp/det/heli18.gif
+	 frame     data/Bgs/03airp/det/heli17.gif
+	 @cmd velo001 0 0.05 0
+	 frame     data/Bgs/03airp/det/heli19.gif
+	 frame     data/Bgs/03airp/det/heli20.gif
+	 frame     data/Bgs/03airp/det/heli21.gif
+	 frame     data/Bgs/03airp/det/heli20.gif
+	 @cmd velo001 0 0 0
+	 frame     data/Bgs/03airp/det/heli19.gif
+	 frame     data/Bgs/03airp/det/heli20.gif
+	 frame     data/Bgs/03airp/det/heli21.gif
+	 frame     data/Bgs/03airp/det/heli20.gif
+	 @cmd velo001 0 -0.05 0
+	 frame     data/Bgs/03airp/det/heli19.gif
+	 frame     data/Bgs/03airp/det/heli20.gif
+	 frame     data/Bgs/03airp/det/heli21.gif
+	 frame     data/Bgs/03airp/det/heli20.gif
+	 @cmd velo001 0 -0.08 0
+	 frame     data/Bgs/03airp/det/heli19.gif
+	 frame     data/Bgs/03airp/det/heli20.gif
+	 frame     data/Bgs/03airp/det/heli21.gif
+	 frame     data/Bgs/03airp/det/heli20.gif
+	 @cmd velo001 0 -0.1 0
+	 frame     data/Bgs/03airp/det/heli19.gif
+	 frame     data/Bgs/03airp/det/heli20.gif
+	 frame     data/Bgs/03airp/det/heli21.gif
+	 frame     data/Bgs/03airp/det/heli20.gif
+	 @cmd velo001 0 -0.08 0
+	 frame     data/Bgs/03airp/det/heli19.gif
+	 frame     data/Bgs/03airp/det/heli20.gif
+	 frame     data/Bgs/03airp/det/heli21.gif
+	 frame     data/Bgs/03airp/det/heli20.gif
+	 @cmd velo001 0 -0.05 0
+	 frame     data/Bgs/03airp/det/heli19.gif
+	 frame     data/Bgs/03airp/det/heli20.gif
+	 frame     data/Bgs/03airp/det/heli21.gif
+	 frame     data/Bgs/03airp/det/heli20.gif
+	 @cmd velo001 0 0 0
+	 frame     data/Bgs/03airp/det/heli19.gif
+	 frame     data/Bgs/03airp/det/heli20.gif
+	 frame     data/Bgs/03airp/det/heli21.gif
+	 frame     data/Bgs/03airp/det/heli20.gif
+################################################HELI LEAVING
+	 @cmd velo001 0 -0.05 0
+	 frame     data/Bgs/03airp/det/heli19.gif
+	 frame     data/Bgs/03airp/det/heli20.gif
+	 frame     data/Bgs/03airp/det/heli21.gif
+	 frame     data/Bgs/03airp/det/heli20.gif
+	 @cmd velo001 0 -0.08 0
+	 frame     data/Bgs/03airp/det/heli19.gif
+	 frame     data/Bgs/03airp/det/heli20.gif
+	 frame     data/Bgs/03airp/det/heli21.gif
+	 frame     data/Bgs/03airp/det/heli20.gif
+	 @cmd velo001 0 -0.2 0
+	 frame     data/Bgs/03airp/det/heli19.gif
+	 frame     data/Bgs/03airp/det/heli20.gif
+	 frame     data/Bgs/03airp/det/heli21.gif
+	 frame     data/Bgs/03airp/det/heli20.gif

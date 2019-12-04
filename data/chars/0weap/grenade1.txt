@@ -1,0 +1,46 @@
+name	      grenade1
+shootnum      1
+health        1
+speed         6
+antigravity   40
+jumpheight    2
+nolife        1
+gfxshadow     1
+candamage     enemy player npc obstacle
+
+script  data/scripts/bounce2.c
+
+anim idle
+	loop	1
+	delay	6
+	offset  27 25
+	bbox	0 0 0 0
+	frame	data/chars/0weap/gre01.gif
+	frame	data/chars/0weap/gre02.gif
+	frame	data/chars/0weap/gre03.gif
+	frame	data/chars/0weap/gre04.gif
+	frame	data/chars/0weap/gre05.gif
+	frame	data/chars/0weap/gre06.gif
+	frame	data/chars/0weap/gre07.gif
+	frame	data/chars/0weap/gre08.gif
+
+anim attack1
+	delay	1
+	offset  27 25
+	bbox    0 0 0 0
+	frame	data/chars/0weap/gre02.gif
+	spawnframe grenade0
+	subentity  grenade0
+
+anim attack2
+	delay	1
+	offset  27 25
+	bbox    0 0 0 0
+	frame	data/chars/0weap/gre02.gif
+	spawnframe grenade0
+	subentity  grenade0
+
+
+
+
+

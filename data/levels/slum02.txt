@@ -1,0 +1,405 @@
+loadingbg       data/bgs/loading2.gif 1 -999 -999 100 -999 -999
+music           data/music/01slum.ogg 1
+background	data/bgs/02slum/n01.gif
+panel		data/bgs/02slum/n01.gif
+direction       both
+scrollspeed     0.5
+light  		10  20
+at       	0
+settime         0
+notime          1
+noslow          1
+order	        a
+cameratype      1
+cameraoffset 0 -50
+spawn1           80 25
+spawn2           90 35
+updatescript    data/scripts/traileru.c
+
+
+wall 1040 384 -4000 -4000 0 0 200 5000
+wall 1051 407 -19 -19 33 0 25 5000
+wall 1113 407 -73 -73 0 0 35 107
+wall 1210 407 -170 -170 0 0 4 5000 3
+wall 1100 400 0 0 2000 2000 35 107
+wall 1115 400 0 0 2000 2000 2 5000 3
+basemap  1112 407 98 9 109 0
+wall 1220 407 -56 -56 0 0 9 5000 3 # new nr.6
+wall 1051 385 -19 -19 33 0 25 5000
+wall 1082 385 -42 -42 0 0 35 245
+wall 1210 385 -170 -170 0 0 4 5000 3
+wall 1070 378 0 0 2000 2000 35 245
+wall 1084 378 0 0 2000 2000 2 5000 3
+basemap  1081 385 129 9 247 107
+wall 1220 385 -56 -56 0 0 9 5000 3 # new nr.12
+wall 1040 363 0 0 2000 2000 20 5000
+wall 1036 399 -153 -153 0 0 50 24 3
+wall 892 392 -56 -56 0 0 50 39
+wall 840 392 -36 -36 0 0 50 25 3
+basemap  703 399 24 50 26 0
+wall 725 399 -22 -22 0 0 50 1 3
+wall 704 399 -250 -250 0 0 50 24 3
+wall 467 399 -31 -31 0 0 50 35
+basemap  295 399 24 50 26 0
+wall 317 399 -22 -22 0 0 50 1 3
+wall 296 399 -2000 -2000 0 0 50 24 3
+
+
+spawn   fgslu
+coords  1 475
+at      0
+
+spawn   staisl
+flip 1
+coords  1208 405
+at      0
+
+spawn   staisl2
+flip 1
+coords  1208 383 107
+at      0
+
+spawn  mbox2
+flip   1
+coords 200 468
+at     0
+
+spawn  secret01
+flip   1
+spawnscript data/scripts/noscpos.c
+coords 450 400 0
+at     0
+
+#--------------------------------------------------
+
+scrollz 481 481
+at  0
+
+
+####### GROUP 1
+
+scrollx 0 110
+at  0
+
+group   3 3
+at      0
+
+spawn   staint5t
+coords  0 473
+at      0
+
+spawn   williams
+coords  -30 410
+at      0
+
+spawn   roper
+coords  300 410
+at      0
+
+spawn   baker
+coords  280 460
+at      0
+
+spawn   williams
+map     3
+coords  -30 460
+at      0
+
+2pspawn   baker
+coords  280 460
+at      0
+
+group   1 1
+at      0
+
+scrollx 0 260
+at  0
+
+spawn   drum01
+coords  360 430
+at      0
+
+####### GROUP 2
+
+scrollx 215 260
+at  215
+
+group   3 3
+at      215
+
+spawn   roper
+map     1
+coords  -30 410
+at      215
+
+spawn   baker
+coords  300 410
+at      215
+
+spawn   steve
+map     1
+health  300
+2phealth 450
+coords  280 460
+at      215
+
+spawn   williams
+map     3
+coords  -30 460
+at      215
+
+spawn   roper
+map     2
+coords  280 440
+at      215
+
+group   1 1
+at      0
+
+scrollx 240 420
+at  240
+
+####### GROUP 3
+
+scrollx 420 600
+at  420
+
+group   3 3
+at      420
+
+spawn   roper
+weapon  nunchuck
+map     3
+health  80
+coords  -30 420
+at      420
+
+spawn   linda1
+item    knife01
+map     2
+coords  300 430
+at      420
+
+spawn   baker
+map     4
+coords  -50 440
+at      420
+
+spawn   roper
+map     4
+coords  300 440
+at      420
+
+2pspawn   baker
+map     3
+coords  -50 430
+at      420
+
+spawn   linda1
+item    knife01
+coords  -30 410
+at      420
+
+group   1 1
+at      420
+
+scrollx 550 740
+at  550
+
+####### GROUP 4
+
+scrollx 740 850
+at  740
+
+group   3 3
+at      740
+
+spawn   baker
+map     2
+coords  300 410
+at      740
+
+spawn   Jeff
+map     2
+health  350
+2phealth 450
+coords  300 440
+at      740
+
+spawn   jackson
+map     1
+health  350
+2phealth 450
+coords  -50 420
+at      740
+
+spawn   roper
+map     4
+coords  290 410
+at      740
+
+spawn   williams
+map     4
+coords  -50 420
+at      740
+
+2pspawn baker
+map     3
+coords  -30 410
+at      740
+
+group   1 1
+at      740
+
+scrollx 740 1024
+at  740
+
+#spawn   slwall2
+#coords  100 430
+#at      740
+
+####### GROUP 5
+
+scrollx 740 1024
+at  740
+
+group   4 4
+at      1024
+
+spawn   baker
+map     2
+coords  -30 410
+at      1024
+
+spawn   williams
+map     1
+coords  -30 440
+at      1024
+
+spawn   roper
+map     1
+coords  300 410
+at      1024
+
+spawn   linda1
+item    knife01
+map     2
+coords  300 440
+at      1024
+
+spawn   baker
+map     1
+coords  -30 410
+at      1024
+
+######################## GROUP 6
+#----------------------------------------
+
+group   1 1
+at      1024
+
+scrollx 1024 1024
+at  1024
+
+scrollz 120 481
+at  1024
+
+spawn   slwall
+coords  100 430
+at      1024
+
+spawn   delay6
+coords  1 430 112
+at      1024
+
+spawn   slwall
+@script void main() {
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW1"));
+} @end_script
+coords  100 430
+at      1024
+
+scrollz 120 120
+at  1024
+
+
+#----------------------------------------
+group   1 2
+at      1024
+
+spawn   baker
+map     1
+coords  280 395 107
+at      1024
+
+spawn   jeff
+health  300
+2phealth 400
+coords  280 396 107
+at      1024
+
+######################### GROUP 7
+
+#----------------------------------------
+
+group   1 1
+at      1024
+
+scrollz 0 120
+at  1024
+
+spawn   slwall
+@script void main() {
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW2"));
+} @end_script
+coords  100 430
+at      1024
+
+spawn   delay6
+coords  1 430 250
+at      1024
+
+spawn   slwall
+@script void main() {
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW3"));
+} @end_script
+coords  100 430
+at      1024
+
+scrollz 0 0
+at  1024
+
+
+#----------------------------------------
+
+group   1 2
+at      1024
+
+spawn   levelend
+coords  240 373 245
+at      1024
+
+spawn   roper
+map     2
+coords  280 373 245
+at      1024
+
+spawn   baker
+coords  280 374 245
+at      1024
+
+#---------------
+
+group   1 1
+at      1024 
+
+spawn   caskiller
+coords  180 374 245
+at      1024
+
+spawn   stagetrx
+flip    1
+coords  0 232
+at      1024
+
+

@@ -1,0 +1,23 @@
+name	fwall
+type	panel
+speed   10
+setlayer -10
+subject_to_gravity 0
+alpha  1
+anim idle
+	 loop      1
+	 delay     4
+	 offset    0 228
+	 bbox      0
+	 frame     Data/Bgs/06palc/det/fwall01.gif
+	 frame     Data/Bgs/06palc/det/fwall02.gif
+	 frame     Data/Bgs/06palc/det/fwall03.gif
+	 frame     Data/Bgs/06palc/det/fwall04.gif
+	 frame     Data/Bgs/06palc/det/fwall05.gif
+	 frame     Data/Bgs/06palc/det/fwall06.gif
+
+
+
+
+
+

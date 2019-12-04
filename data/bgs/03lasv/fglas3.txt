@@ -1,0 +1,23 @@
+name		fglas3
+type		none
+facing		1
+antigravity	100
+subject_to_gravity 0
+subject_to_wall 0
+subject_to_hole 0
+Subject_to_MinZ 0
+Subject_to_MaxZ 0
+offscreenkill	7000
+
+anim spawn
+      loop	0
+	delay	10
+	offset	7 191
+	frame	data/Bgs/03lasv/fglas3.gif
+
+anim idle
+	loop	0
+	delay	10
+	offset	7 191
+	frame	data/Bgs/03lasv/fglas3.gif
+

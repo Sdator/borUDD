@@ -1,0 +1,93 @@
+name	trap01
+type	trap
+setlayer  -30
+subject_to_gravity 0
+candamage player
+
+anim idle
+	 loop      1
+	 delay     30
+	 offset    105 215
+	 bbox      0
+	 hitflash  Bflash
+	 hitfx     data/sounds/beatu.wav
+	 attack    43 40 125 160 25 1 1 0 12 50
+	 dropv     2 0 0
+	 forcedirection 1 
+
+	 frame     Data/Bgs/06palc/det/trap03.gif
+	 frame     Data/Bgs/06palc/det/trap02.gif
+	 frame     Data/Bgs/06palc/det/trap01.gif
+	 delay     20
+	 frame     Data/Bgs/06palc/det/trap03.gif
+	 frame     Data/Bgs/06palc/det/trap02.gif
+	 frame     Data/Bgs/06palc/det/trap01.gif
+	 delay     10
+	 frame     Data/Bgs/06palc/det/trap03.gif
+	 frame     Data/Bgs/06palc/det/trap02.gif
+	 frame     Data/Bgs/06palc/det/trap01.gif
+	 delay     5
+	 sound     data/sounds/trap01.wav
+	 frame     Data/Bgs/06palc/det/trap03.gif
+	 frame     Data/Bgs/06palc/det/trap02.gif
+	 frame     Data/Bgs/06palc/det/trap01.gif
+	 frame     Data/Bgs/06palc/det/trap03.gif
+	 frame     Data/Bgs/06palc/det/trap02.gif
+	 frame     Data/Bgs/06palc/det/trap01.gif
+	 frame     Data/Bgs/06palc/det/trap03.gif
+	 frame     Data/Bgs/06palc/det/trap02.gif
+	 frame     Data/Bgs/06palc/det/trap01.gif
+	 frame     Data/Bgs/06palc/det/trap03.gif
+	 frame     Data/Bgs/06palc/det/trap02.gif
+	 frame     Data/Bgs/06palc/det/trap01.gif
+	 frame     Data/Bgs/06palc/det/trap03.gif
+	 frame     Data/Bgs/06palc/det/trap02.gif
+	 sound     data/sounds/trap01.wav
+	 frame     Data/Bgs/06palc/det/trap01.gif
+	 frame     Data/Bgs/06palc/det/trap03.gif
+	 frame     Data/Bgs/06palc/det/trap02.gif
+	 frame     Data/Bgs/06palc/det/trap01.gif
+	 frame     Data/Bgs/06palc/det/trap03.gif
+	 frame     Data/Bgs/06palc/det/trap02.gif
+	 frame     Data/Bgs/06palc/det/trap01.gif
+	 frame     Data/Bgs/06palc/det/trap03.gif
+	 frame     Data/Bgs/06palc/det/trap02.gif
+	 frame     Data/Bgs/06palc/det/trap01.gif
+	 frame     Data/Bgs/06palc/det/trap03.gif
+	 frame     Data/Bgs/06palc/det/trap02.gif
+	 frame     Data/Bgs/06palc/det/trap01.gif
+	 frame     Data/Bgs/06palc/det/trap03.gif
+	 frame     Data/Bgs/06palc/det/trap02.gif
+	 frame     Data/Bgs/06palc/det/trap01.gif
+	 frame     Data/Bgs/06palc/det/trap03.gif
+	 frame     Data/Bgs/06palc/det/trap02.gif
+	 frame     Data/Bgs/06palc/det/trap01.gif
+	 frame     Data/Bgs/06palc/det/trap03.gif
+	 frame     Data/Bgs/06palc/det/trap02.gif
+	 frame     Data/Bgs/06palc/det/trap01.gif
+	 frame     Data/Bgs/06palc/det/trap03.gif
+	 frame     Data/Bgs/06palc/det/trap02.gif
+	 frame     Data/Bgs/06palc/det/trap01.gif
+	 delay     10
+	 frame     Data/Bgs/06palc/det/trap03.gif
+	 frame     Data/Bgs/06palc/det/trap02.gif
+	 frame     Data/Bgs/06palc/det/trap01.gif
+	 delay     20
+	 frame     Data/Bgs/06palc/det/trap03.gif
+	 frame     Data/Bgs/06palc/det/trap02.gif
+	 frame     Data/Bgs/06palc/det/trap01.gif
+	 delay     30
+	 frame     Data/Bgs/06palc/det/trap03.gif
+	 frame     Data/Bgs/06palc/det/trap02.gif
+	 frame     Data/Bgs/06palc/det/trap01.gif
+	 sound     data/sounds/trap02.wav
+	 delay     300
+	 attack    0 0 0 0
+	 frame     Data/Bgs/06palc/det/trap02.gif
+
+
+
+
+
+
+

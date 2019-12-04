@@ -1,0 +1,174 @@
+loadingbg       data/bgs/loading2.gif 1 -999 -999 100 -999 -999
+music           data/music/02slum.ogg 1
+at              0
+background	data/bgs/01slum/b01.gif
+panel		data/bgs/01slum/n01.gif
+frontpanel	data/bgs/01slum/f01.gif
+direction       both
+scrollspeed     0.5
+light  		10  20
+at       	0
+settime         0
+notime          1
+noslow          1
+order	        a
+#type            1
+spawn1          73 20
+spawn2          48 30
+updatescript    data/scripts/traileru.c
+
+
+spawn   fac01
+flip    1
+coords  133 171
+at      0
+
+####### GROUP 1
+
+scrollx 0 85
+at      0
+
+group   3 3 
+at      0
+
+spawn   williams
+map     4
+coords  270 185
+at      0
+
+spawn   linda1
+map     3
+item    knife01
+coords  280 215
+at      0
+
+spawn   baker
+map     3
+coords  310 220
+at      0
+
+spawn   roper
+map     4
+coords  -50 190
+at      0
+
+spawn   williams
+coords  -50 190
+at      0
+
+group   1 1
+at      0
+
+scrollx 0 215
+at      85
+
+####### GROUP 2
+
+scrollx 214 350
+at      214
+
+group   3 3 
+at      214
+
+spawn   williams
+coords  -50 190
+at      214
+
+spawn   baker
+map     3
+coords  280 190
+at	214
+
+spawn   jackson
+map     2
+health  250
+2phealth 350
+coords  280 220
+at      214
+
+spawn   williams
+weapon  knife01
+map     4
+coords  -50 190
+at      214
+
+spawn   roper
+map     3
+coords  280 190
+at      214
+
+group   1 1
+at      214
+
+scrollx 214 350
+at      214
+
+####### GROUP 3
+
+scrollx 349 543
+at      349
+
+group   4 4
+at      543
+
+spawn   baker
+map     3
+coords  -50 180
+at      543
+
+spawn   steve
+map     3
+health  80
+coords  300 190
+at      543
+
+spawn   steve
+map     4
+health  80
+coords  -50 190
+at      543
+
+spawn   baker
+map     2
+coords  300 180
+at      543
+
+group   1 1
+at      543
+
+scrollx 349 558
+at      543
+
+####### GROUP 4
+
+scrollx 557 704
+at      557
+
+group   3 3 
+at      650
+
+spawn   roper
+map     3
+coords  280 180
+at      650
+
+spawn   mcguire2
+health  300
+2phealth 350 
+coords  300 190
+at      650
+
+spawn   williams
+map     4
+coords  -50 200
+at      650
+
+group   1 1 
+at      650
+
+spawn   stagetr
+flip    1
+coords  0 232
+at      650
+
+

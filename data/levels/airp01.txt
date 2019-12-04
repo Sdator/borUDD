@@ -1,0 +1,195 @@
+loadingbg       data/bgs/loading2.gif 1 -999 -999 100 -999 -999
+music           data/music/RODDAIR01.ogg 27077.4
+at              0
+background	data/bgs/01airp/b01.gif
+panel		data/bgs/01airp/n01.gif
+frontpanel	data/bgs/01airp/f01.gif
+direction       both
+scrollspeed     0.5
+light  		10  20
+at       	0
+settime         0
+notime          1
+noslow          1
+order	        a
+#type            1
+spawn1          73 30
+spawn2          48 56
+updatescript    data/scripts/traileru.c
+
+#    spreadsheet			               		xratio	zratio	xoffset	zoffset	xspace	zspace	xrepeat	zrepeat	trans	alpha	w-mode	amp	wl	ws	move
+bglayer			data/bgs/01airp/det/sky01.gif 		0.7	0.7  	0	0	0	0	1	-1	1	0	0	0	0	0	1
+bglayer			data/bgs/01airp/det/airp.gif    	0.6	0.6	0	0	0	0	1	-1	1	0	0	0	0	0	1
+#bglayer			data/bgs/01airp/det/sky01.gif		0.5	0.5	0	0	0	0	1	-1	1	0	0	0	0	0	1
+
+spawn   stagein
+flip    1
+coords  0 232
+at      0
+
+spawn   staint2
+flip    1
+coords  0 232
+at      0
+
+spawn   aguy1
+coords  357 148
+at      0
+
+####### GROUP 1
+
+blockade 0
+at      0
+
+scrollx 0 260
+at      0
+
+group   3 3 
+at      0
+
+spawn   williams
+map     1
+weapon  knife01
+health  80
+coords  300 190
+at      0
+
+spawn   baker
+map     1
+health  80
+coords  -50 190
+at      0
+
+spawn   roper
+health  80
+coords  -50 220
+at      0
+
+spawn   williams
+health  80
+coords  300 200
+at      0
+
+spawn  roper
+map     4
+health  80
+coords  -50 200
+at      0
+
+group   1 1
+at      0
+
+scrollx 0 260
+at      0
+
+####### GROUP 2
+
+blockade 259
+at      259
+
+scrollx 259 363
+at      259
+
+group   3 3 
+at      259
+
+spawn   roper
+#weapon  nunchuck
+health  80
+coords  300 185
+at      259
+
+spawn   williams
+#item    knife01
+health  80
+coords  300 220
+at      259
+
+spawn   baker
+health  80
+coords  -50 220
+at      259
+
+spawn   roper
+map     3
+health  80
+coords  300 190
+at      259
+
+spawn   baker
+map     3
+health  80
+coords  -50 190
+at      259
+
+spawn   williams
+health  80
+coords  -50 190
+at      259
+
+group   1 1
+at      0
+
+scrollx 0 487
+at      0
+
+####### GROUP 2
+
+scrollx 487 511
+at      487
+
+group   10 10
+at      487
+
+wait
+at      487
+
+spawn   jeff
+health  170
+coords  290 210 0
+at      487
+
+spawn   baker
+coords  290 160 0
+at      487
+
+spawn   panic01
+coords  290 151
+at      487
+
+spawn   panic02
+coords  253 151
+at      487
+
+spawn   panic03
+coords  222 151
+at      487
+
+spawn   panic05
+coords  248 151
+at      487
+
+spawn   panic06
+coords  220 151
+at      487
+
+spawn   panic07
+coords  243 151
+at      487
+
+spawn   panic08
+coords  235 151
+at      487
+
+group   1 1
+at      487
+
+music   data/music/00.ogg
+at      487
+musicfade 1
+at      487
+
+spawn   stageou
+flip    1
+coords  0 232
+at      487

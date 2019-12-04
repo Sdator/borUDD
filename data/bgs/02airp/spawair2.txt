@@ -1,0 +1,82 @@
+name      spawair2
+type      enemy
+antigravity 100
+subject_to_gravity 0
+subject_to_wall 0
+subject_to_hole 0
+Subject_to_MinZ 0
+Subject_to_MaxZ 0
+nomove 1 1
+offscreenkill   5000
+
+load williams
+load Roper
+load movezblo
+load slwall2
+
+animationscript data/scripts/spawns.c
+
+anim idle
+@script
+    void self = getlocalvar("self");
+    void P1 = getplayerproperty(0, "entity");
+    void P2 = getplayerproperty(1, "entity");
+    int Play = openborvariant("count_players");
+    int x = getentityproperty(self,"x");
+    int z = getentityproperty(self,"z");
+
+    if(Play==1 && (P1 || P2)){
+      int Px;
+      int Pz;
+
+      if(P1){
+        Px = getentityproperty(P1,"x");
+        Pz = getentityproperty(P1,"z");
+      } else if(P2){
+        Px = getentityproperty(P2,"x");
+        Pz = getentityproperty(P2,"z");
+      }
+
+      if(Pz >= z-15){
+        if(Px <= x+40){
+          changeentityproperty(self, "animation", openborconstant("ANI_FOLLOW1"));
+        }
+      }
+    } else if(Play==2 && P1 && P2){
+      int P1x = getentityproperty(P1,"x");
+      int P1z = getentityproperty(P1,"z");
+      int P2x = getentityproperty(P2,"x");
+      int P2z = getentityproperty(P2,"z");
+
+      if(P1z >= z-15 && P2z >= z-15){
+        if(P1x <= x+40 && P2x <= x+40){
+          changeentityproperty(self, "animation", openborconstant("ANI_FOLLOW1"));
+        } else if(P1x <= x+40 && P2x <= x+250){
+          changeentityproperty(self, "animation", openborconstant("ANI_FOLLOW1"));
+        } else if(P1x <= x+250 && P2x <= x+40){
+          changeentityproperty(self, "animation", openborconstant("ANI_FOLLOW1"));
+        }
+      }
+    }
+@end_script
+   loop   1
+   delay   5
+   offset   1 1
+   frame	data/chars/misc/empty.gif
+   frame	data/chars/misc/empty.gif
+
+anim follow1
+   loop   0
+   delay   2
+   offset   1 1
+   @cmd  spawn01  "movezblo" -500 0 2
+   frame	data/chars/misc/empty.gif
+   @cmd  spawn01  "slwall2" -300 57 -15
+   frame	data/chars/misc/empty.gif
+   @cmd  spawn02m  "williams" -160 0 -11
+   frame	data/chars/misc/empty.gif
+   @cmd  spawn01m  "Roper" -170 0 -6
+   frame	data/chars/misc/empty.gif
+   @cmd killentity getlocalvar("self")
+   frame	data/chars/misc/empty.gif
+

@@ -1,0 +1,1341 @@
+name          ccarlem
+type          enemy
+candamage     player obstacle npc
+subject_to_obstacle 0
+health        100
+jugglepoints  20
+speed         7
+jumpheight    2.43
+grabdistance  35
+throw         2 3
+throwdamage   20
+shadow        0
+gfxshadow     1
+noquake       1
+nolife        1
+risetime      30
+paingrab      1
+antigravity   40
+blockodds     3
+thold         10
+aggression    20
+cantgrab      1
+atchain       1 2 0 0 0
+offscreen_noatk_factor 1
+diesound      data/sounds/die8.wav
+projectilehit enemy obstacle
+
+
+
+aggression    20
+script data/scripts/Custom_chase.c
+animationscript   data/scripts/lib001.c
+takedamagescript  data/scripts/finisher.c
+ondrawscript	  data/scripts/shadowon.c
+onblockWscript         data/scripts/spikesw.c 
+
+palette         data/chars/2carlem/idle01.gif   
+alternatepal    data/chars/2carlem/alter01.gif
+alternatepal      data/chars/2carlem/alter02.gif   
+
+anim spawn #this must be edited like this for the follow100 to work.
+@script
+    void self = getlocalvar("self");
+
+    if(frame==0){
+      changeentityproperty(self, "Subject_to_Gravity", 0);
+      changeentityproperty(self, "Subject_to_Wall", 0);
+      changeentityproperty(self, "Subject_to_MinZ", 0);
+      changeentityproperty(self, "Subject_to_MaxZ", 0);
+    }
+    if(frame==1){
+      changeentityproperty(self, "Subject_to_Gravity", 1);
+      changeentityproperty(self, "Subject_to_Wall", 1);
+      changeentityproperty(self, "Subject_to_MinZ", 1);
+      changeentityproperty(self, "Subject_to_MaxZ", 1);
+    }
+@end_script
+	 loop       0
+	 delay      2
+	 offset     80 129
+         frame      data/chars/2carlem/idle01.gif   
+         frame      data/chars/2carlem/idle01.gif   
+
+anim idle
+@cmd clearL
+	 loop       0
+	 delay      1
+	 offset     80 129
+	 bbox       71 79 20 49
+         frame      data/chars/2carlem/idle01.gif   
+
+anim block
+	 loop       0
+	 delay      2
+	 move       -3
+	 offset     80 129
+	 bbox       0 0 0 0
+         frame      data/chars/2carlem/block.gif
+         frame      data/chars/2carlem/block.gif
+         frame      data/chars/2carlem/block.gif
+         frame      data/chars/2carlem/block.gif
+         frame      data/chars/2carlem/block.gif
+         frame      data/chars/2carlem/block.gif
+	 delay      15
+         frame      data/chars/2carlem/block.gif
+
+anim walk
+	 loop       1
+	 delay      20
+	 offset     80 129
+	 bbox       71 79 20 49
+         frame      data/chars/2carlem/wk01.gif
+	 delay      15
+         frame      data/chars/2carlem/wk02.gif
+	 delay      20
+         frame      data/chars/2carlem/wk03.gif
+	 delay      15
+         frame      data/chars/2carlem/wk04.gif
+
+anim attack1
+@cmd attackoff
+	 loop       0
+	 delay      12
+	 range      30 40
+	 rangez     -2 2
+	 offset     80 129
+	 bbox       71 72 27 44
+	 hitfx      data/sounds/beatl.wav
+         frame      data/chars/2carlem/a201.gif
+	 delay      8
+	 attack5    87 75 33 12 9 0 0 0 8 3
+	 dropv      1 2 0
+         frame      data/chars/2carlem/a202.gif
+	 delay      20
+	 attack5    0 0 0 0
+         frame      data/chars/2carlem/a203.gif
+	 delay      9
+         frame      data/chars/2carlem/a101.gif
+anim attack2
+@cmd attackoff
+	 range      30 40
+	 rangez     -2 2
+	 loop       0
+	 delay      7
+	 offset     80 129
+	 bbox       71 72 27 44
+	 hitfx      data/sounds/beatq.wav
+         frame      data/chars/2carlem/b101.gif
+         frame      data/chars/2carlem/b102.gif
+	 delay      15
+	 attack     86 83 45 18 15 1 0 0 8 3
+	 dropv      1 2 0
+         frame      data/chars/2carlem/b104.gif
+	 delay      9
+	 attack     0 0 0 0
+         frame      data/chars/2carlem/b102.gif
+         frame      data/chars/2carlem/b101.gif
+
+anim freespecial1
+@cmd attackoff
+	 range      60 100
+	 rangez     -2 2
+	 loop       0
+	 delay      16
+	 offset     80 129
+	 bbox       71 72 27 44
+	 hitfx      data/sounds/beatm.wav
+@cmd shadow 10 5 60 6 2 180 250 180
+         frame      data/chars/2carlem/a101.gif
+	 move       4
+	 delay      1
+         frame      data/chars/2carlem/b101.gif
+         frame      data/chars/2carlem/b102.gif
+         frame      data/chars/2carlem/b102.gif
+         frame      data/chars/2carlem/b102.gif
+	 attack     89 76 39 23 22 1 1 0 8 3	
+	 forcedirection -1
+	 dropv      1 3 0
+	 sound      data/sounds/punch2.wav
+         frame      data/chars/2carlem/b103.gif
+         frame      data/chars/2carlem/b103.gif
+         frame      data/chars/2carlem/b103.gif
+         frame      data/chars/2carlem/b103.gif
+         frame      data/chars/2carlem/b103.gif
+         frame      data/chars/2carlem/b103.gif
+         frame      data/chars/2carlem/b103.gif
+         frame      data/chars/2carlem/b103.gif
+         frame      data/chars/2carlem/b103.gif
+         frame      data/chars/2carlem/b103.gif
+         frame      data/chars/2carlem/b103.gif
+         frame      data/chars/2carlem/b103.gif
+	 delay      18
+	 attack     0 0 0 0
+         frame      data/chars/2carlem/b103.gif
+	 move       0
+	 delay      9
+         frame      data/chars/2carlem/b102.gif
+         frame      data/chars/2carlem/b101.gif
+
+anim riseattack
+	 range      5 50
+	 rangez     -2 2
+	 loop       0
+	 delay      25
+	 offset     80 129
+	 bbox       0 0 0 0
+	 jumpframe  1 1.5 0 0 
+	 landframe  6
+	 hitfx      data/sounds/beatc.wav
+         frame      data/chars/2carlem/rise02.gif
+	 delay      7
+         frame      data/chars/2carlem/b101.gif
+         frame      data/chars/2carlem/b102.gif
+	 delay      12
+	 attack     86 84 39 18 17 1 1 0 8 3
+	 dropv      1 1.5 0
+         frame      data/chars/2carlem/ak03.gif
+	 delay      9
+	 attack     0 0 0 0
+         frame      data/chars/2carlem/b102.gif
+	 delay      999
+         frame      data/chars/2carlem/b101.gif
+	 delay      15
+         frame      data/chars/2carlem/rise02.gif
+
+anim jump
+	 loop       0
+	 delay      999
+	 offset     80 129
+	 bbox       71 72 27 44
+         frame      data/chars/2carlem/ju01.gif
+
+anim jumpland
+	 loop       0
+	 delay      10
+	 offset     80 129
+	 bbox       0 0 0 0
+         frame      data/chars/2carlem/rise02.gif
+
+anim walkoff
+	 loop       0
+	 delay      999
+	 offset     80 129
+	 bbox       71 72 27 44
+	 landframe  1
+         frame      data/chars/2carlem/ju01.gif
+	 delay      10
+	 bbox       0 0 0 0
+         frame      data/chars/2carlem/rise02.gif
+
+anim grabbed
+anim spain
+
+anim pain1
+	 loop       0
+	 delay      23
+	 offset     80 129
+	 bbox       71 72 27 44
+         frame      data/chars/2carlem/pain02.gif
+
+anim pain2
+	 loop       0
+	 delay      23
+	 offset     80 129
+	 bbox       71 72 27 44
+         frame      data/chars/2carlem/pain01.gif
+
+#breathless1
+anim pain3
+	 loop       0
+	 delay      30
+	 offset     80 129
+	 bbox       71 72 27 57
+         frame      data/chars/2carlem/pain01.gif
+	 move       0
+	 delay      45
+         frame      data/chars/2carlem/pain03.gif
+
+#breathless2
+anim pain4
+	 loop       0
+	 delay      30
+	 offset     80 129
+	 bbox       71 72 27 44
+         frame      data/chars/2carlem/pain02.gif
+	 move       0
+	 delay      45
+         frame      data/chars/2carlem/pain03.gif
+
+#stunned
+anim pain7
+	 loop       0
+	 offset     80 129
+	 bbox       71 72 27 44
+	 delay      25
+         frame      data/chars/2carlem/pain03.gif
+         frame      data/chars/2carlem/pain04.gif
+         frame      data/chars/2carlem/pain03.gif
+         frame      data/chars/2carlem/pain04.gif
+         frame      data/chars/2carlem/pain03.gif
+         frame      data/chars/2carlem/pain04.gif
+         frame      data/chars/2carlem/pain03.gif
+         frame      data/chars/2carlem/pain04.gif
+
+#breathless3 for dd punch chain
+anim pain8
+	 loop       0
+	 delay      30
+	 offset     80 129
+	 bbox       71 72 27 44
+         frame      data/chars/2carlem/pain01.gif
+	 move       0
+	 delay      45
+         frame      data/chars/2carlem/pain03.gif
+
+anim fall1
+	 loop       0
+	 delay      60
+	 offset     80 129
+	 bbox       65 85 31 36
+	 landframe  2
+         frame      data/chars/2carlem/fall01.gif
+	 delay      999
+	 bbox       62 104 33 26
+         frame      data/chars/2carlem/fall03.gif
+	 delay      12
+	 bbox       0 0 0 0
+	 sound      data/sounds/fall2.wav
+         frame      data/chars/2carlem/fall03.gif
+         frame      data/chars/2carlem/fall04.gif
+
+anim rise
+	 loop       0
+	 delay      13
+	 offset     80 129
+	 bbox       0 0
+         frame      data/chars/2carlem/fall04.gif
+         frame      data/chars/2carlem/rise01.gif
+         frame      data/chars/2carlem/rise02.gif
+
+#elbow fall
+anim fall5
+	 loop       0
+	 delay      60
+	 offset     80 129
+	 bbox       0 0
+	 landframe  2
+	 flipframe  2
+	 sound      data/sounds/pain1.wav
+         frame      data/chars/2carlem/fall16.gif
+	 delay      999
+         frame      data/chars/2carlem/fall16.gif
+	 delay      7
+	 sound      data/sounds/fall1.wav
+         frame      data/chars/2carlem/fall03.gif
+         frame      data/chars/2carlem/fall04.gif
+
+########anim fall's that don't allow juggling
+
+anim fall3
+	 loop       0
+	 delay      60
+	 offset     80 129
+	 bbox       0 0 0 0
+	 landframe  2
+         frame      data/chars/2carlem/fall01.gif
+	 delay      999
+         frame      data/chars/2carlem/fall03.gif
+	 delay      12
+	 bbox       0 0 0 0
+	 sound      data/sounds/fall1.wav
+         frame      data/chars/2carlem/fall03.gif
+         frame      data/chars/2carlem/fall04.gif
+
+anim fall4
+	 loop       0
+	 delay      60
+	 offset     80 129
+	 bbox       0 0 0 0
+	 landframe  2
+         frame      data/chars/2carlem/fall01.gif
+	 delay      999
+         frame      data/chars/2carlem/fall03.gif
+	 delay      12
+	 bbox       0 0 0 0
+	 sound      data/sounds/fall2.wav
+         frame      data/chars/2carlem/fall03.gif
+         frame      data/chars/2carlem/fall04.gif
+
+anim fall11
+	 loop       0
+	 delay      60
+	 offset     80 129
+	 bbox       0 0 0 0
+	 landframe  2
+         frame      data/chars/2carlem/fall01.gif
+	 delay      999
+         frame      data/chars/2carlem/fall03.gif
+	 delay      12
+	 bbox       0 0 0 0
+	 sound      data/sounds/fall1.wav
+         frame      data/chars/2carlem/fall03.gif
+         frame      data/chars/2carlem/fall04.gif
+
+########double dragons throw
+
+anim fall10
+	 loop       0
+	 delay      50
+	 offset     80 129
+	 bbox       71 102 27 27
+	 landframe  3
+	 flipframe  1
+	 attack3    68 97 42 36 3 0 0 0 8 3
+	 dropv      1.3 0.8 0
+         frame      data/chars/2carlem/fall17.gif
+	 delay      15
+	 bbox       62 95 35 24
+	 attack3    61 89 42 33 3 0 0 0 8
+	 dropv      1.3 0.8 0
+         frame      data/chars/2carlem/fall02.gif
+	 delay      999
+	 bbox       62 104 33 26
+	 attack3    62 100 38 31 3 0 0 0 8 3
+	 dropv      1.3 0.8 0
+         frame      data/chars/2carlem/fall03.gif
+	 delay      12
+	 bbox       0 0 0 0
+	 attack     0 0 0 0 0 0 0 0 0
+	 sound      data/sounds/fall2.wav
+         frame      data/chars/2carlem/fall03.gif
+         frame      data/chars/2carlem/fall04.gif
+
+########double dragons flip throw
+
+anim pain11
+	 loop       0
+	 delay      50
+	 offset     80 129
+	 bbox       0 0 0 0
+         frame      data/chars/2carlem/pain04.gif
+
+anim fall12
+	 loop       0
+	 delay      50
+	 offset     80 129
+	 bbox       0
+	 landframe  3
+	 flipframe  1
+	 sound      data/sounds/pain1.wav
+	 attack     69 11 35 34 5 1 0 0 8
+         frame      data/chars/2carlem/fall21.gif
+	 delay      15
+	 attack     69 11 35 34 5 1 0 0 8
+         frame      data/chars/2carlem/fall02.gif
+	 delay      999
+	 attack     63 101 28 29 5 1 0 0 8
+         frame      data/chars/2carlem/fall03.gif
+	 delay      12
+	 attack     0 0 0 0 0 0 0 0 0
+	 sound      data/sounds/fall7.wav
+         frame      data/chars/2carlem/fall03.gif
+         frame      data/chars/2carlem/fall04.gif
+
+########double dragons coop throw billy
+
+anim fall102
+anim rise102
+
+########Billy slam 01
+
+anim fall20
+	 loop       0
+	 delay      999
+	 offset     80 129
+	 bbox       0
+	 landframe  1
+         frame      data/chars/2carlem/fall23.gif
+	 delay      10
+         frame      data/chars/2carlem/fall24.gif
+
+anim rise20
+	 loop       0
+	 delay      1
+	 offset     80 129
+	 bbox       0
+	 flipframe  1
+         frame      data/chars/2carlem/fall24.gif
+	 delay      13
+         frame      data/chars/2carlem/rise01.gif
+         frame      data/chars/2carlem/rise02.gif
+
+########Billy slam 02
+
+anim fall21
+	 loop       0
+	 delay      15
+	 offset     80 129
+	 bbox       0
+	 landframe  2
+         frame      data/chars/2carlem/fall04.gif
+	 delay      999
+         frame      data/chars/2carlem/fall03.gif
+	 delay      12
+	 sound      data/sounds/fall1.wav
+         frame      data/chars/2carlem/fall03.gif
+         frame      data/chars/2carlem/fall04.gif
+
+########screw falling
+
+#not juggling
+anim fall13
+	 loop       0
+	 delay      12
+	 offset     80 129
+	 bbox       0
+	 landframe  5
+	 sound      data/sounds/pain1.wav
+	 attack     68 80 21 38 5 1 0 0 8
+         frame      data/chars/2carlem/fall08.gif
+	 attack     66 83 24 34 5 1 0 0 8
+         frame      data/chars/2carlem/fall07.gif
+	 attack     69 85 22 35 5 1 0 0 8
+         frame      data/chars/2carlem/fall06.gif
+	 attack     64 85 28 27 5 1 0 0 8
+         frame      data/chars/2carlem/fall05.gif
+	 bbox       0
+	 attack     0 0 0 0 0 0 0 0 0
+	 delay      999
+         frame      data/chars/2carlem/fall04.gif
+	 delay      12
+	 sound      data/sounds/fall2.wav
+         frame      data/chars/2carlem/fall03.gif
+         frame      data/chars/2carlem/fall04.gif
+
+#juggling
+anim fall14
+	 loop       0
+	 delay      12
+	 offset     80 129
+	 landframe  5
+	 sound      data/sounds/diei.wav
+	 bbox       68 80 21 38
+	 attack     68 80 21 38 5 1 0 0 8
+         frame      data/chars/2carlem/fall08.gif
+	 bbox       66 83 24 34
+	 attack     66 83 24 34 5 1 0 0 8
+         frame      data/chars/2carlem/fall07.gif
+	 bbox       69 85 22 35
+	 attack     69 85 22 35 5 1 0 0 8
+         frame      data/chars/2carlem/fall06.gif
+	 bbox       64 85 28 27
+	 attack     64 85 28 27 5 1 0 0 8
+         frame      data/chars/2carlem/fall05.gif
+	 bbox       65 85 31 36
+	 attack     0 0 0 0
+	 delay      999
+         frame      data/chars/2carlem/fall01.gif
+	 bbox       0 0 0 0
+	 delay      12
+	 sound      data/sounds/fall2.wav
+         frame      data/chars/2carlem/fall03.gif
+         frame      data/chars/2carlem/fall04.gif
+
+anim fall19
+	 loop       0
+	 delay      6
+	 offset     80 129
+	 bbox       0
+	 landframe  5
+         frame      data/chars/2carlem/fall08.gif
+         frame      data/chars/2carlem/fall07.gif
+         frame      data/chars/2carlem/fall06.gif
+         frame      data/chars/2carlem/fall05.gif
+@cmd   updateframe getlocalvar("self") 0
+	 delay      12
+         frame      data/chars/2carlem/fall03.gif
+	 sound      data/sounds/fall2.wav
+         frame      data/chars/2carlem/fall04.gif
+
+########colossus falling
+
+#not juggling
+anim fall30
+	 loop       0
+	 delay      999
+	 offset     80 129
+	 bbox       0
+	 landframe  1
+	 bouncefactor 2
+	 hitfx      data/sounds/indirect.wav
+	 attack     63 78 31 41 5 1 0 0 8
+         frame      data/chars/2carlem/fall05.gif
+	 delay      12
+	 sound      data/sounds/fall2.wav
+	 attack     0 0 0 0
+         frame      data/chars/2carlem/fall03.gif
+         frame      data/chars/2carlem/fall04.gif
+
+########double dragons custom combos
+
+#moving backwards A01
+anim pain15
+	 loop       0
+	 delay      2
+	 offset     80 129
+	 bbox       71 79 20 49
+	 move       -2
+         frame      data/chars/2carlem/pain02.gif
+         frame      data/chars/2carlem/pain02.gif
+         frame      data/chars/2carlem/pain02.gif
+         frame      data/chars/2carlem/pain02.gif
+         frame      data/chars/2carlem/pain02.gif
+         frame      data/chars/2carlem/pain02.gif
+	 delay      15
+	 move       0
+         frame      data/chars/2carlem/pain02.gif
+	 delay      40
+         frame      data/chars/2carlem/pain03.gif
+
+#moving backwards A02
+anim pain16
+	 loop       0
+	 delay      2
+	 offset     80 129
+	 bbox       71 79 20 49
+	 move       -2
+         frame      data/chars/2carlem/pain01.gif
+         frame      data/chars/2carlem/pain01.gif
+         frame      data/chars/2carlem/pain01.gif
+	 move       -1
+         frame      data/chars/2carlem/pain01.gif
+         frame      data/chars/2carlem/pain01.gif
+         frame      data/chars/2carlem/pain01.gif
+	 delay      15
+	 move       0
+         frame      data/chars/2carlem/pain01.gif
+	 delay      40
+         frame      data/chars/2carlem/pain03.gif
+
+#fast pain1
+anim pain17
+	 loop       0
+	 delay      8
+	 offset     80 129
+	 bbox       71 79 20 49
+         frame      data/chars/2carlem/pain01.gif
+	 move       0
+	 delay      45
+         frame      data/chars/2carlem/pain03.gif
+
+#fast pain2
+anim pain18
+	 loop       0
+	 delay      8
+	 offset     80 129
+	 bbox       71 79 20 49
+         frame      data/chars/2carlem/pain02.gif
+	 move       0
+	 delay      45
+         frame      data/chars/2carlem/pain03.gif
+
+#moving backwards B01 faster
+anim pain25
+	 loop       0
+	 delay      2
+	 offset     80 129
+	 bbox       71 79 20 49
+	 move       -6
+         frame      data/chars/2carlem/pain02.gif
+         frame      data/chars/2carlem/pain02.gif
+         frame      data/chars/2carlem/pain02.gif
+	 move       -3
+         frame      data/chars/2carlem/pain02.gif
+         frame      data/chars/2carlem/pain02.gif
+	 move       -1
+         frame      data/chars/2carlem/pain02.gif
+	 delay      15
+	 move       0
+         frame      data/chars/2carlem/pain02.gif
+	 delay      24
+         frame      data/chars/2carlem/pain03.gif
+         frame      data/chars/2carlem/pain04.gif
+         frame      data/chars/2carlem/pain03.gif
+         frame      data/chars/2carlem/pain04.gif
+         frame      data/chars/2carlem/pain03.gif
+         frame      data/chars/2carlem/pain04.gif
+
+#moving backwards B02 slower
+anim pain26
+	 loop       0
+	 delay      2
+	 offset     80 129
+	 bbox       71 79 20 49
+	 move       -4
+         frame      data/chars/2carlem/pain02.gif
+         frame      data/chars/2carlem/pain02.gif
+         frame      data/chars/2carlem/pain02.gif
+         frame      data/chars/2carlem/pain02.gif
+         frame      data/chars/2carlem/pain02.gif
+         frame      data/chars/2carlem/pain02.gif
+         frame      data/chars/2carlem/pain02.gif
+         frame      data/chars/2carlem/pain02.gif
+	 delay      15
+	 move       0
+         frame      data/chars/2carlem/pain01.gif
+	 delay      40
+         frame      data/chars/2carlem/pain04.gif
+
+anim pain27
+	 loop       0
+	 delay      2
+	 offset     80 129
+	 bbox       71 79 20 49
+	 move       -4
+         frame      data/chars/2carlem/pain01.gif
+         frame      data/chars/2carlem/pain01.gif
+         frame      data/chars/2carlem/pain01.gif
+         frame      data/chars/2carlem/pain01.gif
+         frame      data/chars/2carlem/pain01.gif
+         frame      data/chars/2carlem/pain01.gif
+         frame      data/chars/2carlem/pain01.gif
+         frame      data/chars/2carlem/pain01.gif
+	 delay      15
+	 move       0
+         frame      data/chars/2carlem/pain02.gif
+	 delay      40
+         frame      data/chars/2carlem/pain04.gif
+
+#stomach blows
+anim pain96
+	 loop       0
+	 delay      2
+	 offset     80 129
+	 bbox       71 79 20 49
+	 jumpframe  0 0.05 0
+         frame      data/chars/2carlem/fall29.gif
+	 delay      25
+         frame      data/chars/2carlem/pain03.gif
+         frame      data/chars/2carlem/pain04.gif
+         frame      data/chars/2carlem/pain03.gif
+         frame      data/chars/2carlem/pain04.gif
+         frame      data/chars/2carlem/pain03.gif
+         frame      data/chars/2carlem/pain04.gif
+         frame      data/chars/2carlem/pain03.gif
+         frame      data/chars/2carlem/pain04.gif
+
+########anim follow for slams & pain stuff
+
+anim follow1
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2carlem/pain04.gif
+
+anim follow2
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2carlem/fall06.gif
+
+anim follow3
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       80 106 21 25
+         frame      data/chars/2carlem/fall11.gif
+
+anim follow4
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2carlem/fall19.gif
+
+anim follow5
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2carlem/fall18.gif
+
+anim follow6
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       76 97 22 27
+         frame      data/chars/2carlem/fall20.gif
+
+anim follow7
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2carlem/fall09.gif
+
+anim follow8
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2carlem/fall10.gif
+
+anim follow9
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2carlem/fall22.gif
+
+anim follow10
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       67 105 29 12
+         frame      data/chars/2carlem/fall22.gif
+
+anim follow11
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2carlem/pain04.gif
+
+anim follow12
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2carlem/fall03.gif
+
+anim follow13
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2carlem/fall02.gif
+
+anim follow14
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2carlem/fall25.gif
+
+anim follow15
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2carlem/fall01.gif
+
+anim follow16
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       77 109 30 22
+         frame      data/chars/2carlem/fall03.gif
+
+anim follow17
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2carlem/fall04.gif
+
+anim follow18
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2carlem/fall24.gif
+
+anim follow19
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       75 114 36 19
+         frame      data/chars/2carlem/fall04.gif
+
+anim follow20
+	 loop       1
+	 delay      5
+	 offset     82 129
+	 bbox       0 0 0 0
+         frame      data/chars/2carlem/fall08.gif
+
+anim follow21
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0 0 0 0
+         frame      data/chars/2carlem/fall17.gif
+
+anim follow22
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0 0 0 0
+         frame      data/chars/2carlem/fall26.gif
+
+anim follow23
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0 0 0 0
+         frame      data/chars/2carlem/fall26.gif
+
+anim follow24
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       70 111 28 19
+         frame      data/chars/2carlem/fall26.gif
+
+anim follow25
+	 loop       1
+	 delay      2
+	 offset     80 129
+	 bbox       64 82 24 24
+         frame      data/chars/2carlem/fall08.gif
+
+anim follow26
+	 loop       1
+	 delay      2
+	 offset     80 129
+	 bbox       0 0 0 0
+         frame      data/chars/2carlem/fall08.gif
+
+anim follow27
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       71 79 20 49
+         frame      data/chars/2carlem/pain04.gif
+
+anim follow28
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0 0 0 0
+         frame      data/chars/2carlem/fall23.gif
+
+anim follow29
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       66 118 33 8
+         frame      data/chars/2carlem/fall23.gif
+
+anim follow30
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2carlem/pain01.gif
+
+anim follow31
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2carlem/pain03.gif
+
+anim follow32
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2carlem/pain04.gif
+
+########double dragon's grab hold
+
+anim follow33
+
+anim follow34
+
+anim follow35
+
+anim follow37
+
+anim follow36
+
+anim follow40
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0 0 0 0
+         frame      data/chars/2carlem/fall27.gif
+
+anim follow38
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0 0 0 0
+         frame      data/chars/2carlem/fall28.gif
+
+anim follow39
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       63 83 64 33
+         frame      data/chars/2carlem/fall27.gif
+
+########ip man pain
+
+anim pain70
+	 loop       0
+	 delay      4
+	 offset     80 129
+	 bbox       71 79 20 49
+         frame      data/chars/2carlem/pain01.gif
+	 delay      15
+         frame      data/chars/2carlem/pain03.gif
+
+anim pain71
+	 loop       0
+	 delay      4
+	 offset     80 129
+	 bbox       71 79 20 49
+         frame      data/chars/2carlem/pain02.gif
+	 delay      15
+         frame      data/chars/2carlem/pain03.gif
+
+
+anim pain72
+	 loop       0
+	 delay      4
+	 offset     80 129
+	 bbox       71 79 20 49
+         frame      data/chars/2carlem/pain07.gif
+	 delay      15
+         frame      data/chars/2carlem/pain09.gif
+
+anim pain73
+	 loop       0
+	 delay      4
+	 offset     80 129
+	 bbox       71 79 20 49
+         frame      data/chars/2carlem/pain08.gif
+	 delay      15
+         frame      data/chars/2carlem/pain09.gif
+
+anim pain74
+	 loop       0
+	 delay      5
+	 offset     80 129
+	 bbox       71 105 33 26
+         frame      data/chars/2carlem/fall03.gif
+         frame      data/chars/2carlem/fall04.gif
+	 delay      15
+	 bbox       0 0 0 0
+         frame      data/chars/2carlem/fall04.gif
+	 delay      8
+         frame      data/chars/2carlem/rise01.gif
+         frame      data/chars/2carlem/rise02.gif
+
+anim pain75
+	 loop       0
+	 delay      5
+	 offset     80 129
+	 bbox       71 105 33 26
+         frame      data/chars/2carlem/fall03.gif
+         frame      data/chars/2carlem/fall04.gif
+	 delay      10
+	 bbox       0 0 0 0
+         frame      data/chars/2carlem/fall04.gif
+	 delay      5
+	 bbox       71 105 33 26
+         frame      data/chars/2carlem/fall04.gif
+	 delay      10
+	 bbox       0 0 0 0
+         frame      data/chars/2carlem/rise01.gif
+         frame      data/chars/2carlem/rise02.gif
+
+anim fall101
+	 loop       0
+	 delay      60
+	 offset     80 129
+	 bbox       65 85 31 36
+	 landframe  2
+	 attack     62 78 36 41 3 1 0 0 8 3
+	 dropv      1.3 0.8 0
+         frame      data/chars/2carlem/fall01.gif
+	 attack     63 99 41 31 3 1 0 0 8 3
+	 dropv      1.3 0.8 0
+	 delay      999
+	 bbox       62 104 33 26
+         frame      data/chars/2carlem/fall03.gif
+	 attack     0 0 0 0
+	 delay      12
+	 bbox       0 0 0 0
+	 sound      data/sounds/fall2.wav
+         frame      data/chars/2carlem/fall03.gif
+         frame      data/chars/2carlem/fall04.gif
+
+#############BILLY & JIMMY ULTRA
+
+#moving backwards C01
+anim pain90
+	 loop       0
+	 delay      2
+	 offset     80 129
+	 bbox       71 79 20 49
+	 move       -1
+         frame      data/chars/2carlem/pain02.gif
+         frame      data/chars/2carlem/pain02.gif
+         frame      data/chars/2carlem/pain02.gif
+         frame      data/chars/2carlem/pain02.gif
+	 delay      15
+	 move       0
+         frame      data/chars/2carlem/pain02.gif
+	 delay      40
+         frame      data/chars/2carlem/pain03.gif
+
+#moving backwards C02
+anim pain91
+	 loop       0
+	 delay      2
+	 offset     80 129
+	 bbox       71 79 20 49
+	 move       -1
+         frame      data/chars/2carlem/pain01.gif
+         frame      data/chars/2carlem/pain01.gif
+         frame      data/chars/2carlem/pain01.gif
+         frame      data/chars/2carlem/pain01.gif
+	 delay      15
+	 move       0
+         frame      data/chars/2carlem/pain01.gif
+	 delay      40
+         frame      data/chars/2carlem/pain03.gif
+
+#stomach blows
+anim fall90
+	 loop       0
+	 delay      15
+	 offset     80 129
+	 bbox       72 85 26 34
+	 landframe  3
+         frame      data/chars/2carlem/fall29.gif
+         frame      data/chars/2carlem/fall31.gif
+	 delay      999
+	 bbox       72 85 26 34
+         frame      data/chars/2carlem/fall01.gif
+	 delay      12
+	 bbox       0 0 0 0
+	 sound      data/sounds/fall1.wav
+         frame      data/chars/2carlem/fall03.gif
+         frame      data/chars/2carlem/fall04.gif
+
+anim fall91
+	 loop       0
+	 delay      15
+	 offset     80 129
+	 bbox       72 85 26 34
+	 landframe  3
+         frame      data/chars/2carlem/fall29.gif
+         frame      data/chars/2carlem/fall30.gif
+	 delay      999
+	 bbox       72 85 26 34
+         frame      data/chars/2carlem/fall01.gif
+	 delay      12
+	 bbox       0 0 0 0
+	 sound      data/sounds/fall2.wav
+         frame      data/chars/2carlem/fall03.gif
+         frame      data/chars/2carlem/fall04.gif
+
+#juggle blows
+anim fall92
+	 loop       0
+	 delay      22
+	 offset     80 129
+	 bbox       65 85 31 36
+	 landframe  4
+	 dropframe  3
+         frame      data/chars/2carlem/fall31.gif
+	 delay      21
+         frame      data/chars/2carlem/fall31.gif
+	 delay      999
+	 bbox       72 85 26 34
+         frame      data/chars/2carlem/fall01.gif
+	 delay      999
+         frame      data/chars/2carlem/fall03.gif
+	 delay      12
+	 bbox       0 0 0 0
+	 sound      data/sounds/fall2.wav
+         frame      data/chars/2carlem/fall03.gif
+         frame      data/chars/2carlem/fall04.gif
+
+anim fall93
+	 loop       0
+	 delay      1
+	 offset     80 129
+	 bbox       65 85 31 36
+	 landframe  4
+	 dropframe  3
+         frame      data/chars/2carlem/fall30.gif
+	 delay      21
+         frame      data/chars/2carlem/fall30.gif
+	 delay      999
+	 bbox       72 85 26 34
+         frame      data/chars/2carlem/fall01.gif
+	 delay      999
+         frame      data/chars/2carlem/fall03.gif
+	 delay      12
+	 bbox       0 0 0 0
+	 sound      data/sounds/fall2.wav
+         frame      data/chars/2carlem/fall03.gif
+         frame      data/chars/2carlem/fall04.gif
+
+#jimmy super linker 02
+anim pain95
+	 loop       0
+	 delay      2
+	 offset     80 129
+	 bbox       71 79 20 49
+	 move       -2
+         frame      data/chars/2carlem/pain02.gif
+         frame      data/chars/2carlem/pain02.gif
+         frame      data/chars/2carlem/pain02.gif
+         frame      data/chars/2carlem/pain02.gif
+         frame      data/chars/2carlem/pain02.gif
+         frame      data/chars/2carlem/pain02.gif
+	 delay      25
+	 move       0
+         frame      data/chars/2carlem/pain03.gif
+         frame      data/chars/2carlem/pain04.gif
+         frame      data/chars/2carlem/pain03.gif
+         frame      data/chars/2carlem/pain04.gif
+         frame      data/chars/2carlem/pain03.gif
+         frame      data/chars/2carlem/pain04.gif
+         frame      data/chars/2carlem/pain03.gif
+
+#jimmy stomach blows
+anim pain96
+	 loop       0
+	 delay      2
+	 offset     80 129
+	 bbox       71 79 20 49
+         frame      data/chars/2carlem/fall29.gif
+	 delay      19
+	 offset     80 129
+         frame      data/chars/2carlem/pain03.gif
+         frame      data/chars/2carlem/pain03.gif
+         frame      data/chars/2carlem/pain03.gif
+         frame      data/chars/2carlem/pain03.gif
+         frame      data/chars/2carlem/pain03.gif
+         frame      data/chars/2carlem/pain03.gif
+         frame      data/chars/2carlem/pain03.gif
+         frame      data/chars/2carlem/pain03.gif
+         frame      data/chars/2carlem/pain03.gif
+         frame      data/chars/2carlem/pain03.gif
+         frame      data/chars/2carlem/pain03.gif
+
+#falling like a rock
+anim fall99
+	 loop       0
+	 delay      1
+	 offset     80 129
+	 bbox       65 85 31 36
+	 landframe  4
+	 dropframe  3
+	 bouncefactor -2
+	 quakeframe 4 1 3
+         frame      data/chars/2carlem/fall30.gif
+	 delay      21
+         frame      data/chars/2carlem/fall30.gif
+	 delay      999
+	 bbox       72 85 26 34
+         frame      data/chars/2carlem/fall01.gif
+	 delay      999
+         frame      data/chars/2carlem/fall03.gif
+	 delay      12
+	 bbox       0 0 0 0
+	 sound      data/sounds/fall9.wav
+         frame      data/chars/2carlem/fall03.gif
+         frame      data/chars/2carlem/fall04.gif
+
+anim fall50
+	 loop       0
+	 delay      999
+	 offset     80 131
+	 bbox       71 79 20 49
+	 jumpframe  0 1.2 -0.5 0
+	 landframe  1
+         frame      data/chars/2carlem/ju01.gif
+	 delay      10
+         frame      data/chars/2carlem/rise02.gif
+
+falldie  2
+nodieblink 1
+#surrender boss
+anim death50
+	 loop       0
+	 delay      8
+	 offset     80 131
+	 bbox       71 79 20 49
+         frame      data/chars/2carlem/rise02.gif
+	 frame      data/chars/2carlem/pain02.gif
+         frame      data/chars/2carlem/rise02.gif
+
+#SCRIPTED SLAMS
+anim fall80
+	 loop       0
+	 delay      5000
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2carlem/pain01.gif #follow30
+         frame      data/chars/2carlem/pain02.gif
+         frame      data/chars/2carlem/pain03.gif #follow31
+         frame      data/chars/2carlem/pain04.gif #follow 1 #follow27
+         frame      data/chars/2carlem/pain04.gif #follow32
+         frame      data/chars/2carlem/pain04.gif
+         frame      data/chars/2carlem/pain07.gif
+         frame      data/chars/2carlem/pain08.gif
+         frame      data/chars/2carlem/pain09.gif
+         frame      data/chars/2carlem/fall01.gif #follow15
+#10
+         frame      data/chars/2carlem/fall02.gif
+         frame      data/chars/2carlem/fall03.gif #follow12
+         frame      data/chars/2carlem/fall04.gif #follow17
+         frame      data/chars/2carlem/fall05.gif
+         frame      data/chars/2carlem/fall06.gif #follow 2
+         frame      data/chars/2carlem/fall07.gif
+         frame      data/chars/2carlem/fall08.gif #follow20 #follow25 #follow26
+         frame      data/chars/2carlem/fall09.gif #follow 7
+         frame      data/chars/2carlem/fall10.gif #follow 8
+         frame      data/chars/2carlem/fall11.gif #follow 3
+#20
+         frame      data/chars/2carlem/fall12.gif
+         frame      data/chars/2carlem/fall12.gif
+         frame      data/chars/2carlem/fall12.gif
+         frame      data/chars/2carlem/fall16.gif
+         frame      data/chars/2carlem/fall17.gif #follow21
+         frame      data/chars/2carlem/fall18.gif
+         frame      data/chars/2carlem/fall19.gif
+         frame      data/chars/2carlem/fall20.gif
+         frame      data/chars/2carlem/fall21.gif
+         frame      data/chars/2carlem/fall22.gif #follow 9
+#30
+         frame      data/chars/2carlem/fall23.gif #follow28
+         frame      data/chars/2carlem/fall24.gif #follow18 follow19
+         frame      data/chars/2carlem/fall25.gif #follow14
+         frame      data/chars/2carlem/fall26.gif #follow22 #follow23 #follow24
+         frame      data/chars/2carlem/fall27.gif #follow40
+         frame      data/chars/2carlem/fall28.gif #follow38
+         @cmd    conditionalflip3
+         frame      data/chars/2carlem/fall29.gif
+         frame      data/chars/2carlem/fall30.gif
+         frame      data/chars/2carlem/fall31.gif
+         frame      data/chars/2carlem/pain01.gif #follow33
+#40
+         frame      data/chars/2carlem/pain02.gif #follow34
+         frame      data/chars/2carlem/pain03.gif #follow35
+         frame      data/chars/2carlem/pain04.gif #follow37
+         frame      data/chars/2carlem/fall27.gif
+         frame      data/chars/2carlem/fall28.gif
+         frame      data/chars/2carlem/fall27.gif
+

@@ -1,0 +1,246 @@
+loadingbg       data/bgs/loading2.gif 1 -999 -999 100 -999 -999
+music           data/music/01wood.ogg 1
+at              0
+background	data/bgs/01wood/b01.gif
+panel		data/bgs/01wood/n01.gif
+direction       both
+scrollspeed     0.5
+light  		10  20
+at       	0
+settime         0
+notime          1
+noslow          1
+order	        a
+#type            1
+spawn1          73 15
+spawn2          48 20
+updatescript    data/scripts/traileru.c
+
+hole    539 218 31 0 173 189 25 500
+hole    983 215 0 0 49 49 48 500
+wall    587 176 0 0 41 41 32 500
+wall    841 181 0 0 1000 1000 44 500
+
+spawn   staint6
+flip    1
+coords  0 232
+at      0
+
+
+####### 
+
+spawn   mbox4
+flip    1
+coords  190 190
+at      0
+
+spawn   rock01
+coords  380 200
+at      0
+
+####### GROUP 1
+
+scrollx 0 110
+at      0
+
+group   3 3 
+at      0
+
+spawn   williams
+weapon  knife01
+coords  300 180
+at      0
+
+spawn   baker
+map     1
+coords  -30 190
+at      0
+
+spawn   roper
+health  80
+coords  -30 200
+at      0
+
+spawn   williams
+map     2
+coords  -50 190
+at      0
+
+spawn   roper
+map     2
+coords  280 190
+at      0
+
+group   1 1
+at      0
+
+scrollx 0 256
+at      0
+
+####### GROUP 2
+
+scrollx 255 405
+at      255
+
+group   3 3 
+at      280
+
+spawn   roper
+weapon  nunchuck
+map     3
+health  80
+coords  -30 200
+at      280
+
+spawn   linda1
+map     2
+coords  300 180
+at      280
+
+spawn   baker
+map     4
+coords  -50 190
+at      280
+
+spawn   roper
+map     4
+coords  300 190
+at      280
+
+spawn   baker
+map     3
+coords  -50 180
+at      280
+
+spawn   linda1
+coords  -30 410
+at      280
+
+group   1 1
+at      280
+
+scrollx 0 405
+at      280
+
+####### GROUP 2
+
+scrollx 404 627
+at      404
+
+group   3 3 
+at      512
+
+spawn   baker
+map     2
+coords  300 190
+at      512
+
+spawn   Jeff
+health  350
+2phealth 400
+coords  300 200
+at      512
+
+spawn   williams
+weapon  knife01
+map     4
+coords  -50 200
+at      512
+
+spawn   roper
+map     4
+coords  -50 190
+at      512
+
+spawn   williams
+map     2
+health  80
+coords  270 200
+at      512
+
+group   1 1
+at      512
+
+scrollx 627 854
+at      512
+
+group   1 1
+at      853
+
+scrollx 853 1109
+at      853
+
+####### GROUP 2
+
+scrollx 1108 1108
+at      1108
+
+group   3 3 
+at      1108
+
+spawn   williams
+map     2
+coords  320 190
+at      1108
+
+spawn   baker
+map     1
+coords  280 190
+at      1108
+
+spawn   jackson
+health  250
+2phealth 300
+map     2
+coords  300 200
+at      1108
+
+spawn   linda1
+map     1
+coords  320 190
+at      1108
+
+group   1 1
+at      1108
+
+scrollx 1108 1278
+at      1108
+
+####### GROUP 2
+
+scrollx 1248 1280
+at      1248
+
+group   3 3 
+at      1248
+
+spawn   williams
+map     1
+coords  320 190
+at      1278
+
+spawn   baker
+map     2
+coords  280 190
+at      1278
+
+spawn   roper
+map     3
+coords  300 200
+at      1278
+
+spawn   bcarlem
+health  550
+2phealth 700
+item    slowitm
+coords  320 190
+at      1278
+
+group   1 1
+at      1278
+
+spawn   stagetr
+flip    1
+coords  0 232
+at      1278
+

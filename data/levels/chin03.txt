@@ -1,0 +1,153 @@
+loadingbg       data/bgs/loading2.gif 1 -999 -999 100 -999 -999
+music           data/music/00.ogg 1
+background	data/bgs/02chin/b01.gif
+panel		data/bgs/03chin/n01.gif
+direction       both
+scrollspeed     0.5
+light  		10  20
+at       	0
+settime         0
+notime          1
+noslow          1
+order	        a
+#type            1
+spawn1           80 25
+spawn2           90 35
+updatescript    data/scripts/traileru.c
+
+wall 81 247 -2000 -2000 0 0 80 20
+wall 131 247 0 0 2000 2000 80 20
+basemap  79 247 40 17 22 0
+wall 0 234 0 0 2000 2000 400 20
+wall 77 234 0 0 73 73 4 51 3
+wall 0 247 0 0 93 0 72 1000
+wall 0 247 0 0 22 22 72 1000
+wall 510 247 -25 -25 100 100 72 1000
+wall 510 247 -93 0 100 100 72 1000
+basemap  290 208 208 30 20 228
+wall 290 210 0 0 300 300 5 5000 3
+wall 400 210 0 0 300 300 50 5000
+
+spawn   stai
+@script
+void main()
+{
+    int P1 = getplayerproperty(0, "entity");
+    int P2 = getplayerproperty(1, "entity");
+
+    if(P1){
+      changeentityproperty(P1, "Subject_to_Gravity", 0);
+      changeentityproperty(P1, "position", 123, 238, 1);
+      changeentityproperty(P1, "direction", 0);
+      changeentityproperty(P1, "animation", openborconstant("ANI_FOLLOW106"));
+    }
+    if(P2){
+      changeentityproperty(P1, "Subject_to_Gravity", 0);
+      changeentityproperty(P2, "position", 118, 243, 1);
+      changeentityproperty(P2, "direction", 0);
+      changeentityproperty(P2, "animation", openborconstant("ANI_FOLLOW106"));
+    }
+}
+@end_script
+map 1
+coords  297 208 20
+at      0
+
+spawn   fgchi
+coords  1 210 157
+at      0
+
+spawn   fgsti
+coords  81 232 12
+at      0
+
+spawn   pbag
+coords  395 224
+at      0
+
+spawn   stageinT
+coords  0 232
+at      0
+
+music           data/music/WKCHI03.ogg 1
+at              0
+
+####### GROUP 1
+
+group   1 1
+at      0
+
+spawn   delay
+health  20
+coords  300 240
+at      0
+
+group   3 3
+at      0
+
+spawn   williams
+map     4
+health  100
+coords  300 240 20
+at      0
+
+spawn   baker
+health  100
+coords  300 240 20
+at      0
+
+spawn   jackson
+map     1
+health  300
+2phealth 400
+coords  300 240 20
+at      0
+
+spawn   roper
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+
+   changeentityproperty(self, "position", 397);
+} @end_script
+health  100
+coords  397 180 120
+at      0
+
+spawn   jeff
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+
+   changeentityproperty(self, "position", 399);
+} @end_script
+health  200
+2phealth 400
+coords  399 179 120
+at      0
+
+spawn   williams
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+
+   changeentityproperty(self, "position", 397);
+} @end_script
+map     3
+health  100
+coords  397 180 120
+at      0
+
+group   1 1
+at      0
+
+music   data/music/00.ogg
+at      0
+musicfade 1
+at      0
+
+spawn   stageou
+flip    1
+coords  0 232
+at      0
+

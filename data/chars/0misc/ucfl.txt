@@ -1,0 +1,48 @@
+name	UCflash
+type	none
+shadow	0
+toflip  1
+alpha	1
+setlayer 9999999999
+
+anim idle
+	 loop      0
+	 delay     1
+	 offset    46 77
+	 flipframe 1
+	 frame     data/chars/0misc/ucfl01.gif
+	 frame     data/chars/0misc/ucfl02.gif
+	 frame     data/chars/0misc/ucfl03.gif
+	 frame     data/chars/0misc/ucfl04.gif
+	 frame     data/chars/0misc/ucfl05.gif
+	 frame     data/chars/0misc/ucfl06.gif
+	 frame     data/chars/0misc/ucfl07.gif
+	 frame     data/chars/0misc/ucfl08.gif
+	 frame     data/chars/0misc/ucfl09.gif
+	 frame     data/chars/0misc/ucfl10.gif
+	 frame     data/chars/0misc/ucfl11.gif
+	 frame     data/chars/0misc/empty.gif
+
+anim attack
+	 loop      0
+	 delay     1
+	 offset    0 0
+	 frame     data/chars/0misc/empty.gif
+anim attack2
+	 loop      0
+	 delay     1
+	 offset    0 0
+	 frame     data/chars/0misc/empty.gif
+
+anim attack3
+	 loop      0
+	 delay     1
+	 offset    0 0
+	 frame     data/chars/0misc/empty.gif
+
+anim attack4
+	 loop      0
+	 delay     1
+	 offset    0 0
+	 frame     data/chars/0misc/empty.gif
+

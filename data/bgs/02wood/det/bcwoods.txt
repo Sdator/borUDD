@@ -1,0 +1,34 @@
+name	bcwoods
+type	none
+shadow	0
+antigravity   95
+lifespan  2
+
+anim idle
+	 loop      1
+	 delay     6
+	 offset    128 228
+	 frame     Data/Bgs/02wood/det/bcwoods.gif
+	 frame     Data/chars/0misc/empty.gif
+	 frame     Data/Bgs/02wood/det/bcwoods.gif
+	 frame     Data/chars/0misc/empty.gif
+	 frame     Data/Bgs/02wood/det/bcwoods.gif
+	 frame     Data/chars/0misc/empty.gif
+	 frame     Data/Bgs/02wood/det/bcwoods.gif
+	 frame     Data/chars/0misc/empty.gif
+	 frame     Data/Bgs/02wood/det/bcwoods.gif
+	 frame     Data/chars/0misc/empty.gif
+	 frame     Data/Bgs/02wood/det/bcwoods.gif
+	 frame     Data/chars/0misc/empty.gif
+	 frame     Data/Bgs/02wood/det/bcwoods.gif
+	 frame     Data/chars/0misc/empty.gif
+	 frame     Data/Bgs/02wood/det/bcwoods.gif
+	 frame     Data/chars/0misc/empty.gif
+	 frame     Data/Bgs/02wood/det/bcwoods.gif
+	 frame     Data/chars/0misc/empty.gif
+	 frame     Data/Bgs/02wood/det/bcwoods.gif
+	 frame     Data/chars/0misc/empty.gif
+	 frame     Data/Bgs/02wood/det/bcwoods.gif
+	 frame     Data/chars/0misc/empty.gif
+	 frame     Data/Bgs/02wood/det/bcwoods.gif
+	 frame     Data/chars/0misc/empty.gif

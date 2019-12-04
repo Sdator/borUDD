@@ -1,0 +1,12 @@
+name	 statue02
+type	 none
+shadow	 0
+gfxshadow 1
+
+
+	anim idle
+	loop      1
+	delay     14
+	offset    80 160
+	frame     Data/Bgs/04palc/det/statue02.gif
+

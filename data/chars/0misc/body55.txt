@@ -1,0 +1,34 @@
+name	body55
+type	text
+subtype noskip
+setlayer 9999999999
+
+
+
+anim idle
+	 loop      0
+	 delay     3
+	 health    7
+	 offset    128 228
+	 sound     data/sounds/beati.wav
+	 frame     data/chars/0misc/body05.gif
+	 sound     data/sounds/beat9.wav
+	 frame     data/chars/0misc/body05.gif
+	 sound     data/sounds/beatt.wav
+	 frame     data/chars/0misc/body05.gif
+	 sound     data/sounds/beati.wav
+	 frame     data/chars/0misc/body05.gif
+	 sound     data/sounds/beat9.wav
+	 frame     data/chars/0misc/body05.gif
+	 sound     data/sounds/beatt.wav
+	 frame     data/chars/0misc/body05.gif
+	 sound     data/sounds/beati.wav
+	 frame     data/chars/0misc/body05.gif
+	 sound     data/sounds/beat9.wav
+	 frame     data/chars/0misc/body05.gif
+	 sound     data/sounds/beatt.wav
+	 frame     data/chars/0misc/body05.gif
+	 delay     2
+	 frame     data/chars/0misc/body05.gif
+	 frame     data/chars/0misc/empty.gif
+

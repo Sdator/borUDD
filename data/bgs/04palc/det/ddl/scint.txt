@@ -1,0 +1,62 @@
+name	Scint
+speed   10
+type	none
+shadow	0
+alpha   2
+
+anim idle
+	loop	1
+	offset	0 228
+	delay	600
+	frame	Data/Bgs/04palc/det/ddl/free.gif
+	delay	3
+        frame	Data/Bgs/04palc/det/ddl/black.gif
+	delay	9
+	frame	Data/Bgs/04palc/det/ddl/d2.gif
+	delay	3
+        frame	Data/Bgs/04palc/det/ddl/black.gif
+	delay	9
+	frame	Data/Bgs/04palc/det/ddl/d3.gif
+	delay	3
+        frame	Data/Bgs/04palc/det/ddl/black.gif
+	delay	9
+	frame	Data/Bgs/04palc/det/ddl/d4.gif
+	delay	3
+        frame	Data/Bgs/04palc/det/ddl/black.gif
+	delay	9
+	frame	Data/Bgs/04palc/det/ddl/d5.gif
+	delay	3
+        frame	Data/Bgs/04palc/det/ddl/black.gif
+	delay	9
+	frame	Data/Bgs/04palc/det/ddl/d2.gif
+	delay	3
+        frame	Data/Bgs/04palc/det/ddl/black.gif
+	delay	9
+	frame	Data/Bgs/04palc/det/ddl/d3.gif
+	delay	3
+        frame	Data/Bgs/04palc/det/ddl/black.gif
+	delay	9
+	frame	Data/Bgs/04palc/det/ddl/d4.gif
+	delay	3
+        frame	Data/Bgs/04palc/det/ddl/black.gif
+	delay	9
+	frame	Data/Bgs/04palc/det/ddl/d5.gif
+	delay	3
+        frame	Data/Bgs/04palc/det/ddl/black.gif
+	delay	100
+	frame	Data/Bgs/04palc/det/ddl/d2.gif
+	delay	3
+        frame	Data/Bgs/04palc/det/ddl/black.gif
+	delay	100
+	frame	Data/Bgs/04palc/det/ddl/d3.gif
+	delay	3
+        frame	Data/Bgs/04palc/det/ddl/black.gif
+	delay	100
+	frame	Data/Bgs/04palc/det/ddl/d4.gif
+	delay	3
+        frame	Data/Bgs/04palc/det/ddl/black.gif
+	delay	100
+	frame	Data/Bgs/04palc/det/ddl/d5.gif
+	delay	3
+        frame	Data/Bgs/04palc/det/ddl/black.gif
+

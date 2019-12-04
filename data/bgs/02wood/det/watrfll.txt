@@ -1,0 +1,14 @@
+name	watrfll
+type	none
+shadow	0
+alpha   1
+
+anim idle
+	 loop      1
+	 delay     4
+	 offset    0 228
+	 frame     Data/Bgs/02wood/det/for02.gif
+	 frame     Data/Bgs/02wood/det/for03.gif
+	 frame     Data/Bgs/02wood/det/for04.gif
+	 frame     Data/Bgs/02wood/det/for05.gif
+

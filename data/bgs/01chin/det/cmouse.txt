@@ -1,0 +1,24 @@
+name	cmouse
+type	none
+shadow	0
+#setlayer 800
+animationscript   data/scripts/lib001.c
+
+anim idle
+	 loop      1
+	 delay     6
+	 offset    19 13
+	 @cmd velo001 0.7 0 0
+	 frame     data/bgs/01chin/det/mouse01.gif
+	 frame     data/bgs/01chin/det/mouse02.gif
+	 frame     data/bgs/01chin/det/mouse03.gif
+	 frame     data/bgs/01chin/det/mouse04.gif
+	 frame     data/bgs/01chin/det/mouse05.gif
+	 frame     data/bgs/01chin/det/mouse06.gif
+
+
+
+
+
+
+

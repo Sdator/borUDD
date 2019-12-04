@@ -1,0 +1,87 @@
+name	tbox3
+health	1
+nolife  1
+#noatflash 1
+#flash     Flash
+type	 obstacle
+gfxshadow   1
+falldie  1
+nodieblink 2
+nomove 1 1
+animationscript   data/scripts/lib001.c
+alpha   1
+nodrop  2
+palette        data/chars/0misc/mcd01.gif
+
+anim spawn
+	 loop       0
+	 delay      200
+	 offset     85 92
+	 bbox       0 0 0 0
+         frame      data/chars/0misc/empty.gif
+	 delay      5
+         frame      data/chars/0misc/mcd01.gif
+         frame      data/chars/0misc/empty.gif
+         frame      data/chars/0misc/mcd01.gif
+         frame      data/chars/0misc/empty.gif
+         frame      data/chars/0misc/mcd01.gif
+         frame      data/chars/0misc/empty.gif
+         frame      data/chars/0misc/mcd01.gif
+         frame      data/chars/0misc/empty.gif
+         frame      data/chars/0misc/mcd01.gif
+         frame      data/chars/0misc/empty.gif
+         frame      data/chars/0misc/mcd01.gif
+         frame      data/chars/0misc/empty.gif
+         frame      data/chars/0misc/mcd01.gif
+         frame      data/chars/0misc/empty.gif
+         frame      data/chars/0misc/mcd01.gif
+         frame      data/chars/0misc/empty.gif
+         frame      data/chars/0misc/mcd01.gif
+
+anim idle
+	 loop       1
+	 delay      10
+	 offset     85 92
+	 bbox       79 77 12 16
+         frame      data/chars/0misc/mcd01.gif
+         frame      data/chars/0misc/mcd02.gif
+         frame      data/chars/0misc/mcd03.gif
+         frame      data/chars/0misc/mcd04.gif
+         frame      data/chars/0misc/mcd05.gif
+         frame      data/chars/0misc/mcd06.gif
+         frame      data/chars/0misc/mcd07.gif
+         frame      data/chars/0misc/mcd08.gif
+
+anim death
+	 loop       0
+	 delay      4
+	 offset     85 92
+	 bbox       0
+	 load       tbox4
+         frame      data/chars/0misc/mcd01.gif
+@script
+    void vSelf = getlocalvar("self");
+if(frame==1)
+{
+      fademusic(0.5, "data/music/HNK02.ogg", 1, 23814);
+}@end_script
+         frame      data/chars/0misc/mcd02.gif
+         frame      data/chars/0misc/mcd03.gif
+         frame      data/chars/0misc/mcd04.gif
+         frame      data/chars/0misc/mcd05.gif
+         frame      data/chars/0misc/mcd06.gif
+         frame      data/chars/0misc/mcd07.gif
+         frame      data/chars/0misc/mcd08.gif
+         frame      data/chars/0misc/empty.gif
+         frame      data/chars/0misc/mcd01.gif
+         frame      data/chars/0misc/empty.gif
+         frame      data/chars/0misc/mcd02.gif
+         frame      data/chars/0misc/empty.gif
+         frame      data/chars/0misc/mcd03.gif
+	 delay      100
+         frame      data/chars/0misc/empty.gif
+@cmd spawn001 "tbox4" "tbox4" 0 0 0 0 0
+	 delay      10
+         frame      data/chars/0misc/empty.gif
+
+

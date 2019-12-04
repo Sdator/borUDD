@@ -1,0 +1,18 @@
+name	apchairs
+type    none
+shadow  0
+gfxshadow 1
+#setlayer 1
+subject_to_gravity 0
+subject_to_wall 0
+subject_to_hole 0
+Subject_to_MinZ 0
+Subject_to_MaxZ 0
+
+
+anim idle
+	loop	1
+	delay	10
+	offset	141 42
+	frame	data/Bgs/02airp/det/apchairs.gif
+

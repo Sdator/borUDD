@@ -1,0 +1,26 @@
+name	chenmg01
+type	none
+subject_to_wall 0
+subject_to_hole 0
+antigravity   95
+lifespan  13
+
+anim idle
+	 loop      0
+	 delay     200
+	 offset    128 228
+	 load      chenmg02
+	 subentity chenmg02
+	 spawnframe 1 128 228 0 1
+	 frame     Data/chars/0misc/empty.gif
+	 delay     300
+	 frame     Data/chars/0misc/empty.gif
+	 delay     900
+	 frame     Data/chars/0misc/empty.gif
+
+
+
+
+
+
+

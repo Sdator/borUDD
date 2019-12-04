@@ -1,0 +1,163 @@
+name	  pbag
+type	  npc
+nomove    1 1
+cantgrab  1
+health	  100000000000000000
+nolife    1
+noatflash 1
+backpain  1
+gfxshadow     1
+hostile   enemy player
+candamage enemy player
+
+anim spawn
+	loop	0
+	delay   4
+	offset  110 176
+	bbox	102 95 16 64
+	frame	data/bgs/03chin/det/pbag01.gif
+
+anim idle 
+	loop	1
+	delay   4
+	offset  110 176
+	bbox	102 95 16 64
+	frame	data/bgs/03chin/det/pbag01.gif
+
+anim pain
+	loop	0
+	delay   6
+	offset  110 176
+	bbox	0
+	hitfx   data/sounds/beat7.wav
+	attack  88 96 24 60 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag02.gif
+	attack  54 96 42 48 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag03.gif
+
+	delay   9
+	attack  26 87 47 44 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag04.gif
+
+	delay   6
+	attack  54 96 42 48 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag03.gif
+	attack  88 96 24 60 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag02.gif
+	attack  102 95 16 64 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag01.gif
+	attack  108 94 24 63 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag05.gif
+	attack  123 95 37 56 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag06.gif
+
+	delay   9
+	attack  144 84 50 49 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag07.gif
+
+	delay   6
+	attack  123 95 37 56 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag06.gif
+	attack  108 94 24 63 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag05.gif
+	attack  102 95 16 64 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag01.gif
+	attack  88 96 24 60 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag02.gif
+
+	delay   9
+	attack  54 96 42 48 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag03.gif
+
+	delay   6
+	attack  88 96 24 60 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag02.gif
+	attack  102 95 16 64 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag01.gif
+
+	delay   9
+	attack  0 0 0 0
+	frame	data/bgs/03chin/det/pbag05.gif
+
+
+anim backpain
+	loop	0
+	delay   4
+	offset  110 176
+	bbox	0
+	hitfx   data/sounds/beat7.wav
+	attack  108 94 24 63 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag05.gif
+	attack  123 95 37 56 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag06.gif
+
+	delay   9
+	attack  144 84 50 49 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag07.gif
+
+	delay   6
+	attack  123 95 37 56 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag06.gif
+	attack  108 94 24 63 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag05.gif
+	attack  102 95 16 64 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag01.gif
+	attack  88 96 24 60 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag02.gif
+
+	delay   9
+	attack  54 96 42 48 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag03.gif
+
+	delay   6
+	attack  88 96 24 60 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag02.gif
+	attack  102 95 16 64 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag01.gif
+	attack  108 94 24 63 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag05.gif
+
+	delay   9
+	attack  123 95 37 56 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag06.gif
+
+	delay   6
+	attack  108 94 24 63 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag05.gif
+	attack  102 95 16 64 0 0 0 0 8 3
+	dropv   1 1.5 0
+	frame	data/bgs/03chin/det/pbag01.gif
+
+	delay   9
+	attack  0 0 0 0
+	frame	data/bgs/03chin/det/pbag02.gif
+

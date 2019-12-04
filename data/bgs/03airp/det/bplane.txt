@@ -1,0 +1,25 @@
+name	bplane
+type	none
+nomove  1
+speed   5
+shadow  0
+alpha   0
+setlayer -5
+offscreenkill 600
+
+animationscript   data/scripts/lib001.c
+
+
+anim idle
+	 loop      0
+	 delay     80
+	 offset    180 224
+	 @cmd velo001 -1.3 0 0
+	 sound     data/sounds/airpla01.wav
+	 frame     data/Bgs/03airp/det/bplane.gif
+	 delay     300
+	 @cmd velo001 -1.3 -0.05 0
+	 frame     data/Bgs/03airp/det/bplane.gif
+
+
+

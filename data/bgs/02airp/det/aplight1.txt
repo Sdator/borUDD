@@ -1,0 +1,19 @@
+name	aplight1
+type    none
+shadow  0
+#setlayer 1
+subject_to_gravity 0
+subject_to_wall 0
+subject_to_hole 0
+Subject_to_MinZ 0
+Subject_to_MaxZ 0
+
+
+anim idle
+	loop	1
+	delay	10
+	offset	0 476
+	drawmethod alpha 6
+	drawmethod channel 0.30
+	frame	data/Bgs/02airp/det/aplight1.gif
+

@@ -1,0 +1,15 @@
+name	 dance06
+type	 none
+shadow	 1
+  
+palette          Data/Bgs/04palc/det/dance19.gif
+alternatepal     Data/Bgs/04palc/det/dance20.gif
+
+	anim idle
+	loop      1
+	delay     10
+	offset    32 96
+	frame     Data/Bgs/04palc/det/dance17.gif
+	frame     Data/Bgs/04palc/det/dance18.gif
+	frame     Data/Bgs/04palc/det/dance19.gif
+

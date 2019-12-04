@@ -1,0 +1,1661 @@
+name          duke1b
+type          enemy
+candamage     player obstacle npc
+subject_to_obstacle 0
+health        750
+jugglepoints  20
+speed         6
+jumpheight    2.43
+grabdistance  35
+throw         2 3
+throwdamage   20
+shadow        0
+gfxshadow     1
+noquake       1
+nolife        1
+risetime      30
+paingrab      1
+antigravity   40
+blockodds     1
+thold         7
+aggression    300
+cantgrab      1
+atchain       1 2 3 0 0
+diesound      data/sounds/mastd1.wav
+projectilehit enemy obstacle
+falldie       2
+nodieblink    2
+
+aimove chase
+
+animationscript   data/scripts/lib001.c
+takedamagescript  data/scripts/finisher.c
+ondrawscript	  data/scripts/shadowon.c
+onblockWscript         data/scripts/spikesw.c 
+
+palette         data/chars/2duke/idle01.gif   
+alternatepal    data/chars/2duke/alt01.gif   
+alternatepal    data/chars/2duke/alt02.gif   
+
+anim spawn #this must be edited like this for the follow100 to work.
+@script
+    void self = getlocalvar("self");
+
+    if(frame==0){
+      changeentityproperty(self, "Subject_to_Gravity", 0);
+      changeentityproperty(self, "Subject_to_Wall", 0);
+      changeentityproperty(self, "Subject_to_MinZ", 0);
+      changeentityproperty(self, "Subject_to_MaxZ", 0);
+    }
+    if(frame==1){
+      changeentityproperty(self, "Subject_to_Gravity", 1);
+      changeentityproperty(self, "Subject_to_Wall", 1);
+      changeentityproperty(self, "Subject_to_MinZ", 1);
+      changeentityproperty(self, "Subject_to_MaxZ", 1);
+    }
+@end_script
+	 loop       0
+	 delay      2
+	 offset     80 129
+@script
+    void vSelf = getlocalvar("self");
+if(frame==1)
+{
+      fademusic(1.5, "data/music/03palacbx.ogg", 1, 0);
+}@end_script
+         frame      data/chars/2duke/idle01.gif
+         frame      data/chars/2duke/idle01.gif  
+
+anim death
+@script
+    if(frame==1){
+      void vEntity;                                     //Target entity placeholder.
+      int  iEntity;                                     //Entity enumeration holder.
+      int  iType;                                       //Entity type.
+      int  iHP;                                         //Entity HP
+      int  iMax = openborvariant("count_entities");     //Entity count.
+
+       //Enumerate and loop through entity collection.
+      for(iEntity=0; iEntity<iMax; iEntity++){    
+        vEntity = getentity(iEntity);                 //Get target entity from current loop.
+        iType   = getentityproperty(vEntity, "type"); //Get target type.
+        iHP   = getentityproperty(vEntity, "health"); //Get target health
+
+        //Enemy type?
+        if(iType == openborconstant("TYPE_ENEMY") && iHP > 0){
+          damageentity(vEntity, vEntity, 2000, 1, openborconstant("ATK_NORMAL50"));
+        }
+      } 
+      changeopenborvariant("slowmotion", 0);
+    }
+    if(frame==103){
+      void self = getlocalvar("self");
+      changeopenborvariant("slowmotion", 0);
+      killentity(self);
+    }
+@end_script
+	 loop       0
+	 delay      20
+	 offset     80 129
+	 bbox       71 79 25 50
+         frame      data/chars/2duke/fall04.gif 
+	 delay      12
+         frame      data/chars/2duke/rise01.gif 
+         frame      data/chars/2duke/crouch.gif 
+         frame      data/chars/2duke/fall03.gif 
+
+         frame      data/chars/2duke/pain01.gif 
+         frame      data/chars/2duke/pain03.gif 
+         frame      data/chars/2duke/pain04.gif 
+         frame      data/chars/2duke/pain05.gif 
+         frame      data/chars/2duke/pain04.gif 
+         frame      data/chars/2duke/pain03.gif 
+         frame      data/chars/2duke/pain04.gif 
+         frame      data/chars/2duke/pain05.gif 
+	 delay      15
+         frame      data/chars/2duke/fall01.gif 
+         frame      data/chars/2duke/fall03.gif 
+	 delay      90
+	 sound      data/sounds/pain2.wav
+	 sound      data/sounds/fall2.wav
+         frame      data/chars/2duke/fall04.gif 
+	 delay      25
+         frame      data/chars/2duke/death04.gif 
+	 delay      80
+         frame      data/chars/2duke/fall04.gif 
+	 delay      15
+         frame      data/chars/2duke/rise01.gif 
+         frame      data/chars/2duke/fall03.gif 
+	 delay      60
+         frame      data/chars/2duke/fall04.gif 
+
+	 delay      15
+         frame      data/chars/2duke/rise01.gif 
+         frame      data/chars/2duke/crouch.gif 
+         frame      data/chars/2duke/fall01.gif 
+         frame      data/chars/2duke/fall03.gif 
+	 delay      90
+	 sound      data/sounds/pain3.wav
+	 sound      data/sounds/fall2.wav
+         frame      data/chars/2duke/fall04.gif 
+
+	 delay      300
+         frame      data/chars/2duke/death05.gif 
+	 delay      60
+         frame      data/chars/2duke/fall04.gif 
+	 delay      25
+         frame      data/chars/2duke/fall03.gif 
+	 delay      200
+         frame      data/chars/2duke/fall04.gif 
+	 delay      400
+	 sound      data/sounds/pain1.wav
+         frame      data/chars/2duke/death03.gif 
+	 delay      100
+         frame      data/chars/2duke/fall04.gif 
+	 delay      5
+         frame      data/chars/2duke/death01.gif 
+         frame      data/chars/2duke/death02.gif 
+         frame      data/chars/2duke/death01.gif 
+         frame      data/chars/2duke/death02.gif 
+         frame      data/chars/2duke/death01.gif 
+         frame      data/chars/2duke/death02.gif 
+         frame      data/chars/2duke/death01.gif 
+         frame      data/chars/2duke/death02.gif 
+         frame      data/chars/2duke/death01.gif 
+         frame      data/chars/2duke/death02.gif 
+         frame      data/chars/2duke/death01.gif 
+         frame      data/chars/2duke/death02.gif 
+         frame      data/chars/2duke/death01.gif 
+         frame      data/chars/2duke/death02.gif 
+         frame      data/chars/2duke/death01.gif 
+         frame      data/chars/2duke/death02.gif 
+         frame      data/chars/2duke/death01.gif 
+         frame      data/chars/2duke/death02.gif 
+         frame      data/chars/2duke/death01.gif 
+         frame      data/chars/2duke/death02.gif 
+         frame      data/chars/2duke/death01.gif 
+         frame      data/chars/2duke/death02.gif 
+         frame      data/chars/2duke/death01.gif 
+         frame      data/chars/2duke/death02.gif 
+         frame      data/chars/2duke/death01.gif 
+         frame      data/chars/2duke/death02.gif 
+         frame      data/chars/2duke/death01.gif 
+         frame      data/chars/2duke/death02.gif 
+         frame      data/chars/2duke/death01.gif 
+         frame      data/chars/2duke/death02.gif 
+         frame      data/chars/2duke/death01.gif 
+         frame      data/chars/2duke/death02.gif 
+         frame      data/chars/2duke/death01.gif 
+         frame      data/chars/2duke/death02.gif 
+         frame      data/chars/2duke/death01.gif 
+         frame      data/chars/2duke/death02.gif 
+         frame      data/chars/2duke/death01.gif 
+         frame      data/chars/2duke/death02.gif 
+         frame      data/chars/2duke/death01.gif 
+         frame      data/chars/2duke/death02.gif 
+         frame      data/chars/2duke/death01.gif 
+         frame      data/chars/2duke/death02.gif 
+         frame      data/chars/2duke/death01.gif 
+         frame      data/chars/2duke/death02.gif 
+         frame      data/chars/2duke/death01.gif 
+         frame      data/chars/2duke/death02.gif 
+         frame      data/chars/2duke/death01.gif 
+         frame      data/chars/2duke/death02.gif 
+         frame      data/chars/2duke/death01.gif 
+         frame      data/chars/2duke/death02.gif 
+	 delay      7
+         frame      data/chars/2duke/fall04.gif 
+         frame      data/chars/0misc/empty.gif 
+         frame      data/chars/2duke/fall04.gif 
+         frame      data/chars/0misc/empty.gif 
+         frame      data/chars/2duke/fall04.gif 
+         frame      data/chars/0misc/empty.gif 
+         frame      data/chars/2duke/fall04.gif 
+         frame      data/chars/0misc/empty.gif 
+         frame      data/chars/2duke/fall04.gif 
+         frame      data/chars/0misc/empty.gif 
+         frame      data/chars/2duke/fall04.gif 
+         frame      data/chars/0misc/empty.gif 
+         frame      data/chars/2duke/fall04.gif 
+         frame      data/chars/0misc/empty.gif 
+         frame      data/chars/2duke/fall04.gif 
+         frame      data/chars/0misc/empty.gif 
+         frame      data/chars/2duke/fall04.gif 
+         frame      data/chars/0misc/empty.gif 
+         frame      data/chars/2duke/fall04.gif 
+         frame      data/chars/0misc/empty.gif
+         frame      data/chars/2duke/fall04.gif 
+         frame      data/chars/0misc/empty.gif
+
+anim idle
+@cmd clearL
+	 loop       0
+	 delay      1
+	 offset     80 129
+	 bbox       71 79 25 50
+         frame      data/chars/2duke/idle01.gif   
+
+anim block
+	 loop       0
+	 delay      2
+	 move       -3
+	 offset     80 129
+	 bbox       0 0 0 0
+         frame      data/chars/2duke/block.gif   
+         frame      data/chars/2duke/block.gif   
+         frame      data/chars/2duke/block.gif   
+         frame      data/chars/2duke/block.gif   
+         frame      data/chars/2duke/block.gif   
+         frame      data/chars/2duke/block.gif   
+	 delay      15
+         frame      data/chars/2duke/block.gif   
+
+anim walk
+	 loop       1
+	 delay      20
+	 offset     80 129
+	 bbox       71 79 25 50
+         frame      data/chars/2duke/wk01.gif
+	 delay      15
+         frame      data/chars/2duke/wk02.gif
+	 delay      20
+         frame      data/chars/2duke/wk03.gif
+	 delay      15
+         frame      data/chars/2duke/wk04.gif
+
+anim attack1
+@cmd attackoff
+	 loop       0
+	 delay      4
+	 range      30 42
+	 rangez     -2 2
+	 offset     80 129
+	 bbox       71 79 25 50
+	 hitfx      data/sounds/beatc.wav
+         frame      data/chars/2duke/a101.gif
+         frame      data/chars/2duke/a102.gif
+	 delay      9
+	 attack5    87 75 33 12 9 0 0 0 8 3
+	 dropv      1 1.5 0
+         frame      data/chars/2duke/a103.gif
+	 delay      7
+	 attack5    0
+         frame      data/chars/2duke/a102.gif
+         frame      data/chars/2duke/a101.gif
+anim attack2
+@cmd attackoff
+	 range      30 42
+	 rangez     -2 2
+	 loop       0
+	 delay      7
+	 offset     80 129
+	 bbox       71 79 25 50
+	 fastattack 1
+         frame      data/chars/2duke/b101.gif
+         frame      data/chars/2duke/b102.gif
+	 hitfx      data/sounds/beatm.wav
+	 delay      9
+	 attack3    88 91 39 25 5 0 1 0 8 3
+	 dropv      1 2 0
+         frame      data/chars/2duke/b103.gif
+	 delay      5
+	 attack3    0
+         frame      data/chars/2duke/b104.gif
+         frame      data/chars/2duke/b105.gif
+	 hitfx      data/sounds/beatl.wav
+	 delay      9
+	 attack4    89 73 40 23 5 0 1 0 8 3
+	 dropv      1 2 0
+         frame      data/chars/2duke/b106.gif
+	 delay      5
+	 attack4    0
+         frame      data/chars/2duke/b105.gif
+         frame      data/chars/2duke/b104.gif
+	 hitfx      data/sounds/beatq.wav
+	 delay      11
+	 attack5    88 91 39 25 7 0 1 0 8 3
+	 dropv      1 2 0
+         frame      data/chars/2duke/b103.gif
+	 attack5    0
+         frame      data/chars/2duke/b102.gif
+         frame      data/chars/2duke/b101.gif
+anim attack3
+@cmd attackoff
+	 range      30 42
+	 rangez     -2 2
+	 loop       0
+	 delay      7
+	 offset     80 129
+	 bbox       71 79 25 50
+	 jumpframe  1 2.3 1 0
+	 landframe  10
+	 flipframe  5
+@cmd shadow 10 10 60 4 2 250 250 250
+         frame      data/chars/2duke/a101.gif
+	 delay      9
+         frame      data/chars/2duke/ju01.gif
+         frame      data/chars/2duke/ju02.gif
+         frame      data/chars/2duke/ju03.gif
+         frame      data/chars/2duke/ju04.gif
+#---flip
+         frame      data/chars/2duke/ju04.gif
+         frame      data/chars/2duke/ak01.gif
+	 hitfx      data/sounds/beath.wav
+	 delay      14
+	 attack     88 91 39 25 10 1 1 0 8 3
+	 dropv      2 1.5 0
+         frame      data/chars/2duke/ak02.gif
+	 delay      8
+	 attack     0
+         frame      data/chars/2duke/ak01.gif
+	 delay      999
+         frame      data/chars/2duke/ju01.gif
+	 delay      14
+         frame      data/chars/2duke/crouch.gif
+
+anim freespecial2
+@cmd attackoff
+	 range      70 120
+	 rangez     -2 2
+	 loop       1 3 6
+	 delay      8
+	 offset     80 129
+	 bbox       71 79 25 50
+	 jumpframe  2 2 3 0
+	 flipframe  8
+	 landframe  8
+         frame      data/chars/2duke/a101.gif
+         frame      data/chars/2duke/b201.gif
+	 hitfx      data/sounds/beatoo.wav
+	 delay      4
+	 attack     60 68 57 64 22 1 1 0 8 3	
+	 forcedirection -1
+	 dropv      2 2 0
+	 sound      data/sounds/punch5.wav
+         frame      data/chars/2duke/tor02.gif
+         frame      data/chars/2duke/tor03.gif
+         frame      data/chars/2duke/tor01.gif
+	 sound      data/sounds/punch5.wav
+         frame      data/chars/2duke/tor05.gif
+         frame      data/chars/2duke/tor04.gif
+         frame      data/chars/2duke/tor02.gif
+	 attack     0 
+	 delay      14
+         frame      data/chars/2duke/ju08.gif
+
+anim freespecial1
+@cmd attackoff
+	 range      5 29
+	 rangez     -2 2
+	 loop       0
+	 delay      9
+	 offset     80 129
+	 bbox       0 0 0 0
+	 followanim 42
+	 followcond 3
+	 hitfx      data/sounds/beatf.wav
+         frame      data/chars/2duke/fb01.gif
+         frame      data/chars/2duke/fb02.gif
+	 delay      40
+	 attack     99 84 22 15 0 0 1 1 8 3	
+	 forcedirection -1
+         frame      data/chars/2duke/fb03.gif
+	 delay      10
+	 attack     0 0 0 0
+         frame      data/chars/2duke/hold01.gif
+
+anim follow42
+	 loop       0
+	 delay      7
+	 offset     80 129
+	 bbox       0 0 0 0
+@cmd slamstart2
+@cmd antiwall2 26 -9 0
+@cmd position 1 25 2 -0.1 0
+	 sound      data/sounds/enta04.wav
+         frame      data/chars/2duke/hold02.gif
+@cmd antiwall2 26 -9 0
+@cmd position 2 24 2 -0.1 0
+         frame      data/chars/2duke/hold03.gif
+	 sound      data/sounds/beatj.wav
+	 delay      9
+@cmd antiwall2 26 -8 0
+@cmd position 4 23 5 -0.1 0
+         frame      data/chars/2duke/hold04.gif
+	 delay      7
+@cmd position 1 25 2 -0.1 0
+         frame      data/chars/2duke/hold02.gif
+@cmd position 2 24 2 -0.1 0
+         frame      data/chars/2duke/hold03.gif
+	 delay      9
+	 sound      data/sounds/beatj.wav
+@cmd position 4 23 5 -0.1 0
+         frame      data/chars/2duke/hold04.gif
+	 delay      7
+@cmd position 1 25 2 -0.1 0
+         frame      data/chars/2duke/hold02.gif
+@cmd position 2 24 2 -0.1 0
+         frame      data/chars/2duke/hold03.gif
+	 delay      9
+	 sound      data/sounds/beatj.wav
+@cmd position 4 23 5 -0.1 0
+         frame      data/chars/2duke/hold04.gif
+	 delay      7
+@cmd position 1 25 2 -0.1 0
+         frame      data/chars/2duke/hold02.gif
+@cmd position 2 24 2 -0.1 0
+         frame      data/chars/2duke/hold03.gif
+	 delay      15
+@cmd depost 0
+@cmd finish 15 1 -1.5 1.5 0 0
+	 sound      data/sounds/beatg.wav
+         frame      data/chars/2duke/hold04.gif
+
+anim riseattack
+@cmd attackoff
+	 range      -39 48
+	 rangez     -3 3
+	 loop       0
+	 delay      7
+	 offset     80 129
+	 bbox       0
+	 hitfx      data/sounds/beat6.wav
+         frame      data/chars/2duke/spec01.gif
+	 sound      data/sounds/punch3.wav
+	 attack     41 88 47 41 10 1 1 0 8 5
+	 dropv      1 1.5 0
+         frame      data/chars/2duke/spec02.gif
+	 attack     0
+         frame      data/chars/2duke/spec03.gif
+	 attack     77 92 51 38 10 1 1 0 8 5
+	 dropv      1 1.5 0
+         frame      data/chars/2duke/spec04.gif
+         frame      data/chars/2duke/spec01.gif
+	 sound      data/sounds/punch3.wav
+	 attack     41 88 47 41 10 1 1 0 8 5
+	 dropv      1 1.5 0
+         frame      data/chars/2duke/spec02.gif
+	 attack     0
+         frame      data/chars/2duke/spec03.gif
+	 attack     77 92 51 38 10 1 1 0 8 5
+	 dropv      1 1.5 0
+         frame      data/chars/2duke/spec04.gif
+         frame      data/chars/2duke/spec01.gif
+	 sound      data/sounds/punch3.wav
+	 attack     41 88 47 41 10 1 1 0 8 5
+	 dropv      1 1.5 0
+         frame      data/chars/2duke/spec02.gif
+	 attack     0
+         frame      data/chars/2duke/spec03.gif
+	 attack     77 92 51 38 10 1 1 0 8 5
+	 dropv      1 1.5 0
+         frame      data/chars/2duke/spec04.gif
+	 attack     0
+         frame      data/chars/2duke/spec05.gif
+	 delay      10
+         frame      data/chars/2duke/crouch.gif
+
+anim upper
+@cmd attackoff
+	 range      0 60
+	 rangez     -3 3
+	 loop       0
+	 delay      12
+	 offset     80 129
+	 bbox       0 0 0 0
+	 jumpframe  1 2 0.5 0
+	 landframe  5
+	 hitfx      data/sounds/beatc.wav
+         frame      data/chars/2duke/crouch.gif
+	 delay      11
+         frame      data/chars/2duke/ju01.gif
+	 delay      9
+         frame      data/chars/2duke/ak01.gif
+	 delay      30
+	 attack     83 78 42 32 10 1 1 0 8 5
+	 forcedirection -1
+	 dropv      1 1.5 0
+         frame      data/chars/2duke/ak03.gif
+	 delay      999
+	 attack     0
+         frame      data/chars/2duke/ju01.gif
+	 delay      12
+         frame      data/chars/2duke/crouch.gif
+
+anim jump
+	 loop       0
+	 delay      999
+	 offset     80 129
+	 bbox       71 79 25 50
+         frame      data/chars/2duke/ju01.gif
+
+anim jumpland
+	 loop       0
+	 delay      10
+	 offset     80 129
+	 bbox       0 0 0 0
+         frame      data/chars/2duke/crouch.gif
+
+anim walkoff
+	 loop       0
+	 delay      999
+	 offset     80 129
+	 bbox       71 79 25 50
+	 landframe  1
+         frame      data/chars/2duke/ju01.gif
+	 delay      10
+	 bbox       0 0 0 0
+         frame      data/chars/2duke/crouch.gif
+
+anim grabbed
+anim spain
+
+anim pain1
+	 loop       0
+	 delay      23
+	 offset     80 129
+	 bbox       71 79 25 50
+         frame      data/chars/2duke/pain02.gif
+
+anim pain2
+	 loop       0
+	 delay      23
+	 offset     80 129
+	 bbox       71 79 25 50
+         frame      data/chars/2duke/pain01.gif
+
+#breathless1
+anim pain3
+	 loop       0
+	 delay      30
+	 offset     80 129
+	 bbox       71 79 25 50
+         frame      data/chars/2duke/pain01.gif
+	 move       0
+	 delay      45
+         frame      data/chars/2duke/pain03.gif
+
+#breathless2
+anim pain4
+	 loop       0
+	 delay      30
+	 offset     80 129
+	 bbox       71 79 25 50
+         frame      data/chars/2duke/pain02.gif
+	 move       0
+	 delay      45
+         frame      data/chars/2duke/pain03.gif
+
+#stunned
+anim pain7
+	 loop       0
+	 offset     80 129
+	 bbox       71 79 25 50
+	 delay      25
+         frame      data/chars/2duke/pain03.gif
+         frame      data/chars/2duke/pain04.gif
+         frame      data/chars/2duke/pain05.gif
+         frame      data/chars/2duke/pain04.gif
+         frame      data/chars/2duke/pain03.gif
+         frame      data/chars/2duke/pain04.gif
+         frame      data/chars/2duke/pain05.gif
+         frame      data/chars/2duke/pain04.gif
+
+#breathless3 for dd punch chain
+anim pain8
+	 loop       0
+	 delay      30
+	 offset     80 129
+	 bbox       71 79 25 50
+         frame      data/chars/2duke/pain01.gif
+	 move       0
+	 delay      45
+         frame      data/chars/2duke/pain03.gif
+
+######DUKE AND HIS WAY WITH KNIVES
+load     knife01
+anim fall22
+	 loop       0
+	 delay      8
+	 offset     80 129
+	 bbox       0 0 0 0
+	 landframe  2
+@cmd jump001 1 -0.5 0
+	 sound      data/sounds/pain3.wav
+         frame      data/chars/2duke/knife01.gif
+	 delay      999
+         frame      data/chars/2duke/knife02.gif
+	 delay      5
+         frame      data/chars/2duke/knife06.gif
+
+anim rise22
+	 loop       0
+	 delay      3
+	 offset     80 129
+	 bbox       0 0 0 0
+load     knife02
+	 custknife  knife02
+	 tossframe  3 40
+         frame      data/chars/2duke/knife06.gif
+	 delay      7 
+         frame      data/chars/2duke/knife03.gif
+         frame      data/chars/2duke/knife04.gif
+	 delay      12
+	 sound      data/sounds/punch3.wav
+@cmd	 vPro001    "knife02" 0 0 40 0 3 0 0	
+         frame      data/chars/2duke/knife05.gif
+
+anim fall1
+	 loop       0
+	 delay      60
+	 offset     80 129
+	 bbox       65 85 31 36
+	 landframe  2
+         frame      data/chars/2duke/fall01.gif
+	 delay      999
+	 bbox       62 104 33 26
+         frame      data/chars/2duke/fall03.gif
+	 delay      12
+	 bbox       0 0 0 0
+	 sound      data/sounds/fall1.wav
+         frame      data/chars/2duke/fall03.gif
+         frame      data/chars/2duke/fall04.gif
+
+anim rise
+	 loop       0
+	 delay      13
+	 offset     80 129
+	 bbox       0 0
+         frame      data/chars/2duke/fall04.gif
+         frame      data/chars/2duke/rise01.gif
+         frame      data/chars/2duke/crouch.gif
+
+#elbow fall
+anim fall5
+	 loop       0
+	 delay      60
+	 offset     80 129
+	 bbox       0 0
+	 landframe  2
+	 flipframe  2
+	 sound      data/sounds/pain2.wav
+         frame      data/chars/2duke/fall16.gif
+	 delay      999
+         frame      data/chars/2duke/fall16.gif
+	 delay      7
+	 sound      data/sounds/fall2.wav
+         frame      data/chars/2duke/fall03.gif
+         frame      data/chars/2duke/fall04.gif
+
+########anim fall's that don't allow juggling
+
+anim fall3
+	 loop       0
+	 delay      60
+	 offset     80 129
+	 bbox       0 0 0 0
+	 landframe  2
+         frame      data/chars/2duke/fall01.gif
+	 delay      999
+         frame      data/chars/2duke/fall02.gif
+	 delay      12
+	 bbox       0 0 0 0
+	 sound      data/sounds/fall2.wav
+         frame      data/chars/2duke/fall03.gif
+         frame      data/chars/2duke/fall04.gif
+
+anim fall4
+	 loop       0
+	 delay      60
+	 offset     80 129
+	 bbox       0 0 0 0
+	 landframe  2
+         frame      data/chars/2duke/fall01.gif
+	 delay      999
+         frame      data/chars/2duke/fall02.gif
+	 delay      12
+	 bbox       0 0 0 0
+	 sound      data/sounds/fall1.wav
+         frame      data/chars/2duke/fall03.gif
+         frame      data/chars/2duke/fall04.gif
+
+anim fall11
+	 loop       0
+	 delay      60
+	 offset     80 129
+	 bbox       0 0 0 0
+	 landframe  2
+         frame      data/chars/2duke/fall01.gif
+	 delay      999
+         frame      data/chars/2duke/fall02.gif
+	 delay      12
+	 bbox       0 0 0 0
+	 sound      data/sounds/fall2.wav
+         frame      data/chars/2duke/fall03.gif
+         frame      data/chars/2duke/fall04.gif
+
+########double dragons throw
+
+anim fall10
+	 loop       0
+	 delay      50
+	 offset     80 129
+	 bbox       71 102 27 27
+	 landframe  3
+	 flipframe  1
+	 attack3    68 97 42 36 3 0 0 0 8 5
+	 dropv      1.3 0.8 0
+         frame      data/chars/2duke/fall17.gif
+	 delay      15
+	 bbox       62 95 35 24
+	 attack3    61 89 42 33 3 0 0 0 8
+	 dropv      1.3 0.8 0
+         frame      data/chars/2duke/fall02.gif
+	 delay      999
+	 bbox       62 104 33 26
+	 attack3    62 100 38 31 3 0 0 0 8 5
+	 dropv      1.3 0.8 0
+         frame      data/chars/2duke/fall03.gif
+	 delay      12
+	 bbox       0 0 0 0
+	 attack     0 0 0 0 0 0 0 0 0
+	 sound      data/sounds/fall1.wav
+         frame      data/chars/2duke/fall03.gif
+         frame      data/chars/2duke/fall04.gif
+
+########double dragons flip throw
+
+anim pain11
+	 loop       0
+	 delay      50
+	 offset     80 129
+	 bbox       0 0 0 0
+         frame      data/chars/2duke/pain04.gif
+
+anim fall12
+	 loop       0
+	 delay      50
+	 offset     80 129
+	 bbox       0
+	 landframe  3
+	 flipframe  1
+	 sound      data/sounds/pain1.wav
+	 attack     69 11 35 34 5 1 0 0 8 5
+         frame      data/chars/2duke/fall21.gif
+	 delay      15
+	 attack     69 11 35 34 5 1 0 0 8 5
+         frame      data/chars/2duke/fall02.gif
+	 delay      999
+	 attack     63 101 28 29 5 1 0 0 8 5
+         frame      data/chars/2duke/fall03.gif
+	 delay      12
+	 attack     0 0 0 0 0 0 0 0 0
+	 sound      data/sounds/fall7.wav
+         frame      data/chars/2duke/fall03.gif
+         frame      data/chars/2duke/fall04.gif
+
+########double dragons coop throw billy
+
+anim fall102
+anim rise102
+
+########Billy slam 01
+
+anim fall20
+	 loop       0
+	 delay      999
+	 offset     80 129
+	 bbox       0
+	 landframe  1
+         frame      data/chars/2duke/fall23.gif
+	 delay      10
+         frame      data/chars/2duke/fall24.gif
+
+anim rise20
+	 loop       0
+	 delay      1
+	 offset     80 129
+	 bbox       0
+	 flipframe  1
+         frame      data/chars/2duke/fall24.gif
+	 delay      13
+         frame      data/chars/2duke/rise01.gif
+         frame      data/chars/2duke/crouch.gif
+
+########Billy slam 02
+
+anim fall21
+	 loop       0
+	 delay      15
+	 offset     80 129
+	 bbox       0
+	 landframe  2
+         frame      data/chars/2duke/fall04.gif
+	 delay      999
+         frame      data/chars/2duke/fall02.gif
+	 delay      12
+	 sound      data/sounds/fall2.wav
+         frame      data/chars/2duke/fall03.gif
+         frame      data/chars/2duke/fall04.gif
+
+########screw falling
+
+#not juggling
+anim fall13
+	 loop       0
+	 delay      12
+	 offset     80 129
+	 bbox       0
+	 landframe  5
+	 sound      data/sounds/diei.wav
+         frame      data/chars/2duke/fall08.gif
+         frame      data/chars/2duke/fall07.gif
+         frame      data/chars/2duke/fall06.gif
+         frame      data/chars/2duke/fall05.gif
+	 delay      999
+         frame      data/chars/2duke/fall04.gif
+	 delay      12
+	 sound      data/sounds/fall1.wav
+         frame      data/chars/2duke/fall03.gif
+         frame      data/chars/2duke/fall04.gif
+
+#juggling
+anim fall14
+	 loop       0
+	 delay      12
+	 offset     80 129
+	 landframe  5
+	 sound      data/sounds/diei.wav
+	 bbox       68 80 21 38
+	 attack     68 80 21 38 5 1 0 0 8
+         frame      data/chars/2duke/fall08.gif
+	 bbox       66 83 24 34
+	 attack     66 83 24 34 5 1 0 0 8
+         frame      data/chars/2duke/fall07.gif
+	 bbox       69 85 22 35
+	 attack     69 85 22 35 5 1 0 0 8
+         frame      data/chars/2duke/fall06.gif
+	 bbox       64 85 28 27
+	 attack     64 85 28 27 5 1 0 0 8
+         frame      data/chars/2duke/fall05.gif
+	 bbox       65 85 31 36
+	 attack     0 0 0 0
+	 delay      999
+         frame      data/chars/2duke/fall01.gif
+	 bbox       0 0 0 0
+	 delay      12
+	 sound      data/sounds/fall1.wav
+         frame      data/chars/2duke/fall03.gif
+         frame      data/chars/2duke/fall04.gif
+
+anim fall19
+	 loop       0
+	 delay      6
+	 offset     80 129
+	 bbox       0
+	 landframe  5
+         frame      data/chars/2duke/fall08.gif
+         frame      data/chars/2duke/fall07.gif
+         frame      data/chars/2duke/fall06.gif
+         frame      data/chars/2duke/fall05.gif
+@cmd   updateframe getlocalvar("self") 0
+	 delay      12
+         frame      data/chars/2duke/fall03.gif
+	 sound      data/sounds/fall1.wav
+         frame      data/chars/2duke/fall04.gif
+
+########colossus falling
+
+#not juggling
+anim fall30
+	 loop       0
+	 delay      999
+	 offset     80 129
+	 bbox       0
+	 landframe  1
+	 bouncefactor 2
+         frame      data/chars/2duke/fall05.gif
+	 delay      12
+	 sound      data/sounds/fall1.wav
+         frame      data/chars/2duke/fall03.gif
+         frame      data/chars/2duke/fall04.gif
+
+########double dragons custom combos
+
+#moving backwards A01
+anim pain15
+	 loop       0
+	 delay      2
+	 offset     80 129
+	 bbox       71 79 25 50
+	 move       -2
+         frame      data/chars/2duke/pain02.gif
+         frame      data/chars/2duke/pain02.gif
+         frame      data/chars/2duke/pain02.gif
+         frame      data/chars/2duke/pain02.gif
+         frame      data/chars/2duke/pain02.gif
+         frame      data/chars/2duke/pain02.gif
+	 delay      15
+	 move       0
+         frame      data/chars/2duke/pain02.gif
+	 delay      40
+         frame      data/chars/2duke/pain03.gif
+
+#moving backwards A02
+anim pain16
+	 loop       0
+	 delay      2
+	 offset     80 129
+	 bbox       71 79 25 50
+	 move       -2
+         frame      data/chars/2duke/pain01.gif
+         frame      data/chars/2duke/pain01.gif
+         frame      data/chars/2duke/pain01.gif
+	 move       -1
+         frame      data/chars/2duke/pain01.gif
+         frame      data/chars/2duke/pain01.gif
+         frame      data/chars/2duke/pain01.gif
+	 delay      15
+	 move       0
+         frame      data/chars/2duke/pain01.gif
+	 delay      40
+         frame      data/chars/2duke/pain03.gif
+
+#fast pain1
+anim pain17
+	 loop       0
+	 delay      8
+	 offset     80 129
+	 bbox       71 79 25 50
+         frame      data/chars/2duke/pain01.gif
+	 move       0
+	 delay      45
+         frame      data/chars/2duke/pain03.gif
+
+#fast pain2
+anim pain18
+	 loop       0
+	 delay      8
+	 offset     80 129
+	 bbox       71 79 25 50
+         frame      data/chars/2duke/pain02.gif
+	 move       0
+	 delay      45
+         frame      data/chars/2duke/pain03.gif
+
+#moving backwards B01 faster
+anim pain25
+	 loop       0
+	 delay      2
+	 offset     80 129
+	 bbox       71 79 25 50
+	 move       -6
+         frame      data/chars/2duke/pain02.gif
+         frame      data/chars/2duke/pain02.gif
+         frame      data/chars/2duke/pain02.gif
+	 move       -3
+         frame      data/chars/2duke/pain02.gif
+         frame      data/chars/2duke/pain02.gif
+	 move       -1
+         frame      data/chars/2duke/pain02.gif
+	 delay      15
+	 move       0
+         frame      data/chars/2duke/pain02.gif
+	 delay      24
+         frame      data/chars/2duke/pain03.gif
+         frame      data/chars/2duke/pain04.gif
+         frame      data/chars/2duke/pain03.gif
+         frame      data/chars/2duke/pain04.gif
+         frame      data/chars/2duke/pain03.gif
+         frame      data/chars/2duke/pain04.gif
+
+#moving backwards B02 slower
+anim pain26
+	 loop       0
+	 delay      2
+	 offset     80 129
+	 bbox       71 79 25 50
+	 move       -4
+         frame      data/chars/2duke/pain02.gif
+         frame      data/chars/2duke/pain02.gif
+         frame      data/chars/2duke/pain02.gif
+         frame      data/chars/2duke/pain02.gif
+         frame      data/chars/2duke/pain02.gif
+         frame      data/chars/2duke/pain02.gif
+         frame      data/chars/2duke/pain02.gif
+         frame      data/chars/2duke/pain02.gif
+	 delay      15
+	 move       0
+         frame      data/chars/2duke/pain01.gif
+	 delay      40
+         frame      data/chars/2duke/pain04.gif
+
+anim pain27
+	 loop       0
+	 delay      2
+	 offset     80 129
+	 bbox       71 79 25 50
+	 move       -4
+         frame      data/chars/2duke/pain01.gif
+         frame      data/chars/2duke/pain01.gif
+         frame      data/chars/2duke/pain01.gif
+         frame      data/chars/2duke/pain01.gif
+         frame      data/chars/2duke/pain01.gif
+         frame      data/chars/2duke/pain01.gif
+         frame      data/chars/2duke/pain01.gif
+         frame      data/chars/2duke/pain01.gif
+	 delay      15
+	 move       0
+         frame      data/chars/2duke/pain02.gif
+	 delay      40
+         frame      data/chars/2duke/pain04.gif
+
+#stomach blows
+anim pain96
+	 loop       0
+	 delay      2
+	 offset     80 129
+	 bbox       71 79 25 50
+	 jumpframe  0 0.05 0
+         frame      data/chars/2duke/fall29.gif
+	 delay      25
+         frame      data/chars/2duke/pain03.gif
+         frame      data/chars/2duke/pain04.gif
+         frame      data/chars/2duke/pain05.gif
+         frame      data/chars/2duke/pain04.gif
+         frame      data/chars/2duke/pain03.gif
+         frame      data/chars/2duke/pain04.gif
+         frame      data/chars/2duke/pain05.gif
+         frame      data/chars/2duke/pain04.gif
+
+########anim follow for slams & pain stuff
+
+anim follow1
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2duke/pain04.gif
+
+anim follow2
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2duke/fall06.gif
+
+anim follow3
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       80 106 21 25
+         frame      data/chars/2duke/fall11.gif
+
+anim follow4
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2duke/fall19.gif
+
+anim follow5
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2duke/fall18.gif
+
+anim follow6
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       76 97 22 27
+         frame      data/chars/2duke/fall20.gif
+
+anim follow7
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2duke/fall09.gif
+
+anim follow8
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2duke/fall10.gif
+
+anim follow9
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2duke/fall22.gif
+
+anim follow10
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       71 79 25 50
+         frame      data/chars/2duke/fall22.gif
+
+anim follow11
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2duke/pain04.gif
+
+anim follow12
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2duke/fall03.gif
+
+anim follow13
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2duke/fall02.gif
+
+anim follow14
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2duke/fall25.gif
+
+anim follow15
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2duke/fall01.gif
+
+anim follow16
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       71 79 25 50
+         frame      data/chars/2duke/fall03.gif
+
+anim follow17
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2duke/fall04.gif
+
+anim follow18
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2duke/fall24.gif
+
+anim follow19
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       75 114 36 19
+         frame      data/chars/2duke/fall04.gif
+
+anim follow20
+	 loop       1
+	 delay      5
+	 offset     82 129
+	 bbox       0 0 0 0
+         frame      data/chars/2duke/fall08.gif
+
+anim follow21
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0 0 0 0
+         frame      data/chars/2duke/fall17.gif
+
+anim follow22
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0 0 0 0
+         frame      data/chars/2duke/fall26.gif
+
+anim follow23
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0 0 0 0
+         frame      data/chars/2duke/fall26.gif
+
+anim follow24
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       70 111 28 19
+         frame      data/chars/2duke/fall26.gif
+
+anim follow25
+	 loop       1
+	 delay      2
+	 offset     80 129
+	 bbox       64 82 24 24
+         frame      data/chars/2duke/fall08.gif
+
+anim follow26
+	 loop       1
+	 delay      2
+	 offset     80 129
+	 bbox       0 0 0 0
+         frame      data/chars/2duke/fall08.gif
+
+anim follow27
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       71 79 20 49
+         frame      data/chars/2duke/pain04.gif
+
+anim follow28
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0 0 0 0
+         frame      data/chars/2duke/fall23.gif
+
+anim follow29
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       66 118 33 8
+         frame      data/chars/2duke/fall23.gif
+
+anim follow30
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2duke/pain01.gif
+
+anim follow31
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2duke/pain03.gif
+
+anim follow32
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2duke/pain04.gif
+
+########double dragon's grab hold
+
+anim follow33
+
+anim follow34
+
+anim follow35
+
+anim follow37
+
+anim follow36
+
+anim follow40
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0 0 0 0
+         frame      data/chars/2duke/fall27.gif
+
+anim follow38
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       0 0 0 0
+         frame      data/chars/2duke/fall28.gif
+
+anim follow39
+	 loop       1
+	 delay      5
+	 offset     80 129
+	 bbox       63 83 64 33
+         frame      data/chars/2duke/fall27.gif
+
+########ip man pain
+
+anim pain70
+	 loop       0
+	 delay      4
+	 offset     80 129
+	 bbox       71 79 25 50
+         frame      data/chars/2duke/pain01.gif
+	 delay      15
+         frame      data/chars/2duke/pain03.gif
+
+anim pain71
+	 loop       0
+	 delay      4
+	 offset     80 129
+	 bbox       71 79 25 50
+         frame      data/chars/2duke/pain02.gif
+	 delay      15
+         frame      data/chars/2duke/pain03.gif
+
+
+anim pain72
+	 loop       0
+	 delay      4
+	 offset     80 129
+	 bbox       71 79 25 50
+         frame      data/chars/2duke/pain07.gif
+	 delay      15
+         frame      data/chars/2duke/pain09.gif
+
+anim pain73
+	 loop       0
+	 delay      4
+	 offset     80 129
+	 bbox       71 79 25 50
+         frame      data/chars/2duke/pain08.gif
+	 delay      15
+         frame      data/chars/2duke/pain09.gif
+
+anim pain74
+	 loop       0
+	 delay      5
+	 offset     80 129
+	 bbox       71 105 33 26
+         frame      data/chars/2duke/fall03.gif
+         frame      data/chars/2duke/fall04.gif
+	 delay      15
+	 bbox       0 0 0 0
+         frame      data/chars/2duke/fall04.gif
+	 delay      8
+         frame      data/chars/2duke/rise01.gif
+         frame      data/chars/2duke/crouch.gif
+
+anim pain75
+	 loop       0
+	 delay      5
+	 offset     80 129
+	 bbox       71 105 33 26
+         frame      data/chars/2duke/fall03.gif
+         frame      data/chars/2duke/fall04.gif
+	 delay      10
+	 bbox       0 0 0 0
+         frame      data/chars/2duke/fall04.gif
+	 delay      5
+	 bbox       71 105 33 26
+         frame      data/chars/2duke/fall04.gif
+	 delay      10
+	 bbox       0 0 0 0
+         frame      data/chars/2duke/rise01.gif
+         frame      data/chars/2duke/crouch.gif
+
+anim fall101
+	 loop       0
+	 delay      60
+	 offset     80 129
+	 bbox       65 85 31 36
+	 landframe  2
+	 attack     62 78 36 41 3 1 0 0 8 3
+	 dropv      1.3 0.8 0
+         frame      data/chars/2duke/fall01.gif
+	 attack     63 99 41 31 3 1 0 0 8 3
+	 dropv      1.3 0.8 0
+	 delay      999
+	 bbox       62 104 33 26
+         frame      data/chars/2duke/fall02.gif
+	 attack     0 0 0 0
+	 delay      12
+	 bbox       0 0 0 0
+	 sound      data/sounds/fall2.wav
+         frame      data/chars/2duke/fall03.gif
+         frame      data/chars/2duke/fall04.gif
+
+#############BILLY & JIMMY ULTRA
+
+#moving backwards C01
+anim pain90
+	 loop       0
+	 delay      2
+	 offset     80 129
+	 bbox       71 79 25 50
+	 move       -1
+         frame      data/chars/2duke/pain02.gif
+         frame      data/chars/2duke/pain02.gif
+         frame      data/chars/2duke/pain02.gif
+         frame      data/chars/2duke/pain02.gif
+	 delay      15
+	 move       0
+         frame      data/chars/2duke/pain02.gif
+	 delay      40
+         frame      data/chars/2duke/pain03.gif
+
+#moving backwards C02
+anim pain91
+	 loop       0
+	 delay      2
+	 offset     80 129
+	 bbox       71 79 25 50
+	 move       -1
+         frame      data/chars/2duke/pain01.gif
+         frame      data/chars/2duke/pain01.gif
+         frame      data/chars/2duke/pain01.gif
+         frame      data/chars/2duke/pain01.gif
+	 delay      15
+	 move       0
+         frame      data/chars/2duke/pain01.gif
+	 delay      40
+         frame      data/chars/2duke/pain03.gif
+
+#stomach blows
+anim fall90
+	 loop       0
+	 delay      15
+	 offset     80 129
+	 bbox       71 79 25 50
+	 landframe  3
+         frame      data/chars/2duke/fall29.gif
+         frame      data/chars/2duke/fall31.gif
+	 delay      999
+	 bbox       72 85 26 34
+         frame      data/chars/2duke/fall01.gif
+	 delay      12
+	 bbox       0 0 0 0
+	 sound      data/sounds/fall1.wav
+         frame      data/chars/2duke/fall03.gif
+         frame      data/chars/2duke/fall04.gif
+
+anim fall91
+	 loop       0
+	 delay      15
+	 offset     80 129
+	 bbox       71 79 25 50
+	 landframe  3
+         frame      data/chars/2duke/fall29.gif
+         frame      data/chars/2duke/fall30.gif
+	 delay      999
+	 bbox       72 85 26 34
+         frame      data/chars/2duke/fall01.gif
+	 delay      12
+	 bbox       0 0 0 0
+	 sound      data/sounds/fall2.wav
+         frame      data/chars/2duke/fall03.gif
+         frame      data/chars/2duke/fall04.gif
+
+#juggle blows
+anim fall92
+	 loop       0
+	 delay      22
+	 offset     80 129
+	 bbox       71 79 25 50
+	 landframe  4
+	 dropframe  3
+         frame      data/chars/2duke/fall31.gif
+	 delay      21
+         frame      data/chars/2duke/fall31.gif
+	 delay      999
+	 bbox       72 85 26 34
+         frame      data/chars/2duke/fall01.gif
+	 delay      999
+         frame      data/chars/2duke/fall03.gif
+	 delay      12
+	 bbox       0 0 0 0
+	 sound      data/sounds/fall2.wav
+         frame      data/chars/2duke/fall03.gif
+         frame      data/chars/2duke/fall04.gif
+
+anim fall93
+	 loop       0
+	 delay      1
+	 offset     80 129
+	 bbox       71 79 25 50
+	 landframe  4
+	 dropframe  3
+         frame      data/chars/2duke/fall30.gif
+	 delay      21
+         frame      data/chars/2duke/fall30.gif
+	 delay      999
+	 bbox       72 85 26 34
+         frame      data/chars/2duke/fall01.gif
+	 delay      999
+         frame      data/chars/2duke/fall03.gif
+	 delay      12
+	 bbox       0 0 0 0
+	 sound      data/sounds/fall2.wav
+         frame      data/chars/2duke/fall03.gif
+         frame      data/chars/2duke/fall04.gif
+
+#jimmy super linker 02
+anim pain95
+	 loop       0
+	 delay      2
+	 offset     80 129
+	 bbox       71 79 25 50
+	 move       -2
+         frame      data/chars/2duke/pain02.gif
+         frame      data/chars/2duke/pain02.gif
+         frame      data/chars/2duke/pain02.gif
+         frame      data/chars/2duke/pain02.gif
+         frame      data/chars/2duke/pain02.gif
+         frame      data/chars/2duke/pain02.gif
+	 delay      25
+	 move       0
+         frame      data/chars/2duke/pain03.gif
+         frame      data/chars/2duke/pain04.gif
+         frame      data/chars/2duke/pain05.gif
+         frame      data/chars/2duke/pain04.gif
+         frame      data/chars/2duke/pain03.gif
+         frame      data/chars/2duke/pain04.gif
+         frame      data/chars/2duke/pain05.gif
+
+#jimmy stomach blows
+anim pain96
+	 loop       0
+	 delay      2
+	 offset     80 129
+	 bbox       71 79 25 50
+         frame      data/chars/2duke/fall29.gif
+	 delay      19
+	 offset     80 129
+         frame      data/chars/2duke/pain03.gif
+         frame      data/chars/2duke/pain03.gif
+         frame      data/chars/2duke/pain03.gif
+         frame      data/chars/2duke/pain03.gif
+         frame      data/chars/2duke/pain03.gif
+         frame      data/chars/2duke/pain03.gif
+         frame      data/chars/2duke/pain03.gif
+         frame      data/chars/2duke/pain03.gif
+         frame      data/chars/2duke/pain03.gif
+         frame      data/chars/2duke/pain03.gif
+         frame      data/chars/2duke/pain03.gif
+
+#falling like a rock
+anim fall99
+	 loop       0
+	 delay      1
+	 offset     80 129
+	 bbox       65 85 31 36
+	 landframe  4
+	 dropframe  3
+	 bouncefactor -2
+	 quakeframe 4 1 3
+         frame      data/chars/2duke/fall30.gif
+	 delay      21
+         frame      data/chars/2duke/fall30.gif
+	 delay      999
+	 bbox       72 85 26 34
+         frame      data/chars/2duke/fall01.gif
+	 delay      999
+         frame      data/chars/2duke/fall03.gif
+	 delay      12
+	 bbox       0 0 0 0
+	 sound      data/sounds/fall8.wav
+         frame      data/chars/2duke/fall03.gif
+         frame      data/chars/2duke/fall04.gif
+
+#SCRIPTED SLAMS
+anim fall80
+	 loop       0
+	 delay      5000
+	 offset     80 129
+	 bbox       0
+         frame      data/chars/2duke/pain01.gif #follow30
+         frame      data/chars/2duke/pain02.gif
+         frame      data/chars/2duke/pain03.gif #follow31
+         frame      data/chars/2duke/pain04.gif #follow 1 #follow27
+         frame      data/chars/2duke/pain04.gif #follow32
+         frame      data/chars/2duke/pain04.gif
+         frame      data/chars/2duke/pain07.gif
+         frame      data/chars/2duke/pain08.gif
+         frame      data/chars/2duke/pain09.gif
+         frame      data/chars/2duke/fall01.gif #follow15
+#10
+         frame      data/chars/2duke/fall02.gif
+         frame      data/chars/2duke/fall03.gif #follow12
+         frame      data/chars/2duke/fall04.gif #follow17
+         frame      data/chars/2duke/fall05.gif
+         frame      data/chars/2duke/fall06.gif #follow 2
+         frame      data/chars/2duke/fall07.gif
+         frame      data/chars/2duke/fall08.gif #follow20 #follow25 #follow26
+         frame      data/chars/2duke/fall09.gif #follow 7
+         frame      data/chars/2duke/fall10.gif #follow 8
+         frame      data/chars/2duke/fall11.gif #follow 3
+#20
+         frame      data/chars/2duke/fall12.gif
+         frame      data/chars/2duke/fall12.gif
+         frame      data/chars/2duke/fall12.gif
+         frame      data/chars/2duke/fall16.gif
+         frame      data/chars/2duke/fall17.gif #follow21
+         frame      data/chars/2duke/fall18.gif
+         frame      data/chars/2duke/fall19.gif
+         frame      data/chars/2duke/fall20.gif
+         frame      data/chars/2duke/fall21.gif
+         frame      data/chars/2duke/fall22.gif #follow 9
+#30
+         frame      data/chars/2duke/fall23.gif #follow28
+         frame      data/chars/2duke/fall24.gif #follow18 follow19
+         frame      data/chars/2duke/fall25.gif #follow14
+         frame      data/chars/2duke/fall26.gif #follow22 #follow23 #follow24
+         frame      data/chars/2duke/fall27.gif #follow40
+         frame      data/chars/2duke/fall28.gif #follow38
+         @cmd    conditionalflip3
+         frame      data/chars/2duke/fall29.gif
+         frame      data/chars/2duke/fall30.gif
+         frame      data/chars/2duke/fall31.gif
+         frame      data/chars/2duke/pain01.gif #follow33
+#40
+         frame      data/chars/2duke/pain02.gif #follow34
+         frame      data/chars/2duke/pain03.gif #follow35
+         frame      data/chars/2duke/pain04.gif #follow37
+         frame      data/chars/2duke/fall27.gif
+         frame      data/chars/2duke/fall28.gif
+         frame      data/chars/2duke/fall27.gif
+

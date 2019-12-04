@@ -1,0 +1,47 @@
+name      gbelter3
+type      none
+antigravity 100
+facing 1
+subject_to_gravity 0
+subject_to_wall 0
+subject_to_hole 0
+Subject_to_MinZ 0
+Subject_to_MaxZ 0
+offscreenkill   5000
+
+
+anim idle
+@script
+    void vSelf    = getlocalvar("self");             //Caller.
+    void vEntity;                                     //Target entity placeholder.
+    int iEntity;                                     //Entity enumeration holder.
+    int iType;                                       //Entity type.
+    int iMax      = openborvariant("ent_max");       //Entity count.
+    int Ex;
+    int Ey;
+    int Ez;
+
+     //Enumerate and loop through entity collection.
+    for(iEntity=0; iEntity<iMax; iEntity++){   
+        vEntity = getentity(iEntity);                 //Get target entity from current loop.
+        iType   = getentityproperty(vEntity, "type"); //Get target type.
+
+        //Enemy & player type?
+        if(iType == openborconstant("TYPE_ENEMY") || iType == openborconstant("TYPE_PLAYER") || iType == openborconstant("TYPE_ITEM")){
+          Ex = getentityproperty(vEntity, "x");
+          Ey = getentityproperty(vEntity, "a");
+          Ez = getentityproperty(vEntity, "z");
+
+          if(Ex >= 16 && Ex <= 486 && Ez >= 351 && Ez <= 364 && Ey == 88){
+            changeentityproperty(vEntity, "position", Ex+1);
+          }
+        }
+    }
+@end_script
+   loop   1
+   delay   5
+   offset   1 1
+   frame	data/chars/misc/empty.gif
+   frame	data/chars/misc/empty.gif
+
+

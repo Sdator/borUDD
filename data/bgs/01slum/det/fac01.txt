@@ -1,0 +1,23 @@
+name	fac01
+type	none
+shadow	0
+
+anim idle
+	 loop      1
+	 delay     10
+	 offset    62 90
+	 frame     data/Bgs/01slum/det/fac04.gif
+	 delay     8
+	 frame     data/Bgs/01slum/det/fac05.gif
+	 delay     4
+	 frame     data/Bgs/01slum/det/fac06.gif
+	 delay     20
+	 frame     data/Bgs/01slum/det/fac07.gif
+	 delay     15
+	 frame     data/Bgs/01slum/det/fac08.gif
+	 delay     25
+	 frame     data/Bgs/01slum/det/fac09.gif
+	 delay     13
+	 frame     data/Bgs/01slum/det/fac10.gif
+
+

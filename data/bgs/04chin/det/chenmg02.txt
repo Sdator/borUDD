@@ -1,0 +1,88 @@
+name	chenmg02
+type	text
+subtype noskip
+shadow	0
+setlayer 99999999999999
+subject_to_wall 0
+subject_to_hole 0
+antigravity   95
+lifespan  13
+
+anim idle
+	 loop      0
+	 delay     3
+	 offset    128 228
+	 drawmethod alpha 6
+	 drawmethod channel 0.10
+	 flipframe 0
+	 frame     Data/Bgs/04chin/det/c03.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.20
+	 frame     Data/Bgs/04chin/det/c03.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.30
+	 frame     Data/Bgs/04chin/det/c03.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.40
+	 frame     Data/Bgs/04chin/det/c03.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.50
+	 frame     Data/Bgs/04chin/det/c03.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.60
+	 frame     Data/Bgs/04chin/det/c03.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.70
+	 frame     Data/Bgs/04chin/det/c03.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.80
+	 frame     Data/Bgs/04chin/det/c03.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.90
+	 frame     Data/Bgs/04chin/det/c03.gif
+	 delay     1
+	 drawmethod alpha 0
+@cmd playwebm "Data/Bgs/04chin/det/inchino.webm" 1
+	 frame     Data/Bgs/04chin/det/c03.gif
+@script
+    void vSelf = getlocalvar("self");
+if(frame==1)
+{
+      fademusic(0.5, "data/music/04chin.ogg", 1, 0);
+}@end_script
+	 delay     3
+	 drawmethod alpha 6
+	 drawmethod channel 0.90
+	 frame     Data/Bgs/04chin/det/c03.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.80
+	 frame     Data/Bgs/04chin/det/c03.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.70
+	 frame     Data/Bgs/04chin/det/c03.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.60
+	 frame     Data/Bgs/04chin/det/c03.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.50
+	 frame     Data/Bgs/04chin/det/c03.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.40
+	 frame     Data/Bgs/04chin/det/c03.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.30
+	 frame     Data/Bgs/04chin/det/c03.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.20
+	 frame     Data/Bgs/04chin/det/c03.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.10
+	 frame     Data/Bgs/04chin/det/c03.gif
+	 drawmethod alpha 0
+	 frame     Data/chars/0misc/empty.gif
+
+
+
+
+
+

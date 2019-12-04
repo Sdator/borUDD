@@ -1,0 +1,24 @@
+name	slot01
+type	obstacle
+health  5
+shadow        0
+gfxshadow     1
+alpha   0
+
+anim idle
+	 loop      1
+	 delay     6
+	 bbox      15 23 27 54
+	 offset    29 76
+	 platform  11 14 45 45 4 50 
+	 frame     data/bgs/01lasv/det/slot01.gif
+
+anim death
+	 loop      0
+	 delay     6
+	 offset    29 76
+	 frame     data/bgs/01lasv/det/slot02.gif
+
+
+
+

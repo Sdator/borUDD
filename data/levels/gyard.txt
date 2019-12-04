@@ -1,0 +1,59 @@
+music           data/music/GYARD.OGG
+background	data/bgs/graveyard/b01.gif
+panel		data/bgs/graveyard/n01.gif
+cameratype	1
+direction       both
+light  		10  20
+at       	0
+settime         0
+notime          1
+noslow          1
+order	        a
+type            1
+spawn1          73 30
+spawn2          48 56
+updatescript     data/scripts/traileru.c
+setweap         9
+nopause         1
+
+
+spawn  cinema
+flip   1
+coords 0 228
+at     0
+
+spawn  fog2
+flip   1
+coords 256 228
+at     0
+
+spawn  fog
+flip   1
+coords -10 228
+at     0
+
+spawn   rainb
+flip    1
+coords  0 228
+at      0
+
+spawn   thunder
+flip    1
+coords  0 228
+at      0
+
+#######
+
+group   3 3
+at      0
+
+spawn   spectre3
+dying   1 300 100
+health  1200
+2phealth 1500
+coords  150 200
+at      0
+
+group   1 1
+at      0
+

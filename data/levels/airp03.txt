@@ -1,0 +1,272 @@
+loadingbg       data/bgs/loading2.gif 1 -999 -999 100 -999 -999
+background	data/bgs/03airp/b01.gif
+panel		data/bgs/03airp/n01.gif
+direction       both
+scrollspeed     0.5
+light  		10  20
+at       	0
+settime         0
+notime          1
+noslow          1
+order	        a
+cameratype      1
+#type            1
+spawn1          60 20
+spawn2          70 25
+updatescript    data/scripts/traileru.c
+
+#    spreadsheet			               		xratio	zratio	xoffset	zoffset	xspace	zspace	xrepeat	zrepeat	trans	alpha	w-mode	amp	wl	ws	move
+bglayer			data/bgs/03airp/det/air04.gif 		0.7	0.7  	0	0	0	0	1	-1	1	0	0	0	0	0	1
+bglayer			data/bgs/03airp/det/air03.gif    	0.6	0.6	0	0	0	0	1	-1	1	0	0	0	0	0	1
+bglayer			data/bgs/03airp/det/air02.gif		0.5	0.5	0	0	0	0	1	-1	1	0	0	0	0	0	1
+bglayer			data/bgs/03airp/det/air01.gif		0.4	0.4	0	0	0	0	1	-1	1	0	0	0	0	0	1
+
+wall    1043 177 0 0 1000 1000 20 1000
+
+spawn   stageinT
+coords  0 232
+at      0
+
+blockade 0
+at      0
+
+spawn   dukecn
+coords  207 175 0
+at      0
+
+spawn   bchopper
+coords  207 175 40
+at      0
+
+spawn   bplane
+flip    1
+coords  456 228
+at      60
+
+group   1 1
+at      0
+music           data/music/RODDAIR02.ogg 30561.3
+at              2
+musicfade       1
+at              2
+####### GROUP 1
+
+scrollx 270 470
+at      270
+
+group   3 3 
+at      270
+
+spawn   williams
+map     2
+health  80
+coords  300 190
+at      270
+
+spawn   baker
+map     1
+health  80
+coords  -50 190
+at      270
+
+spawn   roper
+map     2
+health  80
+coords  300 220
+at      270
+
+spawn   williams
+map     1
+health  80
+coords  300 200
+at      270
+
+group   1 1
+at      0
+
+scrollx 270 663
+at      0
+
+####### GROUP 2
+
+blockade 663
+at      663
+
+scrollx 663 807
+at      663
+
+group   3 3 
+at      663
+
+spawn   baker 
+map     1
+health  80
+coords  204 176 45
+at      663
+
+spawn   williams
+map     1
+health  80
+coords  218 176 50
+at      663
+
+spawn   roper
+map     3
+health  80
+coords  -50 190
+at      663
+
+spawn   williams
+map     3
+health  80
+coords  300 190
+at      663
+
+spawn   roper
+map     4
+health  80
+coords  -50 190
+at      663
+
+group   1 1
+at      663
+
+scrollx 663 940
+at      663
+
+####### GROUP 3
+
+scrollx 940 1050
+at      940
+
+group   3 3 
+at      972
+
+spawn   roper
+map     2
+health  80
+coords  300 190
+at      972
+
+spawn   airphe1
+flip    1
+coords  128 177 180
+at      0
+
+spawn   williams
+#weapon  grenade0
+map     4
+health  80
+coords  -50 220
+at      972
+
+spawn   roper
+map     4
+health  80
+coords  -50 190
+at      972
+
+spawn   Jeff
+health  170
+2phealth 230
+coords  300 220
+at      972
+
+spawn   williams
+map     4
+health  80
+coords  -50 220
+at      972
+
+group   1 1
+at      972
+
+scrollx 972 1209
+at      972
+
+####### GROUP 4
+
+scrollx 1209 1209
+at      1209
+
+group   4 4
+at      1209
+
+spawn   williams
+health  80
+coords  -50 190
+at      789
+
+spawn   steve
+health  170
+2phealth 230
+coords  300 190
+at      1209
+
+spawn   roper
+health  80
+coords  300 220
+at      1209
+
+spawn   baker
+map     1
+health  80
+coords  -50 190
+at      1209
+
+group   1 1
+at      1209
+
+scrollx 1209 1356
+at      1209
+
+####### GROUP 4
+
+scrollx 1356 1408
+at      1356
+
+group   4 4
+at      1390
+
+spawn   roper
+map     1
+coords  300 190
+at      1390
+
+spawn   airphe2
+flip    1
+coords  128 177 180
+at      1390
+
+spawn   bjackson
+item    slowitm
+health  540
+2phealth 600
+coords  128 190 150
+at      1390
+
+spawn   williams
+map     2
+coords  300 190
+at      1390
+
+spawn   baker
+map     1
+coords  -50 190
+at      1390
+
+group   1 1
+at      789
+
+spawn   stageou
+flip    1
+coords  0 232
+at      789
+
+
+
+
+
+
+
+

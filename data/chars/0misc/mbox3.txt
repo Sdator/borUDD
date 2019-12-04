@@ -1,0 +1,44 @@
+name	mbox3
+health	1
+nolife  1
+#noatflash 1
+#flash     Flash
+type	 obstacle
+gfxshadow   1
+falldie  1
+nodieblink 2
+palette      data/chars/0misc/mbox04.gif
+anim idle
+	 loop       1
+	 delay      25
+	 offset     85 92
+	 bbox       77 77 16 16 1
+         frame      data/chars/0misc/empty.gif
+         frame      data/chars/0misc/empty.gif
+         frame      data/chars/0misc/empty.gif
+
+anim death
+	 loop       0
+	 delay      4
+	 offset     85 92
+	 bbox       0
+         frame      data/chars/0misc/mbox04.gif
+@script
+    void vSelf = getlocalvar("self");
+if(frame==1)
+{
+      fademusic(0.5, "data/music/DD1S2.ogg", 1, 0);
+}@end_script
+         frame      data/chars/0misc/mbox05.gif
+         frame      data/chars/0misc/mbox06.gif
+         frame      data/chars/0misc/mbox05.gif
+         frame      data/chars/0misc/mbox04.gif
+         frame      data/chars/0misc/mbox01.gif
+         frame      data/chars/0misc/empty.gif
+         frame      data/chars/0misc/mbox01.gif
+         frame      data/chars/0misc/empty.gif
+         frame      data/chars/0misc/mbox01.gif
+         frame      data/chars/0misc/empty.gif
+         frame      data/chars/0misc/mbox01.gif
+         frame      data/chars/0misc/empty.gif
+

@@ -1,0 +1,34 @@
+name	pldoor1
+type	none
+subject_to_wall 0
+subject_to_gravity 0
+gfxshadow 0
+
+
+anim idle
+	 loop      0
+	 delay     5
+	 offset    33 93
+	 bbox      0
+	 sound     data/sounds/door.wav
+	 frame     Data/Bgs/06palc/det/door02.gif
+	 frame     Data/Bgs/06palc/det/door03.gif
+	 frame     Data/Bgs/06palc/det/door04.gif
+	 frame     Data/Bgs/06palc/det/door05.gif
+	 frame     Data/Bgs/06palc/det/door06.gif
+	 delay     10
+	 frame     Data/Bgs/06palc/det/door05.gif
+	 delay     5
+	 sound     data/sounds/door.wav
+	 frame     Data/Bgs/06palc/det/door04.gif
+	 frame     Data/Bgs/06palc/det/door03.gif
+	 frame     Data/Bgs/06palc/det/door02.gif
+	 frame     Data/Bgs/06palc/det/door01.gif
+	@cmd killentity getlocalvar("self")
+	 frame     data/chars/0misc/empty.gif
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+name	bgfx2
+health	1
+type	panel
+speed 10
+shadow 0
+setlayer -2000
+facing 1
+
+
+palette none
+
+
+anim	idle
+	loop	1
+	offset	1 1
+	delay	70
+	@cmd	changeentityproperty getlocalvar("self") "direction" 1
+	frame	data/chars/misc/bgfx2/bg01.gif
+	delay	15
+	@cmd	changeentityproperty getlocalvar("self") "setlayer" -2000
+	frame	data/chars/misc/bgfx2/bg02.gif
+	frame	data/chars/misc/bgfx2/bg03.gif
+	delay	70
+	frame	data/chars/misc/bgfx2/bg04.gif
+	delay	15
+	frame	data/chars/misc/bgfx2/bg03.gif
+	frame	data/chars/misc/bgfx2/bg02.gif

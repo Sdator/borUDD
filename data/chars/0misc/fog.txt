@@ -1,0 +1,40 @@
+name	fog
+type	panel
+shadow	0
+alpha   1
+speed   10
+setlayer 900
+
+anim idle
+	 loop      1
+	 delay     40
+	 offset    200 228
+	 move      3
+	 frame     data/chars/0misc/fog01.gif
+	 frame     data/chars/0misc/fog01.gif
+	 frame     data/chars/0misc/fog01.gif
+	 frame     data/chars/0misc/fog01.gif
+	 frame     data/chars/0misc/fog01.gif
+	 frame     data/chars/0misc/fog01.gif
+	 frame     data/chars/0misc/fog01.gif
+	 frame     data/chars/0misc/fog01.gif
+	 frame     data/chars/0misc/fog01.gif
+	 frame     data/chars/0misc/fog01.gif
+	 frame     data/chars/0misc/fog01.gif
+	 frame     data/chars/0misc/fog01.gif
+	 move      0
+	 move      -3
+	 frame     data/chars/0misc/fog01.gif
+	 frame     data/chars/0misc/fog01.gif
+	 frame     data/chars/0misc/fog01.gif
+	 frame     data/chars/0misc/fog01.gif
+	 frame     data/chars/0misc/fog01.gif
+	 frame     data/chars/0misc/fog01.gif
+	 frame     data/chars/0misc/fog01.gif
+	 frame     data/chars/0misc/fog01.gif
+	 frame     data/chars/0misc/fog01.gif
+	 frame     data/chars/0misc/fog01.gif
+	 frame     data/chars/0misc/fog01.gif
+	 frame     data/chars/0misc/fog01.gif
+	 move      0
+	 frame     data/chars/0misc/fog01.gif

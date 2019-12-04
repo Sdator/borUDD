@@ -1,0 +1,19 @@
+name	aguy1
+type	none
+nomove  1
+shadow        0
+gfxshadow     1
+alpha   0
+
+anim idle
+	 loop      1
+	 delay     150
+	 offset    27 79
+	 frame     data/Bgs/01airp/det/aguy1.gif
+	 delay     250
+	 frame     data/Bgs/01airp/det/aguy2.gif
+
+
+
+
+

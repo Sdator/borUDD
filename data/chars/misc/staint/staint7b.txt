@@ -1,0 +1,23 @@
+name	staint7b
+type	text
+subtype  noskip
+setlayer 9999999999
+nodieblink 3
+
+anim idle
+	 loop      0
+	 delay     3
+	 offset    0 228
+	 frame     data/chars/misc/staint/m7b01.gif
+	 frame     data/chars/misc/staint/m7b02.gif
+	 frame     data/chars/misc/staint/m7b03.gif
+	 frame     data/chars/misc/staint/m7b04.gif
+	 frame     data/chars/misc/staint/m7b05.gif
+	 frame     data/chars/misc/staint/m7b06.gif
+	 frame     data/chars/misc/staint/m7b07.gif
+	 frame     data/chars/misc/staint/m7b08.gif
+	 frame     data/chars/misc/staint/m7b09.gif
+         delay     200
+	 frame     data/chars/misc/staint/m7b10.gif
+
+

@@ -1,0 +1,41 @@
+name	elv01
+type	obstacle
+setlayer 224
+nodieblink 3
+shadow	0
+nolife        1
+alpha   1
+
+anim idle
+	 loop      0
+	 delay     0
+	 health    10
+	 offset    128 210
+	 flipframe 0
+	 bbox      196 98 22 114
+	 platform  199 221 0 0 19 19 30 1000
+	 frame     data/bgs/02lasv/det/elv02.gif
+
+anim pain
+	 loop      0
+	 delay     0
+	 health    10
+	 offset    127 210
+	 bbox      0 0 0 0
+	 platform  199 220 0 0 30 30 40 1000
+	 frame     data/bgs/02lasv/det/elv02.gif
+
+anim death
+	 loop      1 4 5
+	 delay     6
+	 offset    127 210
+	 sound     data/sounds/glass1.wav
+	 frame     data/bgs/02lasv/det/elv03.gif
+	 frame     data/bgs/02lasv/det/elv01.gif
+	 frame     data/bgs/02lasv/det/elv03.gif
+	 frame     data/bgs/02lasv/det/elv01.gif
+	 frame     data/bgs/02lasv/det/elv01.gif
+
+
+
+

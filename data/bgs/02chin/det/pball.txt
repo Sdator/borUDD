@@ -1,0 +1,71 @@
+name	  pball
+type	  npc
+nomove    1 1
+cantgrab  1
+health	  100000000000000000
+nolife    1
+noatflash 1
+hostile   enemy player
+candamage enemy player
+
+anim spawn
+	loop	0
+	delay   4
+	offset  49 195
+	bbox	43 134 13 16
+	frame	data/bgs/02chin/det/pball01.gif
+
+anim idle 
+	loop	0
+	delay   4
+	offset  49 195
+	bbox	43 134 13 16
+	frame	data/bgs/02chin/det/pball01.gif
+
+anim pain
+	loop	0
+	delay   3
+	offset  49 195
+	bbox	0
+	sound   data/sounds/punch6.wav
+	hitfx   data/sounds/beat7.wav
+	attack  58 135 15 13 0 0 0 0 8 3
+	dropv   1 1 0
+	frame	data/bgs/02chin/det/pball05.gif
+	attack  44 135 15 13 0 0 0 0 8 3
+	dropv   1 1 0
+	frame	data/bgs/02chin/det/pball03.gif
+	attack  41 135 15 13 0 0 0 0 8 3
+	dropv   1 1 0
+	frame	data/bgs/02chin/det/pball02.gif
+	attack  9 135 15 14 0 0 0 0 8 3
+	dropv   1 1 0
+	frame	data/bgs/02chin/det/pball06.gif
+	attack  25 135 15 13 0 0 0 0 8 3
+	dropv   1 1 0
+	frame	data/bgs/02chin/det/pball04.gif
+	attack  41 135 15 13 0 0 0 0 8 3
+	dropv   1 1 0
+	frame	data/bgs/02chin/det/pball02.gif
+	attack  44 135 15 13 0 0 0 0 8 3
+	dropv   1 1 0
+	frame	data/bgs/02chin/det/pball03.gif
+	attack  58 135 15 13 0 0 0 0 8 3
+	dropv   1 1 0
+	frame	data/bgs/02chin/det/pball05.gif
+	attack  76 135 15 13 0 0 0 0 8 3
+	dropv   1 1 0
+	frame	data/bgs/02chin/det/pball07.gif
+	attack  58 135 15 13 0 0 0 0 8 3
+	dropv   1 1 0
+	frame	data/bgs/02chin/det/pball05.gif
+	attack  44 135 15 13 0 0 0 0 8 3
+	dropv   1 1 0
+	frame	data/bgs/02chin/det/pball03.gif
+	attack  0 0 0 0
+	frame	data/bgs/02chin/det/pball02.gif
+	frame	data/bgs/02chin/det/pball03.gif
+	frame	data/bgs/02chin/det/pball01.gif
+
+
+

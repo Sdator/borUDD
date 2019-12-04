@@ -1,0 +1,42 @@
+name	apeeps
+type	npc
+hostile   enemy player 
+candamage enemy player
+nomove  1
+shadow        0
+gfxshadow     1
+alpha   0
+offscreenkill 600
+
+animationscript   data/scripts/lib001.c
+
+anim spawn
+	 loop      0
+	 delay     6
+	 offset    59 56
+	 drawmethod scale 1.05
+	 frame     data/bgs/02airp/det/peeps1.gif
+
+anim idle
+	 loop      1
+	 delay     6
+	 offset    59 56
+	 drawmethod scale 1.05
+	 frame     data/bgs/02airp/det/peeps1.gif
+
+anim attack
+	 range     -120 120
+	 rangez    -20 20
+	 loop      1
+	 delay     9
+	 offset    59 56	
+	 @cmd velo001 1.4 0 0
+	 drawmethod scale 1.05
+	 frame     data/bgs/02airp/det/peeps2.gif
+	 frame     data/bgs/02airp/det/peeps3.gif
+	 frame     data/bgs/02airp/det/peeps4.gif
+	 frame     data/bgs/02airp/det/peeps5.gif
+	 frame     data/bgs/02airp/det/peeps6.gif
+	 frame     data/bgs/02airp/det/peeps7.gif
+
+

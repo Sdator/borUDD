@@ -1,0 +1,24 @@
+name	cinema
+type	panel
+speed   10
+setlayer 99999999999
+shadow	0
+
+
+anim idle
+	 loop      1
+	 delay     5
+	 offset    0 228
+	 bbox      0
+	 frame     Data/Bgs/graveyard/f01.gif
+
+
+
+
+
+
+
+
+
+
+

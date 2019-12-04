@@ -1,0 +1,84 @@
+name	      grenade0
+health        0
+type          item
+counter       999
+subtype       weapon
+weapnum       8
+shootnum      1
+nolife        1
+gfxshadow     1
+remove	      0
+candamage     enemy player npc obstacle
+
+script  data/scripts/bounce.c
+
+anim spawn
+	delay	6
+	offset  27 25
+	bbox    0 0 0 0
+	frame	data/chars/0weap/gre08.gif
+
+anim idle
+	delay	4
+	offset  27 25
+	bbox    0 0 0 0
+	move    2
+	frame	data/chars/0weap/gre01.gif
+	frame	data/chars/0weap/gre02.gif
+	frame	data/chars/0weap/gre03.gif
+	frame	data/chars/0weap/gre04.gif
+	frame	data/chars/0weap/gre05.gif
+	frame	data/chars/0weap/gre06.gif
+	frame	data/chars/0weap/gre07.gif
+	frame	data/chars/0weap/gre08.gif
+	delay   250
+	bbox    19 24 18 3
+	frame	data/chars/0weap/gre02.gif
+	delay   10
+	move    0
+	bbox    0 0 0 0
+	frame	data/chars/0weap/gre09.gif
+	frame	data/chars/0weap/gre02.gif
+	frame	data/chars/0weap/gre09.gif
+	frame	data/chars/0weap/gre02.gif
+	frame	data/chars/0weap/gre09.gif
+	frame	data/chars/0weap/gre02.gif
+	frame	data/chars/0weap/gre09.gif
+	frame	data/chars/0weap/gre02.gif
+	frame	data/chars/0weap/gre09.gif
+	frame	data/chars/0weap/gre02.gif
+	delay	4
+	offset  49 85
+	sound   data/sounds/bang1.wav
+	hitfx   data/sounds/beat2.wav
+	attack13  42 74 16 18 60 1 1 0 8
+	dropv   2 1.5 0
+	frame	data/chars/0weap/exp01.gif
+	frame	data/chars/0weap/exp02.gif
+	attack13  35 53 30 38 60 1 1 0 8
+	dropv   2 1.5 0
+	frame	data/chars/0weap/exp03.gif
+	attack13  31 41 42 50 60 1 1 0 8
+	dropv   2 1.5 0
+	frame	data/chars/0weap/exp04.gif
+	frame	data/chars/0weap/exp05.gif
+	frame	data/chars/0weap/exp06.gif
+	frame	data/chars/0weap/exp07.gif
+	attack13  24 38 56 51 60 1 1 0 8
+	dropv   2 1.5 0
+	frame	data/chars/0weap/exp08.gif
+	frame	data/chars/0weap/exp09.gif
+	frame	data/chars/0weap/exp10.gif
+	attack13  40 20 24 42 60 1 1 0 8
+	dropv   2 1.5 0
+	frame	data/chars/0weap/exp11.gif
+	frame	data/chars/0weap/exp12.gif
+	frame	data/chars/0weap/exp13.gif
+	attack13  0 0 0 0
+	frame	data/chars/0weap/exp14.gif
+	frame	data/chars/0weap/empty.gif
+
+
+
+
+

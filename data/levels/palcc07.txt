@@ -1,0 +1,473 @@
+loadingbg       data/bgs/loading2.gif 1 -999 -999 100 -999 -999
+music           data/music/07palacc.ogg 1
+bossmusic       data/music/ddtheme.ogg 1
+at              0
+background	data/bgs/07palc/n01.gif
+panel		data/bgs/07palc/n01.gif
+direction       both
+scrollspeed     0.5
+light  		10  20
+at       	0
+settime         0
+notime          1
+noslow          1
+order	        a
+cameraoffset 0 -50
+spawn1          10 30
+spawn2          10 56
+updatescript    data/scripts/traileru.c
+
+wall   394 211 -20 0 2000 2000 34 5000
+wall   117 211 -2000 -2000 20 0 34 5000
+
+wall   -34 339 -2000 -2000 130 0 130 5000 1
+wall   546 339 -130 0 2000 2000 130 5000 2
+
+
+scrollz 9 399
+at  0
+
+group 2 2
+at 0
+
+spawn   delay
+@script
+void main()
+{
+    int P1 = getplayerproperty(0, "entity");
+    int P2 = getplayerproperty(1, "entity");
+
+    if(P1){
+      changeentityproperty(P1, "position", 145, 225);
+    }
+    if(P2){
+      changeentityproperty(P2, "position", 125, 245);
+    }
+}
+@end_script
+health  5 
+coords  170 230 0
+at      0
+
+spawn   scrmove
+coords  170 230 0
+at      0
+
+####### 
+
+group 4 4
+at 0
+
+spawn   steve
+spawnscript data/scripts/noscpos.c
+health  350
+map     2
+coords  230 186 0
+at      0
+
+spawn   steve
+spawnscript data/scripts/noscpos.c
+health  350
+map     2
+coords  275 186 0
+at      0
+
+
+spawn   williams
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW100"));
+} @end_script
+map     4 
+flip 1
+coords  -30 246 113
+at      0
+
+spawn   delay
+health  60 
+coords  112 246 113
+at      0
+
+spawn   roper
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW100"));
+} @end_script
+map     4
+coords  542 246 113
+at      0
+
+group 1 1
+at 0
+
+####### GROUP 2
+
+group 4 4
+at 0
+
+spawn   jackson
+spawnscript data/scripts/noscpos.c
+health  350
+map     1
+coords  230 186 0
+at      0
+
+spawn   jackson
+spawnscript data/scripts/noscpos.c
+health  350
+map     3
+coords  275 186 0
+at      0
+
+
+spawn   roper
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW100"));
+} @end_script
+map     2
+flip 1
+coords  -30 246 113
+at      0
+
+spawn   delay
+health  60 
+coords  112 246 113
+at      0
+
+spawn   linda1
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW100"));
+} @end_script
+map     1
+item    knife01
+coords  542 246 113
+at      0
+
+group 1 1
+at 0
+
+####### GROUP 3
+
+group 4 4
+at 0
+
+spawn   chen1b
+spawnscript data/scripts/noscpos.c
+health  350
+coords  230 186 0
+at      0
+
+spawn   chen1b
+spawnscript data/scripts/noscpos.c
+health  350
+map     1
+coords  275 186 0
+at      0
+
+
+spawn   williams
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW100"));
+} @end_script
+map     2
+flip 1
+coords  -30 246 113
+at      0
+
+spawn   delay
+health  60 
+coords  112 246 113
+at      0
+
+spawn   baker
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW100"));
+} @end_script
+map     2
+coords  542 246 113
+at      0
+
+group 1 1
+at 0
+
+####### GROUP 4
+
+group 4 4
+at 0
+
+spawn   jeff
+spawnscript data/scripts/noscpos.c
+health  300
+map     3
+coords  230 186 0
+at      0
+
+spawn   jeff
+spawnscript data/scripts/noscpos.c
+health  300
+map     4
+coords  275 186 0
+at      0
+
+
+spawn   roper
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW100"));
+} @end_script
+map     3
+flip 1
+coords  -30 246 113
+at      0
+
+spawn   delay
+health  60 
+coords  112 246 113
+at      0
+
+spawn   williams
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW100"));
+} @end_script
+map     3
+coords  542 246 113
+at      0
+
+group 1 1
+at 0
+
+####### GROUP 5
+
+group 4 4
+at 0
+
+spawn   mcguire
+spawnscript data/scripts/noscpos.c
+health  400
+map     3
+coords  230 186 0
+at      0
+
+spawn   mcguire
+spawnscript data/scripts/noscpos.c
+health  400
+map     4
+coords  275 186 0
+at      0
+
+spawn   baker
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW100"));
+} @end_script
+map     3
+flip 1
+coords  -30 246 113
+at      0
+
+spawn   delay
+health  60 
+coords  112 246 113
+at      0
+
+spawn   baker
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW100"));
+} @end_script
+map     4
+coords  542 246 113
+at      0
+
+spawn   delay
+health  60 
+coords  112 246 113
+at      0
+
+spawn   baker
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW100"));
+} @end_script
+map     3
+flip 1
+coords  -30 246 113
+at      0
+
+group 1 1
+at 0
+
+####### GROUP 6
+
+group 4 4
+at 0
+
+spawn   carlem
+spawnscript data/scripts/noscpos.c
+health  400
+map     1
+coords  230 186 0
+at      0
+
+spawn   carlem
+spawnscript data/scripts/noscpos.c
+health  400
+map     2
+coords  275 186 0
+at      0
+
+spawn   roper
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW100"));
+} @end_script
+map     3
+flip 1
+coords  -30 246 113
+at      0
+
+spawn   delay
+health  60 
+coords  112 246 113
+at      0
+
+spawn   williams
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW100"));
+} @end_script
+map     3
+coords  542 246 113
+at      0
+
+spawn   delay
+health  60 
+coords  112 246 113
+at      0
+
+spawn   linda1
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW100"));
+} @end_script
+map     2
+flip 1
+item    knife01
+coords  -30 246 113
+at      0
+
+group 1 1
+at 0
+
+####### GROUP 7
+
+group 3 3
+at 0
+
+spawn   dukezb
+item    dukede4
+spawnscript data/scripts/noscpos.c
+dying 1 300 100
+health  900
+2phealth 1100
+coords  256 233 0
+at      0
+
+spawn   roper
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW100"));
+} @end_script
+map     3
+flip 1
+coords  -30 246 113
+at      0
+
+spawn   delay
+health  60 
+coords  112 246 113
+at      0
+
+spawn   williams
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW100"));
+} @end_script
+coords  542 246 113
+at      0
+
+group 1 1
+at 0
+
+
+
+

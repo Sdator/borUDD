@@ -1,0 +1,455 @@
+loadingbg       data/bgs/loading2.gif 1 -999 -999 100 -999 -999
+music           data/music/SDDAIR01.ogg 1
+at              0
+background	data/bgs/02airp/b01.gif
+panel		data/bgs/02airp/n01.gif
+direction       both
+scrollspeed     0.5
+light  		10  20
+at       	0
+settime         0
+notime          1
+noslow          1
+order	        a
+cameratype      1
+cameraoffset 0 -50
+#type            1
+spawn1          160 30 145
+spawn2          48 56 145
+updatescript    data/scripts/traileru.c
+
+
+wall	13 381 -2000 -2000 5 0 19 80 #side wall left
+wall	488 381 0 0 2000 2000 49 5000 #side wall right
+wall    -2000 381 0 0 4000 4000 19 7
+wall    68 381 0 0 283 283 4 5000 3 #this was 35
+basemap 348 381 85 17 7 90
+wall    348 381 0 0 300 300 4 115 3
+wall    431 381 0 0 300 300 19 88
+wall	22 366 -2000 -2000 40 0 34 5000 #side wall left
+wall    0 366 0 0 418 418 2 600 3
+wall    0 366 0 0 600 600 34 88 # for belt3
+wall    116 351 0 0 259 259 5 5000 3 #this was 117
+basemap 340 351 61 19 88 147
+wall    340 351 0 0 300 300 5 173 3
+wall    399 351 0 0 300 300 19 145
+wall	448 351 0 0 2000 2000 49 5000 #side wall right
+wall	68 335 -2000 -2000 0 0 34 5000 #side wall left
+wall    0 335 0 0 1000 1000 2 600 3 #14
+wall    0 335 0 0 600 600 34 145 # for belt2
+wall	   86 319 -2000 -2000 16 0 34 5000 #side wall left
+wall    156 320 0 0 195 195 5 5000 3 #this was 189
+basemap 308 320 61 19 145 205
+wall    308 320 0 0 300 300 5 230 3
+wall    367 320 0 0 300 300 19 203
+wall	416 320 0 0 2000 2000 49 5000 #side wall right
+
+
+spawn   fgair1
+@script
+void main()
+{
+    int P1 = getplayerproperty(0, "entity");
+    int P2 = getplayerproperty(1, "entity");
+
+    if(P1){
+      changeentityproperty(P1, "position", 390, 310, 203);
+      changeentityproperty(P1, "direction", 0);
+    }
+    if(P2){
+      changeentityproperty(P2, "position", 405, 310, 203);
+      changeentityproperty(P2, "direction", 0);
+    }
+}
+@end_script
+coords  117 318 143
+at      0
+
+spawn   scrmove
+coords  100 310 145
+at      0
+
+spawn   fgair2
+#coords  85 349 86
+coords  85 349 86
+at      0
+
+spawn   fgair3
+coords  69 379 4
+at      0
+
+spawn   belt2
+coords  57 335 148
+at      0
+
+spawn   belt3
+coords  17 366 91
+at      0
+
+spawn   gbelter2
+coords  57 335 148
+at      0
+
+spawn   gbelter6
+coords  57 335 148
+at      0
+
+spawn   gbelter3
+coords  17 366 91
+at      0
+
+spawn   gbelter5
+coords  17 366 91
+at      0
+
+spawn   gbelter4
+coords  400 370 88
+at      0
+
+spawn   movezblo
+spawnscript data/scripts/noscpos.c
+coords  60 321 145
+at      0
+
+spawn   subjpp
+coords  100 310 145
+at      0
+
+spawn   jumper
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW2"));
+} @end_script
+flip 1
+coords  167 317 145
+at      0
+
+spawn   jumper
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW3"));
+} @end_script
+flip 1
+coords  167 323 145
+at      0
+
+spawn   jumper
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW4"));
+} @end_script
+flip 1
+coords  127 348 88
+at      0
+
+spawn   jumper
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW5"));
+} @end_script
+flip 1
+coords  127 354 88
+at      0
+
+spawn   aguy1
+flip    1
+coords  390 380 0
+at      0
+
+spawn   lugg1
+coords  432 380 0
+at      0
+
+spawn   lugg2
+coords  284 469 0
+at      0
+
+spawn   apeeps
+coords  228 469 0
+at      0
+
+spawn   aplight1
+flip    1
+coords  0 476 0
+at      0
+
+spawn   apchairs
+coords  149 475 0
+at      0
+
+spawn   stageinT
+#flip    1
+coords  255 233 
+at      0
+
+#--------------------------------------------------
+
+scrollx 168 511
+at   0
+
+scrollz 0 0
+at  0
+
+#1--------------------------------------------------
+
+Group	1 2
+at	168
+
+spawn   williams
+spawnscript data/scripts/noscpos.c
+health  80
+coords  110 307 145
+at      0
+
+spawn   Roper
+spawnscript data/scripts/noscpos.c
+health  80
+map 3
+coords  100 310 145
+at      0
+
+#----------------
+Group	1 1
+at	0
+
+scrollx 0 128
+at   0
+
+spawn   blkiller
+spawnscript data/scripts/noscpos.c
+coords  60 320 145
+at      0
+
+#----------------
+
+#2--------------------------------------------------
+
+Group	1 2
+at	128
+
+spawn   williams
+spawnscript data/scripts/noscpos.c
+health  80
+map 1
+#weapon  grenade0
+coords  110 307 145
+at      0
+
+spawn   Baker
+spawnscript data/scripts/noscpos.c
+health  80
+coords  85 325 145
+at      0
+
+#----------------
+
+Group	1 1
+at	0
+
+scrollx 0 128
+at   0
+
+#3--------------------------------------------------
+
+Group	1 2
+at	0
+
+spawn   Roper
+health  80
+map 3
+flip 1
+coords  -25 329 145
+at      125
+
+spawn   Roper
+health  80
+map 3
+coords  315 328 145
+at      125
+
+Group	1 1
+at	0
+
+spawn   slwall2
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW1"));
+} @end_script
+coords  425 328 145
+at      0
+
+Group	1 4
+at	0
+
+spawn   spawair # this is spawning enemy pathblock and screen adjust.
+spawnscript data/scripts/noscpos.c
+coords  275 334 145
+at      0
+
+#----------------
+Group	1 1
+at	0
+
+scrollx 128 511
+at   0
+
+scrollz 73 73
+at   0
+
+#----------------
+
+#4--------------------------------------------------
+
+Group	1 3
+at	0
+
+spawn   spawair2 # this is spawning Williams/Ropers on and pathblocks for enemies.
+spawnscript data/scripts/noscpos.c
+flip 1
+coords  288 350 88
+at      0
+
+#----------------
+Group	1 1
+at	0
+
+scrollx 0 511
+at   0
+
+scrollz 130 130
+at  0
+
+spawn   blkiller
+spawnscript data/scripts/noscpos.c
+coords  40 351 88
+at      0
+
+
+#4--------------------------------------------------
+
+Group	2 2
+at	0
+
+spawn Baker
+spawnscript data/scripts/noscpos.c
+flip 1
+coords  45 360 88
+at      0
+
+spawn delay
+spawnscript data/scripts/noscpos.c
+health 20
+coords  45 360 88
+at      0
+
+spawn Roper
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW101"));
+} @end_script
+map 1
+coords  485 340 145
+at      0
+
+#----------------
+Group	1 1
+at	0
+
+scrollx 0 511
+at   0
+
+scrollz 130 248
+at  0
+
+spawn   blkiller
+spawnscript data/scripts/noscpos.c
+coords  400 372 88
+at      0
+
+spawn   scrmove3
+spawnscript data/scripts/noscpos.c
+flip 1
+coords  234 380 7
+at      0
+
+
+#----------------
+
+#5--------------------------------------------------
+
+Group	3 3
+at	0
+
+spawn	delay6
+spawnscript data/scripts/noscpos.c
+coords  250 385 1
+at      0
+
+#light   200 190
+#at      0
+#shadowopacity 5
+#at      0
+
+spawn	delay6
+spawnscript data/scripts/noscpos.c
+coords  250 385 1
+at      0
+
+spawn	delay6
+spawnscript data/scripts/noscpos.c
+coords  250 385 1
+at      0
+
+spawn   Baker
+health  100
+flip 1
+coords  -100 420
+at      0
+
+spawn   Roper
+health  100
+map 3
+coords  400 390
+at      0
+
+spawn   steve
+map     3
+health  250
+2phealth 350
+coords  500 420
+at      0
+
+group   1 1
+at      0
+
+spawn   stageou
+flip    1
+coords  0 472
+at      0
+
+
+

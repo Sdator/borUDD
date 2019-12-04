@@ -1,0 +1,15 @@
+name	flare01
+type	none
+shadow	0
+alpha   3
+
+anim idle
+	 loop      1 0 3
+	 delay     5
+	 offset    31 87
+	 frame     Data/Bgs/03palc/det/flare1.gif
+	 frame     Data/Bgs/03palc/det/flare2.gif
+	 frame     Data/Bgs/03palc/det/flare3.gif
+
+
+

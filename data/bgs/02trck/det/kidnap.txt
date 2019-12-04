@@ -1,0 +1,113 @@
+name          kidnap
+type          none
+gfxshadow     1
+antigravity   40
+lifespan      24
+
+
+anim spawn
+	 loop       0
+	 delay      1500
+	 offset     81 144
+	 bbox       0 0 0 0
+         frame      data/bgs/02trck/det/kdn01.gif
+	 delay      2
+	 move       -1
+
+         frame      data/bgs/02trck/det/kdn02.gif
+         frame      data/bgs/02trck/det/kdn02.gif
+         frame      data/bgs/02trck/det/kdn02.gif
+         frame      data/bgs/02trck/det/kdn02.gif
+         frame      data/bgs/02trck/det/kdn02.gif
+
+         frame      data/bgs/02trck/det/kdn03.gif
+         frame      data/bgs/02trck/det/kdn03.gif
+         frame      data/bgs/02trck/det/kdn03.gif
+         frame      data/bgs/02trck/det/kdn03.gif
+         frame      data/bgs/02trck/det/kdn03.gif
+
+         frame      data/bgs/02trck/det/kdn04.gif
+         frame      data/bgs/02trck/det/kdn04.gif
+         frame      data/bgs/02trck/det/kdn04.gif
+         frame      data/bgs/02trck/det/kdn04.gif
+         frame      data/bgs/02trck/det/kdn04.gif
+
+         frame      data/bgs/02trck/det/kdn05.gif
+         frame      data/bgs/02trck/det/kdn05.gif
+         frame      data/bgs/02trck/det/kdn05.gif
+         frame      data/bgs/02trck/det/kdn05.gif
+         frame      data/bgs/02trck/det/kdn05.gif
+
+
+         frame      data/bgs/02trck/det/kdn02.gif
+         frame      data/bgs/02trck/det/kdn02.gif
+         frame      data/bgs/02trck/det/kdn02.gif
+         frame      data/bgs/02trck/det/kdn02.gif
+         frame      data/bgs/02trck/det/kdn02.gif
+
+         frame      data/bgs/02trck/det/kdn03.gif
+         frame      data/bgs/02trck/det/kdn03.gif
+         frame      data/bgs/02trck/det/kdn03.gif
+         frame      data/bgs/02trck/det/kdn03.gif
+         frame      data/bgs/02trck/det/kdn03.gif
+
+         frame      data/bgs/02trck/det/kdn04.gif
+         frame      data/bgs/02trck/det/kdn04.gif
+         frame      data/bgs/02trck/det/kdn04.gif
+         frame      data/bgs/02trck/det/kdn04.gif
+         frame      data/bgs/02trck/det/kdn04.gif
+
+         frame      data/bgs/02trck/det/kdn05.gif
+         frame      data/bgs/02trck/det/kdn05.gif
+         frame      data/bgs/02trck/det/kdn05.gif
+         frame      data/bgs/02trck/det/kdn05.gif
+         frame      data/bgs/02trck/det/kdn05.gif
+
+         frame      data/bgs/02trck/det/kdn02.gif
+         frame      data/bgs/02trck/det/kdn02.gif
+         frame      data/bgs/02trck/det/kdn02.gif
+         frame      data/bgs/02trck/det/kdn02.gif
+         frame      data/bgs/02trck/det/kdn02.gif
+
+         frame      data/bgs/02trck/det/kdn03.gif
+         frame      data/bgs/02trck/det/kdn03.gif
+         frame      data/bgs/02trck/det/kdn03.gif
+         frame      data/bgs/02trck/det/kdn03.gif
+         frame      data/bgs/02trck/det/kdn03.gif
+
+         frame      data/bgs/02trck/det/kdn04.gif
+         frame      data/bgs/02trck/det/kdn04.gif
+         frame      data/bgs/02trck/det/kdn04.gif
+         frame      data/bgs/02trck/det/kdn04.gif
+         frame      data/bgs/02trck/det/kdn04.gif
+
+         frame      data/bgs/02trck/det/kdn05.gif
+         frame      data/bgs/02trck/det/kdn05.gif
+         frame      data/bgs/02trck/det/kdn05.gif
+         frame      data/bgs/02trck/det/kdn05.gif
+         frame      data/bgs/02trck/det/kdn05.gif
+
+         frame      data/bgs/02trck/det/kdn02.gif
+         frame      data/bgs/02trck/det/kdn02.gif
+         frame      data/bgs/02trck/det/kdn02.gif
+         frame      data/bgs/02trck/det/kdn02.gif
+         frame      data/bgs/02trck/det/kdn02.gif
+
+         frame      data/bgs/02trck/det/kdn03.gif
+         frame      data/bgs/02trck/det/kdn03.gif
+         frame      data/bgs/02trck/det/kdn03.gif
+         frame      data/bgs/02trck/det/kdn03.gif
+         frame      data/bgs/02trck/det/kdn03.gif
+
+         frame      data/bgs/02trck/det/kdn04.gif
+         frame      data/bgs/02trck/det/kdn04.gif
+         frame      data/bgs/02trck/det/kdn04.gif
+         frame      data/bgs/02trck/det/kdn04.gif
+         frame      data/bgs/02trck/det/kdn04.gif
+
+         frame      data/bgs/02trck/det/kdn05.gif
+         frame      data/bgs/02trck/det/kdn05.gif
+         frame      data/bgs/02trck/det/kdn05.gif
+         frame      data/bgs/02trck/det/kdn05.gif
+         frame      data/bgs/02trck/det/kdn05.gif
+

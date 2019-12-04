@@ -1,0 +1,28 @@
+name        Fireb
+health      1
+type	    pshot
+shootnum    1
+speed	    13
+candamage   player obstacle
+subject_to_hole 0
+subject_to_obstacle 0
+subject_to_wall 1
+subject_to_gravity 0
+
+
+anim idle
+	   loop      1
+	   delay     5
+	   bbox      0
+	   offset    53 40
+	   hitfx     data/sounds/beata.wav
+	   hitflash  UCflash
+	   attack11  26 21 41 38 15 1 1 0 8 2
+	   dropv     1.3 0.8 0
+	   forcedirection -1
+	   frame     data/chars/0weap/fireb01.gif
+	   frame     data/chars/0weap/fireb02.gif
+	   frame     data/chars/0weap/fireb03.gif
+	   frame     data/chars/0weap/fireb04.gif
+	   frame     data/chars/0weap/fireb05.gif
+	   frame     data/chars/0weap/fireb06.gif

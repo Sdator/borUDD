@@ -1,0 +1,66 @@
+name    dde
+type	none
+
+anim idle
+	 loop    0
+	 delay   5
+	 offset  90 97
+	 bbox    0 0 0 0	
+	 frame   data/chars/0misc/dde01.gif
+	 frame   data/chars/0misc/dde02.gif
+	 frame   data/chars/0misc/dde03.gif
+	 frame   data/chars/0misc/dde04.gif
+	 frame   data/chars/0misc/dde05.gif
+	 frame   data/chars/0misc/dde02.gif
+	 frame   data/chars/0misc/dde03.gif
+	 frame   data/chars/0misc/dde04.gif
+	 frame   data/chars/0misc/dde05.gif
+	 frame   data/chars/0misc/dde02.gif
+	 frame   data/chars/0misc/dde03.gif
+	 frame   data/chars/0misc/dde04.gif
+	 frame   data/chars/0misc/dde05.gif
+	 frame   data/chars/0misc/dde02.gif
+	 frame   data/chars/0misc/dde03.gif
+	 frame   data/chars/0misc/dde04.gif
+	 frame   data/chars/0misc/dde05.gif
+	 frame   data/chars/0misc/dde02.gif
+	 frame   data/chars/0misc/dde03.gif
+	 frame   data/chars/0misc/dde04.gif
+	 frame   data/chars/0misc/dde05.gif
+	 frame   data/chars/0misc/dde02.gif
+	 frame   data/chars/0misc/dde03.gif
+	 frame   data/chars/0misc/dde04.gif
+	 frame   data/chars/0misc/dde05.gif
+	 frame   data/chars/0misc/dde02.gif
+	 frame   data/chars/0misc/dde03.gif
+	 frame   data/chars/0misc/dde04.gif
+	 frame   data/chars/0misc/dde05.gif
+	 frame   data/chars/0misc/dde02.gif
+	 frame   data/chars/0misc/dde03.gif
+	 frame   data/chars/0misc/dde04.gif
+	 frame   data/chars/0misc/dde05.gif
+	 frame   data/chars/0misc/dde02.gif
+	 frame   data/chars/0misc/dde03.gif
+	 frame   data/chars/0misc/dde04.gif
+	 frame   data/chars/0misc/dde05.gif
+	 frame   data/chars/0misc/dde02.gif
+	 frame   data/chars/0misc/dde03.gif
+	 frame   data/chars/0misc/dde04.gif
+	 frame   data/chars/0misc/dde05.gif
+	 frame   data/chars/0misc/dde02.gif
+	 frame   data/chars/0misc/dde03.gif
+	 frame   data/chars/0misc/dde04.gif
+	 frame   data/chars/0misc/dde05.gif
+	 delay   4
+	 frame   data/chars/0misc/dde06.gif
+	 frame   data/chars/0misc/dde07.gif
+	 frame   data/chars/0misc/dde08.gif
+	 frame   data/chars/0misc/dde09.gif
+	 frame   data/chars/0misc/dde10.gif
+	 frame   data/chars/0misc/dde11.gif
+	 frame   data/chars/0misc/dde12.gif
+	 frame   data/chars/0misc/dde13.gif
+	 frame   data/chars/0misc/dde14.gif
+	 frame   data/chars/0misc/empty.gif
+
+

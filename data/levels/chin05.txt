@@ -1,0 +1,204 @@
+loadingbg       data/bgs/loading2.gif 1 -999 -999 100 -999 -999
+music           data/music/00.ogg 1
+background	data/bgs/02chin/b01.gif
+panel		data/bgs/05chin/n01.gif
+direction       both
+scrollspeed     0.5
+light  		10  20
+at       	0
+settime         0
+notime          1
+noslow          1
+order	        a
+cameratype      1
+cameraoffset 0 -50
+spawn1           80 25
+spawn2           90 35
+updatescript    data/scripts/traileru.c
+
+wall -1000 592 0 0 3000 3000 700 130
+wall -1000 592 0 0 3000 3000 20 5000
+wall -1000 524 0 0 3000 3000 700 318
+wall -1000 524 0 0 3000 3000 20 5000
+wall -1000 456 0 0 3000 3000 20 5000
+
+spawn   fgchi5
+coords  1 592 130
+at      0
+
+spawn   fgchi5
+coords  1 524 318
+at      0
+
+spawn   rain
+coords  256 555 318
+at      0
+spawn   rains1
+coords  256 555 318
+at      0
+
+spawn   thunder
+flip    1
+coords  0 687 318
+at      0
+
+music           data/music/WKCHI05.ogg 1
+at      0
+
+####### GROUP 1
+
+scrollz 0 0
+at  0
+
+group   1 2
+at      0
+
+spawn   chen2
+health  500
+2phealth 600
+coords  190 475 318
+at      0
+
+spawn   chen3
+health  500
+2phealth 600
+map     1
+coords  170 465 318
+at      0
+
+2pspawn   baker
+map     3
+health  100
+coords  400 465 318
+at      0
+
+2pspawn   baker
+map     4
+health  100
+coords  -80 465 318
+at      0
+
+#----------------------------
+group   1 1
+at      0
+
+scrollz 0 252
+at  0
+
+spawn   playmove
+coords  100 465 318
+at      0
+
+spawn   delay
+health 10
+coords  100 510 318
+at      0
+
+spawn   playju
+spawnscript data/scripts/noscpos.c
+coords  160 510 318
+at      0
+
+spawn   delay6
+coords  100 555 130
+at      0
+
+group   1 1
+at      0
+
+scrollz 252 252
+at  0
+#----------------------------
+
+####### GROUP 2
+
+group   1 4
+at      0
+
+spawn   baker
+map     3
+health  100
+flip 1
+coords  316 550 130
+at      0
+
+spawn   baker
+map     3
+health  100
+coords  -60 550 130
+at      0
+
+spawn   baker
+map     4
+health  100
+flip 1
+coords  326 570 130
+at      0
+
+spawn   baker
+map     4
+health  100
+coords  -70 570 130
+at      0
+
+#----------------------------
+
+group   1 1
+at      0
+
+scrollz 252 549
+at  0
+
+spawn   playmove
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW1"));
+} @end_script
+coords  100 665 130
+at      0
+
+spawn   delay
+health 10
+coords  100 575 130
+at      0
+
+spawn   playju
+@script void main() {
+   void self = getlocalvar("self");
+   int x = getentityproperty(self,"x");
+   int XPos = openborvariant("xpos");
+
+   changeentityproperty(self, "position", x - XPos);
+   performattack(getlocalvar("self"), openborconstant("ANI_FOLLOW2"));
+} @end_script
+coords  160 575 130
+at      0
+
+spawn   truckch5
+flip 1
+coords  1 687 1
+at  0
+
+spawn   delay
+health 5
+coords  100 600 0
+at  0
+
+music   data/music/00.ogg
+at      0
+musicfade 1
+at      0
+
+#----------------------------
+
+spawn   stclear
+coords  256 688
+at      0
+
+
+
+

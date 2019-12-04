@@ -1,0 +1,54 @@
+name	cinema3
+type	text
+subtype noskip
+speed   10
+setlayer 99999999999
+shadow	0
+
+
+anim idle
+	 loop      0
+	 offset    0 228
+	 bbox      0
+	 delay     20
+	 drawmethod alpha 6
+	 drawmethod channel 0.90
+	 frame     Data/Bgs/dojo/credix.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.80
+	 frame     Data/Bgs/dojo/credix.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.70
+	 frame     Data/Bgs/dojo/credix.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.60
+	 frame     Data/Bgs/dojo/credix.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.50
+	 frame     Data/Bgs/dojo/credix.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.40
+	 frame     Data/Bgs/dojo/credix.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.30
+	 frame     Data/Bgs/dojo/credix.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.20
+	 frame     Data/Bgs/dojo/credix.gif
+	 drawmethod alpha 6
+	 drawmethod channel 0.10
+	 frame     Data/Bgs/dojo/credix.gif
+	 drawmethod off
+	 frame     Data/chars/0misc/empty.gif
+
+
+
+
+
+
+
+
+
+
+
+

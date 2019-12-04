@@ -1,0 +1,78 @@
+name	dragonk
+#type	text
+#subtype noskip
+type    panel
+speed   10
+setlayer 99999999
+alpha   6
+animationscript   data/scripts/lib001.c
+load    slowitm2
+
+anim idle
+	 loop      0
+	 delay     1
+	 offset    128 228
+	 subentity slowitm2
+	 spawnframe 0
+	 flipframe  0
+	 sound     data/sounds/super.wav
+@cmd setmusicvolume 0 0 #music going silent
+	 frame     data/chars/0misc/sp19.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp18.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp17.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp16.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp15.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp14.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp13.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp12.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp11.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp19.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp18.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp17.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp16.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp15.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp14.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp13.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp12.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp11.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp19.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp18.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp17.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp16.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp15.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp14.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp13.gif
+	 frame     data/chars/0misc/empty.gif
+	 frame     data/chars/0misc/sp12.gif
+@cmd setmusicvolume 100 100 #music going silent
+	 frame     data/chars/0misc/empty.gif
+
+
+
+
+
+
