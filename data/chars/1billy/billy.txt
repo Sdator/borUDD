@@ -48,6 +48,7 @@ animationscript   data/scripts/lib001.c
 # 当角色精灵出现在屏幕上执行
 ondrawscript	  data/scripts/shadowon.c
 #didhitscript      data/scripts/didhit.c
+
 # 当角色碰到墙壁时执行
 onblockWscript         data/scripts/spikesw2.c 
 
@@ -543,6 +544,10 @@ anim freespecial1
 	 offset     80 129
 	 bbox       68 83 24 44
 	 hitfx      data/sounds/beat2.wav
+	#  动态加载
+@cmd prepareScript
+@cmd execs
+@cmd log "攻击2\n"
 @cmd ani0020 openborconstant("ANI_FREESPECIAL102") openborconstant("ANI_FALL102")
 @cmd ani0020 openborconstant("ANI_FOLLOW1") openborconstant("ANI_PAIN3")
 @cmd ani0020 openborconstant("ANI_FOLLOW1") openborconstant("ANI_PAIN4")

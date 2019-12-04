@@ -1,3 +1,5 @@
+#import "data/scripts/updated/up.c"
+
 #import "data/scripts/shadow.c"
 void toss0001(int iSTime)
 {
