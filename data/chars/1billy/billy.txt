@@ -537,17 +537,20 @@ anim attack4
          frame      data/chars/1billy/a601.gif
 
 #kick button
+# 腿攻击
 anim freespecial1
 	 range      -10 60
 	 loop       0
 	 delay      9
 	 offset     80 129
+	#  碰撞盒
 	 bbox       68 83 24 44
+	#  集中敌人播放音效
 	 hitfx      data/sounds/beat2.wav
 	#  动态加载
 @cmd prepareScript
 @cmd execs
-@cmd log "攻击2\n"
+@cmd log "攻击222\n"
 @cmd ani0020 openborconstant("ANI_FREESPECIAL102") openborconstant("ANI_FALL102")
 @cmd ani0020 openborconstant("ANI_FOLLOW1") openborconstant("ANI_PAIN3")
 @cmd ani0020 openborconstant("ANI_FOLLOW1") openborconstant("ANI_PAIN4")

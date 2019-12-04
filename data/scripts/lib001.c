@@ -1,3 +1,4 @@
+// 动态加载脚本
 #import "data/scripts/updated/up.c"
 
 #import "data/scripts/shadow.c"

@@ -8,6 +8,10 @@ void main()
     char P1name = getentityproperty(P1, "defaultname");
     char P2name = getentityproperty(P2, "defaultname");
 
+    // 由于update事件 这里被重复执行
+    // log("更新11\n");
+    // 绘制血条ui
+
     if(openborvariant("in_level")==1){
       if(P1 && P1name == "Billy"){
         int HP1 = getentityproperty(P1, "health");
@@ -44,7 +48,7 @@ void oncreate()
     void Bar;
     void Bar2;
     void Bar3;
-
+   
     if(!Bar){
       Bar = loadsprite("data/sprites/bar.gif");
       Bar2 = loadsprite("data/sprites/bar2.gif");
@@ -53,6 +57,21 @@ void oncreate()
       setglobalvar("Bar2", Bar2);
       setglobalvar("Bar3", Bar3);
     }
+//游戏运行载入脚本瞬间运行一次
+//  log("更新2222222222222222222\n");
+//   Loading menu.txt.............	Done!
+// Loading fonts................	1 2 3 4 Done!
+// Timer init...................	Done!
+// Initialize Sound..............	
+// Loading sprites..............	Done!
+// Loading level order..........	Done!
+// Loading model constants......	Done!
+// Loading script settings......	Done!
+// Loading scripts..............	更新2222222222222222222
+// Done!
+// Loading models...............
+
+
 }
 
 void ondestroy(){
