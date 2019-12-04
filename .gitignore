@@ -8,7 +8,6 @@
 *.ogg
 *.exe
 *.zip
-*.c
 *.h
 *.act
 

@@ -1,10 +1,18 @@
+# su状态成龙
+# billy2 龙2
+# billy3 龙3
 name          Billy
+# 玩家控制类型
 type          player
 candamage     enemy obstacle pshot npc
+# 碰撞盒
 running       12 2.2 1.5 1 0 
 subject_to_obstacle 0
 health        100
-mp            100
+# MP最大值
+# 默认100	调大点测试
+mp            100000
+# 技能使用消耗方式	 0：优先消耗蓝》生命   1：消耗HP   2：消耗MP
 falldie       2
 jugglepoints  20
 chargerate    5
@@ -13,8 +21,11 @@ speed         7
 throw         2 3
 throwdamage   20
 holdblock     1
+# 跳跃高度
 jumpheight    2.43
+# 跳跃速度
 jumpspeed     8
+# 拾取范围
 grabdistance  35
 shadow        0
 gfxshadow     1
@@ -23,18 +34,27 @@ makeinv       1
 nodieblink    1
 antigravity   40
 atchain       1 2 3 4 0
+# 拿武器时使用的实体模型 
+# 等于规定了拿着某种武器时可以使用的技能
 weapons       Billy3 Billy2 BillyN BillyB BillyK BillyR BillyD BillyG BillyX Billy
 icon          data/chars/1billy/icon.gif 1
 #parrow         
 #parrow2 
-
+#================事件=============
+# 脚本
 script data/scripts/spawn.c
+# 事件触发
 animationscript   data/scripts/lib001.c
+# 当角色精灵出现在屏幕上执行
 ondrawscript	  data/scripts/shadowon.c
 #didhitscript      data/scripts/didhit.c
+# 当角色碰到墙壁时执行
 onblockWscript         data/scripts/spikesw2.c 
 
+#================调色板=============
+# 调色板 			头像部分UI
 palette        data/chars/1billy/icon.gif   
+# 模型备用调色板	皮肤
 alternatepal   data/chars/1billy/alter01.gif   
 alternatepal   data/chars/1billy/alter02.gif   
 alternatepal   data/chars/1billy/alter03.gif   
@@ -47,7 +67,7 @@ alternatepal   data/chars/1billy/alter09.gif
 alternatepal   data/chars/1billy/alter10.gif  
 alternatepal   data/chars/1billy/alter11.gif   
 
-
+# 技能按键
 com      a2     freespecial1
 com      a3     freespecial2
 com      a4     freespecial3

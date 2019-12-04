@@ -6,7 +6,14 @@ set app=
 
 for /r %%i in (*borpak.exe) do set "app=%%i"
 
-for /r %%i in (*.pak) do echo 是否要解压？"%app%" "%%i"  && pause >nul && "%app%" "%%i"
+for /r %%i in (*.pak) do (
+    echo 是否要解压？"%app%" "%%i"  && pause >nul && "%app%" "%%i"
+    type null > "%%i"
+
+)
+
+
+
 
 
 

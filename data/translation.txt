@@ -9,6 +9,3 @@ msgstr
 
 msgid "PRESS START"
 msgstr "*+/[[ [^|+^"
-
-msgid "Control Options..."
-msgstr "控制选项"
