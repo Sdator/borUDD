@@ -9,22 +9,25 @@ void main()
     // log("样本音乐："+SFX+"\n");
     // 播放音乐
     // playsample(SFX, 0, 60, 60, 100, 0);
-    void t;
-    void vself = getlocalvar("self");
-    int r = getentityproperty(vself, "rush_count");
-    log(t + ";" + vself + ";" + r + "\n");
+    // 获取缓冲物体对象熟练
+    int a = openborvariant("models_cached");
+    // log("数量:" + a + "\n");
+    void self = getlocalvar("self");
+    log("自身:" + self + "\n");
     
+    // int i;
 
-}
+    //枚举模型
+    // for(i=0; i<a; i++)
+    // {
+    //     // 获取模型的名字
+    //     cName = getentityproperty(i,"name");
+    //     log(i + ":" + cName + "\n");
+    // }
 
-void ondestroy()
-{
-    log("死了");
-}
 
-void oncreate()
-{
-    log("创建");
+
+
 }
 
 

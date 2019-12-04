@@ -7,8 +7,8 @@ void prepareScript()
                         Register Scripts Here
         ***********************************/
         void file=openfilestream("data/scripts/updated/s"+i+".c");
-        log("句柄"+file+"\n");
-        log("路径：data/scripts/updated/s"+i+".c\n");
+        // log("句柄"+file+"\n");
+        // log("路径：data/scripts/updated/s"+i+".c\n");
         
         while(file!=-1)
         {
