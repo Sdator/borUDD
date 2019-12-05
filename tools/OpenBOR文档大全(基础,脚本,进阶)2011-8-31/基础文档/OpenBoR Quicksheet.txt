@@ -1,0 +1,767 @@
+OpenBoR quicksheet by Fugue & Bloodbane
+Last update on 4/7/08
+
+--------------
+
+MODELS.txt:
+
+-Generic Player Properties
+ajspecial	{bi}
+autoland	{int}
+nocost		{bi}
+nolost		{bi}
+noaircancel     {int}
+
+-Generic Blocking Properties
+blockratio	{bi}
+mpblock		{bi}
+nochipdeath	{bi}
+
+-Select Screen Properties
+colourselect	{bi}
+spdirection	{b1} {b2} {b3} {b4}
+
+-Miscellaneous
+nodropen
+nocheats	{bi}	
+forcemode	{bi}
+versusdamage	{bi}
+
+-Attack types & animation limit
+maxattacks	{max}
+maxattacktypes	{max}
+maxfollows	{max}
+maxfreespecials	{max}
+maxidles	{max}
+maxwalks	{max}
+maxbackwalks	{max}
+maxups		{max}
+maxdowns	{max}
+
+-Bonus
+lifescore       {int}
+credscore       {int}
+nomaxrushreset  {int}
+
+-Load & Know
+load	        {name}	{path}
+know	        {name}	{path}
+
+--------------
+
+LEVELS.txt - General Settings:
+
+- Hiscore & Stage complete
+hiscorebg	{bi}
+completebg	{bi}
+showcomplete	{x1}	{y1}	{x2}	{y2}	{x3}	{y3}
+clearbonus	{x0}	{y0}    {x1}	{y1}	{x2}	{y2}	{x3}	{y3}  {x4}	{y4}
+lifebonus	{x0}	{y0}    {x1}	{y1}	{x2}	{y2}	{x3}	{y3}  {x4}	{y4}
+totalscore	{x0}	{y0}    {x1}	{y1}	{x2}	{y2}	{x3}	{y3}  {x4}	{y4}
+showrushbonus   {int}
+rushbonus       {x0} {y0} {x1} {y1} {x2} {y2} {x3} {y3} {x4} {y4}
+scbonuses       {stage bonus} {life bonus} {rush bonus} {bonus type}
+
+- HUD location
+p{#}life	{x}	{y}
+p{#}icon	{x}	{y}
+p{#}mp  	{x}	{y}
+p{#}lifex	{x}	{y}     {font}
+p{#}lifen	{x}	{y}     {font}
+p{#}score	{x1}	{y1}	{x2}	{y2}	{x3}	{y3}     {font}
+p{#}namej	{x1}	{y1}	{x2}	{y2}	{x3}	{y3}     {font}
+p{#}shoot	{x}	{y}     {font}
+mp{#}icon	{x}	{y}
+p{#}iconw	{x}	{y}
+e{#}life	{x}	{y}
+e{#}icon	{x}	{y}
+e{#}name	{x}	{y}     {font}
+p{#}smenu	{x1}	{y1}	{x2}	{y2}
+
+- HUD settings
+lbarsize	{w}	{h}	{noborder}	{type}	{orientation}	{border}	{shadow}	{graph}	{backfill}
+mpbarsize	{w}	{h}	{noborder}	{type}	{orientation}	{border}	{shadow}	{graph}	{backfill}
+olbarsize	{w}	{h}	{noborder}	{type}	{orientation}	{border}	{shadow}	{graph}	{backfill}
+rush    	{flag}	{duration}	{text1}	{f1}	{f2}	{text2}	{f3}	{f4}
+p{#}rush        {x1}    {y1}    {x2}    {y2}    {x3}    {y3}    {x4}    {y4}
+timeloc	        {x}	{y}	{w}	{h}	{noborder}
+timeicon	{path}	{x}	{y}
+bgicon          {path}  {x}     {y}
+
+- Music & SFX
+noslowfx	{bi}
+custfade	{int}
+musicoverlap	{bi}
+noslow	        {bi}
+
+- Misc
+maxplayers 	{int}
+loadingbg       {set} {bx} {by} {bsize} {tx} {ty} {tf}
+loadingbg2      {set} {bx} {by} {bsize} {tx} {ty} {tf}
+itemtrans	{bi}
+equalairpause   {bi}
+
+--------------
+
+LEVELS.txt - Level Sets:
+
+- Header
+set		{name}
+typemp	        {int}
+cansave         {int}
+skipselect      {name} {name} {name} {name}
+nosame	        {bi}
+noshare	        {bi}
+lives 	        {int}
+credits 	{int}
+ifcomplete	{bi}
+maxplayers      {int}
+continuescore   {int}
+
+- Body
+z		{zmin}	{zmax}	{BGheight}
+file		{path}
+scene		{path}
+select          {path}
+next
+branch		{name}
+end
+
+--------------
+
+Lifebar.txt:
+
+blackbox        {R} {G} {B}
+whitebox        {R} {G} {B}
+color{#}        {R} {G} {B}
+colormagic      {R} {G} {B}
+colormagic2     {R} {G} {B}
+shadowcolor     {R} {G} {B}
+
+--------------
+
+Video.txt:
+
+colourdepth     {int}bit
+video           {int}
+scenes          {path}
+backgrounds     {path}
+levels          {file}
+models          {file}
+
+--------------
+
+Menu.txt:
+
+renamekey       {key} {newname}
+disablekey      {key}
+fontmonospace   {1} {2} {3} {4} {5} {6} {7} {8}
+
+
+--------------
+
+Script.txt:
+
+maxscriptvars   {int}
+maxentityvars   {int}
+maxindexedvars  {int}
+maxglobalvars   {int}
+
+--------------
+
+Entity Files - Header Data:
+
+- Basic Stats
+name		{name}
+type		{player,enemy,npc,item,none,steamer,obstacle,text,trap,endlevel,pshot,panel}
+subtype	        {arrow,noskip,weapon,biker,notgrab,touch,flydie,both,project,chase,follow}
+health	        {int}
+mp		{int}
+speed		{int}
+speedf          {float}
+running	        {speed}	{height}	{length}	{move}	{land}
+nomove	        {move}	{flip}
+jumpspeed       {int}
+jumpspeedf      {float}
+jumpheight	{int}
+jumpmove        {fx} {fz}
+turndelay	{int}
+facing  	{int}
+chargerate	{int}
+mprate  	{int}
+mpset           {mp} {stable type} {stable} {recover rate} {drop rate} {charge rate}
+edelay		{Mode} {Factor} {Cap Min} {Cap Max} {Range Min} {Range Max}
+
+- Grab & Throw
+grabdistance	{int}
+grabback	{bi}
+grabfinish      {bi}
+grabwalk  	{bi}
+grabturn  	{bi}
+cantgrab	{bi}
+paingrab	{bi}
+antigrab	{value}
+grabforce	{value}
+throwdamage	{int}
+throw		{dist}	{height}
+throwframewait	{frame}
+
+- Terrain Interaction
+height	        {alt}
+antigravity     {value}
+bounce  	{bi}
+noquake	        {bi}
+no_adjust_base      {bi}
+subject_to_wall     {bi}
+subject_to_hole     {bi}
+subject_to_obstacle {bi}
+subject_to_platform {bi}
+subject_to_gravity  {bi}
+subject_to_screen   {bi}
+subject_to_minz     {int}
+subject_to_maxz     {int}
+offscreenkill	{value}
+
+- Entity Interaction
+aggression	{value}
+hitenemy	{canhit}	{alt}
+aimove          {type}
+hostile		{type1}	{type2} ...
+candamage	{type1}	{type2} ...
+projectilehit	{type1}	{type2} ...
+
+- Remap
+remap		{path1}	{path2}
+fmap		{int}
+palette         {path}
+alternatepal    {path}
+hmap		{a}	{b}
+globalmap       {int}
+KOMap		{map} {flag}
+
+- Shadow & Effects
+shadow	        {int}
+aironly	        {bi}
+gfxshadow       {int}
+alpha		{int}
+parrow	        {path}	{x}	{y}
+parrow2	        {path}	{x}	{y}
+diesound	{path}
+setlayer	{int}
+
+- Projectiles
+load		{name}
+playshot	{name}
+playshotno	{name}
+knife		{name}
+star		{name}
+bomb		{name}/ pbomb		{name}
+rider		{name}
+
+- Flash
+flash		{name}
+bflash	        {name}
+dust		{name}
+toflip	        {bi}
+noatflash	{bi}
+
+- Offense & Defense
+com             {dir1} {dir2} ... {dir15} {action} freespecial{#}
+atchain	        {number}	{number}	{number}	{number}	{number}
+combostyle      {bi}
+offense		{type}	{factor}
+defense		{type}	{factor} {pain} {knockdown} {blockpower} {blockthreshold} {blockratio} {blocktype}
+blockodds	{int}
+thold		{int}
+blockpain	{int}
+nopassiveblock  {bi}
+holdblock       {bi}
+guardpoints     {int}
+guardrate       {int}
+
+- Reaction
+nopain	        {bi}
+nodrop	        {bi}
+knockdowncount	{int}
+remove	        {bi}
+escapehits	{int}
+nodieblink	{int}
+makeinv	        {int} {bi}
+falldie	        {value}/ death	        {value}
+risetime	{value}
+riseinv         {int} {bi}
+jugglepoints    {int}
+instantitemdeath {int}
+riseattacktype  {int}
+
+- Weapons
+weapons         {name1} {name2} {name3} {name4} {name5} {original name}
+project		{name}
+shootnum	{int}
+counter 	{int}
+reload  	{int}
+typeshot	{bi}
+animal  	{bi}
+weaploss	{flag}
+modelflag       {int}
+weapnum 	{int}
+
+- Icon & Lifebar
+icon		{path}
+iconpain	{path}
+icondie	        {path}
+iconget	        {path}
+iconw		{path}
+iconmphigh	{path}
+iconmphalf	{path}
+iconmplow	{path}
+nolife	        {bi}
+lifebarstatus   {w} {h} {noborder} {type} {orientation} {border} {shadow} {graph} {backfill}
+lifeposition    {x} {y}
+nameposition    {x} {y}
+iconposition    {x} {y}
+
+- Miscellaneous
+credit  	{int}
+secret	        {bi}
+sleepwait	{value}
+score		{onkill}	{multiplier}
+smartbomb	(power)	(type)	(pause)	(length}
+branch  	{name}
+lifespan	{value}
+scroll		{value}
+
+--------------
+
+Entity Files - Animation Types:
+
+- Non Attack
+WAITING
+SELECT
+SPAWN
+RESPAWN
+IDLE
+IDLE#
+FAINT
+SLEEP
+WALK
+WALK#
+BACKWALK
+BACKWALK#
+TURN
+UP
+UP#
+DOWN
+DOWN#
+DUCK
+LAND
+RUN
+JUMP
+JUMPDELAY
+JUMPLAND
+FORWARDJUMP
+RUNJUMP
+DODGE
+GET
+JUMPCANT
+CHARGE
+CANT
+GRAB	
+GRABWALK
+GRABBACKWALK
+GRABWALKUP
+GRABWALKDOWN
+GRABTURN
+SLIDE
+RUNSLIDE 
+
+- Attack
+ATTACK1
+ATTACK2
+ATTACK3
+ATTACK4
+ATTACK5,ATTACK6,...
+CHARGEATTACK
+ATTACKBOTH
+UPPER
+RUNATTACK
+RUNJUMPATTACK
+JUMPATTACK
+JUMPFORWARD
+JUMPATTACK2
+JUMPATTACK3
+JUMPSPECIAL/SPECIAL3
+ATTACKUP
+ATTACKDOWN
+ATTACKFORWARD
+ATTACKBACKWARD
+FOLLOW{#}
+FOLLOW5,FOLLOW6,...
+FREESPECIAL{#}
+FREESPECIAL9,FREESPECIAL10,...
+SPECIAL
+SPECIAL2
+GRABATTACK
+GRABATTACK2
+GRABFORWARD
+GRABFORWARD2
+GRABUP
+GRABUP2
+GRABDOWN
+GRABDOWN2
+THROW
+GRABBACKWARD
+GRABBACKWARD2
+DUCKATTACK
+
+- Reaction
+PAIN{#}
+PAIN11,PAIN12,...
+SPAIN
+BPAIN
+FALL{#}
+FALL11,FALL12,...
+RISE{#}
+RISE11,RISE12,...
+RISEB
+RISES
+RISEATTACK{#}
+RISEATTACK11,RISEATTACK12,...
+RISEATTACKB
+RISEATTACKS
+SHOCK
+BURN
+DEATH{#}
+DEATH11,DEATH12,...
+CHIPDEATH
+BDIE
+SDIE
+BLOCK
+BLOCKPAIN{#}
+BLOCKPAIN11,BLOCKPAIN12,...
+BLOCKPAINB
+BLOCKPAINS
+GUARDBREAK
+GRABBED
+GRABBEDWALK
+GRABBEDBACKWALK
+GRABBEDWALKUP
+GRABBEDWALKDOWN
+GRABBEDTURN
+
+--------------
+
+Entity Files - Animation Data:
+
+- Animation header
+loop		{bi} {start} {end}
+fastattack	{bi}
+blockfx         {path}
+blockflash      {name}
+range		{min}	{max}
+rangez          {min}   {max}
+rangea          {min}   {max}
+dive		{hori}	{vert}
+energycost	{int}
+mponly	        {int}
+mpcost	        {int}
+followanim	{value}
+followcond	{value}
+attackone	{bi}
+counterattack   {bi}
+bouncefactor    {r}
+animheight      {alt}
+cancel          {start frame} {end frame} {hits} {sequence of inputs} {freespecial#}
+chargetime	{int}
+
+- "Frame" commands
+pshotframe	{frame}	{a}
+throwframe	{frame}	{a}
+shootframe	{frame}	{a}
+custknife	{name}
+custstar	{name}
+tossframe	{frame}	{a}/ pbombframe	{frame}	{a}
+custbomb	{name} / custpbomb	{name}
+jumpframe	{frame}	{height}	{speedx}	{speedz}
+dropframe	{frame}
+landframe	{frame}
+flipframe	{frame}
+quakeframe	{frame}	{loops}	{intensity}
+counterframe	{frame}	{cond}	{damaged}
+spawnframe	{frame}	{x}	{z}	{a}	{relative}
+summonframe	{frame}	{x}	{z}	{a}	{relative}
+unsummonframe	{frame}
+subentity	{name} / custentity	{name}
+weaponframe	{frame}	{weapon}
+
+- Frame Properties
+delay		{int}
+offset	        {x}	{y}	
+bbox		{x}	{y}	{right}	{down}	{z}
+frame		{path}
+attack{#}	{x}	{y}	{right}	{down}	{damage}	{power}	{block}	{noflash}	{pausetime}	{z}
+attack11,attack12,...
+blast		{x}	{y}	{right}	{down}	{damage}	{block}	{noflash}	{pausetime}	{z}
+shock		{x}	{y}	{right}	{down}	{damage}	{knockdown}	{block}	{noflash}	{pausetime}	{z}
+burn		{x}	{y}	{right}	{down}	{damage}	{knockdown}	{block}	{noflash}	{pausetime}	{z}
+freeze	        {x}	{y}	{right}	{down}	{damage}	{time}	{block}	{noflash}	{pausetime}	{z}
+steal		{x}	{y}	{right}	{down}	{damage}	{knockdown}	{block}	{noflash}	{pausetime}	{z}
+move		{x}
+movea		{a}
+movez		{z}
+seta		{a}
+platform        {upperleft} {lowerleft} {upperright} {lowerright} {depth} {alt} / platform   {xpos} {zpos} {upperleft} {lowerleft} {upperright} {lowerright} {depth} {alt}
+sound		{path}
+fshadow	        {int}
+shadowcoords	{x}	{y}
+itembox         {x} {y} {right} {down}
+drawmethod      {scalex} {scaley} {flipx} {flipy} {shiftx} {alpha} {remap} {fillcolor} {rotate} {fliprotate}
+nodrawmethod
+hitfx		{path}
+hitflash	{name}
+idle		{flag}
+
+- Attackbox supplement
+grabin  	{type}	{distance}
+forcedirection  {dir}
+damageonlanding	{value}	{type}
+dropv   	{height}	{speedx}	{speedz}
+counterattack	{bi}
+stun            {int}
+seal            {time} {energy}
+forcemap        {map} {time}
+drain           {type} {resource} {amount} {rate}
+noreflect       {bi}
+jugglecost      {int}
+OTG             {bi}
+guardcost       {int}
+DOT		{Index} {Time} {Mode} {Force} {Rate}
+staydown	{rise} {riseattack}
+
+--------------
+
+System Files:
+
+flash.txt
+data/pal.act
+data/SPRITES/font.gif
+data/SPRITES/font2.gif
+data/SPRITES/font3.gif
+data/SPRITES/font4.gif
+data/SPRITES/shadow{#}.gif
+data/SPRITES/arrow.gif
+data/SPRITES/arrowl.gif
+data/bgs/hiscore.gif
+data/scenes/gameover.txt
+data/bgs/complete.gif
+data/bgs/select.gif
+data/bgs/unlockbg.gif
+data/bgs/logo.gif
+data/scenes/logo.txt
+data/scenes/intro.txt
+data/scenes/howto.txt
+
+--------------
+
+Cutscene Files:
+
+music           {path} {loop}
+animation       {path} {x} {y} {skip} {noskip}
+silence         {int}
+
+--------------
+
+Select Screen Files:
+
+music           {path} {loop}
+background      {path}
+allowselect     {playername1} {playername2} ....
+load		{name}
+--------------
+
+Level Files - Level Design:
+
+- Graphics
+bglayer         {path} {xratio} {zratio} {xposition} {zposition} {xspacing} {zspacing} {xrepeat} {zrepeat} {transparency} {alpha} {watermode} {amplitude} {wavelength} {wavespeed} {bgspeedratio} / background {path} {xratio} {zratio} {xposition} {zposition} {xspacing} {zspacing} {xrepeat} {zrepeat} {transparency} {alpha}
+bgspeed	        {speed}	{dir}
+water		{path}	{warp}
+rock		{int}
+mirror  	{bi}
+panel		{norm}	{neon}	{scrn}
+frontpanel	{path}
+order		{panel#}{panel#}{panel#}...
+loadingbg       {path} {set} {bx} {by} {bsize} {tx} {ty} {tf}
+palette		{path}	{a1}	{a2}	{a3}	{a4}	{a5}	{a6}
+cameratype      {bi}
+fglayer         {path} {z} {xratio} {zratio} {xposition} {zposition} {xspacing} {zspacing} {xrepeat} {zrepeat} {transparency} {alpha} {watermode} {amplitude} {wavelength} {wavespeed} {bgspeedratio}
+cameraoffset    {x} {z/y}
+
+- Non-Graphics
+type		{type}	{special}	{inv}
+music		{path}  {offset}
+bossmusic	{path}  {offset}
+spawn1	        {x}	{z}	{a}
+spawn2	        {x}	{z}	{a}
+spawn3	        {x}	{z}	{a}
+spawn4	        {x}	{z}	{a}
+allowselect     {playername1} {playername2} ....
+direction	{dir}
+settime 	{int}
+notime  	{bi}
+noreset  	{int}
+noslow  	{bi}
+hole		{xpos}	{zpos}	{upperleft}	{lowerleft}	{upperright}	{lowerright}	{depth}
+wall		{xpos}	{zpos}	{upperleft}	{lowerleft}	{upperright}	{lowerright}	{depth}	{alt}
+endhole 	{bi}
+blocked 	{bi}
+gravity         {value}
+maxfallspeed    {value}
+maxtossspeed    {value}
+stagenumber     {int}
+noscreenshot    {bi}
+nopause         {bi}
+setweap         {int}
+
+--------------
+
+Level Files - Level objects:
+
+- Spawn properties
+spawn		{name} {bi}
+2pspawn 	
+3pspawn 	
+4pspawn 	
+alias		{name}
+map		{pal}
+health  	{int}
+2phealth	{int}
+3phealth	{int}
+4phealth	{int}
+mp		{int}
+dying		{remap}	{health1}	{health2}
+item		{name} {bi}
+itemhealth	{name}
+itemmap 	{name}
+itemalias	{name}
+2pitem  	{name} {bi}
+3pitem  	{name} {bi}
+4pitem  	{name} {bi}
+boss		{bi}
+flip		{bi}
+coords  	{x}	{y}     {a}
+aggression	{value}
+weapon		{name} {bi}
+at		{pos}
+
+- Other level objects
+wait	
+group   	{min}	{max}
+blockade	{pos}
+setpalette	{palette}
+shadowcolor     {index}
+shadowalpha     {index}
+light           {x} {z}
+load            {name} {bi}
+scrollz         {min} {max}
+music           {path} {offset}
+musicfade       {float}
+
+---------------
+
+Music Files:
+
+PCM format, 16-bit mono or stereo at 22050 (22 Khz))
+Batch Files:
+wav2bor.exe	{wav}	{bor}	{artist}	{title}
+
+---------------
+
+Sound Files:
+
+data/sounds/beat1.wav
+data/sounds/fall.wav
+data/sounds/get.wav
+data/sounds/money.wav
+data/sounds/jump.wav
+data/sounds/indirect.wav
+data/sounds/punch.wav
+data/sounds/1up.wav
+data/sounds/go.wav
+data/sounds/timeover.wav
+data/sounds/beep.wav
+data/sounds/beep2.wav
+data/sounds/bike.wav
+data/sounds/block.wav
+
+---------------
+
+Limits:
+~Maximum number of:
+  sprite frames: NA**
+  animations: NA**
+  models: NA**
+  entities: NA**
+  panels per level: 52*
+  frames per animation: NA**
+  weapons per player: 10
+  remaps: 30
+  name length: 40
+  level spawns: 600
+  panel order length: 100
+  hole spawns per level: 40
+  walls per level: 40
+  background layers per level: 100
+  foreground layers per level: 10
+  text objects: 50
+  file streams: 50
+  levels in a level set: 100
+  level sets/ game modes: 10
+  sound effects: 512
+
+*: Although the source code has been changed to allow up to 52 panels per stage, a way of using panels past 26 has not yet been decided upon. There are only 26 letters in the alphabet, after all. So you can only use 26.
+
+**: NA means this particular caveat is no longer limited by source code. In other words, if you want to create a mod with 10,000 models, 5000 animations or an animation with 500,000 frames, that's your business. Keep in mind however that with great power comes great responsibility; it is up to you to properly manage hardware resources (in particular memory), especially if you intend for your module to play on consoles.
+
+---------------
+
+Links:
+
+    * http://www.senileteam.com/ (Official BoR/Senile Team website)
+    * http://www.lavalit.com/ (LavaLit website)
+    * http://www.irfanview.us/ {Free .gif batch converter) 
+
+---------------
+
+Credits:
+
+Beats of Rage:
+
+  Senile Team  : Original Beats of Rage game.
+  Roel (Opla)  : Original BoR source code and engine, maja  improvements in OpenBoR code, some original BoR graphics.
+  Neill Corlett: Dreamcast and PS2 Port.
+
+OpenBoR:
+
+  L@Cible      : His BoR-DC-Toolchain made OpenBoR possible.
+
+  Kirby2000    : OpenBoR Maantainer 2004-2005, 4 player support.
+  Lord_Ball    : BoRHed, HoR.
+  CGRemakes    : OpenBoR Maintainer 2005-2006.
+  SumolX       : OpenBoR Maintainer, PSP port.
+  uTunnels     : OpenBoR Coder
+  Damon Caskey : OpenBoR Coder
+  Kbandressen  : OpenBoR Coder
+  Orochi_X     : OpenBoR Coder
+  Tails        : DarkBoR, 4 player support.
+
+  Drikobruschi : Contributed hi-score table code.
+  Fugue        : Contributed many features, original author of this manual.
+  Bloodbane    : Manual updater.
+  OpenBoR Manual contributions : bWWd, Zamuel, Christuserloeser, Damon Caskey
+
+  Sega         : Original Streets of Rage design, concept, etc.
+  SNK          : Original BoR graphics.
+
+  Sega, Capcom, SNK, Konami, Tecmo, Treasure, Sammy, etc. : For all the brawler games! 
+
+  The entire BoR and OpenBoR community : Keep making those games! 

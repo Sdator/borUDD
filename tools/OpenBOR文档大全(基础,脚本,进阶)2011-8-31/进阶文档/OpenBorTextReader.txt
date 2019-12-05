@@ -1,0 +1,1621 @@
+openfilestream("data/filepath/file.txt")
+-opens a text file and returns the index that other functions can use to access it. 
+Indexes are assigned in order of creation, from 0 to the maximum number of filestreams (currently 50).
+getfilestreamline(int index)
+-Returns the current line of the file as a string, cutting it off if it's larger than the maximum string length.
+getfilestreamargument(int index, int argumentnumber, string returntype);
+-Returns the specified argument at the current position.  For example, with this line in the file:
+Stringargument 1 3.4
+you would get these results:
+getfilestreamargument(index, 0, "string") -> Stringargument
+getfilestreamargument(index, 1, "int") -> 1
+getfilestreamargument(index, 2, "float") -> 3.4
+getfilestreamargument(index, 2, "int") -> 3
+The only problem with this command is that string arguments don't work if they are the last one on the line.  So make sure that there is another block of characters of some kind to the right of any string arguments.
+filestreamnextline(int index)
+-Moves to the next line of the file that has any characters.
+getfilestreamposition(int index)
+-Returns the current position in the file.
+setfilestreamposition(int index, int position)
+-Sets the current position. Record a position with getfilestreamposition to go to, or set it to 0 to go back to the beginning of the file.
+Basically, this lets you create your own file types for storing data and read them during gameplay.  
+This is very useful for storing data that can't be stored efficiently otherwise, like dialogue or a complex sequence of actions for an entity to take.
+There is one important restriction, though; 
+loading a file during gameplay will create a short but noticeable pause while the file loads.  
+For this reason, it's highly recommended to load files in level.c or any other script that doesn't run during the actual gameplay.  
+Reading the file is fast, though, and can be used like any other script command.
+Files are automatically unloaded between levels, so you don't have to worry about deallocating them or anything.  
+You will have to load the file in each level that you want to use it in though.  
+I might make an option for having files be able to stay in memory if it turns out to be a big issue, 
+but I can't imagine it would be unless you had a ton of really huge files.
+I also upped the maximum for both textobjs and filestreams to 50 of each; 
+the bulk of the data (text for textobjs and the file for filestreams) are 
+dynamically allocated so each one only takes up a few bytes if there's not anything loaded in it.
+Anyhow, please test it out and report any bugs!
+
+----------------------------------------
+void settext(int file)
+{
+	int i;
+
+	// read 4 lines, if it begins with a number that means the line should be blank ingame
+	for(i = 0; i < 4; i++)
+	{
+		if(getfilestreamargument(file, 0, "int") == 0)
+		{
+			settextobj(i, 90, 98+i*16, 4, -1, getfilestreamline(file));
+		}
+		filestreamnextline(file);
+	}
+
+	// read a flag that determines what secondary effects to activate, ie making an entity show up during a cutscene
+	// also used to signify the end of the dialogue
+	setglobalvar("nextanim", getfilestreamargument(file, 0, "int"));
+	filestreamnextline(file);
+
+	// read a flag to see if the file needs to be reset so it can be used again
+	if(getfilestreamargument(file, 0, "int") == 1)
+		setfilestreamposition(file, 0);
+	else
+		filestreamnextline(file);
+}
+----------------------------------------------
+createfilestream() - makes a new blank filestream that can be added to, returns filestream index
+
+savefilestream(int filestreamindex, "filepath") - saves the specified filestream at Saves\PAKNAME\filepath
+-Mods cannot save data anywhere besides Saves\PAKNAME\ to prevent mods from overwriting each another mod's save data.  They can read from anywhere in the Saves directory though, so mods can do things based on save data from other mods.
+-Automatically adds a blank line to the end of the file so it can be read without issues.
+-Costly operation.  You can get away with calling it ingame on Windows, but it makes a lag spike when called ingame on PSP (and presumably, other consoles).
+
+filestreamappend(int filestreamindex, scriptvar, 0/1) - adds scriptvar to the end of the specified filestream
+- 0 (default): for writing commands, creates a new line before writing
+- 1: for writing arguments
+This command adds a space after anything appended so that arguments can be distinguished.  I wanted to just add a space before an argument append but could not for the life of me persuade C to go along with it.
+
+
+
+Modified Functions:
+
+openfilestream("filepath", int x) - loads the file at filepath into a new filestream, returns filestream index
+- x = 0 (default): loads file from inside the pak (or base directory if running the mod as a data folder)
+- x = 1: loads file from Saves directory
+IE: openfilestream("PACKNAME/file.txt", 1); would open the file at Saves/PACKNAME/file.txt.
+
+
+I m trying to create a savegame function.
+
+When i use filestreamappend, here is what i get :
+
+Filename for filestreamappend must be a string.
+Script function 'filestreamappend' returned an exception, check the manual for details.
+
+You said we have to use the index of the file, not the name. Is that an error from me or from the function ?
+
+
+Here is my temporary function :
+
+
+
+//-----------------------------------------------------------------------------------
+//Save a game
+//-----------------------------------------------------------------------------------
+void savegame(int gamei){
+   void newsavegamefile=createfilestream();
+   void oldsavegamefile=getglobalvar("savegamefile");
+   void type;
+   void variable;
+   void variablevaluenewgamei;
+   void variablevalueoldi;
+   int i;
+   
+   setfilestreamposition(newsavegamefile, 0);   
+   setfilestreamposition(oldsavegamefile, 0);   
+   
+   do{
+      variable = getfilestreamargument(oldsavegamefile, 0, "string");
+      type = getfilestreamargument(oldsavegamefile, 1, "string");
+      variablevaluenewgamei=getglobalvar(variable);
+      filestreamappend(newsavegamefile, variable, 0);
+      filestreamappend(newsavegamefile, type, 1);      
+      
+      for (i=1,i<=7,i++){
+         variablevalueoldi=getfilestreamargument(oldsavegamefile, i, type);
+
+         if (i==gamei){
+         filestreamappend(newsavegamefile, variablevaluenewgamei, 1);   
+         }else{
+         filestreamappend(newsavegamefile, variablevalueoldi, 1);   
+         }
+      }
+      filestreamnextline(oldsavegamefile);
+   }while (variable != "End");   
+   savefilestream(newsavegamefile, "data/savegames/savegames.txt");
+   free(oldsavegamefile);
+   setglobalvar("savegamefile",newsavegamefile);
+
+}
+
+
+Savegamefile is organized like a table, with globalvars i want to save/load as lines, and savegame number as columns (7 savegame slots).
+
+
+
+globalvar int defaultvalue savegame1 savegame2 savegame3 savegame4 savegame5 savegame6
+level1 int 1 1 2 3 4 5 6
+level2 int 1 1 2 3 4 5 6
+level3 int 1 1 2 3 4 5 6
+level4 int 1 1 2 3 4 5 6
+skill101 int 0 0 0 0 0 0 0
+skill102 int 0 0 0 0 0 0 0
+End 1
+
+
+Savegame function opens existing savegamefile, reads each line completely, and copies each argument to the newsavegamefile (each argument, except for one column, that will be replaced by current globalvar values.)
+
+My load game function is pretty similar :
+
+
+
+//-----------------------------------------------------------------------------------
+//load a game
+//-----------------------------------------------------------------------------------
+void loadgame(int gamei){
+   int i;
+   void savegamefile = getglobalvar("savegamefile");
+   void type;
+   void variable;
+   void variablevalue;
+      
+   setfilestreamposition(savegamefile, 0); 
+    do{                               
+            filestreamnextline(savegamefile);
+            variable = getfilestreamargument(savegamefile, 0, "string");
+            type = getfilestreamargument(savegamefile, 1, "string");
+            variablevalue = getfilestreamargument(savegamefile, gamei+1, type);
+            if(variablevalue!="empty"){
+         setglobalvar(variable,variablevalue);
+            }
+     }while (variable != "End");
+       
+}
+
+
+
+Can you help me correcting savegame function?
+
+
+--------------------------------------------------------------------------------
+EDIT : i found a solution :
+
+Here is the new code :
+
+
+
+//-----------------------------------------------------------------------------------
+//load a game
+//-----------------------------------------------------------------------------------
+void loadgame(int gamei){
+   int i;
+   void savegamefile = getglobalvar("savegamefile");
+   void type;
+   void variable;
+   void variablevalue;
+      
+   setfilestreamposition(savegamefile, 0); 
+    do{                               
+            filestreamnextline(savegamefile);
+            variable = getfilestreamargument(savegamefile, 0, "string");
+            type = getfilestreamargument(savegamefile, 1, "string");
+            variablevalue = getfilestreamargument(savegamefile, gamei+1, type);
+            if(variablevalue!="empty"){
+         setglobalvar(variable,variablevalue);
+            }
+     }while (variable != "End");
+       
+}
+
+//-----------------------------------------------------------------------------------
+//Save a game
+//-----------------------------------------------------------------------------------
+void savegame(int gamei){
+   void newsavegamefile=createfilestream();
+   void oldsavegamefile=getglobalvar("savegamefile");
+   void type;
+   void variable;
+   void variablevaluenewgamei;
+   void variablevalueoldi;
+   int i;
+   
+   setfilestreamposition(newsavegamefile, 0);   
+   setfilestreamposition(oldsavegamefile, 0);   
+   filestreamnextline(oldsavegamefile);
+   do{
+      variable = getfilestreamargument(oldsavegamefile, 0, "string");
+      type = getfilestreamargument(oldsavegamefile, 1, "string");
+     if (getglobalvar(variable)){
+     variablevaluenewgamei=getglobalvar(variable)+"";
+     }else{
+     variablevaluenewgamei="empty";
+     }
+      filestreamappend(newsavegamefile, variable, 0);
+      filestreamappend(newsavegamefile, type, 1);      
+      
+      for (i=1,i<=7,i++){
+            variablevalueoldi=getfilestreamargument(oldsavegamefile, i+1, "string");
+        
+      
+            if (i==(gamei)){
+            filestreamappend(newsavegamefile, variablevaluenewgamei, 1);   
+            }else{
+            filestreamappend(newsavegamefile, variablevalueoldi, 1);   
+           }
+     }
+      filestreamnextline(oldsavegamefile);
+   }while (variable != "End");   
+   filestreamappend(newsavegamefile, "End", 0);
+   filestreamappend(newsavegamefile, "int", 1);   
+   filestreamappend(newsavegamefile, "1", 1);   
+   savefilestream(newsavegamefile, "savegames.txt");
+   //free(oldsavegamefile);
+   setglobalvar("savegamefile",newsavegamefile);
+
+}
+
+
+
+The error was I was trying to append the txt file with int, instead of string. 
+
+
+
+-----------------------------------------------
+
+the idea is simple but the code is pretty long.
+
+The city (menu you see at the start of video) is a level. This level is parametered with "setweap 1", which means the players entities will be replaced by another one, the "city entity".
+This one has a specific key script and update script.
+In the key script, i set global vars depending on what key are pressed, and in the update script, i display the sprites depending on these globalvars.
+
+here is the key script (uncompleted)
+
+
+
+--------------------------------------------------------------------------------
+void main(){
+   #include "data/scripts/readfiles.c"
+   #include "data/scripts/menufonctions.c"
+   #include "data/scripts/functions.c"
+   
+   void self = getlocalvar("self");
+   int iPIndex = getentityproperty(self,"playerindex");
+   void vAniPos = getentityproperty(self, "animpos");
+   void vAniID = getentityproperty(self,"animationID");
+   void iJump = playerkeys(iPIndex, 1, "jump");
+   void iAttack = playerkeys(iPIndex, 1, "attack");
+   void hAttack = playerkeys(iPIndex, 0, "attack");
+   void iAttack2 = playerkeys(iPIndex, 1, "attack2");
+   void hAttack2 = playerkeys(iPIndex, 0, "attack2");
+   void iAttack3 = playerkeys(iPIndex, 1, "attack3");
+   void hAttack3 = playerkeys(iPIndex, 0, "attack3");
+   void iDown = playerkeys(iPIndex, 0, "movedown");
+   void iUp = playerkeys(iPIndex, 0, "moveup");
+   void iLeft = playerkeys(iPIndex, 1, "moveleft");
+   void iRight = playerkeys(iPIndex, 1, "moveright");
+   void hRight = playerkeys(iPIndex, 0, "moveright");
+   void rLeft = playerkeys(iPIndex, 2, "moveleft");
+   void rRight = playerkeys(iPIndex, 2, "moveright");
+   void ianybutton = playerkeys(iPIndex, 0, "anybutton");
+   int previouspos;
+   int previouspos2;
+   int posxcadre;
+   int posycadre;
+   int citypos;
+   int citypos2;
+   int posxcadre2;
+   int posycadre2;
+   int pos;
+   int pos2;
+   void cadre;
+   int previousmenu;
+   int character = getglobalvar("character");
+   void inventoryi;
+   void itemi;
+   void lastitem;
+   int citynum = getglobalvar("citynum");
+   void menublock = getglobalvar("menublock");
+   void checktype;
+   void lastitemname;
+   int newgold;
+   void temp;
+   int newskillpoint;
+   void activeskillstatus;
+   void activeskillaccess;
+   void level = getglobalvar("level"+character);
+   void xp = getglobalvar("xp"+character);
+   void xplevel;
+   void levelfile = getglobalvar("levelfile");
+   void levelbonusskillpoints;
+   void skillpointsi=getglobalvar("skillpoints"+character);
+   void cityid ="city"+citynum;
+   void cityname;
+   void exitiid;
+   void exitiname;
+   void cityexitnumber;
+   void exitspawnarea;
+   void heroi;
+   void heroplayeri;
+   void lasthero;
+   
+      if (getglobalvar("citymenu") == 1 ){
+         previouspos = getglobalvar("citypos");
+         if (iLeft){ 
+            if (getglobalvar("citypos") == 1){
+               setglobalvar("citypos",10);
+               }else {
+               setglobalvar("citypos",previouspos -1);
+            }
+         }
+         if (iDown){ 
+            if (getglobalvar("citypos") < 6){
+               setglobalvar("citypos",previouspos +5);
+            }
+         }
+         if (iUp){ 
+            if (getglobalvar("citypos") > 5){
+               setglobalvar("citypos",previouspos -5);
+            }
+         }
+         if (iRight){ 
+            if (getglobalvar("citypos") == 10){
+               setglobalvar("citypos",1);
+               }else {
+               setglobalvar("citypos",previouspos +1);
+            }
+         }
+      }
+      
+      if (getglobalvar("citymenu") == 2 ){
+         previouspos2 = getglobalvar("citypos2");
+         
+         //-----------------------------------------         
+         // character sheet menu
+         //-----------------------------------------         
+         
+         
+         if (getglobalvar("citypos") == 1){
+            if (getglobalvar("menublock")==0){
+               if (iLeft){ 
+                  if (getglobalvar("citypos2") > 1){
+                     setglobalvar("citypos2",previouspos2 -1);
+                  }
+               }
+               if (iRight){ 
+                  if (getglobalvar("citypos2") < 38){
+                     setglobalvar("citypos2",previouspos2 +1);
+                  }
+               }
+               if (iUp){ 
+                  if (getglobalvar("citypos2")<9){
+                     setglobalvar("citypos2", 1);
+                     }else {
+                     setglobalvar("citypos2",previouspos2 -6);
+                  }
+               }
+               if (iDown){ 
+                  if (getglobalvar("citypos2")<33){
+                     if (getglobalvar("citypos2")<3){
+                        setglobalvar("citypos2", 3);   
+                        }else {
+                        setglobalvar("citypos2",previouspos2+6);
+                     }
+                  }
+               }
+               if (iAttack){ 
+                  if (getglobalvar("citypos2") == 1){
+                     if (getglobalvar("character") == 4){
+                        setglobalvar("character", 1);   
+                        }else {
+                        setglobalvar("character",character + 1);
+                     }
+                  }
+                  if (getglobalvar("citypos2") == 2){
+                  // level UP function   
+                     xplevel=vlookup(levelfile,"level"+level,2,"int");
+                     levelbonusskillpoints = vlookup(levelfile,"level"+level,3,"int");
+                     if (xp>=xplevel){
+                        setglobalvar("level"+character,level+1);
+                        setglobalvar("skillpoints"+character,skillpointsi + levelbonusskillpoints);
+                        //playsample(getglobalvar("levelupsound"),0, 120, 120, 100, 0);
+                     }
+                  }
+                  if (getglobalvar("citypos2")>2){
+                     setglobalvar("activeskill","skill"+(getglobalvar("character")*100+ getglobalvar("citypos2")-2));
+                     activeskillstatus = getglobalvar(getglobalvar("activeskill"));
+                     activeskillaccess = getglobalvar(vlookup(getglobalvar("skillfile"),getglobalvar("activeskill"),5,"string"));
+                     if (activeskillstatus == 0 && activeskillaccess == 1){
+                        setglobalvar("menublock",1);
+                     }
+                     
+                  }
+               }
+            }
+            if (menublock == 1){ 
+               if (iAttack){
+                  newskillpoint = getglobalvar("skillpoints"+getglobalvar("character")) - vlookup(getglobalvar("skillfile"),getglobalvar("activeskill"),4,"int");
+                  if (newskillpoint>=0){
+                     setglobalvar(getglobalvar("activeskill"),1);
+                     setglobalvar("skillpoints"+getglobalvar("character"),newskillpoint);
+                  
+                  }
+                  recalculatebonus();
+                  setglobalvar("menublock",0);
+               }
+            }
+            if (menublock ==1 && iAttack2){
+               setglobalvar("menublock",0);
+            }
+         }
+         
+         //-----------------------------------------            
+         // inventory
+         //-----------------------------------------      
+            
+         if (getglobalvar("citypos") == 2){   
+            if (iLeft){ 
+               if (getglobalvar("citypos2") > 1){
+                  setglobalvar("citypos2",previouspos2 -1);
+               }
+            }
+            if (iRight){ 
+               if (getglobalvar("citypos2") < 48){
+                  setglobalvar("citypos2",previouspos2 +1);
+               }
+            }
+            if (iUp){ 
+               if (getglobalvar("citypos2")<9){
+                  }else {
+                  setglobalvar("citypos2",previouspos2 -8);
+               }
+            }
+            if (iDown){ 
+               if (getglobalvar("citypos2")<41){
+               setglobalvar("citypos2",previouspos2+8);
+               }
+            }
+
+            if (iAttack){
+               inventoryi = "inventory"+ getglobalvar("citypos2");   
+               itemi = getglobalvar(inventoryi);
+                  if (getglobalvar("inventorytemp1")== "empty"){
+                     if(itemi){
+                     setglobalvar("inventorytemp1",itemi);
+                     setglobalvar("lastitem",inventoryi);
+                     }
+                     }else{
+                     lastitemname= getglobalvar(getglobalvar("lastitem"));
+                     checktype = checkitemtype(lastitemname,getglobalvar("citypos2"));
+                     if (checktype == 1 || getglobalvar("citypos2")>16){
+                        setglobalvar(getglobalvar("lastitem"),itemi);
+                     setglobalvar(inventoryi,getglobalvar("inventorytemp1"));
+                           setglobalvar("inventorytemp1","empty");
+                        }else{
+                        setglobalvar("inventorytemp1","empty");
+                     }
+                  }
+                  recalculatebonus();   
+            }
+         }
+         //-----------------------------------------         
+         // shop
+         //-----------------------------------------            
+         if (getglobalvar("citypos") == 7){   
+            if (iLeft){ 
+               if (getglobalvar("citypos2") > 1){
+                  setglobalvar("citypos2",previouspos2 -1);
+               }
+            }
+            if (iRight){ 
+               if (getglobalvar("citypos2") < 48){
+                  setglobalvar("citypos2",previouspos2 +1);
+               }
+            }
+            if (iUp){ 
+               if (getglobalvar("citypos2")<9){
+                  }else {
+                  setglobalvar("citypos2",previouspos2 -8);
+               }
+            }
+            if (iDown){ 
+               if (getglobalvar("citypos2")<41){
+               setglobalvar("citypos2",previouspos2+8);
+               }
+            }
+            
+            if (iAttack && (menublock == 0)){
+                  if(getglobalvar("citypos2")<=32){
+                     inventoryi = "inventory"+ (getglobalvar("citypos2")+16) ;
+                     }else{
+                     inventoryi = "shop"+ (100*(citynum)+ getglobalvar("citypos2")-32);
+                  }
+                  itemi = getglobalvar(inventoryi); 
+               if (getglobalvar("inventorytemp1")== "empty"){
+                  if (itemi){
+                     setglobalvar("inventorytemp1",itemi);
+                     setglobalvar("lastitem",inventoryi);
+                     setglobalvar("lastitemnum",getglobalvar("citypos2"));
+                  }
+               }else{
+                  if (getglobalvar("lastitemnum")>32 && getglobalvar("citypos2")<33){
+                        setglobalvar("buying",1);
+                        setglobalvar("menublock",1);
+                        setglobalvar("goldmove",vlookup(getglobalvar("itemfile"),getglobalvar("inventorytemp1"),11,"int"));
+                  }else{
+                     if (getglobalvar("lastitemnum")<33 && getglobalvar("citypos2")>32){
+                           setglobalvar("buying",-1);
+                           setglobalvar("menublock",1);
+                           setglobalvar("goldmove",vlookup(getglobalvar("itemfile"),getglobalvar("inventorytemp1"),12,"int"));
+                     }else{
+                           setglobalvar(getglobalvar("lastitem"),itemi);
+                           setglobalvar(inventoryi,getglobalvar("inventorytemp1"));
+                           setglobalvar("inventorytemp1","empty");   
+                     }
+                  }
+               }
+            }
+
+            if (iAttack && (menublock == 1)){
+                  newgold = getglobalvar("gold")-(getglobalvar("buying")*getglobalvar("goldmove"));
+                  if (newgold>=0){
+                  setglobalvar(getglobalvar("lastitem"),itemi);
+                  setglobalvar(inventoryi,getglobalvar("inventorytemp1"));
+                  setglobalvar("gold",newgold);
+                  }
+                  setglobalvar("inventorytemp1","empty");   
+                  setglobalvar("menublock",0);
+                                    
+            }
+         }
+         //-----------------------------------------
+         // castle
+         //-----------------------------------------
+         if (getglobalvar("citypos") == 6){   
+            if (iLeft){ 
+               if (getglobalvar("citypos2") == 4){
+                  setglobalvar("citypos2",1);
+               }
+            }
+            if (iRight){ 
+               if (getglobalvar("citypos2") == 1){
+                  setglobalvar("citypos2",4);
+               }
+            }
+            if (iUp){ 
+               if (getglobalvar("citypos2")<2){
+                  }else {
+                  setglobalvar("citypos2",previouspos2 -1);
+               }
+            }
+            if (iDown){ 
+               if (getglobalvar("citypos2")<3){
+               setglobalvar("citypos2",previouspos2+1);
+               }
+            }
+            if (iAttack){ 
+               setglobalvar("activequestchar","castle"+(getglobalvar("citynum")*10+getglobalvar("citypos2")));
+               checkqueststatus(getglobalvar("activequestchar"));
+               //setglobalvar("",vlookup(getglobalvar("questcharfile"),getglobalvar("activequestchar"),;
+            }
+            
+         }
+         //-----------------------------------------
+         // QuestBook
+         //-----------------------------------------
+         if (getglobalvar("citypos") == 3){   
+
+            if (iLeft){ 
+               if (getglobalvar("citypos2")<2){
+                  }else {
+                  setglobalvar("citypos2",previouspos2 -1);
+               }
+            }
+            if (iRight){ 
+               if (getglobalvar("citypos2")<5){
+               setglobalvar("citypos2",previouspos2+1);
+               }
+            }
+         }
+         //-----------------------------------------
+         // Tavern - Reform party
+         //-----------------------------------------
+         if (getglobalvar("citypos") == {   
+
+            if (iLeft){ 
+               if (getglobalvar("citypos2") > 1){
+                  setglobalvar("citypos2",previouspos2 -1);
+               }
+            }
+            if (iRight){ 
+               if (getglobalvar("citypos2") < 7){
+                  setglobalvar("citypos2",previouspos2 +1);
+               }
+            }
+            if (iUp){ 
+               if (getglobalvar("citypos2")<4){
+                  }else {
+                  setglobalvar("citypos2",previouspos2 -4);
+               }
+            }
+            if (iDown){ 
+               if (getglobalvar("citypos2")<4){
+               setglobalvar("citypos2",previouspos2+4);
+               }
+            }
+            if (iAttack){
+               
+               if (getglobalvar("citypos2")<5){
+                  heroplayeri="heroplayer"+getglobalvar("citypos2");
+                  }else{
+                  heroplayeri="tavern"+getglobalvar("citypos2");
+               }
+               heroi=getglobalvar(heroplayeri);
+               if (getglobalvar("herotemp")=="empty" && heroi){
+                  
+                  setglobalvar("herotemp",heroi);
+                  setglobalvar("lasthero",heroplayeri);
+               }else{
+                  setglobalvar(heroplayeri,getglobalvar("herotemp"));
+                  setglobalvar("herotemp","empty");
+                  setglobalvar(getglobalvar("lasthero"),heroi);   
+               }
+            }
+
+         }         
+         //-----------------------------------------
+         // leave city
+         //-----------------------------------------
+         if (getglobalvar("citypos") == 10){   
+               cityname = vlookup(getglobalvar("levelexitsfile"),cityid,2,"string");
+               cityexitnumber = vlookup(getglobalvar("levelexitsfile"),cityid,3,"int");
+               exitiid = vlookup(getglobalvar("levelexitsfile"),cityid,(4+2*(getglobalvar("citypos2")-1)),"string");
+               exitspawnarea = vlookup(getglobalvar("levelexitsfile"),cityid,(5+2*(getglobalvar("citypos2")-1)),"int");
+               exitiname= vlookup(getglobalvar("levelexitsfile"),exitiid,2,"string");
+
+            if (iLeft && getglobalvar("menublock")==0){ 
+               if (getglobalvar("citypos2")<2){
+                  }else {
+                  setglobalvar("citypos2",previouspos2 -1);
+               }
+            }
+            if (iRight && getglobalvar("menublock")==0){ 
+               if (getglobalvar("citypos2")<cityexitnumber){
+               setglobalvar("citypos2",previouspos2+1);
+               }
+            }
+            
+            if (iAttack){ 
+               if (getglobalvar("menublock")==0){
+                  setglobalvar("menublock",1);
+               }else{
+               setglobalvar("menublock",0);
+                  //jumptobranch function
+                  changelevel (exitiid, exitspawnarea);
+               }
+            }
+            
+         }
+         if (iAttack2 && (menublock == 0)){
+            setglobalvar("citymenu",1);
+            setglobalvar("citypos2",1);
+         }
+         if (iAttack2 && (menublock == 1)){
+            setglobalvar("menublock",0);
+            setglobalvar("inventorytemp1","empty");
+         }
+      }
+         
+      
+   pos = getglobalvar("citypos");
+   if(pos>0){
+      if(pos>5){
+         setglobalvar("posxcadre",20 +(pos-6)*130);
+         setglobalvar("posycadre", 385);
+         }else{
+         setglobalvar("posxcadre",20 +(pos-1)*130);
+         setglobalvar("posycadre", 23);
+      }
+   }
+
+   pos2 = getglobalvar("citypos2");
+   if (getglobalvar("citypos")== 1){
+      if (pos2>2){
+            setglobalvar("posxcadre2", 26 +((pos2-3)%6)*53);
+            setglobalvar("posycadre2", 166 + (((pos2-3)-(pos2-3)%6))/6*52);
+      }
+   }
+   if (getglobalvar("citypos")== 2){
+      setglobalvar("posxcadre2", 5 +((pos2-1)%8)*53);
+      setglobalvar("posycadre2", 161 + (((pos2-1)-(pos2-1)%8))/8*52);
+   }
+   if (getglobalvar("citypos")== 7){
+      setglobalvar("posxcadre2", 5 +((pos2-1)%8)*53);
+      setglobalvar("posycadre2", 111 + ((((pos2-1)-(pos2-1)%32))/32*52)+(((pos2-1)-(pos2-1)%8))/8*52);
+   }
+
+   
+   if (getglobalvar("citymenu")== 1){
+      if (iAttack){ 
+         setglobalvar("citymenu",2);
+         setglobalvar("citypos2",1);
+         setglobalvar("activequestcharacter","no");
+         checkcharacterexistence();
+         recalculatebonus();
+         if (getglobalvar("citypos")== {
+         setglobalvar("herotemp","empty");
+         entertavern();
+         }
+      }
+   }
+   // starting menu (loadsave).
+   if (getglobalvar("citymenu")== 0){
+      previouspos2 = getglobalvar("citypos2");
+            if (iUp && menublock == 0){ 
+               if (getglobalvar("citypos2")>1){
+                  setglobalvar("citypos2",previouspos2 -1);
+               }
+            }
+            if (iDown&& menublock == 0){ 
+               if (getglobalvar("citypos2")<7){
+               setglobalvar("citypos2",previouspos2+1);
+               }
+            }
+            if (iAttack){ 
+               if (getglobalvar("menublock")==0){
+                  setglobalvar("menublock",1);
+               }else{
+               setglobalvar("menublock",0);
+                  //loadgame function
+                  loadgame(getglobalvar("citypos2"));
+                  setglobalvar("citymenu",1);
+                  recalculatebonus();
+               }
+            }
+            if (iAttack2 ){
+            setglobalvar("menublock",0);
+            }
+   }
+
+
+}
+
+
+
+--------------------------------------------------------------------------------
+
+here is the update script :
+
+--------------------------------------------------------------------------------
+
+
+void main()
+{
+   #include "data/scripts/readfiles.c"
+   void cityscreen = getglobalvar("cityscreen");
+   void loadsave=getglobalvar("loadsave");
+   int x = getglobalvar("posxcadre");
+   int y = getglobalvar("posycadre");
+   int x2 = getglobalvar("posxcadre2");
+   int y2 = getglobalvar("posycadre2");
+   int menu = getglobalvar("citymenu");
+   int pos = getglobalvar("citypos");
+   int pos2 = getglobalvar("citypos2");
+   void cadre = getglobalvar("cadre");
+   void cadre2 = getglobalvar("cadre2");
+   void cadre3 = getglobalvar("cadre3");
+   int character = getglobalvar("character");
+   void strcharacter = "characterscreen" + character;
+   void characterscreen = getglobalvar(strcharacter);   
+   void map = getglobalvar("map");
+   void inventory = getglobalvar("inventory");
+   void questbook = getglobalvar("questbook");
+   void heroesfile = getglobalvar("heroesfile");
+   void shop = getglobalvar("shop");
+   void castle = getglobalvar("castle");
+   void map2= getglobalvar("leavecity");
+   void tavern=getglobalvar("tavern");   
+   void emptyoptionslot = getglobalvar("emptyoptionslot");
+   void itemi;
+   void itemj;
+   void itemisprite;
+   int i;
+   int j;
+   int posxi;
+   int posyi;
+   void inventoryi;
+   void inventoryj;
+   int goldstring;
+   void tempstring;
+   void tempstring2;
+   void tempstring3;   
+   void citynum = getglobalvar("citynum");
+   void menublock = getglobalvar("menublock");
+   void buying = getglobalvar("buying");
+   void itemprice;
+   void skill;
+   void skillpointstring;
+   void skillaccess;
+   void skillstatus;
+   void questchari;
+   void castleisprite;
+   void displaycharconditioni;
+   void castlei;
+   void queststatusi;
+   void questtext1;
+   void questtext2;
+   void questtext3;
+   void activecharacter;
+   void queststatus;
+   void strengthi;
+   void defensei;
+   void agilityi;
+   void magici;
+   void hpi;
+   void mpi;   
+   void characteri;
+   void charactername;
+   void characterclass;
+   int alignment= 1 + getglobalvar("good_alignment")+2*getglobalvar("bad_alignment");
+   void xp = getglobalvar("xp"+character);
+   void xplevel ;
+   void levelfile = getglobalvar("levelfile");
+   void level = getglobalvar("level"+character);
+   void skillcost;
+   void cityid ="city"+citynum;
+   void cityname;
+   void exitiid;
+   void exitiname;
+   void cityexitnumber;
+   void exitspawnarea;
+   void exitdifficulty;
+   void questi;
+   void questicharacter;
+   void questiname;
+   void questidescription;   
+   void questilocation;   
+   void questicity;   
+   void questbookfile=getglobalvar("questbookfile");
+   int exitlocationX;
+   int exitlocationY;
+   void pointhand=getglobalvar("pointhand");
+   void heroi;
+   void herosloti;
+   void heroisprite;
+   void loadgamestring;
+   void heroilevel;
+   void saveheroilevel;
+   void savecity;
+   void levelijstring;
+   
+   
+   // load menu   
+   if (menu == 0){
+   drawsprite(loadsave, 0, 0, 1, 0);   
+      if (pos2==1){
+         drawsprite(cadre2, 515 ,66,3,0);
+         loadgamestring="do you want to start a new game ?";
+      }
+      if (pos2>1){
+         drawsprite(cadre3, 27 ,166 + (pos2-2)*52,3,0);
+         loadgamestring="do you want to load savegame "+(pos2-1)+" ?";
+      }
+      if (menublock == 1){
+         drawstring(80,40,3,loadgamestring);
+      }
+      for(i=1,i<=6,i++){
+         for (j=1,j<=4,j++){
+         heroilevel="level"+j;
+         saveheroilevel = vlookup(getglobalvar("savegamefile"),heroilevel,i+3,"int");
+         levelijstring ="level "+ saveheroilevel;
+         drawstring(90+100*(j-1),180+52*(i-1),3,levelijstring);
+         }
+   
+      }
+   }
+   
+   if (menu == 1){   
+    drawsprite(cityscreen, 0, 0, 1, 0);
+    drawsprite(cadre, x ,y,3,0);
+   }
+   
+   if (menu == 2){
+
+      //----------------------------------------------------------------
+      //characters & skills
+      //----------------------------------------------------------------
+
+         if (pos == 1){
+         xplevel=vlookup(levelfile,"level"+level,2,"int");
+         skill="skill"+(getglobalvar("character")*100+ getglobalvar("citypos2")-2);
+         skillstatus = getglobalvar(skill);
+         skillaccess = vlookup(getglobalvar("skillfile"),skill,5,"string");
+         skillcost = vlookup(getglobalvar("skillfile"),skill,4,"string");
+         skillpointstring = "skillpoints"+ character;
+         
+         drawsprite(characterscreen, 0, 0, 2, 0);
+         if (pos2 == 1){
+            drawsprite(cadre2, 20, 39, 3, 0);
+         }
+         if (pos2 == 2){
+            drawsprite(cadre2, 515, 39, 3, 0);
+         }
+         if (pos2 > 2){
+
+            drawsprite(cadre3, x2, y2, 3, 0);
+            drawstring(370, 295,1,vlookup(getglobalvar("skillfile"),skill,2,"string"));   
+            drawstring(370, 325,1,vlookup(getglobalvar("skillfile"),skill,3,"string"));
+            drawstring(370, 340,1,vlookup(getglobalvar("skillfile"),skill,15,"string"));   
+            drawstring(370, 355,1,vlookup(getglobalvar("skillfile"),skill,16,"string"));               
+            if (getglobalvar(skill) == 1){
+               drawstring(370, 310,1,"skill aquired");
+               }else{
+                  if(getglobalvar(skillaccess) == 0){
+                     drawstring(370,310,1,"require : "+vlookup(getglobalvar("skillfile"),skillaccess,2,"string"));
+                     }else{
+                     drawstring(370,310,1,"skill available");
+                  }
+            }
+            
+               
+         }
+         if (menublock == 1){
+            drawstring(100,150,3,"buy "+ getglobalvar("activeskill") +" for "+skillcost+" skill points ?");
+         }
+         
+         characteri="character"+character;
+         charactername=vlookup(heroesfile,characteri,2,"string");
+         characterclass=vlookup(heroesfile,characteri,2+alignment,"string");         
+         drawstring(370,185,1,charactername);
+         drawstring(370,200,1,characterclass);
+         drawstring(370,215,1,"level : "+level);
+         drawstring(370,230,1,"skill points : "+getglobalvar(skillpointstring));
+
+         strengthi = getglobalvar("strength"+character);
+         defensei = getglobalvar("defense"+character);
+         agilityi = getglobalvar("agility"+character);
+         magici = getglobalvar("magic"+character);
+         hpi = getglobalvar("hp"+character);
+         mpi = getglobalvar("mp"+character);
+         drawstring(167,130,3,strengthi);
+         drawstring(227,130,3,defensei);
+         drawstring(287,130,3,agilityi);
+         drawstring(350,130,3,magici);
+         drawstring(407,130,3,hpi);
+         drawstring(474,130,3,mpi);
+         
+         drawstring(528,55,1,"xp : "+xp);                                                      
+         drawstring(528,65,1,"next level : "+xplevel);   
+         if(xp>=xplevel){
+            drawstring(537,80,3,"LEVEL");            
+            drawstring(550,105,3,"UP!");
+         }
+      }
+      //----------------------------------------------------------------
+      //inventory
+      //----------------------------------------------------------------
+      if (pos == 2){
+         drawsprite(inventory, 0, 0, 2, 0);
+         goldstring = "gold : "+ getglobalvar("gold");
+         drawstring(480,190,3,goldstring);
+         tempstring = getglobalvar("inventorytemp1");
+         drawstring(480,220,3,tempstring);
+         //drawstring(480,100,3,left(tempstring,4));
+         
+         for (i = 1, i<=48,i++){
+            inventoryi = "inventory"+i;   
+            itemi = getglobalvar(inventoryi);
+            if (itemi){
+            itemisprite = getglobalvar(itemi);
+            posxi = 6 +((i-1)%8)*53;
+            posyi = 162 + (((i-1)-(i-1)%8))/8*52;
+            drawsprite(itemisprite,posxi,posyi,3,0);   
+            }
+         }
+         if (pos2 > 0){
+            drawsprite(cadre3, x2, y2, 4, 0);
+            inventoryi=   "inventory"+pos2;
+            itemi = getglobalvar(inventoryi);
+            if (itemi){
+               drawstring(455, 295,1,itemi);
+               drawstring(455, 310,1,vlookup(getglobalvar("itemfile"),itemi,2,"string"));
+               drawstring(455, 325,1,vlookup(getglobalvar("itemfile"),itemi,16,"string"));
+               drawstring(455, 340,1,vlookup(getglobalvar("itemfile"),itemi,17,"string"));
+               drawstring(455, 355,1,vlookup(getglobalvar("itemfile"),itemi,18,"string"));
+               drawstring(455, 370,1,"buy : "+vlookup(getglobalvar("itemfile"),itemi,11,"string"));
+               drawstring(455, 385,1,"sell : "+vlookup(getglobalvar("itemfile"),itemi,12,"string"));
+            }
+               
+         }
+   
+      
+      
+      }
+      //----------------------------------------------------------------
+      //questbook
+      //----------------------------------------------------------------
+      if (pos == 3){
+         drawsprite(questbook, 0, 0, 2, 0);
+         for (j=1,j<=2,j++){
+            for (i=1,i<=3,i++){
+               questi="castle"+(10*(j+pos2-1)+i);
+               questicharacter=vlookup(questbookfile,questi,2,"string");
+               questiname=vlookup(questbookfile,questi,4,"string");
+               questidescription=vlookup(questbookfile,questi,5,"string");   
+               questilocation=vlookup(questbookfile,questi,6,"string");   
+               questicity=vlookup(questbookfile,questi,3,"string");
+               if (getglobalvar(questi)>=2){
+                  drawstring((110+(j-1)*220),(110+80*(i-1)),3,questiname);
+                  drawstring((110+(j-1)*220),(130+80*(i-1)),1,questicharacter);
+                  drawstring((200+(j-1)*220),(130+80*(i-1)),1,questicity);
+                  drawstring((110+(j-1)*220),(145+80*(i-1)),1,questidescription);
+                  drawstring((110+(j-1)*220),(160+80*(i-1)),1,questilocation);               
+                  if (getglobalvar(questi)==2){
+                  drawstring((200+(j-1)*220),(160+80*(i-1)),1,"not started");   
+                  }
+                  if (getglobalvar(questi)==3){
+                  drawstring((200+(j-1)*220),(160+80*(i-1)),1,"accomplished");   
+                  }
+                  if (getglobalvar(questi)==4){
+                  drawstring((200+(j-1)*220),(160+80*(i-1)),1,"quest finished");      
+                  }                                    
+               }
+            }
+         }
+      }
+      //----------------------------------------------------------------
+      //map
+      //----------------------------------------------------------------
+      if (pos == 4){
+         drawsprite(map, 0, 0, 2, 0);
+      }
+      //----------------------------------------------------------------
+      //leave city
+      //----------------------------------------------------------------
+      if (pos == 10){
+         drawsprite(map2, 0, 0, 2, 0);
+               cityname = vlookup(getglobalvar("levelexitsfile"),cityid,2,"string");
+               cityexitnumber = vlookup(getglobalvar("levelexitsfile"),cityid,3,"int");
+         for (i=1,i<=cityexitnumber,i++){
+               exitiid = vlookup(getglobalvar("levelexitsfile"),cityid,(4+2*(i-1)),"string");
+               exitspawnarea = vlookup(getglobalvar("levelexitsfile"),cityid,(5+2*(i-1)),"string");
+               exitiname= vlookup(getglobalvar("levelexitsfile"),exitiid,2,"string");
+               exitdifficulty= vlookup(getglobalvar("levelexitsfile"),exitiid,13,"string");
+               drawsprite(emptyoptionslot, (30+(i-1)*160), 335, 3, 0);
+               drawstring((45+(i-1)*160), 360,1,exitiname);
+               drawstring((45+(i-1)*160), 380,1,exitdifficulty);
+         }
+         exitiid = vlookup(getglobalvar("levelexitsfile"),cityid,(4+2*(pos2-1)),"string");
+         exitiname= vlookup(getglobalvar("levelexitsfile"),exitiid,2,"string");
+         drawsprite(cadre2, (30+(pos2-1)*160), 335, 3, 0);
+         exitlocationX=vlookup(getglobalvar("levelexitsfile"),exitiid,22,"int");
+         exitlocationY=vlookup(getglobalvar("levelexitsfile"),exitiid,23,"int");
+         if (menublock==1){
+               drawstring(180, 440,3,("Do you want to leave "+cityname));
+               drawstring(220, 460,3,("and go to "+exitiname+" ?"));
+
+         }
+         drawsprite(pointhand, 110+exitlocationX, exitlocationY-25, 3, 0);
+      }
+      //----------------------------------------------------------------
+      //Tavern
+      //----------------------------------------------------------------
+      if (pos == {
+         drawsprite(tavern, 0, 0, 2, 0);
+         for (i = 1, i<=7,i++){
+            if (i<5){
+               herosloti = "heroplayer"+i;
+               posxi = 40 +((i-1)*150);
+               posyi = 220;            
+            }else{
+               herosloti = "tavern"+i;
+               posxi = 111 +((i-5)*150);
+               posyi = 350;
+            }
+            heroi = getglobalvar(herosloti);
+            if (heroi !="empty"){
+               heroisprite = getglobalvar(heroi);
+               drawsprite(heroisprite,posxi,posyi,3,0);
+            }
+         }
+         if (pos2 < 5){
+            posxi = 40 +((pos2-1)*150);
+            posyi = 220;
+            drawsprite(cadre2, posxi, posyi, 4, 0);
+         }else{
+            posxi = 111 +((pos2-5)*150);
+            posyi = 350;
+            drawsprite(cadre2, posxi, posyi, 4, 0);
+         }
+      }      
+      //----------------------------------------------------------------
+      //shop
+      //--------------------------------------------------------- -------
+      if (pos == 7){
+         drawsprite(shop, 0, 0, 2, 0);
+         goldstring = "gold : "+ getglobalvar("gold");
+         drawstring(480,190,3,goldstring);
+         tempstring = getglobalvar("inventorytemp1");
+         drawstring(480,220,3,tempstring);
+         for (i = 1, i<=32,i++){
+            inventoryi = "inventory"+(i+16);   
+            itemi = getglobalvar(inventoryi);
+            if (itemi){
+               itemisprite = getglobalvar(itemi);
+               posxi = 6 +((i-1)%8)*53;
+               posyi = 111 + (((i-1)-(i-1)%8))/8*52;
+               drawsprite(itemisprite,posxi,posyi,3,0);   
+            }
+         }
+         for (j = 1, j<=16,j++){
+            
+            inventoryj = "shop" + (100*(citynum) + j) ;
+            itemj = getglobalvar(inventoryj);
+            if (itemj){
+               itemisprite = getglobalvar(itemj);
+               posxi = 6 +((j-1)%8)*53;
+               posyi = 370 + (((j-1)-(j-1)%8))/8*52;
+               drawsprite(itemisprite,posxi,posyi,3,0);   
+            }
+         }
+         if (pos2 > 0){
+            drawsprite(cadre3, x2, y2, 4, 0);   
+            if(pos2>32){
+               inventoryi=   "shop"+((getglobalvar("citynum"))*100+pos2-32);
+               }else{
+               inventoryi=   "inventory"+(pos2+16);
+            }
+            itemi = getglobalvar(inventoryi);
+            if (itemi){
+               drawstring(455, 295,1,itemi);
+               drawstring(455, 310,1,vlookup(getglobalvar("itemfile"),itemi,2,"string"));
+               drawstring(455, 325,1,vlookup(getglobalvar("itemfile"),itemi,16,"string"));
+               drawstring(455, 340,1,vlookup(getglobalvar("itemfile"),itemi,17,"string"));
+               drawstring(455, 355,1,vlookup(getglobalvar("itemfile"),itemi,18,"string"));
+               drawstring(455, 370,1,"buy : "+vlookup(getglobalvar("itemfile"),itemi,11,"string"));
+               drawstring(455, 385,1,"sell : "+vlookup(getglobalvar("itemfile"),itemi,12,"string"));
+            }
+         
+         
+         
+         }
+         if (menublock==1){
+            if (buying == 1){
+               itemprice= vlookup(getglobalvar("itemfile"),tempstring,11,"int");
+               tempstring2="buy "+ tempstring +" for ";
+               tempstring3= tempstring2 + itemprice;
+               drawstring(100,70,3,tempstring3 +" ?");
+               //drawstring(120,120,3,getglobalvar("goldmove"));
+            }
+            if (buying == -1){
+               itemprice= vlookup(getglobalvar("itemfile"),tempstring,12,"int");
+               tempstring2="sell "+ tempstring +" for ";
+               tempstring3= tempstring2 + itemprice;
+               drawstring(100,70,3,tempstring3+" ?");
+               //drawstring(120,120,3,getglobalvar("goldmove"));
+            }
+         }
+      }
+      
+      
+      //----------------------------------------------------------------
+      //castle & quests
+      //----------------------------------------------------------------
+      
+      if (pos == 6){
+         drawsprite(castle, 0, 0, 2, 0);
+         for (i = 1, i<=3,i++){
+            castlei = "castle"+(citynum*10 +i);
+            queststatusi =getglobalvar(castlei);
+            castleisprite =getglobalvar("questchar"+(citynum*10 +i));
+            questchari =vlookup(getglobalvar("questcharfile"),castlei,2,"string");
+            //questcharstatusi = getglobalvar(vlookup(getglobalvar("questcharfile"),castlei,4,"string"));
+            
+            
+            if (queststatusi>0){
+                  drawsprite(castleisprite, 19, 87+(i-1)*140, 3, 0);
+                  drawstring(19,67+(i-1)*140,3,questchari);
+            }
+            
+            
+         }
+         activecharacter=getglobalvar("activequestchar");
+         if(activecharacter!="no"){
+            queststatus=getglobalvar(activecharacter);
+            if (queststatus>0 && activecharacter!="no"){
+               questtext1=vlookup(getglobalvar("questcharfile"),activecharacter,11+3*queststatus,"string");
+               questtext2=vlookup(getglobalvar("questcharfile"),activecharacter,12+3*queststatus,"string");            
+               questtext3=vlookup(getglobalvar("questcharfile"),activecharacter,13+3*queststatus,"string");
+               drawstring(315,295,2,questtext1);
+               drawstring(315,315,2,questtext2);
+               drawstring(315,335,2,questtext3);
+            }
+         }
+         if (getglobalvar("citypos2") == 4){
+         drawsprite(cadre2, 515, 42, 3, 0);   
+         }else{
+         drawsprite(cadre2, 19, 87+(getglobalvar("citypos2")-1)*140, 3, 0);
+         }
+      }
+   }
+}
+
+
+--------------------------------------------------------------------------------
+
+
+and here are various functions i use i my scripts.
+
+
+
+//-----------------------------------------------------------------------------------
+//return 1 if "item" type is the same than inventory target's type. 0 else
+//-----------------------------------------------------------------------------------
+void checkitemtype (void item, int inventorytarget){
+      #include "data/scripts/readfiles.c"
+   void itemtype = vlookup(getglobalvar("itemfile"),item,2,"string");
+   void target = "inventorytype"+ inventorytarget;
+   void targettype;
+if(inventorytarget==1){targettype="two_handed_sword";}
+if(inventorytarget==2){targettype="plate_armor";}
+if(inventorytarget==3){targettype="sword";}
+if(inventorytarget==4){targettype="plate_armor";}
+if(inventorytarget==5){targettype="daggers";}
+if(inventorytarget==6){targettype="cape";}
+if(inventorytarget==7){targettype="book";}
+if(inventorytarget==8){targettype="crown";}
+if(inventorytarget==9){targettype="amulet";}
+if(inventorytarget==10){targettype="ring";}
+if(inventorytarget==11){targettype="shield";}
+if(inventorytarget==12){targettype="helm";}
+if(inventorytarget==13){targettype="boots";}
+if(inventorytarget==14){targettype="ring";}
+if(inventorytarget==15){targettype="amulet";}
+if(inventorytarget==16){targettype="ring";}
+
+   if (targettype == itemtype){
+      return(1);
+      }else{
+      return(0);
+   }
+}
+
+
+//-----------------------------------------------------------------------------------
+//check if quest's advancement requirements are met
+//-----------------------------------------------------------------------------------
+void checkqueststatus(void castlei){
+void questcharfile = getglobalvar("questcharfile");   
+void queststatus=getglobalvar(castlei);
+void xpi;
+void xppointsi;
+void goldparty;
+void skilli;
+void skillpointsi;
+void inventoryj;
+void inventoryjcontent;
+void artefactgiven=0;
+int i;
+if (queststatus <4){
+   void changestatuscondition=vlookup(questcharfile,castlei,4+2*queststatus,"string");
+   void changestatusconditionvalue=vlookup(questcharfile,castlei,5+2*queststatus,"int");
+   if (getglobalvar(changestatuscondition) == changestatusconditionvalue){
+      setglobalvar(castlei,queststatus+1);
+      if (queststatus == 2){
+         void rewardxp=vlookup(questcharfile,castlei,10,"int");
+         void rewardgold=vlookup(questcharfile,castlei,11,"int");
+         void rewardskillpoint=vlookup(questcharfile,castlei,12,"int");
+         void rewardartefact=vlookup(questcharfile,castlei,13,"string");
+         if (rewardxp>0){
+            for (i = 1, i<=4,i++){
+               xpi="xp"+i;
+               xppointsi = getglobalvar(xpi);
+               setglobalvar(xpi,xppointsi+rewardxp);   
+            }            
+         }
+         if (rewardgold>0){
+            goldparty=getglobalvar("gold");
+            setglobalvar("gold",goldparty+rewardgold);
+         }
+         if (rewardskillpoint>0){
+            for (i=1, i<=4,i++){
+               skilli="skillpoints"+i;
+               skillpointsi = getglobalvar(skilli);
+               setglobalvar(skilli,skillpointsi+rewardskillpoint);   
+            }
+         }
+         if (rewardartefact!="no"){
+            for (i=17,i<=48,i++){
+               inventoryj="inventory"+i;
+               inventoryjcontent=getglobalvar(inventoryj);
+               if (!inventoryjcontent && artefactgiven==0){
+                  setglobalvar(inventoryj,rewardartefact);
+                  artefactgiven=1;
+               }
+            }
+         }
+      }
+   }
+}
+}
+
+//-----------------------------------------------------------------------------------
+//check if characters may appear in castle
+//-----------------------------------------------------------------------------------
+void checkcharacterexistence(){
+   void citynum=getglobalvar("citynum");
+   void questcharfile = getglobalvar("questcharfile");   
+   void characteri;
+   void queststatusi;
+   int i;
+   for (i=1,i<=3,i++){
+      characteri="castle"+(citynum*10+i);
+      queststatusi=getglobalvar(characteri);
+      if (queststatusi==0){
+         checkqueststatus(characteri);
+      }
+   }
+}
+//-----------------------------------------------------------------------------------
+//recalculates players bonus to characteristics
+//-----------------------------------------------------------------------------------
+void recalculatebonus(){
+   void characteri;
+   void inventoryj;
+   void itemj;
+   void skillij;
+   void leveli;
+   void strengthi;
+   void defensei;
+   void agilityi;
+   void magici;
+   void hpi;
+   void mpi;
+   void bonusdamage;
+   void bonusdefense;
+   int i;
+   int j;
+   void strengthibonus;
+   void defenseibonus;
+   void agilityibonus;
+   void magicibonus;
+   void hpibonus;
+   void mpibonus;
+   void itemfile = getglobalvar("itemfile");
+   void skillfile = getglobalvar("skillfile");
+   void strengthibase;
+   void defenseibase;
+   void agilityibase;
+   void magicibase;
+   void hpibase;
+   void mpibase;
+   void heroesfile = getglobalvar("heroesfile");
+   for (i=1,i<=4,i++){
+      characteri = "character"+i;
+      leveli = "level"+i;
+      strengthi = "strength"+i;
+      defensei = "defense"+i;
+      agilityi = "agility"+i;
+      magici = "magic"+i;
+      hpi = "hp"+i;
+      mpi = "mp"+i;
+      bonusdamage = "bonusdamage"+i;
+      bonusdefense = "bonusdefense"+i;
+      strengthibonus = 0;
+      defenseibonus = 0;
+      agilityibonus = 0;
+      magicibonus = 0;
+      hpibonus = 0;
+      mpibonus = 0;
+      
+      strengthibase = vlookup(heroesfile,characteri,6,"int");
+      defenseibase = vlookup(heroesfile,characteri,7,"int");
+      agilityibase = vlookup(heroesfile,characteri,8,"int");
+      magicibase = vlookup(heroesfile,characteri,9,"int");
+      hpibase = vlookup(heroesfile,characteri,10,"int");
+      mpibase = vlookup(heroesfile,characteri,11,"int");
+    
+      for (j=1,j<=16,j++){
+         if ( ( j>=(2*(i-1)+1) && j<=(2*(i-1)+2) )||(j>=(2*(i-1)+9) && j<=(2*(i-1)+10))){ //inventory slot j is for character i
+            inventoryj="inventory"+j;
+            itemj=getglobalvar(inventoryj);
+            if (itemj){
+               bonusdamage += vlookup(itemfile,itemj,3,"int");
+               bonusdefense += vlookup(itemfile,itemj,4,"int");
+               strengthibonus += vlookup(itemfile,itemj,5,"int");
+               defenseibonus += vlookup(itemfile,itemj,6,"int");
+               agilityibonus += vlookup(itemfile,itemj,7,"int");
+               magicibonus += vlookup(itemfile,itemj,8,"int");
+               hpibonus += vlookup(itemfile,itemj,9,"int");
+               mpibonus += vlookup(itemfile,itemj,10,"int");
+            }
+         }
+         
+      }
+      
+      for (j=1,j<=36,j++){
+         skillij="skill"+(i*100+j);
+         if (getglobalvar(skillij)==1){
+               strengthibonus += vlookup(skillfile,skillij,6,"int");
+               defenseibonus += vlookup(skillfile,skillij,7,"int");
+               agilityibonus += vlookup(skillfile,skillij,8,"int");
+               magicibonus += vlookup(skillfile,skillij,9,"int");
+               hpibonus += vlookup(skillfile,skillij,10,"int");
+               mpibonus += vlookup(skillfile,skillij,11,"int");
+         }
+      }
+      setglobalvar(strengthi,strengthibase + strengthibonus);
+      setglobalvar(defensei,defenseibase + defenseibonus);
+      setglobalvar(agilityi,agilityibase + agilityibonus);
+      setglobalvar(magici,magicibase + magicibonus);
+      setglobalvar(hpi,hpibase + hpibonus);
+      setglobalvar(mpi,mpibase + mpibonus);
+
+   }
+}
+
+//-----------------------------------------------------------------------------------
+//when entering tavern, allocate heroes to tavern slots
+//-----------------------------------------------------------------------------------
+void entertavern(){
+   int i;
+   void herosloti;
+   int Otto=0;
+   int Maximus=0;
+   int YUG=0;
+   int Helena=0;
+   int inactiveherocount=0;
+   void tavernslot;
+   int heroname;
+   
+   for (i=1,i<=4,i++){
+      herosloti="heroplayer"+i;
+      heroname = getentityproperty(getplayerproperty((i-1),"entity"),"name");
+      setglobalvar(herosloti,"empty");
+      if (heroname=="Otto"){
+      Otto++;
+      setglobalvar(herosloti,"hero1");
+      }
+      if (heroname=="Maximus"){
+      Maximus++;
+      setglobalvar(herosloti,"hero2");
+      }
+      if (heroname=="YUG"){
+      YUG++;
+      setglobalvar(herosloti,"hero3");
+      }      
+      if (heroname=="Helena"){
+      Helena++;
+      setglobalvar(herosloti,"hero4");
+      }
+            
+   }
+   tavernslot="tavern"+(5+inactiveherocount);
+   if(Otto ==0){
+   setglobalvar(tavernslot,"hero1");   
+   inactiveherocount++;
+   }
+   tavernslot="tavern"+(5+inactiveherocount);
+   if(Maximus ==0){
+   setglobalvar(tavernslot,"hero2");   
+   inactiveherocount++;
+   }
+   tavernslot="tavern"+(5+inactiveherocount);
+   if(YUG ==0){
+   setglobalvar(tavernslot,"hero3");   
+   inactiveherocount++;
+   }
+   tavernslot="tavern"+(5+inactiveherocount);
+   if(Helena ==0){
+   setglobalvar(tavernslot,"hero4");   
+   inactiveherocount++;
+   }
+   if(inactiveherocount<3){
+      for (i=1,i<=(3-inactiveherocount),i++){
+         tavernslot="tavern"+(8-i);
+         setglobalvar(tavernslot,"empty");   
+      }
+   }
+}
+//-----------------------------------------------------------------------------------
+//when moving heroes in the tavern, input changes to players
+//-----------------------------------------------------------------------------------
+void tavernchanges(){
+   int i;
+   void heroplayeri;
+   void heroi;
+   void playeri;
+   void heroname;
+   void herosloti;
+   //look existing situation
+   for (i=1,i<=4,i++){
+      playeri="player"+i;
+      heroname = getentityproperty(getplayerproperty((i-1),"entity"),"name");
+      setlocalvar(playeri,"empty");
+      if (heroname=="Otto"){
+      setlocalvar(playeri,"hero1");
+      }
+      if (heroname=="Maximus"){
+      setlocalvar(playeri,"hero2");
+      }
+      if (heroname=="YUG"){
+      setlocalvar(playeri,"hero3");
+      }      
+      if (heroname=="Helena"){
+      setlocalvar(playeri,"hero4");
+      }
+   }
+   //compare with required situation   
+   for (i=1,i<=4,i++){
+      herosloti="heroplayer"+i;
+      heroi=getglobalvar(herosloti);
+      playeri="player"+i;      
+      if (getlocalvar(playeri)==heroi){
+      setglobalvar("temp","temp");   
+      }
+   }
+}
+//-----------------------------------------------------------------------------------
+//load a game
+//-----------------------------------------------------------------------------------
+void loadgame(int gamei){
+   int i;
+   void savegamefile = getglobalvar("savegamefile");
+   void type;
+   void variable;
+   void variablevalue;
+      
+   setfilestreamposition(savegamefile, 0); 
+    do{                               
+            filestreamnextline(savegamefile);
+            variable = getfilestreamargument(savegamefile, 0, "string");
+            type = getfilestreamargument(savegamefile, 1, "string");
+            variablevalue = getfilestreamargument(savegamefile, gamei+1, type);
+            if(variablevalue!="empty"){
+         setglobalvar(variable,variablevalue);
+            }
+     }while (variable != "End");
+       
+}
+void vlookup(void textfile, void findtext,int column, void type){
+   void result;
+   int icheck;
+   void vMatch;
+   setfilestreamposition(textfile, 0); 
+   vMatch = getfilestreamargument(textfile, 0, "string");
+    do{                               
+            filestreamnextline(textfile);
+            vMatch = getfilestreamargument(textfile, 0, "string");
+        }while (findtext != vMatch && vMatch != "End");
+
+   if (vMatch != "End"){         
+            result= getfilestreamargument(textfile, column-1, type); 
+            return(result);
+   }
+}
+
+
+
+--------------------------------------------------------------------------------
+
+I use a lot of text files to avoid hard coding.
+For exemple here is the text file i use for items  (there are 3 lines, you ll have to copy it to excel to understand something) :
+
+--------------------------------------------------------------------------------
+
+
+name type bonus damage % bonus defense % strength defense agility magic hp mp buyprice sellprice resist_magic resist_fire resist_lightning description1 description2 description3
+ring_of_magic ring 0 0 0 0 0 1 0 0 1000 500 0 0 0 add_1_magic _ _
+sword_of_might two_handed_sword 0 0 1 0 0 0 0 0 15000 7500 0 0 0 add_1_strength _ _
+End 1
+
+
+
+
+

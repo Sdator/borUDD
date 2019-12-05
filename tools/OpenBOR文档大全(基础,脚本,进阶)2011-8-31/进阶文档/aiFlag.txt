@@ -1,0 +1,839 @@
+@script
+    void self = getlocalvar("self");
+    void Parent = getentityproperty(self, "parent"); // Get parent
+
+    if (Parent != NULL()){ //Have parent?
+      int HParent = getentityproperty(Parent, "health"); // Get parent's health
+
+      if (HParent <= 0){ //Parent dead?
+        damageentity(self, self, 10000, 1, openborconstant("ATK_NORMAL")); // Suicide!
+        changeentityproperty(self, "aiflag", "idling", 0); // Disable idle status
+        changeentityproperty(self, "aiflag", "dead", 1); // Enable dead status
+        changeentityproperty(self, "takeaction", "common_fall"); // Enters fall
+      }
+    }
+@end_script
+---------------------------------------------------
+// slide code, first checks to see the character has a slide 
+	if(playerkeys(player, 1, "jump") && name != "Asfal" && name != "Amu"){
+
+		// if player is ducking, then they are able to slide
+		if(animation == openborconstant("ANI_DUCK")){
+
+			// remove the jump button so the engine won't override the slide with a jump
+			playkeys -= openborconstant("FLAG_JUMP");
+			changeplayerproperty(player, "playkeys", playkeys);
+
+			// 'attacking' is used since the slide is like an attack, an animation that can't be broken out of
+			changeentityproperty(self, "aiflag", "attacking", 1);
+
+			// 'idling' usually needs to be set to 0 whenever the animation is changed to something besides idle
+			changeentityproperty(self, "aiflag", "idling", 0);
+
+			// 'common_attack_proc' is the takeaction for attack like things
+			changeentityproperty(self, "takeaction", "common_attack_proc");
+
+			// change to freespecial5, all characters with slides have them set in freespecial5
+			changeentityproperty(self, "animation", openborconstant("ANI_FREESPECIAL5"), 1);
+		}
+
+		// if the player is sliding, remove the jump button so they aren't forced into a jump by the engine
+		else if(animation == openborconstant("ANI_FREESPECIAL5"))
+		{
+			playkeys -= openborconstant("FLAG_JUMP");
+			changeplayerproperty(player, "playkeys", playkeys);
+		}
+		// if the player is in midair, set an entityvar to be checked when they land.  If they are holding down, they will slide rather than jump.
+		else if(pa - 1.0 > base)
+			setentityvar(self, 0, 1);
+			
+	}
+-
+You can prevent heroes from breaking free without using aiflags. noaicontrol "blocks" the controller inputs.
+
+If you use aiflags to send hero into grabbed state , the engine allows use of specials to break free from it......
+
+Also , here's an example from one of my characters on how I use flags.
+
+I use a small animationscript....
+
+
+Code:
+void aiflag(int flag, int on, int action){
+	void vSelf = getlocalvar("self"); //Get calling entity
+	changeentityproperty(vSelf, "aiflag", flag, on); //Change AIflag accordingly
+	changeentityproperty(vSelf, "takeaction", action);//Change takeaction.
+}
+Nothing difficult there!
+
+The @cmd that goes with it is as follows
+@cmd aiflag {flag} {on/off} {takeaction}
+{flag} - flag you want to modify.
+{on/off} - 1 turns flag on , 0 turns it off.
+{takeaction} - takeaction to apply. NULL() can be used for idle.
+
+Now , a piece of an animation that uses it...
+
+Code:
+..................................
+ 	bbox	23 23 32 93
+	frame	data/chars/asura/0023_1da.gif
+                     delay     2
+ 	offset	44 126
+ 	bbox	35 20 55 100
+@cmd aiflag "blocking" 1 "common_block"
+	frame	data/chars/asura/0023_1dc.gif
+                     delay     3
+ 	offset	46 125
+	frame	data/chars/asura/0023_1de.gif
+                     delay     37
+ 	offset	46 127
+	frame	data/chars/asura/0023_1e0.gif
+                     delay     3
+ 	offset	34 119
+ 	bbox	34 18 27 96
+@cmd aiflag "blocking" 0 "common_attack_proc"
+	frame	data/chars/asura/0023_1e2.gif
+ 	offset	34 111
+ 	bbox	17 7 32 101
+	frame	data/chars/asura/0023_164.gif
+	offset	39 108
+	bbox	32 7 27 93
+	frame	data/chars/asura/0023_0b1.gif
+................................................................
+This animation has a section where the character has autoguard/cancel abilities. The frames between the two @cmd's provide that.
+
+Because I use the blocking flag , I can use a didblockscript to make the hero use a counter attack. Just like counterframe , only much more versatile! (being able to counter from more than a single frame , for starters) but that's a tutorial for another day
+
+Alright, I've got a major update here for all the AI variables that can be changed via script!  I'm just gonna list all the options here for now; eventually I'll try and get some tutorial material out since this is some pretty tricky stuff.  Fortunately the variable names are at least somewhat self explanatory, though many of them control some things other than just what their names imply.  This topic is mostly just an update so be sure to check out the previous topic for some more information on what all of this is:
+
+http://www.lavalit.com/index.php?topic=674.0
+
+Here's a list of everything that can be modified by "aiflag":
+
+changeentityproperty(entity, "aiflag", "flagname", value{0/1});
+
+jumpid
+	added by ut		
+	example:to turn follow1 a real jump
+		changeentityproperty(entity, "aiflag", "jumpid", openborconstant("ANI_FOLLOW1");
+dead
+jumping
+idling
+drop
+attacking
+getting
+turning
+charging
+blocking
+falling
+running
+inpain
+projectile
+frozen
+toexplode
+animating
+blink
+invincible
+autokill
+
+And for "takeaction", again the names are pretty self explanatory.  Functions with common in front of their names should work for both players and enemies while others are more specific.  Here is the list:
+
+changeentityproperty(entity, "takeaction", "actionname");
+
+Note: if you don't specify an action it will set the entity's action to NULL, which is used for idling.  Also, "takeaction" is currently unavailable for getentityproperty.
+
+common_spawn
+common_attack_proc
+common_jump
+common_drop
+common_fall
+common_block
+common_pain
+common_turn
+common_land
+common_lie
+player_blink
+suicide
+common_rise
+common_grabbed
+common_grabattack
+common_grab
+common_vault
+normal_prepare
+bomb_explode
+npc_warp
+common_prejump
+common_get
+
+And a new property for get/changeplayerproperty, "playkeys" is essentially 
+the queue of keys that have yet to be recognized by the engine.  
+Since it is now changable, 
+you can capture input with key#.c, 
+perform what actions need to be performed, 
+and then erase the key so the rest of the engine won't do anything with it.  
+This is very handy as it allows you to use buttons like 'jump' for special moves without the engine forcing you to jump.  
+Use openborconstant with these flags for use with "playkeys":
+
+FLAG_ESC
+FLAG_START
+FLAG_MOVELEFT
+FLAG_MOVERIGHT
+FLAG_MOVEUP
+FLAG_MOVEDOWN
+FLAG_ATTACK
+FLAG_ATTACK2
+FLAG_ATTACK3
+FLAG_ATTACK4
+FLAG_JUMP
+FLAG_SPECIAL
+FLAG_SCREENSHOT
+FLAG_ANYBUTTON
+FLAG_FORWARD
+FLAG_BACKWARD
+
+Here's an example of how to subtract a key from the queue:
+
+Code:
+int temp = getplayerproperty(0, "playkeys");  // stores the value of player 1's playkeys
+changeplayerproperty(0, "playkeys", temp - openborconstant("FLAG_JUMP"));  // subtracts 'jump' from player 1's playkeys
+This is best used in key#.c where you can easily detect new key presses.  It will probably cause a glitch if you subtract a key that hasn't been pressed so be careful.
+
+There is only a Windows build for now as my computer is having issues compiling for consoles, but hopefully SX will be able to compile a version with all the consoles shortly.  Enjoy!
+
+
+If you can post your script I'll probably be able to fix it up.  Though one other trick you could try is to have a @cmd in your attack1 animation that checks to see if the player is holding down at the start of the attack.  If so, then you can just switch the animation to your crouch attack.  That's how I've been doing them.  Damon has a script that will do that in his library, I believe.
+
+Subtracting keys is a little tricky and I'm gonna try and get work out a good system for doing it.  I think the best way is going to have the actual subtraction take place at the very end of the keyscript and just have the other parts of the script set variables that will specify the keys that need to be subtracted (or added, for that matter).
+
+EDIT - Here's some stuff to get you started!
+
+At the top of your keyscripts have something like this, initializing a temp variable for playkeys and inserting a flag for each key you might need to cancel:
+
+
+Code:
+	int playkeys = getplayerproperty(player, "playkeys");
+	int jumpflag = 0;
+Then set your flag equal to the corresponding openborconstant in the block of code that requires the key to be subracted.  This is the code for a slide attack; I basically start the flag out as being set to subtract as soon as the jump button is detected and then set it to zero if the player isn't doing anything involved with sliding.
+
+
+Code:
+	if(playerkeys(player, 1, "jump")){
+		jumpflag = openborconstant("FLAG_JUMP");
+		if(animation == openborconstant("ANI_DUCK")){
+			changeentityproperty(self, "aiflag", "attacking", 1);
+			changeentityproperty(self, "aiflag", "idling", 0);
+			changeentityproperty(self, "takeaction", "common_attack_proc");
+			changeentityproperty(self, "animation", openborconstant("ANI_FREESPECIAL5"), 1);
+		}
+		else if(animation != openborconstant("ANI_FREESPECIAL5"))
+			jumpflag = 0;	
+	}
+Then at the very end of your keyscript, do something like this:
+
+
+Code:
+	changeplayerproperty(player, "playkeys", playkeys - jumpflag - movedownflag - whateverotherflag);
+This way you only have to modify playkeys once and you don't have to worry initializing a temp variable each time you want to subtract a key.  Hope this helps! 
+
+Now! Count up your crimes.
+
+
+Thanks. I'll look into it when I finish work.
+here are the anims I'm having trouble with...
+
+Code:
+anim attack1
+	loop	0
+	delay          5
+	offset	32 99
+                     bbox           14 4 41 95 
+@cmd    ani001 "ANI_FOLLOW6" 0 4 0 0 0 0 0 0 0 0
+@cmd    ani001 "ANI_FOLLOW1" 0 0 0 0 -50 50 -10 10 0 0
+	frame	data/chars/Ryo/lp01.gif
+	delay	7
+	offset	32 98
+	attack	39 14 46 34 5 0 0 0 8
+	frame	data/chars/Ryo/lp02.gif
+                     attack          0 0 0 0 0 0 0 0 0
+	delay	8
+	offset	32 99
+                     bbox           14 4 41 95
+	frame	data/chars/Ryo/lp01.gif
+                     loop             0
+	delay	15
+	offset	33 100
+	bbox	12 0 35 102
+	frame	data/chars/Ryo/idle01.gif
+
+anim follow6
+	loop	0
+                     delay          1
+	offset	30 77
+	frame	data/chars/Ryo/crouch02.gif
+	delay	7
+	offset	19 74
+                     bbox            10 4 43 101
+	frame	data/chars/Ryo/crlp01.gif
+	offset	20 74
+	frame	data/chars/Ryo/crlp02.gif
+                     delay           5
+	offset	19 74 
+	frame	data/chars/Ryo/crlp01.gif
+                     delay          1
+	offset	30 77
+	frame	data/chars/Ryo/crouch02.gif
+                     delay          15
+@cmd    ani001 "ANI_FOLLOW6" 4 4 0 0 0 0 0 0 0 0
+	frame	data/chars/Ryo/crouch02.gif
+The @cmd at the end of follow6 (crouch lp ) sends it back a couple of frames if I'm still holding down
+
+Here is my key#.c ....
+
+
+Code:
+if (vName == "Ryo" || "Ryo_"){ //Playing as Ryo?	
+       
+       if ((iAniID == 7 && iAniPos >= 2) || (iAniID == 81 && iAniPos >= 1) || (iAniID == 8 && iAniPos >= 3) || (iAniID == 82 && iAniPos >= 6) || (iAniID == 9 && iAniPos >= 6) || (iAniID == 83 && iAniPos >= 6) || (iAniID == 84 && iAniPos >= 8) || (iAniID == 112 && iAniPos >= 4) || (iAniID == 113 && iAniPos >= 2) || (iAniID == 114 && iAniPos >= 2) || (iAniID == 115 && iAniPos >= 5) || (iAniID == 116 && iAniPos >= 7) || iAniID == 0){ //Attack 1 , 2 ,3 or 4?
+
+          if (iAttack){ //New attack key press?
+
+             changeentityproperty(vSelf, "animation", openborconstant("ANI_ATTACK1")); //Switch to attack 1
+                    
+          }else if (iAttack2){ //New attack key press?
+
+			changeentityproperty(vSelf, "aiflag", "attacking", 1);
+			changeentityproperty(vSelf, "aiflag", "idling", 0);
+			changeentityproperty(vSelf, "takeaction", "common_attack_proc");
+             changeentityproperty(vSelf, "animation", openborconstant("ANI_ATTACK2")); //Switch to attack 2
+
+}else if (iAttack3){ //New attack key press?
+
+             changeentityproperty(vSelf, "animation", openborconstant("ANI_ATTACK3")); //Switch to attack 3
+
+}else if (iAttack4){ //New attack key press?
+
+             changeentityproperty(vSelf, "animation", openborconstant("ANI_FOLLOW4")); //Switch to attack 4
+
+}
+                 
+       }else if (iAniID == 2){
+
+           if (iAttack2){
+
+             changeentityproperty(vSelf, "animation", openborconstant("ANI_FOLLOW10")); //Switch to attack 2
+                 
+       }else if (iAttack3){
+
+             changeentityproperty(vSelf, "animation", openborconstant("ANI_FOLLOW11")); //Switch to attack 4
+                 
+       }else if (iAttack4){
+
+             changeentityproperty(vSelf, "animation", openborconstant("ANI_FOLLOW12")); //Switch to attack 4
+                 
+       }
+As you can see , I've started to update it but I had visitors lastnight....
+
+I had previously used a script within key.c to change to crouch attacks but I was experiencing the same error.....I didn't realise at the time that it was due to down always being true!
+
+Thanks again for the help. I'll try and get my head around it later! 
+
+ 
+ 
+ Report to moderator    Logged  
+
+--------------------------------------------------------------------------------
+
+
+
+* Orochi_X says : " Sore ga doushita? "  
+ 
+ 
+kbandressen 
+Developer
+
+ Offline
+
+Posts: 1345
+
+
+
+    Re: OpenBOR DevBuild v2.1023 
+? Reply #4 on: November 07, 2007, 05:18:44 am ? Quote  
+
+--------------------------------------------------------------------------------
+Well, I'm not sure exactly what the problem is, but this is what I have at the start of my attack1; maybe you could try something similar to it:
+
+
+Code:
+void crouchcheck(){
+	void self = getlocalvar("self");
+	int player = getentityproperty(self, "playerindex");
+	if(playerkeys(player, 0, "movedown"))
+		changeentityproperty(self, "animation", openborconstant("ANI_FREESPECIAL6"));
+}
+Hopefully you can find something that will work! 
+ 
+ Report to moderator    Logged  
+ 
+ 
+ 
+Bloodbane 
+Hero Member
+
+ Offline
+
+Posts: 4631
+
+
+Dark Dragon
+
+
+     Re: OpenBOR DevBuild v2.1023 
+? Reply #5 on: November 07, 2007, 06:05:54 am ? Quote  
+
+--------------------------------------------------------------------------------
+ I'm confused now. Alright I'll DL this one.
+
+ BTW KB, can I request more OpenBoR constants specifically in ATTACKs? I need more script based attacks to make slams. I've tried "ATK_NORMAL11" but it doesn't work although I've expanded attacktypes to 20. 
+ 
+ Report to moderator    Logged  
+
+--------------------------------------------------------------------------------
+OpenBoR Manual
+
+"The more often enemies attack, the more open they are to counter attacks" 
+ 
+ 
+Orochi_X 
+Administrator
+
+ Offline
+
+Posts: 3025
+
+
+Now! Count up your crimes.
+
+ 
+     Re: OpenBOR DevBuild v2.1023 
+? Reply #6 on: November 07, 2007, 01:56:27 pm ? Quote  
+
+--------------------------------------------------------------------------------
+Thanks KB , I'll take a look at it now. My issue isn't with switching to a crouch attack , it's more to do with what I do afterwards. What I want is for my character to stay crouching if I hold down during the attack. However down is already set as true because I used it to initiate the crouch attack.
+
+So , currently , the check at the end of the crouch anim will always find down to be true whether I'm holding it or not....
+
+
+EDIT - to save double posting!: Either I'm doing something wrong or deleting keys doesn't work quite how I imagined.....
+
+I managed to get your example to work and perform a freespecial without jumping , and even modified it for some of my own needs. When it comes to removing the down key to try to break my "crouching loop" , it has no effect.
+
+DC , in the end , I tried to modify your ani001 , while it still works as it should , I can't tell if my additions are correct....It certainly doesn't break the loop.
+
+
+Code:
+void ani001(void vAni1, int iFrame, int iCmd, int iMPCost, int iHPCost, float fMinX, float fMaxX, float fMinZ, float fMaxZ, float fMinY, float fMaxY){
+
+	//ani001
+	//Damon Vaughn Caskey
+	//05/11/2007
+	//
+	//Switch calling entity to new animation and frame if player command, HP, MP, and range requirements are met.
+	//
+	//vAni1: Desired animation.
+	//iFrame: Desired frame.
+	//iCmd: Required player command.
+	//iMPCost: Minimum (and to be consumed) MP.
+	//iHPCost: Minimum (and to be consumed) HP.
+	//fMinX: Minimum X range.
+	//fMaxX: Maximim X range.
+	//fMinZ: Minimum Z range.
+	//fMaxZ: Maximum Z range.
+	//fMaxY: Minimum Y range.
+	//fMaxY: Maximum Y range.
+
+    void vSelf = getlocalvar("self"); //Get calling entity. 
+    void vTarget = findtarget(vSelf); //Get nearest hostle entity to caller.
+	int playkeys = getplayerproperty(vSelf, "playkeys");//OX<------------
+	int downflag = 0;//OX<------------
+	int iMP = getentityproperty(vSelf, "mp"); //Caller's current MP.
+	int iHP = getentityproperty(vSelf, "health"); //Caller's current HP.
+    float fX = getentityproperty(vSelf, "x"); //X position of caller.
+    float fY = getentityproperty(vSelf, "a"); //Y position of caller.
+    float fZ = getentityproperty(vSelf, "z"); //Z position of caller.
+	float fTX = getentityproperty(vTarget, "x"); //X position of nearest hostile entity to caller.
+    float fTY = getentityproperty(vTarget, "a"); //Y position of nearest hostile entity to caller.
+    float fTZ = getentityproperty(vTarget, "z"); //Z position of nearest hostile entity to caller.
+        
+    if(iCmd){ //If command requirement provided, evaluate.
+                  
+        if(keyd001(getentityproperty(vSelf, "playerindex"), 0, vSelf) != iCmd) { //Does command match?
+			
+			return; //Exit.
+		
+		} 
+        
+    }         
+    
+	if (!(iRan001(fX, fTX, fMinX, fMaxX))){ //Not within X range?
+        
+		return; //Exit.
+            
+    }
+        
+	if (!(iRan001(fZ, fTZ, fMinZ, fMaxZ))){ //Not within Z range?
+        
+		return; //Exit.
+            
+    }
+    
+	if (!(iRan001(fY, fTY, fMinY, fMaxY))){ //Not within Y range?
+        
+		return; //Exit.
+            
+    }
+           
+	if ((iMPCost) || (iHPCost)){ //Cost requirement provided?
+        
+		if (iMP >= iMPCost && iHP > iHPCost){ //Evaluate MP/HP costs against available supply.
+		    	  
+			changeentityproperty(vSelf, "mp", iMP - iMPCost); //Subtract MP cost from caller's MP.
+			changeentityproperty(vSelf, "health", iHP - iHPCost); //Subtract HP cost from  caller's HP.                              	
+	
+		}else{  		                   	      
+                                            
+			return; //Exit.
+        
+		}                                            
+
+	}
+	
+                     downflag = openborconstant("FLAG_MOVEDOWN");//OX<--------------
+	changeentityproperty(vSelf, "animation", openborconstant(vAni1)); //Switch to desired animation.
+	changeentityproperty(vSelf, "animpos", iFrame); //Switch to desired frame.
+                    }
+
+ changeentityproperty(vSelf, "playkeys", playkeys - downflag);//OX<---------------
+        
+}
+This is the anim in question.
+
+
+Code:
+anim follow6
+	loop	0
+                     delay          1
+	offset	30 77
+	frame	data/chars/Ryo/crouch02.gif
+	delay	7
+	offset	19 74
+                     bbox            10 4 43 101
+	frame	data/chars/Ryo/crlp01.gif
+	offset	20 74
+	frame	data/chars/Ryo/crlp02.gif
+                     delay           5
+	offset	19 74 
+	frame	data/chars/Ryo/crlp01.gif
+                     delay          1
+	offset	30 77
+	frame	data/chars/Ryo/crouch02.gif
+                     delay          15
+@cmd    ani001 "ANI_FOLLOW6" 4 4 0 0 0 0 0 0 0 0
+	frame	data/chars/Ryo/crouch02.gif
+Maybe I need to find another solution anyway , currently the loop causes consoles to grind to <5fps  
+
+ 
+ 
+? Last Edit: November 08, 2007, 05:18:03 pm by Orochi_X ?  Report to moderator    Logged  
+
+--------------------------------------------------------------------------------
+
+
+
+* Orochi_X says : " Sore ga doushita? "  
+ 
+ 
+kbandressen 
+Developer
+
+ Offline
+
+Posts: 1345
+
+
+
+    Re: OpenBOR DevBuild v2.1023 
+? Reply #7 on: November 09, 2007, 02:37:14 pm ? Quote  
+
+--------------------------------------------------------------------------------
+Yeah, I think deleting keys only really works for keys that are pressed rather than held.  Though there's a couple things I'm looking into that might help you out.  I'll let you know if there's any developments. 
+ 
+ Report to moderator    Logged  
+ 
+ 
+ 
+Orochi_X 
+Administrator
+
+ Offline
+
+Posts: 3025
+
+
+Now! Count up your crimes.
+
+ 
+     Re: OpenBOR DevBuild v2.1023 
+? Reply #8 on: November 09, 2007, 03:08:02 pm ? Quote  
+
+--------------------------------------------------------------------------------
+Cool..Thanks KB. 
+ 
+ Report to moderator    Logged  
+
+--------------------------------------------------------------------------------
+
+
+
+* Orochi_X says : " Sore ga doushita? "  
+ 
+ 
+kbandressen 
+Developer
+
+ Offline
+
+Posts: 1345
+
+
+
+    Re: OpenBOR DevBuild v2.1023 
+? Reply #9 on: November 13, 2007, 06:05:52 am ? Quote  
+
+--------------------------------------------------------------------------------
+Little update I wanted to get committed since it's all working like it's supposed to!   
+
+SX has been doing a bunch of coding to get everything compatible with the PSP slim so there should be an official release soon, but in the meantime here's a couple new features for you guys to play with:
+
+New script files: (put them in data/scripts/ like key/score#.c)
+
+die#.c - Runs when player # dies, right after the entity is actually removed right before respawning
+spawn#.c - Runs whenever player # is spawned; this includes starting a level, joining in, and respawning.  The script runs right after the entity is spawned with full HP, MP, etc.,  but before the engine has a chance to find out about it. 
+
+An example of what you can use the spawn#.c for is Battle Circuit's BDL units.  When a player respawns, they will start with a minimum of 2; if they have more, then they will keep that number.  For my mod, I'm using MP to keep track of how many each player has and keeping each player's MP in a separate global variable as well.  Whenever the player respawns, the script will look at the global variable and adjust the player's MP accordingly.
+
+The die#.c can be used for cool stuff like deciding what scripted items, equipment, etc., will carry over or be lost when a player dies.
+
+And a few little variable additions:
+
+"speed" added to getentityproperty, this is the entity's walking speed
+"defaultname" added to changeentityproperty, this is an entity's original name that's stored if their model is changed, changing it helps you keep the engine from knowing that you've completely changed into a different character 
+
+Enjoy and report any issues here!
+
+Attachment timed out. 
+ 
+? Last Edit: November 13, 2007, 06:09:08 am by kbandressen ?  Report to moderator    Logged  
+ 
+ 
+ 
+baritonomarchetto77 
+Hero Member
+
+ Offline
+
+Posts: 1047
+
+
+
+    Re: OpenBOR DevBuild v2.1023 
+? Reply #10 on: November 13, 2007, 07:21:45 am ? Quote  
+
+--------------------------------------------------------------------------------
+Man, what about a variable allowing the contemporary use of throw animations and grabturn pressing up? is it possible?      
+ 
+ Report to moderator    Logged  
+ 
+ 
+ 
+kbandressen 
+Developer
+
+ Offline
+
+Posts: 1345
+
+
+
+    Re: OpenBOR DevBuild v2.1023 
+? Reply #11 on: November 13, 2007, 07:47:41 am ? Quote  
+
+--------------------------------------------------------------------------------
+Oh, right, I'll try and get something done with that.  I'm thinking the best way would be another parameter for the grabturn entity header. 
+ 
+ Report to moderator    Logged  
+ 
+ 
+ 
+baritonomarchetto77 
+Hero Member
+
+ Offline
+
+Posts: 1047
+
+
+
+    Re: OpenBOR DevBuild v2.1023 
+? Reply #12 on: November 13, 2007, 07:56:05 am ? Quote  
+
+--------------------------------------------------------------------------------
+kiby, take into account that i use your grabturn as a "vault" animation (is there someone that remember this buggy, probably removed, animation   ?), so pressing up for performing "anim grabturn" would be perfect for me (but, i agreee, probably only for me    ) 
+ 
+ Report to moderator    Logged  
+ 
+ 
+ 
+kbandressen 
+Developer
+
+ Offline
+
+Posts: 1345
+
+
+
+    Re: OpenBOR DevBuild v2.1023 
+? Reply #13 on: November 13, 2007, 08:15:16 am ? Quote  
+
+--------------------------------------------------------------------------------
+Hmm, I never thought of using it as a vault!  I guess if you did your offsets for the enemies' grabbedturn animations right, you could do it that way,  
+ 
+ Report to moderator    Logged  
+ 
+ 
+ 
+baritonomarchetto77 
+Hero Member
+
+ Offline
+
+Posts: 1047
+
+
+
+    Re: OpenBOR DevBuild v2.1023 
+? Reply #14 on: November 13, 2007, 08:22:36 am ? Quote  
+
+--------------------------------------------------------------------------------
+i didnt changed the enemyes offsets: the effect is something like a "displacement" of the enemy in the opposite direction you are facing (its offset becomes your offset and viceversa, as you know  ), but the effect is good enough
+
+It would be better if the enemy offset remain the same and the player is displaced (for vault animation proposal, sure) but, nevertheless....
+
+EDIT: Sumy, could you compile this latest version (the "Vault" one) for the PSP? I am betatesting my game and the addiction of vaults is not supported actually   
+
+
+----------------
+
+Damage Mitigation is controlled by several settings as seen below. Note all multipliers use straight forward math logic. In other words, you can use negative numbers to achieve opposite effects. For example, you can use a negative {factor} in defense to add incoming damage to health instead of loosing it. 
+
+Offense {type} {factor}
+Model header. Controls overall damage output for each attack type. This might seem rather pointless as you can simply increase damage individual for an attack, but by use of script, this is a powerful feature that allows situational raising or lowering of an entity's attack capabilities. 
+
+{type} 
+Default: NA 
+Attack type to modify damage output for. Available types are "normal#", "blast", "burn", "shock", "steal", and "freeze". You may use "all" to affect all normal# types. 
+{factor} 
+Default: 1 
+Damage multiplier. Total damage output = {Damage} * {Factor}. 
+Script
+Get offense setting: 
+
+void	vEnt 	= getlocalvar("self");				//Caller.
+int	iTyp	= openborconstant("ATK_NORMAL");		//Normal type constant.
+
+float 	X 	= getentityproperty(vEnt, "offense", iTyp);	//Get current offense setting for normal attack type.
+Change offense setting: 
+
+void	vEnt 	= getlocalvar("self");				//Caller.
+int	iTyp	= openborconstant("ATK_NORMAL");		//Normal type constant.
+float   fFac	= 0.5;						//50%.
+
+changeentityproperty(vEnt, "offense", iTyp, fFac);		//Set offense.
+
+
+
+Defense {type} {factor} {pain} {knockdown} {blockpower} {blockthreshold} {blockratio} {blocktype}
+Model header. Controls overall damage taken and reaction to being hit. 
+
+{Type} 
+Default: NA 
+Attack type to modify damage received from. Available types are "normal#", "blast", "burn", "shock", "steal", and "freeze". You may use "all" to affect all normal# types. 
+{Factor} 
+Default: 1 
+Damage multiplier. Total damage received = {Damage} * {Factor}. 
+{Pain} 
+Default: 1 
+Entity will not enter pain animation unless damage exceeds {pain}. 
+{Knockdown} 
+Default: 1 
+Entity receives {drop} * {knockdown} toward its Knockdowncount. 
+{Blockpower} 
+Default: 0 
+Entity cannot block attack if {noblock} setting in incoming attack exceeds {blockpower}. 
+{Threshold} 
+Default: 0 
+When set (not 0), the entity cannot block an attack with damage exceeding {threshold}. 
+{Blockratio} 
+Default: 0 
+Entity receives {damage} * {blockratio} when blocking attack. 
+{Blocktype}
+Default: 0 
+Toggles how incoming block {damage} is applied. 
+-1: HP Only 
+0: Use global Mponly setting. 
+1: Drain MP then HP 
+2: Drain MP and HP. 
+Script
+Get Defense setting: 
+
+void    vEnt    = getlocalvar("self");                                          //Caller.
+int     iTyp    = openborconstant("ATK_NORMAL");                                //Normal type constant.
+
+float 	fFac 	= getentityproperty(vEnt, "defense", iTyp, "factor"		);  	//Get factor.
+int 	iPai 	= getentityproperty(vEnt, "defense", iTyp, "pain"            	);  	//Get pain.
+float 	fKno 	= getentityproperty(vEnt, "defense", iTyp, "knockdown",       	);  	//Get knockdown.
+int 	fBpo 	= getentityproperty(vEnt, "defense", iTyp, "blockpower",      	);  	//Get block power.
+int 	iThr 	= getentityproperty(vEnt, "defense", iTyp, "blockthreshold"	);  	//Get threshold.
+float 	fRai	= getentityproperty(vEnt, "defense", iTyp, "blockratio",      	);	//Get block ratio.
+int 	iBty	= getentityproperty(vEnt, "defense", iTyp, "blocktype",       	);  	//Get block type.
+Change Defense setting: 
+
+void	vEnt 	= getlocalvar("self");			//Caller.
+int	iTyp	= openborconstant("ATK_NORMAL");	//Normal type constant.
+float 	fFac 	= 0.5;					//Get factor.
+int 	iPai 	= 0;					//Get pain.
+float 	fKno 	= 1;					//Get knockdown.
+int 	fBpo 	= 0;					//Get block power.
+int 	iThr 	= 0;					//Get threshold.
+float 	fRai	= 0;					//Get block ratio.
+int 	iBty	= 0;					//Get block type.
+
+changeentityproperty(vEnt, "defense", iTyp, fFac, iPai, fKno, fBpo, iThr, fRai, iBty);
+Examples
+Below is an example of using defense/offense to set up a fire based character that doles out extra fire damage to others and absorbs any incoming fire damage as healing, but is highly vulnerable to cold. 
+
+Offense burn 1.5     			#Output 150% burn damage.
+
+Defense burn -0.5 1000 0 1000 1000 -1 0	#Absorb 50% of burn damage as healing (or 100% if blocked), and be effectively immune to fall/pain.
+
+Defense freeze 1.5 0 2 0 20 0.5 0 	#Take 150% cold damage, always get knocked down, can only block cold damage of 20 or less and still take 50% even when blocking successfully.
+Retrieved from "http://www.caskeys.com/arc/games/openbor/wiki/index.php?title=Damage_Mediation"
+Categories: OpenBOR Manual | Entity Parameters
+
+ 
+ 
+
+
+

@@ -1,0 +1,1099 @@
+﻿
+Script Reference/Manual
+utunnels:
+script
+A script contains an interpreter to parse from text and execute the code. It can be loaded from a text file. A script also contains a local variant list. If the script is executed, the immediate code(those outside any functions) will be executed and function main will be called one time. The script will be reseted before next executation, so all script variants will lost, but the variants in local variant list will not been deleted, they are useful to store values.
+
+syntax
+Similar to c syntax. Some differences:
+~Ignore types. int long char void ... will be treated as the same thing, they only tell the engine it is a data type. And a function can return a value no matter you set void type before it.
+~#include, #pragma, #define.... are all not available.
+~String optimization. You can use + operator to strings,"string1"+"string2"returns"string1string2".
+~Assignment. The right variant's value and type will be copied to the left variant. No type checking, so be careful.
+~Available operators:
++
+-
+*
+/
+%
+=
++=
+-=
+/=
+*=
+%=
+!
+==
+||
+&&
+!=
+>
+<
+>=
+<=
+
+~Available identifiers:
+do
+while
+for
+break
+if
+else
+
+
+script variants
+They contain values that can be used by script. They have 5 data types, but the script engine dont check them when they are defined, until they are used by any functions.
+~Empty type: If a variants is defined but not initialized, it is an empty variant. So functions return an empty variant, so you can check if the function returns a valid value.
+~Integer type: These variants can be initialized from integer constants, e.g., 123, -20 ..., 0x986AD3
+~Decimal type: These variants can be initialized from decimal constants, e.g., 0.3, -2.6666 ...
+~String type: These variants can be initialized from string constants(limited to 63 characters), e.g.,"hello","__abcd.efg\n",'c'...
+~Pointer type: These variants can not be initialized from constants, they are used to store handles returned from function calls.
+Notice: string + string = string, integer +-*/% decimal = decimal,
+
+local variants
+Each script can define its own variants by give it a unique name and a value. They wont be deleted when the script finishes executing and they live as long as the script itself. These variants cant be used by other scripts.
+
+global variants
+The engine also has global variants. These variants can be used by all scripts. Each variant still must have a unique name, so you can retrieve it by name later.
+
+functions
+You can define functions. Syntax is like this:
+type functionname([type argument1, type argument2, type argument3, ....])
+{
+  function body
+  ....
+  ....
+  [return value]
+  ....
+}
+Yeah, same as a c function, here is an example:
+
+Code:
+
+int max(int a, int b)
+{
+  if(a>b) {
+    return a;
+  } else {
+    return b;
+  }
+}
+
+
+
+
+
+utunnels:
+Variable Limits
+~You are limited to a total of 2048 variables at any given time. This includes all local, persistent local, and global variables.
+~Note that non persistent variables disappear when a given function ends, but you must manually remove persistent variables (see below).
+~Variables of course require memory to use, so be careful with them.
+
+Functions
+The following is a list of the predefined script functions:
+
+The following functions are available for dealing with strings. This is in addition to basic string concatenation, which follows standard C conventions. 
+
+Note that OpenBOR script limits individual strings to 64 characters. Any string exceeding this limit will be truncated. 
+
+strinfirst({string}, {find})
+~Returns {string} starting from the first instance of {find}. 
+
+{string}: String to search. 
+{find}: Search string. 
+
+strinlast({string}, {find})
+~Returns {string} starting from the last instance of {find}. 
+
+{string}: String to search. 
+{find}: Search string. 
+strleft({string}, {length})
+~Returns {length} number of characters starting from the left side of {string}. 
+
+{string}: String to extract from. 
+{length}: Number of characters to return. 
+strlength({string})
+~Returns number of characters in {string}. 
+
+{string}: String to count. 
+strright({string}, {length})
+~Returns {length} number of characters from the right side of {string}. 
+
+{string}: String to extract from. 
+{length}: Number of characters to return. 
+Examples
+char    cText   = "I am a string.";  //Text string.
+char    cFind   = "a";               //Search string.
+
+char = strinfirst(cText, cFind);
+
+Output: "am a string".
+char    cText   = "I am a string.";  //Text string.
+char    cFind   = "a";               //Search string.
+
+char = strinlast(cText, cFind);
+
+Output: "a string".
+char    cText   = "I am a string.";  //Text string.
+int     i       = 4;                 //Count.
+
+char = strleft(cText, i);
+
+Output: "I am".
+char    cText   = "I am a string.";  //Text string.
+int     i;                           //Count.
+
+i = strlength(cText);
+
+Output: "14".
+char    cText   = "I am a string.";  //Text string.
+int     i       = 4;                 //Count.
+
+char = strright(cText, i);
+
+Output: "ing.".
+
+
+log(char content)
+~log content into log file
+
+changemodelproperty(modelIndex,propertyIndex,value)
+~get supported from 2859
+
+#
+int     i       = openborvariant("models_cached");    
+	int     iSel;
+	char    cName;
+	for(i=0;i<openborvariant("models_cached");i++)      //Loop model collection.  
+	{
+		cName   = getmodelproperty(i, 1);               //Get name.
+		iSel    = getmodelproperty(i, 4);               //Get selectable flag..    
+		//Apply select flag.
+		
+		if (strright(cName,1) == "0"){changemodelproperty(i, 4, 0);}
+		//log("\n Index: "    + i);
+	}
+
+#
+
+
+
+
+isempty(variant)
+~Test if a ScriptVariant is an empty value.
+~Return 1 if it is an empty value, 0 if it isn't.
+
+NULL()
+~Return an empty value. You can use expression"variant == NULL()"to test if the variant is an empty value, it has the same effect with"isempty(variant)".
+
+getglobalvar(varname)
+~Return a global variant by name. If the value is not found, will return an empty value.
+~See'global variants'.
+
+setglobalvar(varname, value)
+~Set a persistent global variant's value by name. If the value is empty, the variant will be deleted.
+~Return 1 if succeeded, 0 if failed.
+~See'global variants'.
+~Notice: It is important to remove unused global variants since there's a limit in amount (see above).
+
+getlocalvar(varname)
+~Return a local variant by name. If the value is not found, will return an empty value.
+~See'local variants'.
+
+setlocalvar(varname, value)
+~Set a persistent local variant's value by name. If the value is empty, the variant will be deleted.
+~Return 1 if succeeded, 0 if failed.
+~See'local variants'.
+~Notice: It is important to remove unused local variants since there's a limit in amount (see above).
+
+clearglobalvar()
+~Clear up all global variants.
+~Return: none
+~You can use it when a level starts or ends to save memory.
+
+clearlocalvar()
+~Clear up local variants. Only affect current script, though.
+~Return: none
+
+getindexedvar(int index)
+~Return a indexed global variant.
+~Check http://www.lavalit.com/index.php?topic=164.msg9852#msg9852 for details.
+
+setindexedvar(int index, value)
+~Give value to a indexed global variant.
+~Check http://www.lavalit.com/index.php?topic=164.msg9852#msg9852 for details.
+
+getscriptvar(int index)
+~Return a indexed script variant.
+~Check http://www.lavalit.com/index.php?topic=164.msg9852#msg9852 for details.
+
+setscriptvar(int index, value)
+~Give value to a indexed script variant.
+~Check http://www.lavalit.com/index.php?topic=164.msg9852#msg9852 for details.
+
+getentityvar(entity, int index)
+~Return a indexed entity variant.
+~Check http://www.lavalit.com/index.php?topic=164.msg9852#msg9852 for details.
+
+setentityvar(entity, int index, value)
+~Give value to a indexed entity variant.
+~Check http://www.lavalit.com/index.php?topic=164.msg9852#msg9852 for details.
+
+openborvariant(varname)
+~Return a openbor variant by name.
+~Names available:
+ "count_enemies"- How many enemies alive.
+ "count_players"- How many players.
+ "count_npcs"- How many NPCs alive.
+
+ You must set 
+ alwaysupdate {0/1} to 1
+in script.txt
+  # always execute update script no matter you are in game or not.
+
+
+ "in_level"- Whether you are in a level (e.g., select screen is not a level).
+ "in_selectscreen"- Whether you are in the select screen.
+ "in_titlescreen"
+ "in_menuscreen"
+ "in_halloffamescreen"
+ "in_gameoverscreen"
+
+ "xpos"- Level coords in x position, count from the left side of panels.
+ "ypos"- Level coords in y position, count from the top of panels.
+ "hresolution"- Horizental resolution.
+ "vresolution"- Vertical resolution.
+ "levelwidth"- How long is the level.
+ "levelheight"- Panel's height.
+ "branchname"- Current level branch.
+ "elapsed_time"- Clocktick or the engine.
+ "current_set"- Current difficulty set index, start from 0.
+ "current_level"- Level index of current set, start from 0.
+ "current_stage"- Stage index of current set, start from 1.
+ "lightx"- gfxshadow x direction.
+ "lightz"- gfxshadow z direction.
+ "shadowcolor"- gfxshadow color index.
+ "models_cached"- the number of totalmodels
+
+drawstring(int x, int y, int font#, text)
+~Draw the text in (x, y) of the screen, with font specified.
+~This method is costy, because each character is a sprite. And to prevent blinking, have to put this function in an update script (a script that runs each game loop).
+
+getplayerproperty(playerindex, propname, value)
+~Get a player's property by name.
+~'playerindex'is an integer count from 0, that is, 0 means 1p, 2 means 3p, etc.
+~'propname'is the property's name.
+ "score"- Score is ...hmm, score. From 0 to 999999999.
+ "lives"- Lives left.
+ "credits"- Credits left.
+ "ent"or"entity"- The entity of the player.
+
+changeplayerproperty(playerindex, propname, value)
+~Change a player's property by name.
+~'playerindex'is an integer count from 0, that is, 0 means 1p, 2 means 3p, etc.
+~'propname'is the property's name.
+~'value'is new value you want to set.
+~Property names:
+ "score"- Score is ...hmm, score. From 0 to 999999999.
+ "lives"- Lives left.
+ "credits"- Credits left.
+ "weapon"- weapon by index
+
+getentityproperty(entity, propname)
+~Get an entity's property by name.
+~'entity'is the handle of that entity.
+~'propname'is the property's name.
+~Property names:
+ "model"- model name.
+ "maxhealth"- Max health.
+ "health"- Current HP left.
+ "maxmp"- Max MP.
+ "mp"- Current MP left.
+ "name"- Current name, or we say alias.
+ "defaultname"or"defaultmodel"- This name should be real name of this entity.
+ "x"- x position in level.
+ "z"- z position in level.
+ "a"- Altitude.
+ "base"- Base altitude, if a equals base, this entity is in air.
+ "direction"- Direction, 1 means left, 0 means right.
+ "exists"- Well, whether the entity is a valid one.
+ "type"- Type, e.g, enemy, player. It is an integer value, see'openborconstant'.
+ "subtype"- Subtype, e.g., arrow, biker. It is an integer value, see'openborconstant'.
+ "animation"- The handle of current animation.
+ "animationid"- The id of current animation. It is an integer value, see'openborconstant'.
+ "animpos"- Frame position of current animation.
+ "defense"- Return one of the defense factors of this entity. Follow by an integer specifies the attack type(see'openborconstant', and also'changeentityproperty').
+ "offense"- Return one of the offense factors of this entity. Follow by an integer specifies the attack type(see'openborconstant', and also'changeentityproperty').
+ "map"- Current color remap in use. 0 = default, 1 = first remap, and so on.
+ "opponent"- Last entity interacted with (damaged, damaged by, grabbed, etc.). Essentially this returns whoever would be showing up on a player's enemy life meter, but works for all entities.
+ "grabbing"- Entity currently held in a grab (if any). Only returns currently held entity.
+ "stealth"- Entity's stealth factor.
+ "detect"- Entity's stealth detect factor.
+ "damage_on_landing"- Damage that will be applied at end of a fall. If -1, entity will instantly recover at end of fall and play"land"animation if it has one.
+ "attacking"- Enttiy's attack box status. When 0, attack box will not hit other entities.
+ "projectile"- Entity's projectile (blasted or thrown) status. 0 = Normal, 1 = Blasted or thrown.
+ "seal"- Entity's seal property. Entity cannot perform any special with an energy cost>= seal property.
+ "sealtime"- The elapsed gametime when engine will reset seal property to 0.
+ "blockpain"- Entity blockpain property. If intended damage from blocked attack>= blockpain, entity will briefly twitch or play Blockpain animation if it has one.
+ "drain"- Drain property. If present entity gradually looses a resource. 1 = HP, 2=MP, 3=Both.
+ "draintime"- The elapsed gametime when engine will reset all drain properties to 0.
+ "drainamt"- How much of given resource is lost at each"tick".
+ "drainrate"- Speed of drain ticks.
+ "noaicontrol"- whether is controlable
+rush_count - current rush count
+rush_tally - max rush count
+rush_time - how much time you have before rush has ended.
+animhits - the internal hit counter for current animation.
+
+projectile(char *name, float x, float z, float a, int direction, int type, int ptype, int map); 
+~name is projectile's name. For above example, it's "Bullet" (with ").
+~x, z and a are starting coordinate for the projectile. x is relative to leftmost level edge, z is relative to 0 and a is relative to ground.
+~direction is facing direction of the projectile.
+~type is only used if no name is provided and NULL is used instead. 0 for knife or 1 for shot.
+~ptype specifies what kind of projectile is fired. 0 for knife or 1 for bomb.
+~map specifies if fired projectile copies thrower's remap or not. 0 means it use it's own map while 1 means it use thrower's remap.
+~The function itself returns the projectile entity which can be used for many things such as altering speed
+
+
+changeentityproperty(entity, propname, values)
+~Change an entity's property by name.
+~'entity'is the handle of that entity.
+~'propname'is the property's name.
+~'value'is new value you want to set.
+~Property names:
+ "model"- Change the model by name, follow the name is another argument, 0 means keep current animation, 1 means reset to default.
+ "weapon"- Change weapon by index.
+ "maxhealth"- Max health.
+ "health"- Current HP left, if it is greater than max, will be set to max.
+ "maxmp"- Max MP.
+ "mp"- Current MP left, if it is greater than max, will be set to max.
+ "name"- Name, or we say alias.
+ "position"- Follow by x, z, a, do a nice warp.
+ "base"- Base altitude of the entity.
+ "velocity"- Follow by speed in x, z, a direction, entity will move in this speed each A.I. loop. These values can be modified by A.I. functions, so it is almost useless until it is a non-AI controlled character,e.g., type none.
+ "defense"- Change one of the defense factors of this entity. Follow by an integer specifies the attack type(see'openborconstant'), and a decimal value specifies the defense factor, e.g. 1.0 means reduce damage of this type by 100%.
+ "offense"- Change one of the offense factors of this entity. Follow by an integer specifies the attack type(see'openborconstant'), and a decimal value specifies the offense factor, e.g. 1.0 means increase attack power of this type by 100%.
+ "nograb"- An integer, whether this entity can be grabbed, see nograb/cantgrab property of entity.
+ "map"- Integer that sets color remap of entity. 0 = default, 1 = first remap, and so on. Icons are not affected.
+ "stealth"- Entity's stealth factor.
+ "detect"- Entity's stealth detect factor.
+ "damage_on_landing"- Damage that will be applied at end of a fall. If -1, entity will instantly recover at end of fall and play"land"animation if it has one.
+ "attacking"- Enttiy's attack box status. When 0, attack box will not hit other entities.
+ "projectile"- Entity's projectile (blasted or thrown) status. 0 = Normal, 1 = Blasted or thrown.
+ "seal"- Entity's seal property. Entity cannot perform any special with an energy cost>= seal property.
+ "sealtime"- The elapsed gametime when engine will reset seal property to 0.
+ "blockpain"- Entity blockpain property. If intended damage from blocked attack>= blockpain, entity will briefly twitch or play Blockpain animation if it has one.
+ "drain"- Follow with {drain}, {draintime}, {drainamt}, {drainrate} to change drain properties.
+rush_count - current rush count
+rush_tally - max rush count
+rush_time - how much time you have before rush has ended.
+animhits - the internal hit counter for current animation.
+
+tossentity(entity, height, speedx, speedz)
+~Just like a jump,'toss'the entity to the air.
+~'entity'is the handle of that entity.
+~'height'is the jump height.
+~'speedx'is the speed in x direction.
+~'speedz'is the speed in z direction.
+
+setspawnentry(propname, values)
+~Set a property of the spawn entry. These's a global spawn entry, you can change its properties so you can use it to spawn an entity.
+~'propname'is the property's name. Check spawn command in level's .txt.
+~'values'is new value.
+~Property names: All supported in a spawn entry, except 2p/3p/4pspawn.
+
+clearspawnentry()
+~Clear up the global spawn entry.
+
+spawn()
+~Use the global spawn entry to spawn an entity.
+~Return the entity.
+
+openborconstant(name)
+~Get a constant or system value by name.
+~Return the value or just an empty variant if the name is not supported.
+~Names:
+~Types and subtypes for entity. Not all are listed, and not all listed are useful right now.
+
+ "TYPE_NONE"
+ "TYPE_PLAYER"
+ "TYPE_ENEMY"
+ "TYPE_ITEM"
+ "TYPE_OBSTACLE"
+ "TYPE_STEAMER"
+ "TYPE_SHOT"
+ "TYPE_TRAP"
+ "TYPE_TEXTBOX"
+ "TYPE_ENDLEVEL"
+ "TYPE_NPC"
+ "SUBTYPE_NONE"
+ "SUBTYPE_BIKER"
+ "SUBTYPE_NOTGRAB"
+ "SUBTYPE_ARROW"
+ "SUBTYPE_TOUCH"
+ "SUBTYPE_WEAPON"
+ "SUBTYPE_NOSKIP"
+ "SUBTYPE_FLYDIE"
+ "SUBTYPE_BOTH"
+ "SUBTYPE_PROJECTILE"
+ "SUBTYPE_FOLLOW"
+ "SUBTYPE_CHASE"
+~Attack types.
+ "ATK_NORMAL"
+ "ATK_NORMAL2"
+ "ATK_NORMAL3"
+ "ATK_NORMAL4"
+ "ATK_BLAST"
+ "ATK_BURN"
+ "ATK_FREEZE"
+ "ATK_SHOCK"
+ "ATK_STEAL"
+ "ATK_NORMAL5"
+ "ATK_NORMAL6"
+ "ATK_NORMAL7"
+ "ATK_NORMAL8"
+ "ATK_NORMAL9"
+ "ATK_NORMAL10"
+~Level directions.
+ "SCROLL_RIGHT"
+ "SCROLL_DOWN"
+ "SCROLL_LEFT"
+ "SCROLL_UP"
+ "SCROLL_BOTH"
+~Animation id.
+ "ANI_IDLE"
+ "ANI_WALK"
+ "ANI_JUMP"
+ "ANI_LAND"
+ "ANI_PAIN"
+ "ANI_FALL"
+ "ANI_RISE"
+ "ANI_ATTACK1"
+ "ANI_ATTACK2"
+ "ANI_ATTACK3"
+ "ANI_ATTACK4"
+ "ANI_UPPER"
+ "ANI_BLOCK"
+ "ANI_JUMPATTACK"
+ "ANI_JUMPATTACK2"
+ "ANI_GET"
+ "ANI_GRAB"
+ "ANI_GRABATTACK"
+ "ANI_GRABATTACK2"
+ "ANI_THROW"
+ "ANI_SPECIAL"
+ "ANI_FREESPECIAL"
+ "ANI_SPAWN"
+ "ANI_DIE"
+ "ANI_PICK"
+ "ANI_FREESPECIAL2"
+ "ANI_JUMPATTACK3"
+ "ANI_FREESPECIAL3"
+ "ANI_UP"
+ "ANI_DOWN"
+ "ANI_SHOCK"
+ "ANI_BURN"
+ "ANI_SHOCKPAIN"
+ "ANI_BURNPAIN"
+ "ANI_GRABBED"
+ "ANI_SPECIAL2"
+ "ANI_RUN"
+ "ANI_RUNATTACK"
+ "ANI_RUNJUMPATTACK"
+ "ANI_ATTACKUP"
+ "ANI_ATTACKDOWN"
+ "ANI_ATTACKFORWARD"
+ "ANI_ATTACKBACKWARD"
+ "ANI_FREESPECIAL4"
+ "ANI_FREESPECIAL5"
+ "ANI_FREESPECIAL6"
+ "ANI_FREESPECIAL7"
+ "ANI_FREESPECIAL8"
+ "ANI_RISEATTACK"
+ "ANI_DODGE"
+ "ANI_ATTACKBOTH"
+ "ANI_GRABFORWARD"
+ "ANI_GRABFORWARD2"
+ "ANI_JUMPFORWARD"
+ "ANI_GRABDOWN"
+ "ANI_GRABDOWN2"
+ "ANI_GRABUP"
+ "ANI_GRABUP2"
+ "ANI_SELECT"
+ "ANI_DUCK"
+ "ANI_FAINT"
+ "ANI_CANT"
+ "ANI_THROWATTACK"
+ "ANI_CHARGEATTACK"
+ "ANI_VAULT"
+ "ANI_JUMPCANT"
+ "ANI_JUMPSPECIAL"
+ "ANI_BURNDIE"
+ "ANI_SHOCKDIE"
+ "ANI_PAIN2"
+ "ANI_PAIN3"
+ "ANI_PAIN4"
+ "ANI_FALL2"
+ "ANI_FALL3"
+ "ANI_FALL4"
+ "ANI_DIE2"
+ "ANI_DIE3"
+ "ANI_DIE4"
+ "ANI_CHARGE"
+ "ANI_BACKWALK"
+ "ANI_SLEEP"
+ "ANI_FOLLOW1"
+ "ANI_FOLLOW2"
+ "ANI_FOLLOW3"
+ "ANI_FOLLOW4"
+ "ANI_PAIN5"
+ "ANI_PAIN6"
+ "ANI_PAIN7"
+ "ANI_PAIN8"
+ "ANI_PAIN9"
+ "ANI_PAIN10"
+ "ANI_FALL5"
+ "ANI_FALL6"
+ "ANI_FALL7"
+ "ANI_FALL8"
+ "ANI_FALL9"
+ "ANI_FALL10"
+ "ANI_DIE5"
+ "ANI_DIE6"
+ "ANI_DIE7"
+ "ANI_DIE8"
+ "ANI_DIE9"
+ "ANI_DIE10"
+ "ANI_TURN"
+ "ANI_RESPAWN"
+~These are infact variable, but unchanged during a level.
+ "PLAYER_MIN_Z"
+ "PLAYER_MAX_Z"
+ "BGHEIGHT"
+ "MAX_WALL_HEIGHT"
+~These are the sound effects defined by the module and loaded at startup.
+"SAMPLE_GO"
+"SAMPLE_BEAT"
+SAMPLE_BLOCK"
+"SAMPLE_INDIRECT"
+"SAMPLE_GET"
+"SAMPLE_GET2"
+"SAMPLE_FALL"
+"SAMPLE_JUMP"
+"SAMPLE_PUNCH"
+"SAMPLE_1UP"
+"SAMPLE_TIMEOVER"
+"SAMPLE_BEEP"
+"SAMPLE_BEEP2"
+"SAMPLE_BIKE"
+
+playerkeys(playerindex, newkey?, key1, key2, key3, ...)
+~Check if a key is pressed by the player.
+~'playerindex'is an integer count from 0, that is, 0 means 1p, 2 means 3p, etc.
+~'newkey?', 0 if the keys are not new.
+~key names:
+"jump""attack""special""esc""start""moveleft""moveright""moveup""movedown""screenshot""anybutton"
+~Any combination is allow, but no reason to use"anybutton"with others.
+~Return 1 only when all buttons in list are pressed, keep in mind.
+
+*NOTE* This method call is a bit buggy as of 8/8/2007. If not used in"key#.c"it will always return 0 unless newkey? = 0. If used to detect multiple keys, 1 will be returned if ANY of the specified keys are pressed.
+
+playmusic(name, loop)
+~Play a bor music.
+~'name'is the path.
+~'loop': 0 means dont loop, 1 means loop.
+
+playsample(sample, prioroity, lvolume, rvolume, speed, loop)
+~Play a defined sound sample.
+~'sample'is a sample constant (see openborconstant()).
+~'priority'is the playing priority.
+~'lvolume'is left volume.
+~'rvolume'is right volume.
+~'speed'is the play speed.
+~'loop': 0 = no loop, 1 = loop.
+
+To play a sound with normal defaults used by the engine, use the following settings (this will play the beat sound):'playsample(openborconstant("SAMPLE_BEAT"), 0, 120, 120, 100, 0);'
+
+changepalette(index)
+~Change current palette to specified one.
+~'index'is an integer, 0 means default palette, 1-? can be any palette you loaded with command palette in level's .txt. If it is out of range, default will be used.
+Only the onscreen entity's palette will change. Its icon (if any) will not.
+
+killentity(entity)
+~Kill the entity.
+~'entity'is the entity you want to kill.
+~This method wont display the entity's death animation, or any animation for that matter; the entity is removed instantly. If you want to kill an entity with death animation, use damageentity().
+
+damageentity(entity, other, force, drop, type)
+~Damage the entity.
+~'entity'is the entity you want to damage.
+~'other'who damage this entity, can be itself, if you specify a player's entity, score will be added. Default to the entity itself.
+~'force'is the attack force. default to 1.
+~'drop'is whether the attack knocks down the entity.
+~'type'attack type, e.g., a shock attack or attack1-10, see openborconstant, the constants starts with'ATK_'
+
+findtarget(entity, int animnum)
+~Returns handle of the nearest hostile entity.
+~'entity'is the entity whos nearest hostile you want to return. For example, if entity is a PC, then the handle returned will be that of the nearest enemy character.
+~animnum - Animation id. Optional. If it is given, the range values of the animation will be used to test if the target is in range.
+
+Among other things, this is very useful for making range based or guided attacks.
+
+drawbox(x,y,width,height,z,color,alpha)
+~draw a filled box with specified position and size.
+~x,y: position values on screen
+~width,height: size values.
+~z: depth value, similar to setlayer command or entities, check it for details.
+~color: color index in palette, check you palette.
+~alpha: alpha blending effect from 1 to 6, this parameter is optional.
+~return: none
+
+drawline(x1,y1,x2,y2,z,color,alpha)
+~draw a line from (x1, y1) to (x2, y2)
+~x1, y1: position values of the start point.
+~x2, y2: position values of the end point.
+~z: depth value, similar to setlayer command or entities, check it for details.
+~color: color index in palette, check you palette.
+~alpha: alpha blending effect from 1 to 6, this parameter is optional.
+~return: none
+
+drawdot(x, y, z,color,alpha)
+~draw a dot at (x, y)
+~x, y: position values of the dot.
+~z: depth value, similar to setlayer command or entities, check it for details.
+~color: color index in palette, check you palette.
+~alpha: alpha blending effect from 1 to 6, this parameter is optional.
+
+allocscreen(width, height)
+~Create a screen, return the handle. Basically you should call it in levelscript, but it is up to you. Be sure to store the handle or if you lose it you will not be able to free it, so it will take up memory until shut down. You can exit the engine normally and check the log to see if you forget to releas some of them.
+
+drawlinetoscreen(screen, x1, y1, x2, y2, color, alpha);
+~Similar to drawline, use the screen instead of the sprite queue. And also:
+drawboxtoscreen(screen, x, y, width, height, color, alpha)
+drawdottoscreen(screen, x, y, color, alpha)
+
+free(handle)
+Release a object created by script engine, it is now only available for the handle created by allocscreen, until we add some other dynamic alloc methods.
+Basically you should call it in endlevelscript, but it is up to you.
+
+drawscreen(screen, x, y, z,alpha)
+~Draw current screen.
+~x, y: position values of the coordination.
+~z: depth value, similar to setlayer command or entities, check it for details.
+~color: color index in palette, check you palette.
+~alpha: alpha blending effect from 1 to 6, this parameter is optional.
+
+
+jumptobranch(name, immediate)
+~Go to branch by name. Branches is defined in levels.txt, check the manual for details.
+~name: the branch name, must be those defined in levels.txt
+~immediate: when set to 1, you will go to that level immediately if you are currently in a level, or else, you will still need to beat current level.
+
+bindentity(entity, target, int x, int z, int a, int direction, int bindanimation)
+~Bind entity to target, so the target moves, the entity moves.
+~x, z, a: relative to target.
+~direction: 0 no change 1 same direction as target -1 opposite direction as target 2 always right -2 always left
+~bindanimation: 0 No effect. 1 Keep same animation as the target. 2 Also keep same frame as the target. 4 Kill the entity if the animation doesn't match.
+~To unbind a entity, use bindentity(entity, NULL());
+~Notice: You can combine those values for bindanimation, so it can be 6 which means 2 and 4.
+
+changelight(int x, int z)
+~Change light direction for gfxshadow.
+~x, z: direction value, a positive x will make the shadow lean to the right, a positive z will make the shadow upward, or else they will be flipped.
+~Give 256 or -256 to z will make the shadow as long as its owner.
+~Try different values until you find the correct one.
+
+changeshadowcolor(int colorindex)
+~Change gfxshadow color.
+~Note, gfxshadow use alpha 2, same as shadow.
+
+changelevelproperty(name, propertyvalue)
+~Change a property value of current level, this function is not quite completed.
+~name can be:
+~"rock", the given value must be an interger value or numeric value that can be converted to integer value. The rule is same as rock command in level file, check the manual for details.
+
+loadmodel(name)
+~"Load"a model that is currently set as"know"in models.txt.
+~"name"is the model's name.
+
+loadsprite(path)
+~Load a single sprite from the path specified and return the handle for later use.
+~You can free the sprite by calling script function free.
+~Notice, the sprite will never be free automatically by the engine until the engine is about to shutdown so you have to keep the handle and free it manually later.
+~Notice, the offset of the sprite will be always (0,0) like any regular icon and panel.
+~Notice, the sprite is completely new, so if the path is used by an entity, there's not side effects if the entity model is unloaded.
+
+drawsprite(sprite, int x, int y, int z, int sortid)
+~Draw a sprite.
+~Sprite must be a valid handle.
+~x, y are the draw position.
+~z is depth, sprite with a greater z value will appear above those with smaller z values.
+~If more than one sprites use same z value, you need sortid to sort them, also, a greater value makes the sprite appear above others. In most situations, just use 0.
+~See function setdrawmethod if you want to use special effects for the sprite.
+~Notice: the sprite handle must be valid, that means if the sprite is removed already, an error might happen.
+
+drawspritetoscreen(sprite, screen, int x, int y)
+~Draw a sprite to a screen.
+~sprite must be a valid handle.
+~screen must be a valid handle returned by allocscreen.
+~x, y are draw position.
+~See function setdrawmethod if you want to use special effects for the sprite.
+
+setdrawmethod(entity, int flag, int scalex, int scaley, int flipx, int flipy, int shiftx, int alpha, int colourmap, int fillcolour, int rotate, int rotateflip, int transparencybg,*void map)
+
+~Set drawmethod for an entity or define a global drawmethod for other script functions.
+~entity must be a valid entity handle or an empty value.
+~All other parameters are optional.
+~flag defines whether the drawmethod is active, when set to 0, the drawmethod will not take effect.
+~scalex defines how the sprite will be stretch in x direction: sizex = original_sizex * scalex / 256
+~scaley defines how the sprite will be stretch in y direction: sizey = original_sizey * scaley / 256
+~flipx defines whether the sprite will be flipped left/right. 0 means don't flip and 1 means flip.
+~flipy defines whether the sprite will be flipped top/bottom. 0 means don't flip and 1 means flip.
+~shiftx defines how the sprite leans, like lightx in gfxshadow feature, in most situations you don't need this.
+~alpha defines which alpha blending effect will be used. 0 means no alpha effect. -1 means the entity(if given) will use its own alpha value.
+~colourmap(entity only) defines which colourmap will be used. 0 means no colourmap. -1 means the entity(if given) will use its current colourmap.
+~fillcolour is the colour used by the entire sprite. 0 means don't fill the sprites.
+~rotate is the rotate angle(clockwise), the range is from 0 to 359.
+~rotateflip(entity only) means whether the entity will flip its rotate direction if the facing is changed.
+~transparencybg(screen only) means whether the screen will use transparency colour.
+~map determines which map or alternatepal is used.
+
+~Notice: In 8bit mode, fillcolour is the index in palette, otherwise, it will be a RGB value which needs to be calculate first(no system functions available now).
+~Notice: For screen, transparency colour is the first colour in palette(8bit) or pure black colour(which is also 0).
+~Notice: If the entity parameter is an empty value, it will change the global drawmethod, and can be used by other script functions like drawsprite or drawscreen.
+
+playgif(path, int x, int y, int noskip)
+~Play a gif file as a cut scene, you can call it in game.
+~path, the gif file path, like first parameter of command animation in scene txt.
+~x, y position of the gif animation, like 2nd and 3rd parameters of command animation in scene txt.
+~noskip, when set to 1, you can't press button to skip it.
+~Notice: path is required. All other parameters are optional, and default value is 0.
+~Notice: it needs some extra memory to play a gif file, about 75kb if the screen is 320x240/8bit.
+
+checkrange(entity, target, int animid)
+~Check if the given target is in range. Range, rangez, rangea of the specified animation will be used for checking.
+~entity - animation owner. Must be a valid entity handle. Required.
+~target - must be a valid entity handle. Required.
+~animid - animation id. Optional. If it is not given, current animation will be used.
+
+updateframe(entity, int frame)
+~This method update current animation's frame number, a replacement of changeentityproperty(...,"animpos").
+
+performattack(entity, int anim, int resetable)
+~This method allow the entity to do an attack, not just give it attack animation.
+~anim - Optional. It stands for animation number, can be got by openborconstant.
+~resetable - Optional. If current animation number is same as this one, and resetable is 1, current animation will be reset or else, the anim will be ignored.
+~Notice: If you provide anim parameter, and this function is called in an animation script, you probably need to add a return behind it because the animation might be changed and the animation script will be re-called.
+
+setidle(entity, int anim, int resetable, int stalltime)
+~This method change the entity back to idle status.
+~anim - same as above. Optional. You probably will use idle animation, but that is up to you.
+~resetable - same as above. Optional.
+~stalltime - how long will current idle status last, in game tick. 200 will be about 1 second. Optional.
+~Notice, idle status means the entity can change to other status automatically by the engine. So walk/run/idle can all be treated as idle.
+~Also notice, you can set velocity for the entity later to simulate walk/run.
+
+getentity(int index)
+~Return entity by index.
+~If this method succeeds it will return the entity handle, but be sure to check"exist"property by getentityproperty because it might be a dead one. If index is out of range, this function will return an empty value, make sure you check it if you are not sure.
+~The range is from 0 to MAX_ENTS-1, you can get MAX_ENTS by openborconstant("MAX_ENTS")
+~Notice, the entities are not always in same order, if you call it during a gameloop, it is safe, but if you use same index next time, the result might be different.
+~MAX_ENTS is a large number, but most mods only have few entities on screen, so you should use openborvariant("ent_max") instead, it is a variable, so make sure you get it in different game loop.
+
+
+
+
+utunnels:
+Moved to Wiki.
+
+DC
+
+utunnels:
+An example of a script file, I copied it from my update.c
+
+
+Code:
+
+#include"data/scripts/update.h"
+void main()
+{
+  int hres;
+  int vres;
+  char text;
+  hres = openborvariant("hresolution");
+  vres = openborvariant("vresolution");
+  text ="screen resolution:";
+  text += hres;
+  text +="x";
+  text += vres;
+  drawstring(max(0, 4), 220 , 0, text);
+  drawstring(max(4, 2), 210, 0,"current enemies:"+ openborvariant("count_enemies"));
+  drawstring(4, 200, 0,"current players:"+ openborvariant("count_players"));
+  drawstring(4, 190, 0,"total entities:"+ openborvariant("count_entities"));
+  drawstring(4, 180, 0,"level height:"+ openborvariant("levelheight"));
+  drawstring(4, 170, 0,"level width:"+ openborvariant("levelwidth"));
+
+}
+
+
+#include will load another script file, the name is not important, even if you use a .txt or .abc, but 8 characters limit.
+
+You can see, it print a lot of string on screen, funny?
+
+
+
+utunnels:
+System file: data\script.txt
+
+Quote
+
+#maxscriptvars {int}
+#define a variable list in each script that can be accessed by index
+#use getscriptvar(index) and setscriptvar(index, value) to use those variables
+maxscriptvars  5
+
+#maxentityvars {int}
+#define a variable list in each entity that can be accessed by index
+#use getentityvar(entity, index) and setentityvar(entity, index, value) to use those variables
+maxentityvars  5
+
+#maxindexedvars {int}
+#define a global variable list that can be accessed by index
+#use getindexedvar(index) and setindexedvar(index, value) to use those variables
+maxindexedvars 100
+
+#maxglobalvars {int}
+#define a global variable list that can be accessed by name
+#see getglobalvar setglobalvar getlocalvar setlocalvar for details
+#the default value is 2048
+#If there's no script in the game, just set it to 0, or don't change it unless you know how big it should be
+maxglobalvars 2048
+
+
+
+Here's an update.c sample about how to use these lists. I don't include the global variant list that can be accessed by name, see topics above.
+Quote
+
+void main()
+{
+  // store"hello"in the indexed global variable list
+  // and print it at (10, 100)
+  setindexedvar(99,"hello");
+  drawstring(10, 100, 2, getindexedvar(99));
+
+  
+  // store the target address in player1's entity variable list
+  // and print it at (10, 120)
+  void p1 = getplayerproperty(0,"ent");
+  setentityvar(p1, 2, findtarget(p1));
+  drawstring(10, 120, 2, getentityvar(p1, 2));
+
+  // store"This is update.c"in current script's variable list
+  // and print it at (10, 140)
+  setscriptvar(3,"This is update.c");
+  drawstring(10, 140, 2, getscriptvar(3));
+}
+
+
+void shoot(void Shot, float dx, float dy, float dz)
+{ // Shooting projectile with same remap as shooter's
+   void self = getlocalvar("self");
+   int Direction = getentityproperty(self, "direction");
+   int Map = getentityproperty(self, "map");
+   int x = getentityproperty(self, "x");
+   int y = getentityproperty(self, "a");
+   int z = getentityproperty(self, "z");
+
+   if (Direction == 0){ //Is entity facing left?                  
+      dx = -dx; //Reverse X direction to match facing
+   }
+
+   projectile(Shot, x+dx, z+dz, y+dy, Direction, 0, 0, Map);
+}
+
+void shoot2(void Shot, float dx, float dy, float dz)
+{ // Shooting targetted projectile
+   void self = getlocalvar("self");
+   int Direction = getentityproperty(self, "direction"); // Get enemy's facing direction
+   int x = getentityproperty(self, "x"); // Get enemy's x coordinate
+   int y = getentityproperty(self, "a"); // Get enemy's a coordinate
+   int z = getentityproperty(self, "z"); // Get enemy's z coordinate
+   float Vx = getlocalvar("x"+self); // Attain x velocity
+   float Vz = getlocalvar("z"+self); // Attain z velocity
+   void vShot; // Projectile entity
+
+   if (Direction == 0){ //Is entity facing left?                  
+      dx = -dx; //Reverse X direction to match facing
+   }
+
+   vShot = projectile(Shot, x+dx, z+dz, y+dy, Direction, 0, 0, 0); // Shoot the projectile!
+
+   if( Vx!=NULL() && Vz!=NULL() ){ // Are both velocity available?
+     changeentityproperty(vShot, "velocity", Vx, Vz); //Move projectile towards target!
+     if (Direction == 0){ //Is enemy facing left?                  
+       changeentityproperty(vShot, "speed", -Vx); // Change speed so it moves left
+     } else {changeentityproperty(vShot, "speed", Vx);} // Change speed so it moves right
+   }
+}
+
+char* propname;
+	int prop, i;
+	
+	static const char* proplist[] = {
+        "aggression",
+        "aiattack",
+        "aiflag",
+        "aimove",
+        "alpha",
+        "animation",
+	"animhits",
+        "animpos",
+	"antigrab",
+        "antigravity",
+        "attacking",
+        "autokill",
+        "base",
+        "blink",
+        "blockpain",
+        "bounce",
+	"candamage",
+        "combostep",
+        "colourmap",
+        "damage_on_landing",
+        "dead",
+        "defaultname",
+        "defense",
+        "detect",
+        "direction",
+        "dot",
+        "edelay",
+	"energycost",
+        "falldie",
+        "freezetime",
+        "frozen",
+        "gfxshadow",
+	"grabforce",
+	"guardpoints",
+        "health",
+        "hmapl",
+        "hmapu",
+	"hostile",
+        "iconposition",
+        "invincible",
+        "invinctime",
+	"jugglepoints",
+        "komap",
+        "lifeposition",
+        "lifespancountdown",
+        "map",
+        "maptime",
+	"maxguardpoints",
+        "maxhealth",
+	"maxjugglepoints",
+        "maxmp",
+        "model",
+        "mp",
+	"mpset",
+        "name",
+        "nameposition",
+	"nextanim",
+	"nextthink",
+        "no_adjust_base",
+        "noaicontrol",
+        "nodieblink",
+        "nodrop",
+        "nograb",
+        "nopain",
+        "offense",
+        "opponent",
+        "owner",
+        "parent",
+        "position",
+        "projectile",
+        "running",
+	"rush_count",
+	"rush_tally",
+	"rush_time",
+        "scroll",
+	"seal",
+	"sealtime",
+	"setlayer",
+	"speed",
+        "stalltime",
+        "stats",
+        "staydown",
+        "staydownatk",
+	"stealth",
+        "subentity",
+        "subject_to_gravity",
+        "subject_to_hole",
+        "subject_to_maxz",
+        "subject_to_minz",
+        "subject_to_obstacle",
+        "subject_to_platform",
+        "subject_to_screen",
+        "subject_to_wall",
+        "takeaction",
+	"tosstime",
+        "trymove",
+        "velocity",
+        "weapon",
+    };
+	
+	static const char* proplist_takeaction[] = {
+		"bomb_explode",
+		"common_attack_proc",
+		"common_block",
+		"common_drop",
+		"common_fall",
+		"common_get",
+		"common_grab",
+		"common_grabattack",
+		"common_grabbed",
+		"common_jump",
+		"common_land",
+		"common_lie",
+		"common_pain",
+		"common_prejump",
+		"common_rise",
+		"common_spawn",
+		"common_turn",
+		"common_vault",
+		"normal_prepare",
+		"npc_warp",
+		"player_blink",
+		"suicide",
+	};
+	
+	static const char* proplist_hostile_candamage[] = {
+		"ground",
+		"type_enemy",
+		"type_npc",
+		"type_obstacle",
+		"type_player",
+		"type_shot",
+	};
+	
+	static const char* proplist_aiflag[] = {
+		"animating",
+		"attacking",
+		"autokill",
+		"blink",
+		"blocking",
+		"charging",
+		"dead",
+		"drop",
+		"falling",
+		"frozen",
+		"getting",
+		"idling",
+		"inpain",
+		"invincible",
+		"jumping",
+		"projectile",
+		"running",
+		"toexplode",
+		"turning",
+	};
+	
+

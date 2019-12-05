@@ -1,0 +1,71 @@
+Use the following functions to create and control scripted graphics. 
+
+drawbox({x}, {y}, {width}, {height}, {z}, {color}, {alpha})
+Draw a filled box with specified position and size. 
+
+x, y 
+Coordinates of the top left corner of the box. 
+width 
+Width of the box. 
+height 
+Height of the box. 
+z 
+Depth value. Similar to setlayer command. Negative values make it almost invisible, anything above 100 will put it on top of almost everything except default lifebars and engine text. 
+color 
+Color of the box. 
+In 8-bit color mode, you can specify the index in the global palette. 
+In any color mode, you can use the rgbcolor function to get this value. 
+alpha 
+Alpha blending effect from 1 to 6; same as the alpha command. Specify 0 for no alpha blending. This parameter is optional. 
+drawline({x1}, {y1}, {x2}, {y2}, {z}, {color}, {alpha})
+Draw a line from (x1, y1) to (x2, y2). 
+
+x1, y1 
+Coordinates of the start point. 
+x2, y2 
+Coordinates of the end point. 
+z, color, alpha 
+Same as in drawbox. 
+drawdot({x}, {y}, {z}, {color}, {alpha})
+Draw a dot at (x, y). 
+
+x, y 
+Coordinates of the dot. 
+z, color, alpha 
+Same as in drawbox. 
+drawscreen({screen}, {x}, {y}, {z}, {alpha})
+Draw the contents of the specified screen object onto the game screen. 
+
+x, y 
+LCoordinates of the screen's upper left corner. 
+
+z, color, alpha 
+Same as in drawbox. 
+drawboxtoscreen({screen}, {x}, {y}, {width}, {height}, {color}, {alpha})
+Similar to drawbox, but draws onto a screen object instead of as a sprite. This makes it a bit more efficient if you are drawing several objects on the screen on each update, such as scripted lifebars. You'll need to use drawscreen afterwards if you want the box to appear on the game screen. 
+
+screen 
+Screen object to draw the line onto. 
+x, y, width, height, color, alpha 
+Same as in drawbox. 
+drawlinetoscreen({screen}, {x1}, {y1}, {x2}, {y2}, {color}, {alpha})
+Similar to drawline, but draws onto a screen object instead of as a sprite. This makes it a bit more efficient if you are drawing several objects on the screen on each update, such as scripted lifebars. You'll need to use drawscreen afterwards if you want the line to appear on the game screen. 
+
+screen 
+Screen object to draw the line onto. 
+x1, y1, x2, y2, color, alpha 
+Same as in drawline. 
+drawdottoscreen({screen}, {x}, {y}, {color}, {alpha})
+Similar to drawdot, but draws onto a screen object instead of as a sprite. This makes it a bit more efficient if you are drawing several objects on the screen on each update, such as scripted lifebars. You'll need to use drawscreen afterwards if you want the dot to appear on the game screen. 
+
+screen 
+Screen object to draw the line onto. 
+x, y, color, alpha 
+Same as in drawdot. 
+allocscreen({width}, {height})
+Creates a new screen object and returns a pointer to it. A screen object has nothing to do with the game screen per se, but instead acts like a canvas for drawing graphics on. The value returned by this function can be passed to drawscreen, drawboxtoscreen, drawlinetoscreen, and drawdottoscreen. 
+
+width 
+Desired width of the screen object. 
+height 
+Desired height of the screen object. 

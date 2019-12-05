@@ -44,6 +44,7 @@ icon          data/chars/1billy/icon.gif 1
 # 脚本
 script data/scripts/spawn.c
 # 事件触发
+# 当Entity动画帧发生变化时执行
 animationscript   data/scripts/lib001.c
 # 当角色精灵出现在屏幕上执行
 ondrawscript	  data/scripts/shadowon.c
@@ -659,6 +660,10 @@ anim jump
 	 sound      data/sounds/jump1.wav
 	 cancel     1 3 0 a2 freespecial50
 	 cancel     1 3 0 s  freespecial91
+	#  动态加载
+	# @cmd prepareScript
+	# @cmd execs
+
          frame      data/chars/1billy/ju01.gif
 	 delay      10
 	 bbox       70 85 21 28

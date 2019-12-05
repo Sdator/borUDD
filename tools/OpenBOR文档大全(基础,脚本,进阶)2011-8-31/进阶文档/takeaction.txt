@@ -1,0 +1,98 @@
+AI Flags
+AI flags are part of what makes up an entity and are used to define what action the entity is currently taking. Changing them via script can yield very useful results, but they also can have unexpected side effects. It is also highly advised to return the flags back to their original settings before the animation ends. Here is how to change them: 
+
+changeentityproperty(entity, "aiflag", "flagname", 0/1); 
+
+entity - the entity to change
+"aiflag" - specifies we are changing an AI flag
+"flagname" - the flag to change, must be in quotes
+0/1 - set flag to 0 to turn it off, 1 to turn it on
+
+
+takeaction 
+Changing an entity's AI flags is often useless without changing their action as well. Actions are blocks of code that run automatically when an entity's status is updated each frame of gameplay and regulate behavior of certain actions, such as attacks and pain animations. 
+
+changeentityproperty(entity, "takeaction", "actionname"); 
+
+entity - the entity to change
+"takeaction" - specifies we are changing an AI flag
+"actionname" - the action to use, must be in quotes
+Note: If no action is specified, action will be set to null which is used by the engine for as an idle state (standing or walking) 
+
+List of AI Flags and their useful effects: 
+AI flags have fairly self explanatory names, but can often be used for purposes other than just what their names imply. 
+
+idling
+One of the most commonly used flags. When you change an entity to a state to anything besides idle, you should set the idling flag to 0. 
+
+jumping
+Changing the jumping flag is necessary for putting an entity into a jumping state via script. 
+
+attacking
+A very useful flag. Use alongside the 'common_attack_proc' takeaction to put the entity into an attacking state. 
+
+inpain
+Flag that signifies a character has is unable to react. Useful for putting entities into a state where they can be manipulated by script without the engine interfering, like cutscenes, etc.. 
+
+turning - unexperimented with
+charging - unexperimented with
+blocking
+Flag that allows blocking in any animation , including attacks. A good example would be Ryo Sakazaki's Gedan Uke , a parry move. Any (non unblockable) attacks that hit while "blocking" is set to 1 will be nullified. This flag can be used alongside many of the other flags without problems.
+projectile - unexperimented with
+frozen - unexperimented with
+toexplode - unexperimented with
+animating - unexperimented with
+falling - unexperimented with
+running - unexperimented with
+autokill - unexperimented with
+getting - unexperimented with
+drop - unexperimented with
+dead - unexperimented with
+
+
+List of actions and their useful effects: 
+Note: Actions with common_ in front of them are actions normally used by the engine for both players and enemies, so they should be relatively safe to use for both those types of entities. They may still cause side effects, though. 
+
+common_attack_proc
+A very useful action. Besides being necessary for putting an entity into an attacking state, it can used to create non attacking moves that can't be interrupted by the player. 
+
+common_jump
+Signifies the entity is jumping. Useful to put an entity into a jumping state from another move. 
+
+common_pain
+The entity is in pain and unable to react. 
+
+common_drop - unexperimented with
+common_fall - unexperimented with
+common_block - unexperimented with
+suicide - unexperimented with
+common_rise - unexperimented with
+common_grabbed - unexperimented with
+common_grabattack - unexperimented with
+common_grab - unexperimented with
+common_vault - unexperimented with
+normal_prepare - unexperimented with
+bomb_explode - unexperimented with
+npc_warp - unexperimented with
+common_prejump - unexperimented with
+common_get - unexperimented with
+common_spawn - unexperimented with
+player_blink - unexperimented with
+common_turn - unexperimented with
+common_land - unexperimented with
+common_lie - unexperimented with
+
+
+Examples
+Changing an entity's status to jumping if they are in the air
+This script will check if an entity is in midair and put them in a jumping state if they are. Useful for moves that may move the entity over an edge. 
+
+void self = getlocalvar("self");
+
+if(getentityproperty(self, "a") > getentityproperty(self, "base")){
+     changeentityproperty(self, "aiflag", "attacking", 0);
+     changeentityproperty(self, "aiflag", "idling", 0);
+     changeentityproperty(self, "aiflag", "jumping", 1);
+     changeentityproperty(self, "takeaction", "common_jump");
+     changeentityproperty(self, "animation", openborconstant("ANI_JUMP"), 1);
+}
