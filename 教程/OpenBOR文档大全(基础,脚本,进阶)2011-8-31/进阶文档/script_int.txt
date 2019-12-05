@@ -1,0 +1,220 @@
+What is a script
+A script is a set of text that can be parsed and compiled by OpenBOR script engine into instruction commands in order to interpret logic expressions and interact with the engine. 
+
+The script engine parse a script text in a order like this: 
+
+Break down the text into tokens, or we say, words. 
+Parse the words into an instruction list, it tells what to do step by step. 
+Compile the instruction list. That is, the engine will pre-run the script once, allocate variables that will be used, link the address of variables and functions together. 
+Most grammar errors can be detected in the first 2 steps, and reported to the engine. Some errors can¡¯t be checked until 3rd step, like function call and variable reference. Few errors won¡¯t be detected until the script runs, they are usually called ¡®runtime errors¡¯, such as bad parameters count of a function call. 
+
+How to write a script
+The script text is formed up by functions and expressions. The syntax is quite similar to C language, but they are different, although, a C user can learn it easily. When a compiled script runs, the expressions outside functions will be executed first, and then the function main will be called (if it exists), and when the function main finishes running, the script is over. Although function main is not a must, but it is highly recommended to have one (of course only one) in your script to make the logic more clear. 
+
+Word
+Words are ¡®atoms¡¯ of a script text, they can¡¯t be broken down into smaller parts (we also call symbols words here to make it easier to understand). It can be a name, a number, or special punctuation characters. Different words must be separated by white-space (e.g, space, return, tab) or punctuation (e.g. comma, parentheses). 
+
+Sentence
+A sentence (also known as a statement) must end with a semi-colon, but it doesn¡¯t need to be written in one line. 
+
+Comment
+If you want to leave some information inside your script text but don¡¯t want the engine to parse it, for example, you want to make a comment, you need to use double-slash before the text line: 
+
+// This is a comment
+// This is another line of comment
+Int a; // This is a comment behind a sentence 
+You can also use /* and */ to comment multiple lines of text, for example: 
+
+/* This is a comment, line 1
+Line2
+Line3
+Line 4*/
+/*You are right, a slash-star comment can be every where*/
+int a = /*here should be a expression, commented by xxxx*/ 321 /*here should be a simi-colon*/ ; // again, here¡¯s a comment, it is after the semi-colon
+/*Blah¡­Blah¡­.*/ 
+Notice: You can¡¯t put /* or */ inside a comment. 
+
+Function
+A function a group of sentences for certain purpose and can called as an expression. A function is formed by a type, a name, an argument list (if necessary) and a function body. It can return a value, but it is optional. Functions will make the script more flexible, so you don¡¯t need to write same sentences again and again. Here is a simple function example: 
+
+// A function that returns the biggest value among a and b
+// It needs 2 arguments, of course
+int max(int a, int b)
+// begin function body
+{
+ if(a>b) 
+ {return a;}
+ else
+ {return b;}
+}
+// end of function max 
+To call a function, you must use the function¡¯s name and give it an argument list, for example: 
+
+int c = max(22, 23); // so c should be 23 
+System function
+In order to interact with OpenBOR, a script needs some interfaces than can transfer data with the game engine. Those interfaces are called system functions. They are defined inside the engine and you don¡¯t need to write them in the script to use them. 
+
+Constant
+A constant can be either a number or string, it can¡¯t be changed during the lifespan or a script, there are 3 types of constants, they are: 
+
+1. Integer
+An integer constant can be defined by a numeric word, it can be hexadecimal or decimal. 
+
+A decimal integer is what we usually used, for example, 123, 1024, -9875¡­ I must begin with 1-9 and any other characters must be 0-9, use minus before number to make a negative integer. The range or an integer constant is from -2147483648 to 2147483648. 
+
+A hexadecimal integer must begin with 0x(Notice it is ¡®zero¡¯x)and it can use 0-9 as well as A-F. 
+
+2. Decimal
+We sometimes call decimals real numbers. Examples of decimals are: 0.2, 1.265, -99.654. 
+
+3.String
+A string constant must start and end with ¡°, so you can¡¯t use ¡° inside it. If you want to use a ¡°, you should use \¡± instead, \ is called an escape character, some other usages: 
+
+\\The character \
+\nReturn
+\rLinefeed.
+\tTab
+\¡¯The character ¡®
+The maximum length or a string constant is 63, if you use a longer text, it will be truncated. 
+
+Variable
+A variable holds a value than can be used by the script, when the script ends, it is gone. 
+
+1. Define variables.
+The syntax is like this: 
+
+type name; 
+
+In fact the engine will not check the type of the variable, but it is not optional. And it is a good habit to use a reasonable type name, it will make the script easier to read. You can define more than one variables with the same type, like: 
+
+type name1, name2, name3;
+Notice the name must start with a alphabet character or _ , and all other characters must be alphabet character or numeric character or _ . The length is not that important, just make sure it is shorter than 24. 
+
+int number1;//correct
+float _I_am_a_float_variable;//correct
+int look_this_is_an_integer_variable_but_it_is_tooooooo_long;
+char 123cat;//wrong, you can¡¯t begin it with a number
+float dollar$;//wrong, no$ allowed 
+If a variable is defined in the current scope, you can¡¯t define another variable with the same name. A scope is divided by {} , variables outside {} is superior than those inside. Notice those defined inside a function¡¯s argument list are superior than to inside the function. 
+
+Valid type names are: void int long char float double short 
+
+There are currently 4 types of variables, they are integer value, decimal value (or we say real number), string value and pointer value. 
+
+An integer value is an integer, it can be in FIXME: what was this supposed to say? It stops in mid-sentence. 
+
+2. Initialize variables.
+A variable can be initialized with a = plus an expression, For example, 
+
+int a = 123; 
+And you can initialize more than one value, like: 
+
+int a = 123, b = 456, c=any_valid_expression_or_function_call, d, e = 256, f, g; 
+A variable must be initialized before use, although you don¡¯t have to give it a value at the same time you initialize it. For example, the following is valid syntax: 
+
+int a;
+¡­
+.
+.
+¡­
+.
+a = any_valid_expression_or_function_call; 
+Let¡¯s calculate
+Since it is a program, you must want to be able to calculate, so let¡¯s talk about the math capabilities of script. It is quite simple, easier than in a real C program. 
+
+1. Add
+In order to add 2 numbers together, you need to do it like this: Number1 + Number2. No doubt, it is what we do in real life. Note, if one of both of the 2 members is/are string value, the result will be a string, for example, 6 + ¡°123¡± will be ¡°6123¡±, not 129, nor ¡°129¡±. 
+
+2. Minus
+Similar to add, we have ¨C to do this job, the syntax is: Number1 ¨C Number2. 
+
+3. Multiply
+We use * here instead of ¡Á in real life, e.g., Number1 * Number2. 
+
+4. Divide
+We use / here instead of ¡Â in real life, e.g., Number1 / Number2. 
+
+5. Mod
+We use % to do a modulo operation, e.g., 15 % 4 should be 3, 20 % 21 should be 20, 99 % 3 should be 0, -4 % 3 should be -1. For those who don't know, a modulo (often shortened to "mod") operation calculates what the remainder is after division. 
+
+Priority
+, / and % have same priority, + and ¨C also have same priority. If they are used together, previous 3 will be calculated first, that means */% has higher priority than +-. 
+int result = 3 + 6 * 4; // The result should be 27, not 36 
+Parentheses
+Like you were taught in math class, expressions in parentheses has more priority than those outside brackets. The logic is also used here, for example: 
+
+int a = 3;int b = (a + 6) * 4; // Now we get 36 instead of 27 
+Type conversion
+When numbers with different are calculated together, it follow the rules like this: If any of the 2 is decimal value, the result will be decimal. Any types beside integer, decimal and string(add only) will be treated as illegal, and the result will be an EMPTY value. 
+
+Compound assignment
+All those above can make up a compound assignment by putting an = behind them, they are: 
+
++=-=*=/=%=For example, a += b means a = a+b. Notice, a *= b+c means a = a*(b+c), not a = a*b + c 
+
+Increment and decrement
+An increment (adding 1 to a number) is represented by ++, while decrement (subtracting one from a number) is --. Examples first. 
+
+a++;// means a = a+1; 
+++a;// means a = a+1; 
+a--;// means a = a-1 
+--a;// means a = a-1 
+So what¡¯s the differences between a++ and ++a? They are different when used in other expression, so another example: 
+
+Int a = 3;
+int b = a++;
+// when it is done, b is 3, a is 4 
+
+int a = 3;
+int b = ++a;
+// when it is done, b is 4, a is 4 
+So the difference is a++ will load a¡¯s value first before do a increment, but ++a will do the increment first. What if there are multiple ++a or a++ in an expression? Or what if they are unsaid by function calls? Well, even C language doesn¡¯t provide a certain rule, so don¡¯t mess it up here, write them separately will make your script easier to read. And also, you can avoid them completely if you are not sure about them, because they are not optimized like in most C programs. 
+
+Logic expression
+A logic expression will return true or false. Like in C language, 0 means false, other values mean true, so logic expression is usually used to test whether a statement is true or false. 
+
+1.Equal
+We use ==because single = is used to do a assignment. The syntax is expression1 == expression2. So if expression1 equals expression2, the entire expression will be true(1), otherwise, it will be false(0). But since we have 4 kinds of data types(5 if you count empty type in), so what if expression1 and expression2 are in different types? 
+
+If they are both numeric, they will be compared by their decimal values. 
+
+If they are 2 strings, they will be compared by their string values, notice the strings are case-sensitive, so ¡°Cat¡± doesn¡¯t equal to ¡°cat¡±. 
+
+If they are 2 pointers, the addresses will be compared. 
+
+If they are 2 empty values, the result will be true(1). 
+
+Otherwise, the result will be false(0). 
+
+2.Not equal
+We use != instead of ¡Ù in real life. Just keep in mind, if expression1==expression2 returns true, expression1!=expression2 must return false, and if expression==expression2 returns false, expression1!=expression2 must return true. 
+
+3.Greater than
+We use > just like in real life, e.g., expression1>expression2. The rules are: 
+
+If they are both numeric, they will be compared by their decimal values. 
+
+If they are 2 strings, they will be compared character by character, by ASCII value. 
+
+If they are 2 pointers, the addresses will be compared. 
+
+If any of them is empty value, the result will be false(0). 
+
+Otherwise, the memory will be compared, which is not supposes to happen because the result usually has no meaning whatsoever to a modder. 
+
+4.Less than
+We use < in script just like in real life. The syntax and rules are the same as above. 
+
+5.Greater than or equal 
+We use >= in script instead of ¡Ý in real life. The syntax and rules are the same as above. 
+
+6.Less than or equal
+We use <= in script instead of ¡Ü in real life. The syntax and rules are the same as above. 
+
+7.And
+The syntax is expression1 && expression2. It will return true only when both expression1 and expression2 are true. 
+
+8.Or
+The syntax is expression1 
+
+Examples

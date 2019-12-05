@@ -1,0 +1,94 @@
+Offense {type} {factor}
+Model header. Controls overall damage output for each attack type. This might seem rather pointless as you can simply increase damage individual for an attack, but by use of script, this is a powerful feature that allows situational raising or lowering of an entity's attack capabilities. 
+
+{type} 
+Default: NA 
+Attack type to modify damage output for. Available types are "normal#", "blast", "burn", "shock", "steal", and "freeze". You may use "all" to affect all normal# types. 
+{factor} 
+Default: 1 
+Damage multiplier. Total damage output = {Damage} * {Factor}. 
+Script
+Get offense setting: 
+
+void	vEnt 	= getlocalvar("self");				//Caller.
+int	iTyp	= openborconstant("ATK_NORMAL");		//Normal type constant.
+
+float 	X 	= getentityproperty(vEnt, "offense", iTyp);	//Get current offense setting for normal attack type.
+Change offense setting: 
+
+void	vEnt 	= getlocalvar("self");				//Caller.
+int	iTyp	= openborconstant("ATK_NORMAL");		//Normal type constant.
+float   fFac	= 0.5;						//50%.
+
+changeentityproperty(vEnt, "offense", iTyp, fFac);		//Set offense.
+
+
+
+Defense {type} {factor} {pain} {knockdown} {blockpower} {blockthreshold} {blockratio} {blocktype}
+Model header. Controls overall damage taken and reaction to being hit. 
+
+{Type} 
+Default: NA 
+Attack type to modify damage received from. Available types are "normal#", "blast", "burn", "shock", "steal", and "freeze". You may use "all" to affect all normal# types. 
+{Factor} 
+Default: 1 
+Damage multiplier. Total damage received = {Damage} * {Factor}. 
+{Pain} 
+Default: 1 
+Entity will not enter pain animation unless damage exceeds {pain}. 
+{Knockdown} 
+Default: 1 
+Entity receives {drop} * {knockdown} toward its Knockdowncount. 
+{Blockpower} 
+Default: 0 
+Entity cannot block attack if {noblock} setting in incoming attack exceeds {blockpower}. 
+{Threshold} 
+Default: 0 
+When set (not 0), the entity cannot block an attack with damage exceeding {threshold}. 
+{Blockratio} 
+Default: 0 
+Entity receives {damage} * {blockratio} when blocking attack. 
+{Blocktype}
+Default: 0 
+Toggles how incoming block {damage} is applied. 
+-1: HP Only 
+0: Use global Mponly setting. 
+1: Drain MP then HP 
+2: Drain MP and HP. 
+Script
+Get Defense setting: 
+
+void    vEnt    = getlocalvar("self");                                          //Caller.
+int     iTyp    = openborconstant("ATK_NORMAL");                                //Normal type constant.
+
+float 	fFac 	= getentityproperty(vEnt, "defense", iTyp, "factor"		);  	//Get factor.
+int 	iPai 	= getentityproperty(vEnt, "defense", iTyp, "pain"            	);  	//Get pain.
+float 	fKno 	= getentityproperty(vEnt, "defense", iTyp, "knockdown",       	);  	//Get knockdown.
+int 	fBpo 	= getentityproperty(vEnt, "defense", iTyp, "blockpower",      	);  	//Get block power.
+int 	iThr 	= getentityproperty(vEnt, "defense", iTyp, "blockthreshold"	);  	//Get threshold.
+float 	fRai	= getentityproperty(vEnt, "defense", iTyp, "blockratio",      	);	//Get block ratio.
+int 	iBty	= getentityproperty(vEnt, "defense", iTyp, "blocktype",       	);  	//Get block type.
+
+Change Defense setting: 
+
+void	vEnt 	= getlocalvar("self");			//Caller.
+int	iTyp	= openborconstant("ATK_NORMAL");	//Normal type constant.
+float 	fFac 	= 0.5;					//Get factor.
+int 	iPai 	= 0;					//Get pain.
+float 	fKno 	= 1;					//Get knockdown.
+int 	fBpo 	= 0;					//Get block power.
+int 	iThr 	= 0;					//Get threshold.
+float 	fRai	= 0;					//Get block ratio.
+int 	iBty	= 0;					//Get block type.
+
+changeentityproperty(vEnt, "defense", iTyp, fFac, iPai, fKno, fBpo, iThr, fRai, iBty);
+Examples
+Below is an example of using defense/offense to set up a fire based character that doles out extra fire damage to others and absorbs any incoming fire damage as healing, but is highly vulnerable to cold. 
+
+Offense burn 1.5     			#Output 150% burn damage.
+
+Defense burn -0.5 1000 0 1000 1000 -1 0	#Absorb 50% of burn damage as healing (or 100% if blocked), and be effectively immune to fall/pain.
+
+Defense freeze 1.5 0 2 0 20 0.5 0 	#Take 150% cold damage, always get knocked down, can only block cold damage of 20 or less and still take 50% even when blocking successfully.
+Retrieved from "http://www.caskeys.com/arc/games/openbor/wiki/index.php?title=Damage_Mediation"
+Categories: OpenBOR Manual | Entity Parameters

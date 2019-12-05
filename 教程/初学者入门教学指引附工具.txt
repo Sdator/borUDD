@@ -1,0 +1,26 @@
+http://bbs.zhange98.com/viewthread.php?tid=7302&highlight=%B3%F5%D1%A7
+入门教学指引                     
+
+                            Openbor游戏开发引擎
+                     初学者入门教学指引（试用）附软件集合
+                              Anking 试编
+
+
+http://u.115.com/file/aq8q0m1e#
+openbor初学入门指引试用2011.5.15.doc 
+
+http://u.115.com/file/e626qkfg
+openbor 横版游戏制作学习工具集合 (发现下载你已经有的软件就删除就可以了，注意更新版工具）
+有兴趣学制作openbor 的朋友可以下载，不过和你手中的工具重复，不要怪俺。
+说明：
+UleadGIFAnimator-v5.05  “素材准备和制作软件”可把gif动画、视频AVI文件解开和制作成动画.   
+Fighter Factory         “素材准备和制作软件”海量提取MUGEN类游戏中的图片和音效.
+pak解包器               “素材准备和制作软件和学习他人openbor游戏软件”不能解开spk加密openbor游戏.
+Photoshop                图片处理软件自己找来下载吧，主要调整索引颜色，改图等
+Bor_Wav转换器            游戏音效转换软件，有些电脑可能无效.
+OpenBor帧编辑器          openbor游戏单组图片动作编辑软件.
+openBorStatsV048          openbor游戏主体编辑软件.
+新版打包                可以将制作好的openbor游戏打包成pak文件，用pak解包器解开
+Neo_Editor.7z           测试学习游戏一个。
+
+http://bbs.zhange98.com/thread-7466-1-1.html  链接 openbor 横版游戏开发感言 

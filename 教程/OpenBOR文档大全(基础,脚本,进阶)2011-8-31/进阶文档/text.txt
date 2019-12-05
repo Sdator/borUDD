@@ -1,0 +1,68 @@
+Text objects are used to display text on screen similar to that of the drawstring function. The difference however is that text objects remain on screen until dismissed and do not require use of an update event. This makes them far more efficient and easier to use for general text display needs. 
+
+Use the following functions to create and control text objects. 
+
+settextobj({index}, {x}, {y}, {font}, {z}, {text})
+Creates a new text object. Text will immediately be visible on screen. 
+
+Index: Desired index. Each text object is identified by index, and you may have up to 10 active at one time (0-9). 
+X: X coordinate of the text object. 
+Y: Y coordinate of the text object. 
+Font: Desired font. This corresponds to the universal fonts used by a module. 
+Z: Layer adjustment for the text object, set to -1 if you want the text to be displayed underneath engine text like the pause menu, larger negatives can push it back even further. 
+Text: The text to display, must be in quotes. You may use up to 64 characters. 
+gettextobjproperty({Index}, {Property})
+Returns property of existing text object. 
+
+Index: Desired index. 
+Property: Property to return ("X", "Y", "Font", "Z", or "Text"). 
+changetextobjproperty({Index}, {Property}, {Value})
+Changes property of existing text object. 
+
+Index: Desired index. 
+Property: Property to change ("X", "Y", "Font", "Z", or "Text"). 
+Value: New value. 
+cleartextobj({Index})
+Removes existing text object. 
+
+Index: Desired index. 
+Examples
+Create new text object: 
+
+int     iIndex  = 0;       //Index.
+int     iX      = 100;     //X location.
+int     iY      = 20;      //Y location.
+int     iFont   = 1;       //Font.
+int     iZ      = -1;      //Z location.
+void    vText   = "text";  //Text string.
+
+settextobj(iIndex, iX, iY, iFont, iZ, vText); //Create and display text object.
+
+Get properties of existing text object: 
+
+int     iIndex  = 0;                                    //Index
+int     iX      = gettextobjproperty(iIndex, "x");      //Return X.
+int     iY      = gettextobjproperty(iIndex, "y");      //Return Y.
+int     iFont   = gettextobjproperty(iIndex, "font");   //Return font.
+int     iZ      = gettextobjproperty(iIndex, "z");      //Return Z.
+void    vText   = gettextobjproperty(iIndex, "text");   //Return text string.
+
+Modify existing text object: 
+
+int     iIndex  = 0;       //Index.
+int     iX      = 100;     //X location.
+int     iY      = 20;      //Y location.
+int     iFont   = 1;       //Font.
+int     iZ      = -1;      //Z location.
+void    vText   = "new";   //Text string.
+
+changetextobjproperty(iIndex, "x",      iX);    //Set X location.
+changetextobjproperty(iIndex, "y",      iY);    //Set Y location.
+changetextobjproperty(iIndex, "font",   iFont); //Set font.
+changetextobjproperty(iIndex, "z",      iZ);    //Set Z location.
+changetextobjproperty(iIndex, "text",   vText); //Set text.
+
+Remove existing text object: 
+
+int     iIndex  = 0;    //Index.
+cleartextobj(iIndex);   //Remove text object.
