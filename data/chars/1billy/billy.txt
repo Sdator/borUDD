@@ -11,7 +11,7 @@ subject_to_obstacle 0
 health        100
 # MP最大值
 # 默认100	调大点测试
-mp            100000
+mp            100
 # 技能使用消耗方式	 0：优先消耗蓝》生命   1：消耗HP   2：消耗MP
 falldie       2
 jugglepoints  20
@@ -551,7 +551,7 @@ anim freespecial1
 	#  动态加载
 @cmd prepareScript
 @cmd execs
-@cmd log "攻击222\n"
+# @cmd log "攻击1111\n"
 @cmd ani0020 openborconstant("ANI_FREESPECIAL102") openborconstant("ANI_FALL102")
 @cmd ani0020 openborconstant("ANI_FOLLOW1") openborconstant("ANI_PAIN3")
 @cmd ani0020 openborconstant("ANI_FOLLOW1") openborconstant("ANI_PAIN4")
