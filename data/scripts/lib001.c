@@ -42,6 +42,7 @@ int ani0020(int iAni, int iTAni){
 	if (vOpp)												//Found a target?
 	{
     //并且 目标 当前的动画ID等于 参数传进来的ID iTAni
+    //即 敌人当前的动作符合条件 主角就变招执行某个动画
 		if(getentityproperty(vOpp, "animationID") == iTAni)	//Animation match?
 		{
       //设置主角的动画

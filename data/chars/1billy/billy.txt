@@ -455,12 +455,19 @@ anim attack1
 	 bbox       68 83 24 44
 	#  如果敌人处于某个状态就变招
 	# 升龙
-	@cmd log "拳头攻击"
+	@cmd log "拳头攻击1\n"
+# 由于这个函数会出现变招 变更动画句柄 所以其中一个执行成功后下面的都不会执行
 @cmd ani0020 openborconstant("ANI_FREESPECIAL103") openborconstant("ANI_FALL102")
+@cmd log "拳头攻击2\n"
+# k + j		后仰   腿是重拳 能产生两帧动画 所以这两帧之间按下都能变招
 @cmd ani0020 openborconstant("ANI_ATTACK3") openborconstant("ANI_PAIN3")
+# k + j		前仰  
+@cmd log "拳头攻击3\n"
 @cmd ani0020 openborconstant("ANI_ATTACK3") openborconstant("ANI_PAIN4")
+@cmd log "拳头攻击4\n"
+# 敌人眩晕状态 勾拳
 @cmd ani0020 openborconstant("ANI_ATTACK4") openborconstant("ANI_PAIN7")
-@cmd log "拳头攻击结束"
+@cmd log "拳头攻击5\n"
          frame      data/chars/1billy/a301.gif
 	 delay      11
 	 attack     90 83 18 8 7 0 0 0 8 5
@@ -472,6 +479,7 @@ anim attack1
 	 delay      6
 	 attack     0 0 0 0 
          frame      data/chars/1billy/a301.gif
+	
 
 # 二拳 和 一拳 相同 有优化余地  唯一不同是变招
 anim attack2
@@ -481,6 +489,7 @@ anim attack2
 	 delay      6
 	 offset     80 129
 	 bbox       68 83 24 44
+	 @cmd log "拳头222攻击\n"
 @cmd ani0020 openborconstant("ANI_FREESPECIAL103") openborconstant("ANI_FALL102")
 @cmd ani0020 openborconstant("ANI_ATTACK4") openborconstant("ANI_PAIN7")
          frame      data/chars/1billy/a301.gif

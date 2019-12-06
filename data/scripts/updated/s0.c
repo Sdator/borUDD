@@ -44,7 +44,7 @@ void main()
     log( "2:" + animpos + "\n");
  
     // // 模拟释放技能
-    changeentityproperty(self, "animation", openborconstant("ANI_freespecial62")); 
+    // changeentityproperty(self, "animation", openborconstant("ANI_freespecial62")); 
 
 
 
