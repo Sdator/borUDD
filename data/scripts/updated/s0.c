@@ -27,26 +27,48 @@ void main()
     // int players = openborvariant("count_players");
     // 获取第一个玩家的实例
     void self = getplayerproperty(0,"ent");
+    // 读取mods.txt里的预定实体
+    // void aa = loadmodel("Billy");
+    // void bb = getentityproperty(aa,"mp");
 
-    void aa = loadmodel("Billy");
-    void bb = getentityproperty(aa,"mp");
+    //当前使用的动画句柄 如 anim freespecial1 使用这个动画中
+    void name = getentityproperty(self,"animationID");
+    //当前动画帧位置  
+    // 由于此脚本是cmd执行的 只会执行一次 也就是只获得了一帧
+    void animpos = getentityproperty(self,"animpos");
+    
+    void af = getentityproperty(self, "animvalid", openborconstant("ANI_FREESPECIAL103")); 
 
-    //物体
-    void name = getentityproperty(self,"mp");
-    void x = getentityproperty(self,"mpdroprate");
-    void z = getentityproperty(self,"mprate");
+
+    log( "1:" + name + "\n");
+    log( "2:" + animpos + "\n");
+ 
+    // // 模拟释放技能
+    changeentityproperty(self, "animation", openborconstant("ANI_freespecial62")); 
+
+
+
+    // void x = getentityproperty(self,"animvalid",20000);
+    // log( "1:" + x + "\n");
+
+
+
+
+
+    // void z = getentityproperty(self,"animvalid");
     // void hp = getentityproperty(self, "mpset");
     // void mp1 = getentityproperty(self,"mpstable");
     // void mp2 = getentityproperty(self, "mpstableval");
-    changeentityproperty(self,"mp",100);
+    // changeentityproperty(self,"mp",100);
 
     // drawstring (x+10, 20+z, 1, "11111111111111"+name);
-    
+  
+
     log( "1:" + name + "\n");
-    log( "2:" + x + "\n");
-    log( "3:" + z + "\n");
-    log( "aa:" + aa + "\n");
-    log( "bb:" + bb + "\n");
+    log( "2:" + animpos + "\n");
+
+    // log( "aa:" + aa + "\n");
+    // log( "bb:" + bb + "\n");
     // log( "4:" + hp + "\n");
     // log( "5:" + mp1 + "\n");
     // log( "6:" + mp2 + "\n");
@@ -83,6 +105,26 @@ void main()
     // drawstring (10, z + 20 , 3, "name" + name); 
 
 }
+
+void test(){
+    
+    void self =  getlocalvar("self");
+    // 测试程序
+    void i;
+    // 测试可用范围0-3198
+    for(i=0;i<4099;i++)
+    {
+        //获取实体可用的动画ID 存在返回1 不存在返回0
+        void x = getentityproperty(self,"animvalid",i);
+        log( i + ":" + x + "\n");
+        // if(x)
+        // {
+        //     log( i + ":" + x + "\n");
+        // }
+    }
+
+}
+
 
 // 脚本初始化时执行一次
 // 全局变量可以访问 局部变量无法访问

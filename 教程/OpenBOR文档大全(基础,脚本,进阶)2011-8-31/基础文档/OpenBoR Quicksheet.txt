@@ -332,7 +332,8 @@ lifespan	{value}
 scroll		{value}
 
 --------------
-
+# 默认可用的动画类型 即anim xxxxx
+# 部分强制性 部分可选
 Entity Files - Animation Types:
 
 - Non Attack
@@ -452,8 +453,8 @@ GRABBEDTURN
 --------------
 
 Entity Files - Animation Data:
-
-- Animation header
+# 动画头 每个动画只能声明一次的命令
+- Animation header        
 loop		{bi} {start} {end}
 fastattack	{bi}
 blockfx         {path}
@@ -474,7 +475,8 @@ animheight      {alt}
 cancel          {start frame} {end frame} {hits} {sequence of inputs} {freespecial#}
 chargetime	{int}
 
-- "Frame" commands
+# 帧命令 每个动画只能声明一次、用于帧之间操作
+- "Frame" commands  
 pshotframe	{frame}	{a}
 throwframe	{frame}	{a}
 shootframe	{frame}	{a}
@@ -494,7 +496,8 @@ unsummonframe	{frame}
 subentity	{name} / custentity	{name}
 weaponframe	{frame}	{weapon}
 
-- Frame Properties
+# 帧属性 可以声明多次
+- Frame Properties      
 delay		{int}
 offset	        {x}	{y}	
 bbox		{x}	{y}	{right}	{down}	{z}

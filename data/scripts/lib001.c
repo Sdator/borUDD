@@ -27,20 +27,24 @@ int ani0020(int iAni, int iTAni){
 	ani0020
 	Damon Vaughn Caskey
 	Perform alternate animation if target is within range and in specified animation.
-
+  //如果目标在范围内 并且指定动画中 就执行备用动作 用于连招
+  //控制角色备用动画、 目标动画
 	iAni:	Alternate attack.
 	iTAni:	Target animation.
 	*/
 
     void vSelf      = getlocalvar("self");					//Caller.   
-    //返回最近的敌对实体的句柄  
-    //返回玩家当前攻击的敌人和动画状态                                                  
+    
+    //捕获实体的某个动画攻击范围内的敌人  
+    //测试 附近敌人是否符合技能范围条件                                 
     void vOpp       = findtarget(vSelf, iAni);				//Nearest target in range of alternate attack.
-	//如果敌人存在
+	//如果符合
 	if (vOpp)												//Found a target?
 	{
+    //并且 目标 当前的动画ID等于 参数传进来的ID iTAni
 		if(getentityproperty(vOpp, "animationID") == iTAni)	//Animation match?
 		{
+      //设置主角的动画
 			ani0009(vSelf, iAni, 0);						//Perform alternate attack.
 			return 1;										//Return 1.
 		}

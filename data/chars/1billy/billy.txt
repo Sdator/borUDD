@@ -446,16 +446,21 @@ anim freespecial37
 	 delay      14
          frame      data/chars/1billy/rise02.gif
 
+# 拳
 anim attack1
 	 range      -10 50
 	 loop       0
 	 delay      6
 	 offset     80 129
 	 bbox       68 83 24 44
+	#  如果敌人处于某个状态就变招
+	# 升龙
+	@cmd log "拳头攻击"
 @cmd ani0020 openborconstant("ANI_FREESPECIAL103") openborconstant("ANI_FALL102")
 @cmd ani0020 openborconstant("ANI_ATTACK3") openborconstant("ANI_PAIN3")
 @cmd ani0020 openborconstant("ANI_ATTACK3") openborconstant("ANI_PAIN4")
 @cmd ani0020 openborconstant("ANI_ATTACK4") openborconstant("ANI_PAIN7")
+@cmd log "拳头攻击结束"
          frame      data/chars/1billy/a301.gif
 	 delay      11
 	 attack     90 83 18 8 7 0 0 0 8 5
@@ -468,6 +473,7 @@ anim attack1
 	 attack     0 0 0 0 
          frame      data/chars/1billy/a301.gif
 
+# 二拳 和 一拳 相同 有优化余地  唯一不同是变招
 anim attack2
 	 range      -10 50
 	 range      0 60
@@ -540,6 +546,7 @@ anim attack4
 #kick button
 # 腿攻击
 anim freespecial1
+# 用于Ai控制 这里是用户控制应该可以去掉？
 	 range      -10 60
 	 loop       0
 	 delay      9
@@ -551,7 +558,15 @@ anim freespecial1
 	#  动态加载
 @cmd prepareScript
 @cmd execs
+# @cmd log "运行1111111111次"
+# @script
+	# //每帧都运行
+# 	log("运行nnnnnnnnn次");
+# @end_script
 # @cmd log "攻击1111\n"
+# 如果目标在范围内 并且指定动画中 就执行备用动作 用于连招
+# ani0020 控制角色备用动画、 目标动画
+# ANI_FREESPECIAL102 是指 anim freespecial102  是否存在这样一个动画
 @cmd ani0020 openborconstant("ANI_FREESPECIAL102") openborconstant("ANI_FALL102")
 @cmd ani0020 openborconstant("ANI_FOLLOW1") openborconstant("ANI_PAIN3")
 @cmd ani0020 openborconstant("ANI_FOLLOW1") openborconstant("ANI_PAIN4")
@@ -561,7 +576,8 @@ anim freespecial1
          frame      data/chars/1billy/b102.gif
 	 delay      14
 	 attack3    85 78 24 26 9 0 0 0 8 5
-	 jugglecost 5
+	#  5次攻击必定会击倒敌人
+	 jugglecost 5		
 	 forcedirection -1
 	 dropv      1.3 0.8 0
       @cmd  knife 60 7 0 45 "ANI_FOLLOW1"
@@ -1136,7 +1152,9 @@ anim freespecial102
          frame      data/chars/1billy/fin01.gif
 
 #SHIN RYU KEN
+#升龙 e j
 anim freespecial103
+@cmd log "升龙开始"
 	 rangex     113 133
 	 rangea     75 95
 	 rangez     -1 1 
@@ -3290,6 +3308,7 @@ anim freespecial65
 	 bbox       0 0 0 0
 	 delay      6
 	 fastattack 1
+	#  播放特效
 	 hitflash   Qflash2
  	 cancel     9 11 3 a   freespecial67  #punch auto triple 2
 	 cancel     9 11 3 a2  freespecial68  #kick auto triple 2
