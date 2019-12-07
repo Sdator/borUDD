@@ -66,6 +66,10 @@ load	Jimmy2        data/chars/1jimmy/jimmy2.txt
 load	Jimmy3        data/chars/1jimmy/jimmy3.txt
 load	1Jeff         data/chars/2jeff/1jeff.txt
 
+# 自定义
+load	Dlg           data/chars/1dlg/dlg.txt
+
+
 #-------Player (Dragons) weapons
 load	BillyN        data/chars/1billy/billyN.txt
 load	BillyB        data/chars/1billy/billyB.txt
