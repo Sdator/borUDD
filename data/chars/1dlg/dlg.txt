@@ -565,8 +565,6 @@ anim freespecial1
 	#  集中敌人播放音效
 	 hitfx      data/sounds/beat2.wav
 	#  动态加载
-@cmd prepareScript
-@cmd execs
 # @cmd log "运行1111111111次"
 # @script
 	# //每帧都运行
