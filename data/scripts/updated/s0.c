@@ -103,27 +103,46 @@ void main()
     // log("玩家数量:" + players + "\n");
 
     // drawstring (10, z + 20 , 3, "name" + name); 
+    test1(getlocalvar("self"));
+    // test1(getplayerproperty(0,"ent"));
 
 }
 
-void test(){
+
+
+void test1(void self){
+    /*
+            获取实体可用的动画ID
+    */
+    if(isempty(self)){
+        self = getplayerproperty(0,"ent");
+    }
     
-    void self =  getlocalvar("self");
-    // 测试程序
-    void i;
+    log("测试aaa："+ self +"\n");
+
+   
+   
+   
+    int num=0,i;   
+
     // 测试可用范围0-3198
     for(i=0;i<4099;i++)
     {
         //获取实体可用的动画ID 存在返回1 不存在返回0
         void x = getentityproperty(self,"animvalid",i);
-        log( i + ":" + x + "\n");
-        // if(x)
-        // {
-        //     log( i + ":" + x + "\n");
-        // }
+        // log( i + ":" + x + "\n");
+        if(x)
+        {
+            num+=1;
+            // log( i + ":" + x + "\n");
+        }
     }
+    log( "共有:" + num + "\n");
 
 }
+
+
+
 
 
 // 脚本初始化时执行一次

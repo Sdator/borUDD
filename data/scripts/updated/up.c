@@ -1,3 +1,28 @@
+// 测试系统
+
+void test(){
+        /*
+                获取实体可用的动画ID
+        */
+    void self =  getlocalvar("self");
+    // 测试程序
+    void i;
+    // 测试可用范围0-3198
+    for(i=0;i<4099;i++)
+    {
+        //获取实体可用的动画ID 存在返回1 不存在返回0
+        void x = getentityproperty(self,"animvalid",i);
+        log( i + ":" + x + "\n");
+        // if(x)
+        // {
+        //     log( i + ":" + x + "\n");
+        // }
+    }
+}
+
+
+
+// 动态编译
 void prepareScript()
 {
         void snumber        =        0;

@@ -1,0 +1,12 @@
+void main() {
+	setglobalvar("Atap",120);
+	setglobalvar("P1respawn_x",98.961952);
+	setglobalvar("P1respawn_z",205.800049);
+	setglobalvar("P1respawn_a",0.000000);
+	setglobalvar("P2respawn_x",98.961952);
+	setglobalvar("P2respawn_z",205.800049);
+	setglobalvar("P2respawn_a",0.000000);
+	setglobalvar(99,"helloaaa");
+	changemodelproperty("Billy",4,1);
+	changemodelproperty("Jimmy",4,1);
+}
